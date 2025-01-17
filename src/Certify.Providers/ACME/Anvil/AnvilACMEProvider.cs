@@ -754,7 +754,11 @@ namespace Certify.Providers.ACME.Anvil
                 var orderCreated = false;
                 var orderAttemptAbandoned = false;
                 object lastException = null;
+
                 var caSupportsARI = false;
+
+                var caSupportsRequestedProfile = false;
+                var profile = managedCertificate.RequestConfig.AcmeProfile?.Trim();
 
                 try
                 {
@@ -765,6 +769,16 @@ namespace Certify.Providers.ACME.Anvil
                         if (dir.RenewalInfo != null)
                         {
                             caSupportsARI = true;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(profile) && dir.Meta?.Profiles.ContainsKey(profile) == true)
+                        {
+                            caSupportsRequestedProfile = true;
+                            log?.Information($"The CA supports the specified ACME Profile [{profile}].");
+                        }
+                        else
+                        {
+                            log?.Error($"CA does not support the specified ACME Profile [{profile}]. The order will continue without a specific profile.");
                         }
                     }
                     catch (Exception exp)
@@ -828,7 +842,7 @@ namespace Certify.Providers.ACME.Anvil
                                     ariReplacesCertId = managedCertificate.ARICertificateId;
                                 }
 
-                                order = await _acme.NewOrder(identifiers: certificateIdentifiers, notAfter: notAfter, ariReplacesCertId: ariReplacesCertId);
+                                order = await _acme.NewOrder(identifiers: certificateIdentifiers, notAfter: notAfter, ariReplacesCertId: ariReplacesCertId, profile: caSupportsRequestedProfile ? profile : null);
                             }
 
                             if (order != null)

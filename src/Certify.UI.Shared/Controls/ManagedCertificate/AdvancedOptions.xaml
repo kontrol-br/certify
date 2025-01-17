@@ -88,7 +88,23 @@
                             Width="200"
                             HorizontalAlignment="left"
                             Controls:TextBoxHelper.Watermark="e.g. DST Root CA X3"
+                            DockPanel.Dock="Top"
                             Text="{Binding SelectedItem.RequestConfig.PreferredChain}" />
+                        <TextBlock
+                            Margin="0,8"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource Subheading}">
+                            ACME Profile (Draft)
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">
+                            The certificate authority may allow you to specify a preset "profile" name for your certificate order.
+                        </TextBlock>
+                        <TextBox
+                            Width="200"
+                            HorizontalAlignment="left"
+                            Controls:TextBoxHelper.Watermark="e.g. classic"
+                            DockPanel.Dock="Top"
+                            Text="{Binding SelectedItem.RequestConfig.AcmeProfile}" />
                     </DockPanel>
                 </TabItem>
 

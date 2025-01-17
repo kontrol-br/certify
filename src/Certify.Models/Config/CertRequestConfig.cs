@@ -301,6 +301,11 @@ namespace Certify.Models
         /// </summary>
         public float? PreferredExpiryDays { get; set; }
 
+        /// <summary>
+        /// If set, specifies the preferred ACME profile to request (if the selected CA offers a profile with this name)
+        /// </summary>
+        public string? AcmeProfile { get; set; }
+
         public void ApplyDeploymentOptionDefaults()
         {
             // if the selected mode is auto, discard settings which do not apply
