@@ -2,7 +2,7 @@ Certify The Web - TLS/SSL Certificate Management
 
 End User License Agreement
 
-Copyright (c) 2015-2022 Webprofusion Pty Ltd 
+Copyright (c) 2015-2025 Webprofusion Pty Ltd 
 
 This software is provided "as is", without warranty of any kind,
 express or implied, including but not limited to the warranties of
