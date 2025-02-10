@@ -43,6 +43,7 @@ namespace Certify.Core.Management.Challenges.DNS
             [Hurricane Electric](https://poshac.me/docs/latest/Plugins/HurricaneElectric),
             [Infoblox](https://poshac.me/docs/latest/Plugins/Infoblox),
             [Infomaniak](https://poshac.me/docs/latest/Plugins/Infomaniak)
+            [INWX](https://poshac.me/docs/latest/Plugins/INWX)
             [IONOS](https://poshac.me/docs/latest/Plugins/IONOS)
             [IBM Cloud/SoftLayer](https://poshac.me/docs/latest/Plugins/IBMSoftLayer),
             [ISPConfig](https://poshac.me/docs/latest/Plugins/ISPConfig),
@@ -54,6 +55,7 @@ namespace Certify.Core.Management.Challenges.DNS
             [Namecheap](https://poshac.me/docs/latest/Plugins/Namecheap)
             [NS1](https://poshac.me/docs/latest/Plugins/NS1),
             [PointDNS](https://poshac.me/docs/latest/Plugins/PointDNS),
+            [Porkbun](https://poshac.me/docs/latest/Plugins/Porkbun),
             [PowerDNS](https://poshac.me/docs/latest/Plugins/PowerDNS),
             [Rackspace](https://poshac.me/docs/latest/Plugins/Rackspace),
             [RFC2136](https://poshac.me/docs/latest/Plugins/RFC2136),
@@ -747,6 +749,25 @@ namespace Certify.Core.Management.Challenges.DNS
                 IsTestModeSupported = true,
                 IsExperimental = true
             },
+            new ChallengeProviderDefinition
+             {
+                 Id = "DNS01.API.PoshACME.INWX",
+                 Title = "INWX API (using Posh-ACME)",
+                 Description = "Validates via DNS API using credentials",
+                 HelpUrl = "https://poshac.me/docs/latest/Plugins/INWX/",
+                 PropagationDelaySeconds = DefaultPropagationDelay,
+                 ProviderParameters = new List<ProviderParameter>
+                 {
+                     new ProviderParameter { Key = "INWXUsername", Name = "API Username", IsRequired = true, IsCredential = true },
+                     new ProviderParameter { Key = "INWXPassword", Name = "API Password", IsRequired = true, IsCredential = true, ExtendedConfig=_paramIsSecureStringConfig },
+                     _defaultPropagationDelayParam
+                 },
+                 ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
+                 Config = "Provider=Certify.Providers.DNS.PoshACME;Script=INWX",
+                 HandlerType = ChallengeHandlerType.POWERSHELL,
+                 IsTestModeSupported = true,
+                 IsExperimental = true
+             },
               new ChallengeProviderDefinition
             {
                 Id = "DNS01.API.PoshACME.IONOS",
@@ -913,6 +934,25 @@ namespace Certify.Core.Management.Challenges.DNS
                 },
                 ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
                 Config = "Provider=Certify.Providers.DNS.PoshACME;Script=PointDNS",
+                HandlerType = ChallengeHandlerType.POWERSHELL,
+                IsTestModeSupported = true,
+                IsExperimental = true
+            },
+            new ChallengeProviderDefinition
+            {
+                Id = "DNS01.API.PoshACME.Porkbun",
+                Title = "Porkbun API (using Posh-ACME)",
+                Description = "Validates via DNS API using credentials",
+                HelpUrl = "https://poshac.me/docs/latest/Plugins/Porkbun/",
+                PropagationDelaySeconds = DefaultPropagationDelay,
+                ProviderParameters = new List<ProviderParameter>
+                {
+                    new ProviderParameter { Key = "PorkbunAPIKey", Name = "API Key", IsRequired = true, IsCredential = true, ExtendedConfig=_paramIsSecureStringConfig },
+                    new ProviderParameter { Key = "PorkbunSecret", Name = "API Secret", IsRequired = true, IsCredential = true, ExtendedConfig=_paramIsSecureStringConfig },
+                    _defaultPropagationDelayParam
+                },
+                ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
+                Config = "Provider=Certify.Providers.DNS.PoshACME;Script=Porkbun",
                 HandlerType = ChallengeHandlerType.POWERSHELL,
                 IsTestModeSupported = true,
                 IsExperimental = true
