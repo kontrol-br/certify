@@ -373,7 +373,7 @@ namespace Certify.UI.Windows
                         }
                         else
                         {
-                            MessageBox.Show(this, "You are using the app for personal use. Please continue using the app for free.");
+                            MessageBox.Show(this, "You are using the app for personal use. Please continue using the app for free. Tell your friends about us and star webprofusion/certify on github.");
 
                             _appViewModel.UISettings.CommunityMode = "personal";
                             UISettings.Save(_appViewModel.UISettings);
