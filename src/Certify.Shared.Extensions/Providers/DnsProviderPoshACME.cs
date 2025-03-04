@@ -723,6 +723,7 @@ namespace Certify.Core.Management.Challenges.DNS
                     new ProviderParameter { Key = "IBUsername", Name = "Username", IsRequired = true, IsCredential = true },
                     new ProviderParameter { Key = "IBPassword", Name = "Password", IsRequired = true, IsCredential = true, IsPassword=true },
                     new ProviderParameter { Key = "IBView", Name = "DNS View", IsRequired = true, IsCredential = false, Description="e.g. default", Value="default"},
+                    new ProviderParameter { Key = "IBIgnoreCert", Name = "Skip Cert Validation", Type= OptionType.Boolean,  Value="true", IsCredential=false, IsHidden=false},
                     _defaultPropagationDelayParam
                 },
                 ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
