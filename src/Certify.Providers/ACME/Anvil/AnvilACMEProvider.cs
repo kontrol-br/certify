@@ -776,7 +776,7 @@ namespace Certify.Providers.ACME.Anvil
                             caSupportsRequestedProfile = true;
                             log?.Information($"The CA supports the specified ACME Profile [{profile}].");
                         }
-                        else
+                        else if (!string.IsNullOrWhiteSpace(profile))
                         {
                             log?.Error($"CA does not support the specified ACME Profile [{profile}]. The order will continue without a specific profile.");
                         }
