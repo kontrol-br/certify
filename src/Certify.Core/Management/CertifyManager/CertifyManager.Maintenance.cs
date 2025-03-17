@@ -143,6 +143,8 @@ namespace Certify.Management
                 var itemsOcspExpired = new List<string>();
                 var itemsViaARI = new Dictionary<string, DateTimeOffset>();
 
+                var disableARIChecks = CoreAppSettings.Current.DisableARIChecks;
+
                 if (ocspItemsToCheck?.Any() == true)
                 {
                     _serviceLog.Information(template: $"Checking OCSP for {ocspItemsToCheck.Count} items");
@@ -193,7 +195,7 @@ namespace Certify.Management
                     _serviceLog.Verbose("Completed OCSP status checks");
                 }
 
-                if (!cancelToken.IsCancellationRequested)
+                if (!disableARIChecks && !cancelToken.IsCancellationRequested)
                 {
                     var renewalInfoItemsToCheck = await _itemManager.Find(new ManagedCertificateFilter { LastRenewalInfoCheckMins = (managedItemId == null ? lastCheckOlderThanMinutes : (int?)null), MaxResults = batchSize, Id = managedItemId });
 
@@ -295,6 +297,10 @@ namespace Certify.Management
                             await Task.Delay(checkThrottleMS);
                         }
                     }
+                }
+                else if (disableARIChecks)
+                {
+                    _serviceLog.Information("ARI Checks are disabled.");
                 }
 
                 var allItemsToUpdate = new List<string>(completedOcspUpdateChecks);

@@ -131,6 +131,11 @@
         /// If true, system CA roots etc are loaded during chain build to help validate chain
         /// </summary>
         public bool EnableIssuerCache { get; set; }
+
+        /// <summary>
+        /// If true, ARI checks will not be performed during periodic maintenance
+        /// </summary>
+        public bool DisableARIChecks { get; set; }
     }
 
     public static class FeatureFlags

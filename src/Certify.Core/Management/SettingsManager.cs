@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Certify.Models;
@@ -183,6 +183,11 @@ namespace Certify.Management
         /// </summary>
         public bool PerformChallengeCleanupsLast { get; set; }
         public string CurrentServiceVersion { get; set; }
+        public bool DisableARIChecks { get; set; }
+        /// </summary>
+        /// If true, ARI checks will not be performed during periodic maintenance
+        /// <summary>
+
     }
 
     public class SettingsManager
@@ -239,7 +244,10 @@ namespace Certify.Management
 
             CoreAppSettings.Current.DefaultACMERetryInterval = prefs.DefaultACMERetryInterval;
 
+            CoreAppSettings.Current.DisableARIChecks = prefs.DisableARIChecks;
+
             CoreAppSettings.Current.EnableIssuerCache = prefs.EnableIssuerCache;
+
             return true;
         }
 
@@ -276,6 +284,7 @@ namespace Certify.Management
                 ConfigDataStoreConnectionId = CoreAppSettings.Current.ConfigDataStoreConnectionId,
                 DefaultKeyType = CoreAppSettings.Current.DefaultKeyType,
                 EnableParallelRenewals = CoreAppSettings.Current.EnableParallelRenewals,
+                DisableARIChecks = CoreAppSettings.Current.DisableARIChecks,
                 DefaultACMERetryInterval = CoreAppSettings.Current.DefaultACMERetryInterval
             };
 
