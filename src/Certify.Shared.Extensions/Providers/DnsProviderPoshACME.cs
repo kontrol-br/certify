@@ -90,7 +90,8 @@ namespace Certify.Core.Management.Challenges.DNS
 
                         // TODO : move this out, shared config should be injected
                         var config = SharedUtils.ServiceConfigManager.GetAppServiceConfig();
-                        return new DnsProviderPoshACME(scriptPath, config.PowershellExecutionPolicy) { DelegateProviderDefinition = provider };
+                        var enableDebug = config.LogLevel?.ToLower() == "debug";
+                        return new DnsProviderPoshACME(scriptPath, config.PowershellExecutionPolicy, enableDebug) { DelegateProviderDefinition = provider };
                     }
                 }
 
@@ -122,7 +123,7 @@ namespace Certify.Core.Management.Challenges.DNS
         List<ProviderParameter> IDnsProvider.ProviderParameters => Definition.ProviderParameters;
 
         private int? _customPropagationDelay = null;
-
+        private bool _enableDebug = false;
         private Dictionary<string, string> _parameters;
         private Dictionary<string, string> _credentials;
 
@@ -1209,7 +1210,7 @@ namespace Certify.Core.Management.Challenges.DNS
             },
         };
 
-        public DnsProviderPoshACME(string scriptPath, string scriptExecutionPolicy)
+        public DnsProviderPoshACME(string scriptPath, string scriptExecutionPolicy, bool enableDebug)
         {
             _scriptExecutionPolicy = scriptExecutionPolicy;
 
@@ -1217,6 +1218,8 @@ namespace Certify.Core.Management.Challenges.DNS
             {
                 _poshAcmeScriptPath = scriptPath;
             }
+
+            this._enableDebug = enableDebug;
         }
 
         private string FormatParamKeyValue(ProviderParameter parameterDefinition, KeyValuePair<string, string> paramKeyValue)
@@ -1381,6 +1384,12 @@ namespace Certify.Core.Management.Challenges.DNS
             var args = string.Join("; ", formattedArgumentValues.ToArray());
 
             scriptContent += " $PluginArgs= @{" + args + "} \r\n";
+
+            if (_enableDebug)
+            {
+                scriptContent += " $DebugPreference = \"Continue\" \r\n";
+            }
+
             scriptContent += $"{action} -RecordName '{recordName}' -TxtValue '{recordValue}' @PluginArgs \r\n";
 
             return scriptContent;
