@@ -1192,6 +1192,25 @@ namespace Certify.Core.Management.Challenges.DNS
             },
             new ChallengeProviderDefinition
             {
+                Id = "DNS01.API.PoshACME.WEDOS",
+                Title = "WEDOS DNS API (using Posh-ACME)",
+                Description = "Validates via DNS API using credentials",
+                HelpUrl = "https://poshac.me/docs/latest/Plugins/WEDOS/",
+                PropagationDelaySeconds = 600,
+                ProviderParameters = new List<ProviderParameter>
+                {
+                    new ProviderParameter { Key = "WEDOSUsername", Name = "API Username", IsRequired = true, IsCredential = true },
+                    new ProviderParameter { Key = "WEDOSPassword", Name = "API Password", IsRequired = true, IsCredential = true, IsPassword=true },
+                    _defaultPropagationDelayParam
+                },
+                ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
+                Config = "Provider=Certify.Providers.DNS.PoshACME;Script=WEDOS;Credential=WedosCredential,WEDOSUsername,WEDOSPassword;",
+                HandlerType = ChallengeHandlerType.POWERSHELL,
+                IsTestModeSupported = false,
+                IsExperimental = true
+            },
+            new ChallengeProviderDefinition
+            {
                 Id = "DNS01.API.PoshACME.Zilore",
                 Title = "Zilore DNS API (using Posh-ACME)",
                 Description = "Validates via DNS API using credentials",
