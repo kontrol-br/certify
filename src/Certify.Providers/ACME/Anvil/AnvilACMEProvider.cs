@@ -1320,7 +1320,7 @@ namespace Certify.Providers.ACME.Anvil
                 }
                 catch (AcmeRequestException exp)
                 {
-                    var msg = $"Submit Challenge failed: {exp.Error?.Detail}";
+                    var msg = $"Submitting the challenge response to the Certificate Authority failed. This may indicate a temporary fault in their system: {exp.Error?.Type} {exp.Error?.Detail}";
 
                     log?.Error(msg);
 
