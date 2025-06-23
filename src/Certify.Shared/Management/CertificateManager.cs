@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -234,9 +234,8 @@ namespace Certify.Management
             }
             catch (Exception)
             {
-                log?.Warning("Failed to Check Ocsp Revoked Status {file}", filename);
-
-                return CertificateStatusType.Unknown;
+                // ocsp details not available, responder not available or unsupported
+                return Models.Certify.Models.CertificateStatusType.OcspNotSupported;
             }
         }
 
