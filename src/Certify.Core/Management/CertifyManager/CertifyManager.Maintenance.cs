@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Certify.Models;
 using Certify.Models.Config;
+using Certify.Models.Providers;
 using Certify.Models.Shared;
 
 namespace Certify.Management
@@ -147,7 +148,7 @@ namespace Certify.Management
 
                 if (ocspItemsToCheck?.Any() == true)
                 {
-                    _serviceLog.Information(template: $"Checking OCSP for {ocspItemsToCheck.Count} items");
+                    _serviceLog.Information(template: $"Checking OCSP (where available) for {ocspItemsToCheck.Count} items");
 
                     foreach (var item in ocspItemsToCheck)
                     {
@@ -156,38 +157,7 @@ namespace Certify.Management
                             break;
                         }
 
-                        if (!string.IsNullOrEmpty(item.CertificatePath) && File.Exists(item.CertificatePath))
-                        {
-                            // perform OCSP check
-                            _serviceLog.Verbose($"Checking {item.Name} : {item.Id} ");
-
-                            var ocspCheck = await CertificateManager.CheckOcspRevokedStatus(item.CertificatePath, await GetPfxPassword(item), _serviceLog);
-
-                            if (ocspCheck == Models.Certify.Models.CertificateStatusType.Revoked || ocspCheck == Models.Certify.Models.CertificateStatusType.Expired)
-                            {
-                                // this item requires a renewal attempt
-                                _serviceLog.Verbose($"Item {item.Name} failed the OCSP check [{ocspCheck}] and will be queued for a renewal attempt");
-                                if (!itemsWhichRequireRenewal.Contains(item.Id))
-                                {
-                                    itemsWhichRequireRenewal.Add(item.Id);
-                                    if (ocspCheck == Models.Certify.Models.CertificateStatusType.Revoked)
-                                    {
-                                        itemsOcspRevoked.Add(item.Id);
-                                    }
-                                    else if (ocspCheck == Models.Certify.Models.CertificateStatusType.Expired)
-                                    {
-                                        itemsOcspExpired.Add(item.Id);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (ocspCheck != Models.Certify.Models.CertificateStatusType.TryLater)
-                                {
-                                    completedOcspUpdateChecks.Add(item.Id);
-                                }
-                            }
-                        }
+                        await PerformOcspStatusCheck(_serviceLog, completedOcspUpdateChecks, itemsWhichRequireRenewal, itemsOcspRevoked, itemsOcspExpired, item);
 
                         await Task.Delay(checkThrottleMS);
                     }
@@ -212,87 +182,7 @@ namespace Certify.Management
                                 break;
                             }
 
-                            try
-                            {
-                                var caAccount = await GetAccountDetails(item, allowFailover: false, isResumedOrder: true);
-                                var provider = await GetACMEProvider(item, caAccount);
-
-                                if (provider != null)
-                                {
-                                    var providerKey = provider.GetAcmeBaseURI();
-                                    directoryInfoCache.TryGetValue(providerKey, out var directoryInfo);
-
-                                    if (directoryInfo == null)
-                                    {
-                                        directoryInfo = await provider?.GetAcmeDirectory();
-
-                                        if (directoryInfo != null && directoryInfo.NewAccount != null)
-                                        {
-                                            try
-                                            {
-                                                directoryInfoCache.Add(providerKey, directoryInfo);
-                                            }
-                                            catch { }
-                                        }
-                                    }
-
-                                    if (directoryInfo?.RenewalInfo != null && !string.IsNullOrWhiteSpace(item.CertificateThumbprintHash))
-                                    {
-                                        _serviceLog.Verbose($"Checking renewal info for {item.Name}");
-
-                                        if (item.ARICertificateId != null && !item.ARICertificateId.Contains("."))
-                                        {
-                                            // ARI certificate ID not current format, will need to be recomputed.
-                                            item.ARICertificateId = null;
-                                        }
-
-                                        var x509Cert2 = new System.Security.Cryptography.X509Certificates.X509Certificate2(File.ReadAllBytes(item.CertificatePath), await GetPfxPassword(item));
-                                        var ariCertId = item.ARICertificateId ?? Certify.Shared.Core.Utils.PKI.CertUtils.GetARICertIdBase64(x509Cert2);
-                                        var info = await provider.GetRenewalInfo(ariCertId);
-
-                                        var nextRenewal = ManagedCertificate.CalculateNextRenewalAttempt(item, CoreAppSettings.Current.RenewalIntervalDays, CoreAppSettings.Current.RenewalIntervalMode ?? RenewalIntervalModes.DaysAfterLastRenewal);
-
-                                        if (info != null && nextRenewal?.DateNextRenewalAttempt != null)
-                                        {
-                                            // if planned next renewal is beyond the suggested window, set new scheduled renewal date. This allows the user to prefer their own earlier renewal but lets the CA suggest that an even earlier renewal is required (e.g. revocation)
-                                            // in the future would could add a pref for the user to "Let the CA decide when best to renew" in order to more strictly keep the renewal within the "suggested" window.
-                                            if (nextRenewal.DateNextRenewalAttempt > info.SuggestedWindow?.Start || nextRenewal?.DateNextRenewalAttempt > info.SuggestedWindow?.End)
-                                            {
-                                                var dateSpan = info.SuggestedWindow.End - info.SuggestedWindow.Start;
-                                                var randomMinsInSlot = new Random().Next((int)dateSpan.Value.TotalMinutes);
-
-                                                var scheduledRenewalDate = info.SuggestedWindow?.Start.Value.AddMinutes(randomMinsInSlot) ?? nextRenewal.DateNextRenewalAttempt;
-
-                                                if (scheduledRenewalDate.HasValue)
-                                                {
-                                                    _serviceLog.Information($"Random renewal date {scheduledRenewalDate} within ARI renewal window [{info.SuggestedWindow?.Start} to {info.SuggestedWindow?.End}] has been set for {item.Name} ");
-
-                                                    itemsViaARI.Add(item.Id, scheduledRenewalDate.Value);
-
-                                                    if (scheduledRenewalDate < DateTimeOffset.Now)
-                                                    {
-                                                        // item requires immediate renewal
-                                                        if (!itemsWhichRequireRenewal.Contains(item.Id))
-                                                        {
-                                                            itemsWhichRequireRenewal.Add(item.Id);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            _serviceLog.Verbose($"Renewal info unavailable or not supported for {item.Name}");
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                _serviceLog.Warning("Failed to perform renewal info check for {itemName} : {ex}", item.Name, ex);
-                            }
-
-                            completedRenewalInfoChecks.Add(item.Id);
+                            await PerformRenewalInfoCheck(_serviceLog, completedRenewalInfoChecks, itemsWhichRequireRenewal, itemsViaARI, directoryInfoCache, item);
 
                             await Task.Delay(checkThrottleMS);
                         }
@@ -372,6 +262,161 @@ namespace Certify.Management
             {
                 _lastStatusCheckInProgress = null;
                 _serviceLog.Error(ex, "Certificate Status Checks Failed: {err}", ex.Message);
+            }
+        }
+
+        public async Task<bool> PerformRenewalInfoCheck(ILog log, List<string> completedRenewalInfoChecks, List<string> itemsWhichRequireRenewal, Dictionary<string, DateTimeOffset> itemsViaARI, Dictionary<string, AcmeDirectoryInfo> directoryInfoCache, ManagedCertificate item)
+        {
+            bool newAriRenewalScheduled = false;
+
+            if (item.CertificateRevoked || item.DateExpiry < DateTimeOffset.UtcNow)
+            {
+                // skip items that are already revoked or expired
+                log.Warning("Skipping renewal info check for item which is no longer valid: {itemName}", item.Name);
+            }
+            else
+            {
+                try
+                {
+                    var caAccount = await GetAccountDetails(item, allowFailover: false, isResumedOrder: true);
+                    var provider = await GetACMEProvider(item, caAccount);
+
+                    if (provider != null)
+                    {
+                        var providerKey = provider.GetAcmeBaseURI();
+                        directoryInfoCache.TryGetValue(providerKey, out var directoryInfo);
+
+                        if (directoryInfo == null)
+                        {
+                            directoryInfo = await provider?.GetAcmeDirectory();
+
+                            if (directoryInfo != null && directoryInfo.NewAccount != null)
+                            {
+                                try
+                                {
+                                    directoryInfoCache.Add(providerKey, directoryInfo);
+                                }
+                                catch { }
+                            }
+                        }
+
+                        if (directoryInfo?.RenewalInfo != null && !string.IsNullOrWhiteSpace(item.CertificateThumbprintHash))
+                        {
+                            log.Verbose($"Checking renewal info for {item.Name}");
+
+                            if (item.ARICertificateId != null && !item.ARICertificateId.Contains("."))
+                            {
+                                // ARI certificate ID not current format, will need to be recomputed.
+                                item.ARICertificateId = null;
+                            }
+
+                            var ariCertId = await ComputeARICertificateId(item);
+                            var info = await provider.GetRenewalInfo(ariCertId);
+
+                            var nextRenewal = ManagedCertificate.CalculateNextRenewalAttempt(item, CoreAppSettings.Current.RenewalIntervalDays, CoreAppSettings.Current.RenewalIntervalMode ?? RenewalIntervalModes.DaysAfterLastRenewal);
+
+                            if (info != null && nextRenewal?.DateNextRenewalAttempt != null)
+                            {
+                                // if planned next renewal is beyond the suggested window, set new scheduled renewal date. This allows the user to prefer their own earlier renewal but lets the CA suggest that an even earlier renewal is required (e.g. revocation)
+                                // in the future would could add a pref for the user to "Let the CA decide when best to renew" in order to more strictly keep the renewal within the "suggested" window.
+                                if (nextRenewal?.DateNextRenewalAttempt > info.SuggestedWindow?.End)
+                                {
+                                    if (item.DateNextScheduledRenewalAttempt != null && (item.DateNextScheduledRenewalAttempt >= info.SuggestedWindow?.Start && item.DateNextScheduledRenewalAttempt <= info.SuggestedWindow?.End))
+                                    {
+                                        // if we already have a scheduled renewal date
+                                        log.Verbose($"Skipping ARI suggested renewal date for {item.Name} because scheduled renewal date {item.DateNextScheduledRenewalAttempt} already in same window.");
+                                        newAriRenewalScheduled = false;
+                                    }
+                                    else
+                                    {
+                                        var dateSpan = info.SuggestedWindow.End - info.SuggestedWindow.Start;
+                                        var randomMinsInSlot = new Random().Next((int)dateSpan.Value.TotalMinutes);
+
+                                        var scheduledRenewalDate = info.SuggestedWindow?.Start.Value.AddMinutes(randomMinsInSlot) ?? nextRenewal.DateNextRenewalAttempt;
+
+                                        if (scheduledRenewalDate.HasValue)
+                                        {
+
+                                            item.DateNextScheduledRenewalAttempt = scheduledRenewalDate;
+                                            log.Information($"Random renewal date {scheduledRenewalDate} within ARI renewal window [{info.SuggestedWindow?.Start} to {info.SuggestedWindow?.End}] has been set for {item.Name} ");
+
+                                            itemsViaARI.Add(item.Id, scheduledRenewalDate.Value);
+
+                                            if (scheduledRenewalDate < DateTimeOffset.UtcNow)
+                                            {
+                                                // item requires immediate renewal
+                                                if (!itemsWhichRequireRenewal.Contains(item.Id))
+                                                {
+                                                    itemsWhichRequireRenewal.Add(item.Id);
+                                                }
+                                            }
+
+                                            newAriRenewalScheduled = true;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                log.Verbose($"Renewal info unavailable or not supported for {item.Name}");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Warning("Failed to perform renewal info check for {itemName} : {ex}", item.Name, ex);
+                }
+            }
+
+            completedRenewalInfoChecks.Add(item.Id);
+
+            return newAriRenewalScheduled;
+
+        }
+
+        public virtual async Task<string> ComputeARICertificateId(ManagedCertificate item)
+        {
+
+#if NET9_0_OR_GREATER
+            var x509Cert2 = System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadPkcs12FromFile(item.CertificatePath, await GetPfxPassword(item));
+#else
+            var x509Cert2 = new System.Security.Cryptography.X509Certificates.X509Certificate2(File.ReadAllBytes(item.CertificatePath), await GetPfxPassword(item));
+#endif
+            var ariCertId = item.ARICertificateId ?? Certify.Shared.Core.Utils.PKI.CertUtils.GetARICertIdBase64(x509Cert2);
+            return ariCertId;
+        }
+
+        public async Task PerformOcspStatusCheck(ILog log, List<string> completedOcspUpdateChecks, List<string> itemsWhichRequireRenewal, List<string> itemsOcspRevoked, List<string> itemsOcspExpired, ManagedCertificate item)
+        {
+            if (!string.IsNullOrEmpty(item.CertificatePath) && File.Exists(item.CertificatePath))
+            {
+                // perform OCSP check
+                log.Verbose($"OCSP checking {item.Name} : {item.Id} ");
+
+                var ocspCheck = await CertificateManager.CheckOcspRevokedStatus(item.CertificatePath, await GetPfxPassword(item), _serviceLog);
+
+                if (ocspCheck == Models.Certify.Models.CertificateStatusType.Revoked || ocspCheck == Models.Certify.Models.CertificateStatusType.Expired)
+                {
+                    // this item requires a renewal attempt
+                    log.Verbose($"Item {item.Name} failed the OCSP check [{ocspCheck}] and will be queued for a renewal attempt");
+                    if (!itemsWhichRequireRenewal.Contains(item.Id))
+                    {
+                        itemsWhichRequireRenewal.Add(item.Id);
+                        if (ocspCheck == Models.Certify.Models.CertificateStatusType.Revoked)
+                        {
+                            itemsOcspRevoked.Add(item.Id);
+                        }
+                        else if (ocspCheck == Models.Certify.Models.CertificateStatusType.Expired)
+                        {
+                            itemsOcspExpired.Add(item.Id);
+                        }
+                    }
+                }
+                else if (ocspCheck != Models.Certify.Models.CertificateStatusType.TryLater && ocspCheck != Models.Certify.Models.CertificateStatusType.OcspNotSupported)
+                {
+                    completedOcspUpdateChecks.Add(item.Id);
+                }
             }
         }
 
