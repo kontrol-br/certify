@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Certify.Models;
+using Certify.Models.Config;
 using Certify.Models.Providers;
 using Certify.Models.Shared;
 
@@ -157,7 +158,7 @@ namespace Certify.Management
         /// </summary>
         /// <param name="managedCertificate"></param>
         /// <returns></returns>
-        private async Task ReportManagedCertificateStatus(ManagedCertificate managedCertificate)
+        private async Task ReportManagedCertificateStatus(ManagedCertificate managedCertificate, bool removeReport = false)
         {
 
             var reportedCert = Newtonsoft.Json.JsonConvert.DeserializeObject<ManagedCertificate>(Newtonsoft.Json.JsonConvert.SerializeObject(managedCertificate));
@@ -178,7 +179,9 @@ namespace Certify.Management
                 MachineName = Environment.MachineName,
                 PrimaryContactEmail = (await GetAccountDetails(managedCertificate, allowFailover: false))?.Email,
                 ManagedSite = reportedCert,
-                AppVersion = Util.GetAppVersion().ToString()
+                AppName = "Certify Certificate Manager",
+                AppVersion = Util.GetAppVersion().ToString(),
+                IsRemoved = removeReport
             };
 
             if (!_useStatusReportQueue)
@@ -241,7 +244,7 @@ namespace Certify.Management
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteManagedCertificate(string id)
+        public async Task<ActionResult> DeleteManagedCertificate(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {
@@ -249,8 +252,17 @@ namespace Certify.Management
                 if (item != null)
                 {
                     await _itemManager.Delete(item);
+
+                    if (item.RequestConfig?.EnableFailureNotifications == true && CoreAppSettings.Current.EnableStatusReporting)
+                    {
+                        await ReportManagedCertificateStatus(item, removeReport: true);
+                    }
+
+                    return new ActionResult { IsSuccess = true, Message = "Deleted" };
                 }
             }
+
+            return new ActionResult { IsSuccess = false, Message = "Delete failed." };
         }
 
         /// <summary>
