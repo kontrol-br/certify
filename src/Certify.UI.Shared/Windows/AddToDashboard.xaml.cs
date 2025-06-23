@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -55,7 +55,7 @@ namespace Certify.UI.Windows
                         MachineName = Environment.MachineName
                     };
 
-                    var resultOK = await dashboardClient.RegisterInstance(instance, email, pwd, (bool)CreateNewAccount.IsChecked);
+                    var resultOK = await dashboardClient.RegisterInstance(instance, email, pwd, createAccount: false);
                     Mouse.OverrideCursor = Cursors.Arrow;
 
                     if (resultOK)

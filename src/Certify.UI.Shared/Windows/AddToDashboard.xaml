@@ -47,10 +47,6 @@
                 Grid.Row="2"
                 Grid.Column="1" />
         </StackPanel>
-        <CheckBox
-            x:Name="CreateNewAccount"
-            Margin="0,8,0,8"
-            Content="{x:Static res:SR.Dashboard_NewAccount}" />
 
         <StackPanel>
             <StackPanel Orientation="Horizontal">
