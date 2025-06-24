@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,6 +44,7 @@ namespace Certify.Management
             catch (Exception exp)
             {
                 _tc?.TrackException(exp);
+                _serviceLog?.Error(exp, "PerformRenewalTasks: Error performing periodic renewal tasks: {exp}", exp);
                 return await Task.FromResult(false);
             }
 
