@@ -106,7 +106,15 @@ namespace Certify.Models
             {
                 foreach (var l in _managedItemLoggers.Values)
                 {
-                    l?.Dispose();
+                    try
+                    {
+                        l?.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        // ignore any errors during dispose, happen if we have run out of disk space and after that there is nowhere to flush log to
+                        Console.WriteLine($"Error disposing logger: {ex.Message}");
+                    }
                 }
             }
         }
