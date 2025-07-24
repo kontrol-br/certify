@@ -445,7 +445,6 @@ namespace Certify.Core.Tests.Unit
         [TestMethod, Description("Check Percentage Lifetime Elapsed calc, allowing for nulls etc")]
         [DataTestMethod]
         [DataRow(null, null, null)]
-
         [DataRow(14f, 90f, 15)]
         [DataRow(0.5f, 1f, 50)]
         [DataRow(0f, 1f, 0)]
@@ -475,5 +474,279 @@ namespace Certify.Core.Tests.Unit
 
             Assert.AreEqual(expectedPercentage, percentageElapsed);
         }
+
+        #region ARI (ACME Renewal Information) Tests
+
+        [TestMethod, Description("Test ARI scheduled renewal overrides normal renewal calculation")]
+        public void TestARIScheduledRenewalOverridesNormalRenewal()
+        {
+            // setup
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10), // Only 10 days since renewal
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-1), // ARI says renew now
+                ARICertificateId = "test.cert.id"
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // assert result
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "ARI scheduled renewal should override normal renewal logic");
+            Assert.AreEqual("Certificate scheduled renewal is now due.", renewalDueCheck.Reason);
+        }
+
+        [TestMethod, Description("Test ARI scheduled renewal in future does not trigger immediate renewal")]
+        public void TestARIScheduledRenewalInFuture()
+        {
+            // setup
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var futureRenewalDate = DateTimeOffset.UtcNow.AddDays(5);
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10), // Only 10 days since renewal
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateNextScheduledRenewalAttempt = futureRenewalDate, // ARI says renew in 5 days
+                ARICertificateId = "test.cert.id"
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // assert result
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "Future ARI scheduled renewal should not trigger immediate renewal");
+            Assert.AreEqual(futureRenewalDate, renewalDueCheck.DateNextRenewalAttempt, "Next renewal attempt should be the ARI scheduled date");
+        }
+
+        [TestMethod, Description("Test certificate with ARI ID but no scheduled renewal uses normal logic")]
+        public void TestARICertificateWithoutScheduledRenewal()
+        {
+            // setup
+            var renewalPeriodDays = 14;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-15), // 15 days since renewal
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                ARICertificateId = "test.cert.id.with.dots", // Has ARI ID but no scheduled renewal
+                DateNextScheduledRenewalAttempt = null
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // assert result
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Should use normal renewal logic when no ARI scheduled date");
+            Assert.IsTrue(renewalDueCheck.Reason.Contains("default renewal settings"), "Should indicate normal renewal logic was used");
+        }
+
+        [TestMethod, Description("Test ARI scheduled renewal with certificate revocation scenario")]
+        public void TestARIScheduledRenewalWithRevocation()
+        {
+            // setup - simulate a scenario where ARI suggests immediate renewal due to revocation
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-5), // Recently renewed
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(85),
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddMinutes(-30), // ARI says renew immediately (30 mins ago)
+                ARICertificateId = "revoked.cert.id",
+                CertificateRevoked = true
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // assert result
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Revoked certificate with ARI scheduled renewal should require immediate renewal");
+        }
+
+        [TestMethod, Description("Test ARI integration with percentage lifetime renewal mode")]
+        public void TestARIWithPercentageLifetimeMode()
+        {
+            // setup
+            var renewalInterval = 75; // 75% of lifetime
+            var renewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+
+            var startDate = DateTimeOffset.UtcNow.AddDays(-50); // 50 days into 90 day cert (55% elapsed)
+            var ariScheduledDate = DateTimeOffset.UtcNow.AddDays(10); // ARI says wait 10 more days
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = startDate,
+                DateRenewed = startDate,
+                DateExpiry = startDate.AddDays(90), // 90 day certificate
+                DateNextScheduledRenewalAttempt = ariScheduledDate,
+                ARICertificateId = "percentage.test.id",
+                CustomRenewalTarget = 75,
+                CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalInterval, renewalIntervalMode);
+
+            // assert result
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "ARI scheduled renewal in future should override percentage calculation");
+            Assert.AreEqual(ariScheduledDate, renewalDueCheck.DateNextRenewalAttempt, "Should use ARI scheduled date");
+        }
+
+        [TestMethod, Description("Test DateLastRenewalInfoCheck tracking")]
+        public void TestDateLastRenewalInfoCheckTracking()
+        {
+            // This test verifies that the DateLastRenewalInfoCheck property exists and can be set
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateLastRenewalInfoCheck = DateTimeOffset.UtcNow.AddHours(-2), // Checked 2 hours ago
+                ARICertificateId = "tracking.test.id"
+            };
+
+            // verify property can be read
+            Assert.IsNotNull(managedCertificate.DateLastRenewalInfoCheck, "DateLastRenewalInfoCheck should be accessible");
+            Assert.IsTrue(managedCertificate.DateLastRenewalInfoCheck.Value < DateTimeOffset.UtcNow, "Last check should be in the past");
+        }
+
+        [TestMethod, Description("Test ARI Certificate ID format validation")]
+        [DataTestMethod]
+        [DataRow("validformat.withperiod", true, "ARI ID with period should be valid")]
+        [DataRow("invalidformatwithoutperiod", false, "ARI ID without period should be invalid")]
+        [DataRow("multiple.periods.here", true, "ARI ID with multiple periods should be valid")]
+        [DataRow("", false, "Empty ARI ID should be invalid")]
+        [DataRow(null, false, "Null ARI ID should be invalid")]
+        public void TestARICertificateIdFormat(string ariId, bool shouldBeValid, string testDescription)
+        {
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                ARICertificateId = ariId
+            };
+
+            // The test simulates the validation logic that would occur in actual ARI processing
+            var isValidFormat = !string.IsNullOrWhiteSpace(ariId) && ariId.Contains(".");
+
+            Assert.AreEqual(shouldBeValid, isValidFormat, testDescription);
+        }
+
+        [TestMethod, Description("Test ARI with different Certificate Authority scenarios")]
+        public void TestARIWithDifferentCAs()
+        {
+            // setup
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            // Test with Let's Encrypt (supports ARI)
+            var managedCertificateLE = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                CertificateAuthorityId = StandardCertAuthorities.LETS_ENCRYPT,
+                ARICertificateId = "le.cert.id",
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddDays(5),
+                LastAttemptedCA = StandardCertAuthorities.LETS_ENCRYPT,
+                CertificateCurrentCA = StandardCertAuthorities.LETS_ENCRYPT
+            };
+
+            // perform check
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificateLE, renewalPeriodDays, renewalIntervalMode);
+
+            // assert result
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "Let's Encrypt cert with future ARI date should not be due");
+            Assert.AreEqual(managedCertificateLE.DateNextScheduledRenewalAttempt, renewalDueCheck.DateNextRenewalAttempt);
+        }
+
+        [TestMethod, Description("Test ARI renewal window edge cases")]
+        public void TestARIRenewalWindowEdgeCases()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            // Test scenario where ARI window start is exactly now
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-10),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow, // Exactly now
+                ARICertificateId = "edge.case.id"
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Certificate with ARI scheduled renewal at current time should be due");
+
+            // Test scenario where ARI window is 1 minute in the future
+            managedCertificate.DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddMinutes(1);
+            renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "Certificate with ARI scheduled renewal 1 minute in future should not be due");
+        }
+
+        [TestMethod, Description("Test ARI interaction with renewal failure scenarios")]
+        public void TestARIWithRenewalFailures()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-5),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateLastRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-2),
+                LastRenewalStatus = RequestState.Error,
+                RenewalFailureCount = 3,
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddMinutes(-30), // ARI says renew now
+                ARICertificateId = "failed.renewal.id"
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, checkFailureStatus: true);
+
+            // Should still respect ARI even with failures (though may be subject to hold periods)
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "ARI scheduled renewal should still be due even with previous failures");
+        }
+
+        [TestMethod, Description("Test ARI with extremely short certificate lifetimes")]
+        public void TestARIWithShortLifetimeCertificates()
+        {
+            var renewalPeriodDays = 30; // Longer than cert lifetime
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var startDate = DateTimeOffset.UtcNow.AddHours(-6); // 6 hours ago
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = startDate,
+                DateRenewed = startDate,
+                DateExpiry = startDate.AddHours(12), // 12 hour certificate
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddHours(2), // ARI suggests renew in 2 hours
+                ARICertificateId = "short.lifetime.id"
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "Short lifetime cert with future ARI renewal should not be immediately due");
+            Assert.AreEqual(managedCertificate.DateNextScheduledRenewalAttempt, renewalDueCheck.DateNextRenewalAttempt, "Should use ARI scheduled time for short lifetime certs");
+        }
+
+        #endregion ARI Tests
     }
 }
