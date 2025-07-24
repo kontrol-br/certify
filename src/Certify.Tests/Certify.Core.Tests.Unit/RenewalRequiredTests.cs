@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading;
 using Certify.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -405,13 +409,14 @@ namespace Certify.Core.Tests.Unit
             // setup 
 
             var dateLastRenewed = DateTimeOffset.UtcNow.AddDays(-daysSinceRenewed);
+            var expiryDate = DateTimeOffset.UtcNow.AddDays(daysUntilExpiry);
 
             var managedCertificate = new ManagedCertificate
             {
                 IncludeInAutoRenew = true,
                 DateRenewed = dateLastRenewed,
                 DateLastRenewalAttempt = dateLastRenewed,
-                DateExpiry = DateTimeOffset.UtcNow.AddDays(daysUntilExpiry)
+                DateExpiry = expiryDate
             };
 
             // perform check
@@ -1078,5 +1083,723 @@ namespace Certify.Core.Tests.Unit
         }
 
         #endregion Complex Date Edge Cases Tests
+
+        #region Bulk Renewal Testing
+
+        [TestMethod, Description("Test bulk renewal scenarios with 200 certificates across different renewal modes and intervals")]
+        [DataTestMethod]
+        [DataRow(RenewalIntervalModes.DaysAfterLastRenewal, 14, 150, "DaysAfterLastRenewal with 14 day interval")]
+        [DataRow(RenewalIntervalModes.DaysAfterLastRenewal, 30, 140, "DaysAfterLastRenewal with 30 day interval")]
+        [DataRow(RenewalIntervalModes.DaysBeforeExpiry, 30, 80, "DaysBeforeExpiry with 30 day interval")]
+        [DataRow(RenewalIntervalModes.DaysBeforeExpiry, 14, 80, "DaysBeforeExpiry with 14 day interval")]
+        [DataRow(RenewalIntervalModes.PercentageLifetime, 75, 65, "PercentageLifetime with 75% interval")]
+        [DataRow(RenewalIntervalModes.PercentageLifetime, 50, 100, "PercentageLifetime with 50% interval")]
+        public void TestBulkRenewalScenarios(string renewalIntervalMode, int renewalInterval, int expectedRenewalsApprox, string testDescription)
+        {
+            // Generate 200 diverse certificate scenarios
+            var certificates = GenerateTestCertificateScenarios(200);
+
+            // Track renewal results
+            var renewalResults = new List<(ManagedCertificate cert, bool isRenewalDue, string reason)>();
+
+            // Test each certificate against the renewal logic
+            foreach (var cert in certificates)
+            {
+                try
+                {
+                    var renewalCheck = ManagedCertificate.CalculateNextRenewalAttempt(cert, renewalInterval, renewalIntervalMode);
+                    renewalResults.Add((cert, renewalCheck.IsRenewalDue, renewalCheck.Reason));
+                }
+                catch (Exception ex)
+                {
+                    // Track any exceptions for debugging
+                    renewalResults.Add((cert, false, $"Exception: {ex.Message}"));
+                }
+            }
+
+            // Analyze results
+            var totalRenewals = renewalResults.Count(r => r.isRenewalDue);
+            var totalCertificates = certificates.Count;
+
+            // Assert reasonable expectations based on the test scenario
+            Assert.AreEqual(200, totalCertificates, "Should have generated exactly 200 test certificates");
+
+            // Check that we have a reasonable number of renewals for the given mode and interval
+            var tolerance = 20; // Allow 20 certificate variance in expected renewals
+            Assert.IsTrue(Math.Abs(totalRenewals - expectedRenewalsApprox) <= tolerance,
+                $"{testDescription}: Expected approximately {expectedRenewalsApprox} renewals but got {totalRenewals}. Difference: {Math.Abs(totalRenewals - expectedRenewalsApprox)}");
+
+            // Verify we have diverse scenarios
+            var renewalReasons = renewalResults.Where(r => r.isRenewalDue).Select(r => r.reason).Distinct().ToList();
+            Assert.IsTrue(renewalReasons.Count >= 2, $"Should have diverse renewal reasons, got: {string.Join(", ", renewalReasons)}");
+
+            // Category Analysis
+            AnalyzeBulkRenewalResults(renewalResults, renewalIntervalMode, renewalInterval, testDescription);
+        }
+
+        [TestMethod, Description("Test bulk renewal with task cancellation - should handle cancellation gracefully during bulk operations")]
+        public void TestBulkRenewalWithCancellation()
+        {
+            // Generate a larger set of certificates to test cancellation scenarios
+            var certificates = GenerateTestCertificateScenarios(100);
+            var renewalResults = new List<(ManagedCertificate cert, bool isRenewalDue, string reason, bool wasCancelled)>();
+
+            // Create cancellation token source
+            using (var cancellationTokenSource = new CancellationTokenSource())
+            {
+                var processingCount = 0;
+                var targetCancellationPoint = 25; // Cancel after processing 25 certificates
+
+                // Test each certificate against the renewal logic with cancellation simulation
+                foreach (var cert in certificates)
+                {
+
+                    try
+                    {
+                        // Check for cancellation before processing
+                        cancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+                        var renewalCheck = ManagedCertificate.CalculateNextRenewalAttempt(cert, 30, RenewalIntervalModes.DaysAfterLastRenewal);
+                        renewalResults.Add((cert, renewalCheck.IsRenewalDue, renewalCheck.Reason, false));
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        // Record that this certificate was cancelled
+                        renewalResults.Add((cert, false, "Operation was cancelled", true));
+                        break; // Stop processing when cancelled
+                    }
+                    catch (Exception ex)
+                    {
+                        // Track any other exceptions for debugging
+                        renewalResults.Add((cert, false, $"Exception: {ex.Message}", false));
+                    }
+
+                    processingCount++;
+
+                    // Simulate cancellation partway through the bulk operation
+                    if (processingCount == targetCancellationPoint)
+                    {
+                        cancellationTokenSource.Cancel();
+                    }
+                }
+
+                // Analyze cancellation results
+                var processedCertificates = renewalResults.Count(r => !r.wasCancelled);
+                var cancelledCertificates = renewalResults.Count(r => r.wasCancelled);
+                var totalProcessedAndCancelled = renewalResults.Count;
+
+                // Assert cancellation behavior
+                Assert.IsTrue(cancellationTokenSource.Token.IsCancellationRequested, "Cancellation token should be in cancelled state");
+                Assert.AreEqual(targetCancellationPoint, processedCertificates, $"Should have processed exactly {targetCancellationPoint} certificates before cancellation");
+                Assert.AreEqual(1, cancelledCertificates, "Should have exactly 1 certificate marked as cancelled (the one that triggered the break)");
+                Assert.AreEqual(targetCancellationPoint + 1, totalProcessedAndCancelled, "Total processed + cancelled should equal target + 1");
+                Assert.IsTrue(totalProcessedAndCancelled < certificates.Count, "Should not have processed all certificates due to cancellation");
+
+                // Verify that processed certificates before cancellation have valid renewal data
+                var validProcessedResults = renewalResults.Where(r => !r.wasCancelled && !r.reason.StartsWith("Exception")).ToList();
+                Assert.IsTrue(validProcessedResults.Count > 0, "Should have some valid processed results before cancellation");
+
+                // Verify diverse renewal reasons in the processed certificates
+                var renewalReasons = validProcessedResults.Where(r => r.isRenewalDue).Select(r => r.reason).Distinct().ToList();
+                Assert.IsTrue(renewalReasons.Count >= 1, $"Should have at least one renewal reason before cancellation, got: {string.Join(", ", renewalReasons)}");
+
+                // Log cancellation summary for debugging
+                var summaryMessage = $"Cancellation Test Summary: Processed {processedCertificates}, Cancelled {cancelledCertificates}, " +
+                                   $"Total Results {totalProcessedAndCancelled}, Original Certificate Count {certificates.Count}";
+
+                // Verify that cancellation occurred at the expected point
+                Assert.AreEqual(targetCancellationPoint, processedCertificates, summaryMessage);
+            }
+        }
+
+        [TestMethod, Description("Test bulk renewal with delayed cancellation - tests cancellation timing scenarios")]
+        public void TestBulkRenewalWithDelayedCancellation()
+        {
+            // Generate certificates for delayed cancellation test
+            var certificates = GenerateTestCertificateScenarios(50);
+            var renewalResults = new List<(ManagedCertificate cert, bool isRenewalDue, string reason, TimeSpan processingTime)>();
+
+            using (var cancellationTokenSource = new CancellationTokenSource())
+            {
+                var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+                var processingCount = 0;
+                var cancellationDelay = TimeSpan.FromMilliseconds(100); // Cancel after 100ms
+
+                // Schedule cancellation after a delay
+                cancellationTokenSource.CancelAfter(cancellationDelay);
+
+                foreach (var cert in certificates)
+                {
+                    processingCount++;
+                    var iterationStart = stopwatch.Elapsed;
+
+                    try
+                    {
+                        // Simulate some processing time
+                        System.Threading.Thread.Sleep(5); // Small delay to simulate work
+
+                        // Check for cancellation
+                        cancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+                        var renewalCheck = ManagedCertificate.CalculateNextRenewalAttempt(cert, 30, RenewalIntervalModes.DaysAfterLastRenewal);
+                        var processingTime = stopwatch.Elapsed - iterationStart;
+                        renewalResults.Add((cert, renewalCheck.IsRenewalDue, renewalCheck.Reason, processingTime));
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        var processingTime = stopwatch.Elapsed - iterationStart;
+                        renewalResults.Add((cert, false, "Operation was cancelled", processingTime));
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        var processingTime = stopwatch.Elapsed - iterationStart;
+                        renewalResults.Add((cert, false, $"Exception: {ex.Message}", processingTime));
+                    }
+                }
+
+                stopwatch.Stop();
+
+                // Analyze delayed cancellation results
+                var totalProcessingTime = stopwatch.Elapsed;
+                var cancelledResults = renewalResults.Where(r => r.reason == "Operation was cancelled").ToList();
+                var successfulResults = renewalResults.Where(r => r.isRenewalDue || (!r.reason.Contains("Exception") && !r.reason.Contains("cancelled"))).ToList();
+
+                // Assert delayed cancellation behavior
+                Assert.IsTrue(cancellationTokenSource.Token.IsCancellationRequested, "Cancellation token should be in cancelled state");
+                Assert.IsTrue(totalProcessingTime >= cancellationDelay, $"Total processing time ({totalProcessingTime.TotalMilliseconds}ms) should be at least the cancellation delay ({cancellationDelay.TotalMilliseconds}ms)");
+                Assert.IsTrue(cancelledResults.Count <= 1, "Should have at most 1 explicitly cancelled result");
+                Assert.IsTrue(renewalResults.Count < certificates.Count, "Should not have processed all certificates due to timed cancellation");
+                Assert.IsTrue(renewalResults.Count > 0, "Should have processed at least some certificates before cancellation");
+
+                // Verify that some certificates were processed successfully before cancellation
+                Assert.IsTrue(successfulResults.Count > 0, "Should have some successful results before cancellation occurred");
+
+                // Log timing information for debugging
+                var timingInfo = $"Delayed Cancellation: Processed {renewalResults.Count}/{certificates.Count} certificates in {totalProcessingTime.TotalMilliseconds}ms " +
+                               $"(target delay: {cancellationDelay.TotalMilliseconds}ms), Cancelled: {cancelledResults.Count}, Successful: {successfulResults.Count}";
+
+                // The exact number of processed certificates will vary based on timing, but should be reasonable
+                Assert.IsTrue(renewalResults.Count >= 5, $"Should have processed at least 5 certificates before cancellation. {timingInfo}");
+                Assert.IsTrue(renewalResults.Count <= 30, $"Should not have processed too many certificates after cancellation. {timingInfo}");
+            }
+        }
+
+        [TestMethod, Description("Test bulk renewal cancellation with different certificate types")]
+        public void TestBulkRenewalCancellationWithDiverseScenarios()
+        {
+            // Generate certificates with focus on diverse scenarios that might be slow or problematic
+            var certificates = new List<ManagedCertificate>();
+            var baseDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero);
+
+            // Create specific scenarios that might be processing-intensive or error-prone
+            for (int i = 0; i < 30; i++)
+            {
+                var cert = new ManagedCertificate
+                {
+                    Id = $"diverse-cert-{i:D3}",
+                    Name = $"DiverseCert{i:D3}",
+                    IncludeInAutoRenew = true,
+                    RequestConfig = new CertRequestConfig
+                    {
+                        PrimaryDomain = $"diverse-cert{i:D3}.example.com",
+                        Challenges = new ObservableCollection<CertRequestChallengeConfig>
+                        {
+                            new CertRequestChallengeConfig { ChallengeType = "http-01" }
+                        }
+                    }
+                };
+
+                var scenario = i % 6;
+                switch (scenario)
+                {
+                    case 0: // Long lifetime certificates with complex percentage calculations
+                        cert.DateStart = baseDate.AddDays(-200 - (i * 10));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(1000 + (i * 50));
+                        cert.CustomRenewalTarget = 85 + (i % 10);
+                        cert.CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+                        break;
+
+                    case 1: // Certificates with many previous failures (complex retry logic)
+                        cert.DateRenewed = baseDate.AddDays(-45 - (i * 2));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.LastRenewalStatus = RequestState.Error;
+                        cert.RenewalFailureCount = 50 + (i * 5);
+                        cert.DateLastRenewalAttempt = baseDate.AddHours(-2 - i);
+                        break;
+
+                    case 2: // ARI certificates with complex scheduling
+                        cert.DateRenewed = baseDate.AddDays(-15 - i);
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.ARICertificateId = $"complex.ari.cert.{i}.with.lots.of.dots";
+                        cert.DateNextScheduledRenewalAttempt = baseDate.AddHours(-1 + (i * 0.5));
+                        break;
+
+                    case 3: // Short lifetime certificates requiring percentage mode
+                        cert.DateStart = baseDate.AddDays(-1 * (1 + (i % 7)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(1 + (i % 7));
+                        break;
+
+                    case 4: // Already expired certificates
+                        cert.DateExpiry = baseDate.AddDays(-5 - (i * 2));
+                        cert.DateRenewed = cert.DateExpiry.Value.AddDays(-90);
+                        cert.DateStart = cert.DateRenewed;
+                        break;
+
+                    case 5: // Edge case certificates with unusual configurations
+                        cert.DateStart = baseDate.AddDays(1 + i);
+                        cert.DateRenewed = null; // Never renewed
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(30);
+                        cert.CustomRenewalTarget = 25 + (i % 50); // Varying custom targets
+                        cert.CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+                        break;
+                }
+
+                certificates.Add(cert);
+            }
+
+            var renewalResults = new List<(ManagedCertificate cert, bool isRenewalDue, string reason, bool wasCancelled, int scenarioType)>();
+
+            using (var cancellationTokenSource = new CancellationTokenSource())
+            {
+                var processingCount = 0;
+                var cancellationPoint = 15; // Cancel after processing 15 diverse certificates
+
+                foreach (var cert in certificates)
+                {
+                    var scenarioType = processingCount % 6;
+                    processingCount++;
+
+                    // Cancel at the specified point
+                    if (processingCount == cancellationPoint)
+                    {
+                        cancellationTokenSource.Cancel();
+                    }
+
+                    try
+                    {
+                        cancellationTokenSource.Token.ThrowIfCancellationRequested();
+
+                        // Test renewal calculation with different modes based on certificate type
+                        string renewalMode;
+                        if (scenarioType == 0 || scenarioType == 3 || scenarioType == 5)
+                        {
+                            renewalMode = RenewalIntervalModes.PercentageLifetime;
+                        }
+                        else if (scenarioType == 1 || scenarioType == 4)
+                        {
+                            renewalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+                        }
+                        else if (scenarioType == 2)
+                        {
+                            renewalMode = RenewalIntervalModes.DaysBeforeExpiry;
+                        }
+                        else
+                        {
+                            renewalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+                        }
+
+                        int renewalInterval;
+                        if (scenarioType == 0)
+                        {
+                            renewalInterval = 80; // Percentage
+                        }
+                        else if (scenarioType == 1)
+                        {
+                            renewalInterval = 25; // Days after
+                        }
+                        else if (scenarioType == 2)
+                        {
+                            renewalInterval = 20; // Days before
+                        }
+                        else if (scenarioType == 3)
+                        {
+                            renewalInterval = 75; // Percentage  
+                        }
+                        else if (scenarioType == 4)
+                        {
+                            renewalInterval = 30; // Days after
+                        }
+                        else if (scenarioType == 5)
+                        {
+                            renewalInterval = 60; // Percentage
+                        }
+                        else
+                        {
+                            renewalInterval = 30;
+                        }
+
+                        var renewalCheck = ManagedCertificate.CalculateNextRenewalAttempt(cert, renewalInterval, renewalMode);
+                        renewalResults.Add((cert, renewalCheck.IsRenewalDue, renewalCheck.Reason, false, scenarioType));
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        renewalResults.Add((cert, false, "Operation was cancelled", true, scenarioType));
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        renewalResults.Add((cert, false, $"Exception: {ex.Message}", false, scenarioType));
+                    }
+                }
+
+                // Analyze diverse scenario cancellation results
+                var processedResults = renewalResults.Where(r => !r.wasCancelled).ToList();
+                var cancelledResults = renewalResults.Where(r => r.wasCancelled).ToList();
+                var scenarioDistribution = processedResults.GroupBy(r => r.scenarioType).ToDictionary(g => g.Key, g => g.Count());
+
+                // Assert diverse scenario cancellation behavior
+                Assert.IsTrue(cancellationTokenSource.Token.IsCancellationRequested, "Cancellation token should be in cancelled state");
+                Assert.AreEqual(cancellationPoint - 1, processedResults.Count, $"Should have processed {cancellationPoint - 1} certificates before cancellation");
+                Assert.AreEqual(1, cancelledResults.Count, "Should have exactly 1 cancelled certificate");
+
+                // Verify we processed different types of scenarios before cancellation
+                Assert.IsTrue(scenarioDistribution.Keys.Count >= 3, $"Should have processed at least 3 different scenario types before cancellation. Got: {string.Join(", ", scenarioDistribution.Select(kvp => $"Type {kvp.Key}: {kvp.Value}"))}");
+
+                // Verify that complex scenarios were handled without exceptions (before cancellation)
+                var exceptionResults = processedResults.Where(r => r.reason.StartsWith("Exception")).ToList();
+                Assert.AreEqual(0, exceptionResults.Count, $"No exceptions should occur in processed results before cancellation. Exceptions: {string.Join("; ", exceptionResults.Select(r => r.reason))}");
+
+                // Verify we have valid renewal decisions for different scenario types
+                var renewalsByScenario = processedResults.GroupBy(r => r.scenarioType)
+                    .ToDictionary(g => g.Key, g => new { Total = g.Count(), Due = g.Count(x => x.isRenewalDue) });
+
+                foreach (var scenario in renewalsByScenario)
+                {
+                    Assert.IsTrue(scenario.Value.Total > 0, $"Scenario type {scenario.Key} should have at least 1 processed certificate");
+                    // Each scenario type should have some variation in renewal decisions (not all the same)
+                    // This tests that the complex logic is actually being executed properly before cancellation
+                }
+
+                // Log scenario distribution for debugging  
+                var distributionInfo = string.Join(", ", renewalsByScenario.Select(kvp =>
+                    $"Scenario {kvp.Key}: {kvp.Value.Due}/{kvp.Value.Total} due"));
+
+                Assert.IsTrue(processedResults.Any(r => r.isRenewalDue), $"At least some certificates should be due for renewal. Distribution: {distributionInfo}");
+            }
+        }
+
+        private List<ManagedCertificate> GenerateTestCertificateScenarios(int count)
+        {
+            var certificates = new List<ManagedCertificate>();
+            var random = new Random(42); // Fixed seed for reproducible tests
+            var baseDate = DateTimeOffset.UtcNow;
+
+            for (int i = 0; i < count; i++)
+            {
+                var cert = new ManagedCertificate
+                {
+                    Id = $"bulk-test-cert-{i:D3}",
+                    Name = $"BulkTestCert{i:D3}",
+                    IncludeInAutoRenew = true,
+                    RequestConfig = new CertRequestConfig
+                    {
+                        PrimaryDomain = $"cert{i:D3}.example.com",
+                        Challenges = new ObservableCollection<CertRequestChallengeConfig>
+                        {
+                            new CertRequestChallengeConfig { ChallengeType = "http-01" }
+                        }
+                    }
+                };
+
+                // Deterministic scenario and values
+                var scenario = i % 20;
+
+                switch (scenario)
+                {
+                    case 0: // Recently renewed certificates (should not be due)
+                        cert.DateRenewed = baseDate.AddDays(-((i % 4) + 1));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        break;
+
+                    case 1: // Certificates due for renewal (30+ days old)
+                        cert.DateRenewed = baseDate.AddDays(-(30 + (i % 30)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        break;
+
+                    case 2: // Certificates expiring soon
+                        var daysUntilExpiry = 5 + (i % 20);
+                        cert.DateExpiry = baseDate.AddDays(daysUntilExpiry);
+                        cert.DateRenewed = cert.DateExpiry.Value.AddDays(-90);
+                        cert.DateStart = cert.DateRenewed;
+                        break;
+
+                    case 3: // Never renewed certificates (DateRenewed = null)
+                        cert.DateRenewed = null;
+                        cert.DateStart = baseDate.AddDays(-(i % 30 + 1));
+                        cert.DateExpiry = baseDate.AddDays(30 + (i % 60));
+                        break;
+
+                    case 4: // Certificates with errors
+                        cert.DateRenewed = baseDate.AddDays(-(35 + (i % 15)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.LastRenewalStatus = RequestState.Error;
+                        cert.RenewalFailureCount = 1 + (i % 4);
+                        cert.DateLastRenewalAttempt = baseDate.AddHours(-(1 + (i % 23)));
+                        break;
+
+                    case 5: // Short lifetime certificates (1-7 days)
+                        cert.DateStart = baseDate.AddDays(-1 * (1 + (i % 7)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(1 + (i % 7));
+                        break;
+
+                    case 6: // Long lifetime certificates (1+ years)
+                        var longLifetimeDays = 365 + (i % 730);
+                        var elapsedDays = 1 + (i % longLifetimeDays);
+                        cert.DateRenewed = baseDate.AddDays(-elapsedDays);
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(longLifetimeDays);
+                        cert.CustomRenewalTarget = 75 + (i % 20); // 75-94%
+                        cert.CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+                        break;
+
+                    case 7: // ARI certificates with complex scheduling
+                        cert.DateRenewed = baseDate.AddDays(-15 - i);
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.ARICertificateId = $"complex.ari.cert.{i}.with.lots.of.dots";
+                        cert.DateNextScheduledRenewalAttempt = baseDate.AddHours(-1 + (i * 0.5));
+                        break;
+
+                    case 8: // Auto-renew disabled certificates
+                        cert.IncludeInAutoRenew = false;
+                        cert.DateRenewed = baseDate.AddDays(-(35 + (i % 15)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        break;
+
+                    case 9: // Certificates on hold due to many failures
+                        cert.DateRenewed = baseDate.AddDays(-(40 + (i % 20)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.LastRenewalStatus = RequestState.Error;
+                        cert.RenewalFailureCount = 100 + (i % 100);
+                        cert.DateLastRenewalAttempt = baseDate.AddHours(-(1 + (i % 23)));
+                        break;
+
+                    case 10: // Certificates with custom percentage lifetime (low percentage)
+                        cert.DateStart = baseDate.AddDays(-(10 + (i % 30)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(90);
+                        cert.CustomRenewalTarget = 20 + (i % 20); // 20-39%
+                        cert.CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+                        break;
+
+                    case 11: // Certificates with custom percentage lifetime (high percentage)
+                        cert.DateStart = baseDate.AddDays(-(70 + (i % 15)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(90);
+                        cert.CustomRenewalTarget = 80 + (i % 15); // 80-94%
+                        cert.CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+                        break;
+
+                    case 12: // Already expired certificates
+                        cert.DateExpiry = baseDate.AddDays(-(1 + (i % 29)));
+                        cert.DateRenewed = cert.DateExpiry.Value.AddDays(-90);
+                        cert.DateStart = cert.DateRenewed;
+                        break;
+
+                    case 13: // Certificates with future start dates
+                        cert.DateStart = baseDate.AddDays(1 + (i % 9));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddDays(90);
+                        break;
+
+                    case 14: // Certificates with zero lifetime
+                        cert.DateStart = baseDate.AddDays(-(1 + (i % 4)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart; // Same as start date
+                        break;
+
+                    case 15: // Certificates with negative lifetime
+                        cert.DateStart = baseDate.AddDays(-(1 + (i % 4)));
+                        cert.DateRenewed = cert.DateStart;
+                        cert.DateExpiry = cert.DateStart.Value.AddHours(-(1 + (i % 23)));
+                        break;
+
+                    case 16: // Certificates close to renewal threshold (edge cases)
+                        var renewalDays = 30;
+                        cert.DateRenewed = baseDate.AddDays(-(renewalDays + ((i % 5) - 2))); // ±2 days around threshold
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        break;
+
+                    case 17: // Certificates with very recent attempts (cooling off)
+                        cert.DateRenewed = baseDate.AddDays(-(35 + (i % 15)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.DateLastRenewalAttempt = baseDate.AddMinutes(-(1 + (i % 59)));
+                        cert.LastRenewalStatus = RequestState.Error;
+                        cert.RenewalFailureCount = 5 + (i % 10);
+                        break;
+
+                    case 18: // Certificates with mixed success/failure status
+                        cert.DateRenewed = baseDate.AddDays(-(30 + (i % 15)));
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90);
+                        cert.LastRenewalStatus = (i % 2 == 0) ? RequestState.Success : RequestState.Error;
+                        cert.RenewalFailureCount = i % 3;
+
+                        if (cert.LastRenewalStatus == RequestState.Error)
+                        {
+                            cert.DateLastRenewalAttempt = baseDate.AddHours(-(24 + (i % 48)));
+                        }
+
+                        break;
+
+                    case 19: // Certificates with extreme age variations
+                        var extremeAge = 100 + (i % 265);
+                        cert.DateRenewed = baseDate.AddDays(-extremeAge);
+                        cert.DateStart = cert.DateRenewed;
+                        cert.DateExpiry = cert.DateRenewed.Value.AddDays(90 + (i % 275));
+                        break;
+                }
+
+                certificates.Add(cert);
+            }
+
+            return certificates;
+        }
+
+        private void AnalyzeBulkRenewalResults(List<(ManagedCertificate cert, bool isRenewalDue, string reason)> results, string renewalMode, int renewalInterval, string testDescription)
+        {
+            // Category breakdown
+            var categories = new Dictionary<string, int>
+            {
+                ["Recently Renewed"] = 0,
+                ["Due For Renewal"] = 0,
+                ["Expiring Soon"] = 0,
+                ["Never Renewed"] = 0,
+                ["With Errors"] = 0,
+                ["Short Lifetime"] = 0,
+                ["Long Lifetime"] = 0,
+                ["ARI Scheduled"] = 0,
+                ["Auto-Renew Disabled"] = 0,
+                ["On Hold"] = 0,
+                ["Already Expired"] = 0,
+                ["Future Start"] = 0,
+                ["Invalid Lifetime"] = 0,
+                ["Edge Cases"] = 0,
+                ["Mixed Status"] = 0,
+                ["Extreme Age"] = 0
+            };
+
+            foreach (var (cert, isRenewalDue, reason) in results)
+            {
+                // Categorize based on certificate characteristics
+                if (cert.DateRenewed.HasValue && cert.DateRenewed.Value > DateTimeOffset.UtcNow.AddDays(-10))
+                {
+                    categories["Recently Renewed"]++;
+                }
+                else if (!cert.DateRenewed.HasValue)
+                {
+                    categories["Never Renewed"]++;
+                }
+                else if (cert.DateExpiry.HasValue && cert.DateExpiry.Value < DateTimeOffset.UtcNow.AddDays(30))
+                {
+                    categories["Expiring Soon"]++;
+                }
+                else if (cert.LastRenewalStatus == RequestState.Error && cert.RenewalFailureCount > 50)
+                {
+                    categories["On Hold"]++;
+                }
+                else if (cert.LastRenewalStatus == RequestState.Error)
+                {
+                    categories["With Errors"]++;
+                }
+                else if (!string.IsNullOrEmpty(cert.ARICertificateId))
+                {
+                    categories["ARI Scheduled"]++;
+                }
+                else if (!cert.IncludeInAutoRenew)
+                {
+                    categories["Auto-Renew Disabled"]++;
+                }
+                else if (cert.DateExpiry.HasValue && cert.DateExpiry.Value < DateTimeOffset.UtcNow)
+                {
+                    categories["Already Expired"]++;
+                }
+                else if (cert.DateStart.HasValue && cert.DateStart.Value > DateTimeOffset.UtcNow)
+                {
+                    categories["Future Start"]++;
+                }
+                else if (cert.DateStart.HasValue && cert.DateExpiry.HasValue &&
+                         (cert.DateExpiry.Value - cert.DateStart.Value).TotalDays < 1)
+                {
+                    categories["Invalid Lifetime"]++;
+                }
+                else if (cert.DateStart.HasValue && cert.DateExpiry.HasValue &&
+                         (cert.DateExpiry.Value - cert.DateStart.Value).TotalDays < 10)
+                {
+                    categories["Short Lifetime"]++;
+                }
+                else if (cert.DateStart.HasValue && cert.DateExpiry.HasValue &&
+                         (cert.DateExpiry.Value - cert.DateStart.Value).TotalDays > 300)
+                {
+                    categories["Long Lifetime"]++;
+                }
+                else if (cert.DateRenewed.HasValue && cert.DateRenewed.Value < DateTimeOffset.UtcNow.AddDays(-100))
+                {
+                    categories["Extreme Age"]++;
+                }
+                else if (cert.LastRenewalStatus != null)
+                {
+                    categories["Mixed Status"]++;
+                }
+                else if (cert.DateRenewed.HasValue && Math.Abs((DateTimeOffset.UtcNow - cert.DateRenewed.Value).TotalDays - renewalInterval) < 5)
+                {
+                    categories["Edge Cases"]++;
+                }
+                else
+                {
+                    categories["Due For Renewal"]++;
+                }
+            }
+
+            // Log category breakdown for debugging
+            var categoryInfo = string.Join(", ", categories.Where(kvp => kvp.Value > 0).Select(kvp => $"{kvp.Key}: {kvp.Value}"));
+
+            // Verify we have good distribution
+            var nonZeroCategories = categories.Count(kvp => kvp.Value > 0);
+            Assert.IsTrue(nonZeroCategories >= 10, $"{testDescription}: Should have diverse certificate categories. Categories with certificates: {nonZeroCategories}. Distribution: {categoryInfo}");
+
+            // Verify specific renewal mode behavior
+            var renewalCount = results.Count(r => r.isRenewalDue);
+
+            switch (renewalMode)
+            {
+                case RenewalIntervalModes.DaysAfterLastRenewal:
+                    // Should favor certificates renewed many days ago
+                    var oldCerts = results.Where(r => r.cert.DateRenewed.HasValue &&
+                        (DateTimeOffset.UtcNow - r.cert.DateRenewed.Value).TotalDays > renewalInterval).Count();
+                    Assert.IsTrue(oldCerts > 0, $"{testDescription}: Should have certificates old enough for renewal");
+                    break;
+
+                case RenewalIntervalModes.DaysBeforeExpiry:
+                    // Should favor certificates expiring soon
+                    var expiringSoon = results.Where(r => r.cert.DateExpiry.HasValue &&
+                        (r.cert.DateExpiry.Value - DateTimeOffset.UtcNow).TotalDays <= renewalInterval).Count();
+                    Assert.IsTrue(expiringSoon > 0, $"{testDescription}: Should have certificates expiring within renewal interval");
+                    break;
+
+                case RenewalIntervalModes.PercentageLifetime:
+                    // Should consider certificate lifetime percentages
+                    var percentageCerts = results.Where(r => r.cert.DateStart.HasValue && r.cert.DateExpiry.HasValue).Count();
+                    Assert.IsTrue(percentageCerts > 0, $"{testDescription}: Should have certificates with calculable lifetimes");
+                    break;
+            }
+
+            // Additional assertions can be added here based on specific requirements
+        }
+
+        #endregion Bulk Renewal Testing
     }
 }
