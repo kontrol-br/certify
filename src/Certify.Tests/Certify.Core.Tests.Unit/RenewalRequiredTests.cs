@@ -63,7 +63,7 @@ namespace Certify.Core.Tests.Unit
                 DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
                 DateLastRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-12),
                 LastRenewalStatus = RequestState.Error,
-                RenewalFailureCount = 2000, // high number of failures
+                RenewalFailureCount = 100, // high number of failures
                 DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-0.1) // scheduled renewal set to become due
             };
 
@@ -77,12 +77,51 @@ namespace Certify.Core.Tests.Unit
             Assert.AreEqual(renewalDueCheck.HoldHrs, 48, "Hold should be for 48 Hrs");
 
             managedCertificate.DateLastRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-49);
-            // perform check
+
+            // perform check as if last attempt was over 48rs ago, item should require renewal and not be on hold
             renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, true);
 
             // assert result
             Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Renewal should be required");
-            Assert.IsFalse(renewalDueCheck.IsRenewalOnHold, "Renewal should be required");
+            Assert.IsFalse(renewalDueCheck.IsRenewalOnHold, "Renewal should not be on hold");
+        }
+
+        [TestMethod, Description("Ensure renewal hold when item has failed more than 100 times")]
+        public void TestCheckAutoRenewalWithTooManyFailuresHold()
+        {
+            // setup
+            var renewalPeriodDays = 14;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = DateTimeOffset.UtcNow.AddDays(-15),
+                DateStart = DateTimeOffset.UtcNow.AddDays(-15),
+                DateExpiry = DateTimeOffset.UtcNow.AddDays(60),
+                DateLastRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-12),
+                LastRenewalStatus = RequestState.Error,
+                RenewalFailureCount = 1001, // too many failures
+                DateNextScheduledRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-0.1) // scheduled renewal set to become due
+            };
+
+            // perform check
+            var renewalDueCheck
+                = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, true);
+
+            // assert result
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Renewal should be required");
+            Assert.IsTrue(renewalDueCheck.IsRenewalOnHold, "Renewal should be on hold");
+            Assert.AreEqual(renewalDueCheck.HoldHrs, 48, "Hold should be for 48 Hrs");
+
+            managedCertificate.DateLastRenewalAttempt = DateTimeOffset.UtcNow.AddHours(-49);
+
+            // perform check as if last attempt was over 48rs ago, item should require renewal and not be on hold
+            renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, true);
+
+            // assert result
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Renewal should be required");
+            Assert.IsTrue(renewalDueCheck.IsRenewalOnHold, "Renewal should permanently be on hold, too many failures.");
         }
 
         [TestMethod, Description("Ensure a site which should be renewed correctly requires renewal")]
@@ -203,7 +242,6 @@ namespace Certify.Core.Tests.Unit
         [DataRow(true, 15.5f, 30, 50, 60, RenewalIntervalModes.PercentageLifetime, true, "30 day cert renewing at 50% lifetime, due for renewal")]
         [DataRow(true, 0.5f, 1, 75, 60, RenewalIntervalModes.PercentageLifetime, false, "1 day cert renewing at 75% lifetime, not due for renewal")]
         [DataRow(true, 0.76f, 1, 75, 60, RenewalIntervalModes.PercentageLifetime, true, "1 day cert renewing at 75% lifetime, due for renewal")]
-        [DataRow(true, 180, 365, 90, 90, RenewalIntervalModes.PercentageLifetime, false, "365 day cert renewing at 90% lifetime, not due for renewal")]
         [DataRow(true, 180, 365, 90, 90, RenewalIntervalModes.PercentageLifetime, false, "365 day cert renewing at 90% lifetime, not due for renewal")]
         public void TestAutoRenewalWithPercentageCertLifetime(
             bool previouslyRenewed, float daysElapsed, float lifetimeDays, float customRenewalPercentage, int renewalInterval, string customIntervalMode,
