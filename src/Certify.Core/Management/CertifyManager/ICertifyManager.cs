@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Certify.Config;
 using Certify.Config.Migration;
@@ -69,11 +70,11 @@ namespace Certify.Management
 
         Task<List<DomainOption>> GetDomainOptionsFromSite(StandardServerTypes serverType, string siteId);
 
-        Task<List<CertificateRequestResult>> PerformRenewAll(RenewalSettings settings, ConcurrentDictionary<string, Progress<RequestProgressState>> progressTrackers = null);
+        Task<List<CertificateRequestResult>> PerformRenewAll(RenewalSettings settings, CancellationToken cancellationToken, ConcurrentDictionary<string, Progress<RequestProgressState>> progressTrackers = null);
 
         RequestProgressState GetRequestProgressState(string managedItemId);
 
-        Task<bool> PerformRenewalTasks();
+        Task<bool> PerformRenewalTasks(CancellationToken cancellationToken);
 
         Task<bool> PerformDailyMaintenanceTasks();
 

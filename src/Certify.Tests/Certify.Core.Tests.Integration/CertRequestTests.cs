@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Threading.Tasks;
 using Certify.ACME.Anvil.Crypto;
 using Certify.ACME.Anvil.Pkcs;
@@ -501,8 +502,9 @@ namespace Certify.Core.Tests
                 {
                     TargetManagedCertificates = targets,
                     Mode = RenewalMode.All
-                }
-                , null);
+                },
+                CancellationToken.None
+                );
 
             Assert.AreEqual(1, results.Count);
 
