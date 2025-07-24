@@ -748,5 +748,335 @@ namespace Certify.Core.Tests.Unit
         }
 
         #endregion ARI Tests
+
+        #region Complex Date Edge Cases Tests
+
+        [TestMethod, Description("Test certificate with start date in the future")]
+        public void TestCertificateWithFutureStartDate()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var futureStartDate = DateTimeOffset.UtcNow.AddDays(1); // Start date 1 day in future
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = futureStartDate,
+                DateRenewed = futureStartDate,
+                DateExpiry = futureStartDate.AddDays(90), // 90 day cert starting in future
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // Should not be due for renewal since certificate hasn't even started yet
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, "Certificate with future start date should not be due for renewal");
+
+            // Test percentage lifetime calculation
+            var percentageElapsed = managedCertificate.GetPercentageLifetimeElapsed(DateTimeOffset.UtcNow);
+            Assert.AreEqual(0, percentageElapsed, "Certificate with future start date should have 0% elapsed lifetime");
+        }
+
+        [TestMethod, Description("Test certificate expiry calculation with millisecond precision")]
+        public void TestCertificateExpiryWithMillisecondPrecision()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysBeforeExpiry;
+
+            var now = DateTimeOffset.UtcNow;
+            var preciseExpiryDate = now.AddDays(29).AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(999);
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = now.AddDays(-60),
+                DateExpiry = preciseExpiryDate
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // Should be due for renewal because expiry is within 30 days (just barely under)
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Certificate expiring in less than 30 days should be due for renewal");
+        }
+
+        [TestMethod, Description("Test leap year date calculations")]
+        [DataTestMethod]
+        [DataRow(2024, 2, 29, true, "Leap year Feb 29th should be valid")]
+        [DataRow(2023, 2, 28, true, "Non-leap year Feb 28th should be valid")]
+        [DataRow(2020, 2, 29, true, "Leap year 2020 Feb 29th should be valid")]
+        [DataRow(1900, 2, 28, true, "Century non-leap year 1900 Feb 28th should be valid")]
+        [DataRow(2000, 2, 29, true, "Century leap year 2000 Feb 29th should be valid")]
+        public void TestLeapYearDateCalculations(int year, int month, int day, bool isValid, string testDescription)
+        {
+            try
+            {
+                var leapYearDate = new DateTimeOffset(year, month, day, 12, 0, 0, TimeSpan.Zero);
+                var renewalPeriodDays = 30;
+                var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+                var managedCertificate = new ManagedCertificate
+                {
+                    IncludeInAutoRenew = true,
+                    DateStart = leapYearDate,
+                    DateRenewed = leapYearDate,
+                    DateExpiry = leapYearDate.AddDays(365) // One year later
+                };
+
+                // Test renewal calculation across potential leap year boundary
+                var testDate = leapYearDate.AddDays(350); // Test near expiry
+                var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+                Assert.IsNotNull(renewalDueCheck, testDescription);
+                Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Certificate should be due for renewal after 350 days: {testDescription}");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                if (isValid)
+                {
+                    Assert.Fail($"Expected valid date but got exception: {testDescription}");
+                }
+            }
+        }
+
+        [TestMethod, Description("Test daylight saving time transitions")]
+        public void TestDaylightSavingTimeTransitions()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            // Test spring forward transition (typically March in US)
+            var springDate = new DateTimeOffset(2024, 3, 10, 1, 30, 0, TimeSpan.FromHours(-8)); // Before DST
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = springDate,
+                DateExpiry = springDate.AddDays(90)
+            };
+
+            // Test renewal calculation during DST transition
+            var testDate = springDate.AddDays(31); // After DST transition
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Renewal should be due after DST spring transition");
+
+            // Test fall back transition (typically November in US)
+            var fallDate = new DateTimeOffset(2024, 11, 3, 1, 30, 0, TimeSpan.FromHours(-7)); // Before DST ends
+            managedCertificate.DateRenewed = fallDate;
+            managedCertificate.DateExpiry = fallDate.AddDays(90);
+
+            testDate = fallDate.AddDays(31); // After DST ends
+            renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Renewal should be due after DST fall transition");
+        }
+
+        [TestMethod, Description("Test timezone offset handling")]
+        [DataTestMethod]
+        [DataRow(-12, "UTC-12 (Baker Island)")]
+        [DataRow(-8, "UTC-8 (Pacific Time)")]
+        [DataRow(-5, "UTC-5 (Eastern Time)")]
+        [DataRow(0, "UTC (Greenwich Mean Time)")]
+        [DataRow(1, "UTC+1 (Central European Time)")]
+        [DataRow(5.5, "UTC+5:30 (India Standard Time)")]
+        [DataRow(9, "UTC+9 (Japan Standard Time)")]
+        [DataRow(12, "UTC+12 (Fiji Time)")]
+        public void TestTimezoneOffsetHandling(double offsetHours, string testDescription)
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var offset = TimeSpan.FromHours(offsetHours);
+            var baseDate = new DateTimeOffset(2024, 6, 15, 12, 0, 0, offset);
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = baseDate,
+                DateExpiry = baseDate.AddDays(90)
+            };
+
+            // Test with different timezone for current time
+            var testDate = baseDate.AddDays(31).ToOffset(TimeSpan.Zero); // Convert to UTC
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Renewal should be due regardless of timezone: {testDescription}");
+            Assert.IsNotNull(renewalDueCheck.DateNextRenewalAttempt, $"Next renewal date should be calculated: {testDescription}");
+        }
+
+        [TestMethod, Description("Test extremely short certificate lifetimes (minutes)")]
+        [DataTestMethod]
+        [DataRow(1, "1 minute certificate")]
+        [DataRow(5, "5 minute certificate")]
+        [DataRow(15, "15 minute certificate")]
+        [DataRow(30, "30 minute certificate")]
+        [DataRow(60, "1 hour certificate")]
+        public void TestExtremelyShortCertificateLifetimes(int lifetimeMinutes, string testDescription)
+        {
+            var renewalPeriodDays = 30; // Much longer than cert lifetime
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var startDate = DateTimeOffset.UtcNow.AddMinutes(-lifetimeMinutes / 2); // Half elapsed
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = startDate,
+                DateRenewed = startDate,
+                DateExpiry = startDate.AddMinutes(lifetimeMinutes)
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            // Should switch to percentage-based renewal for very short lifetimes
+            Assert.IsTrue(renewalDueCheck.CertLifetime.HasValue, $"Certificate lifetime should be calculated: {testDescription}");
+            Assert.AreEqual(lifetimeMinutes, (int)renewalDueCheck.CertLifetime.Value.TotalMinutes, $"Certificate lifetime should match: {testDescription}");
+        }
+
+        [TestMethod, Description("Test certificate already expired scenarios")]
+        [DataTestMethod]
+        [DataRow(-1, "Certificate expired 1 day ago")]
+        [DataRow(-7, "Certificate expired 1 week ago")]
+        [DataRow(-30, "Certificate expired 1 month ago")]
+        [DataRow(-365, "Certificate expired 1 year ago")]
+        public void TestAlreadyExpiredCertificates(int daysExpired, string testDescription)
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysBeforeExpiry;
+
+            var expiredDate = DateTimeOffset.UtcNow.AddDays(daysExpired);
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = expiredDate.AddDays(-90), // Renewed 90 days before expiry
+                DateExpiry = expiredDate
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Expired certificate should be due for renewal: {testDescription}");
+
+            // Verify the percentage calculation handles expired certificates
+            var percentageElapsed = managedCertificate.GetPercentageLifetimeElapsed(DateTimeOffset.UtcNow);
+            Assert.AreEqual(100, percentageElapsed, $"Expired certificate should show 100% lifetime elapsed: {testDescription}");
+        }
+
+        [TestMethod, Description("Test certificate with zero or negative lifetime")]
+        public void TestCertificateWithInvalidLifetime()
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+
+            var baseDate = DateTimeOffset.UtcNow;
+
+            // Test certificate with same start and expiry date (zero lifetime)
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = baseDate,
+                DateRenewed = baseDate,
+                DateExpiry = baseDate // Same as start date
+            };
+
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Certificate with zero lifetime should be due for renewal");
+
+            // Test certificate with expiry before start (negative lifetime)
+            managedCertificate.DateExpiry = baseDate.AddHours(-1); // Expires before it starts
+            renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, "Certificate with negative lifetime should be due for renewal");
+        }
+
+        [TestMethod, Description("Test year boundary transitions")]
+        [DataTestMethod]
+        [DataRow(2023, 12, 31, 2024, 1, 15, "New Year transition 2023-2024")]
+        [DataRow(2024, 12, 31, 2025, 1, 15, "New Year transition 2024-2025")]
+        [DataRow(1999, 12, 31, 2000, 1, 15, "Y2K transition 1999-2000")]
+        public void TestYearBoundaryTransitions(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay, string testDescription)
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            var startDate = new DateTimeOffset(startYear, startMonth, startDay, 23, 59, 59, TimeSpan.Zero);
+            var endDate = new DateTimeOffset(endYear, endMonth, endDay, 0, 0, 1, TimeSpan.Zero);
+
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = startDate,
+                DateRenewed = startDate,
+                DateExpiry = endDate
+            };
+
+            var testDate = startDate.AddDays(31); // 31 days after start
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Renewal should be due across year boundary: {testDescription}");
+            Assert.IsNotNull(renewalDueCheck.CertLifetime, $"Certificate lifetime should be calculated across year boundary: {testDescription}");
+        }
+
+        [TestMethod, Description("Test month boundary edge cases with varying month lengths")]
+        [DataTestMethod]
+        [DataRow(1, 31, "January 31 days")]
+        [DataRow(2, 28, "February 28 days (non-leap)")]
+        [DataRow(4, 30, "April 30 days")]
+        [DataRow(12, 31, "December 31 days")]
+        public void TestMonthBoundaryEdgeCases(int month, int expectedDays, string testDescription)
+        {
+            var renewalPeriodDays = 15;
+            var renewalIntervalMode = RenewalIntervalModes.DaysAfterLastRenewal;
+
+            // Start on the last day of the month
+            var startDate = new DateTimeOffset(2023, month, expectedDays, 12, 0, 0, TimeSpan.Zero);
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateRenewed = startDate,
+                DateExpiry = startDate.AddDays(90)
+            };
+
+            // Test exactly 15 days later (should cross month boundary)
+            var testDate = startDate.AddDays(15);
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Renewal should be due after crossing month boundary: {testDescription}");
+        }
+
+        [TestMethod, Description("Test certificates with very long lifetimes")]
+        [DataTestMethod]
+        [DataRow(365, "1 year certificate")]
+        [DataRow(730, "2 year certificate")]
+        [DataRow(1095, "3 year certificate")]
+        [DataRow(3650, "10 year certificate")]
+        [DataRow(36500, "100 year certificate")]
+        public void TestVeryLongLifetimeCertificates(int lifetimeDays, string testDescription)
+        {
+            var renewalPeriodDays = 30;
+            var renewalIntervalMode = RenewalIntervalModes.PercentageLifetime;
+
+            var startDate = DateTimeOffset.UtcNow;
+            var managedCertificate = new ManagedCertificate
+            {
+                IncludeInAutoRenew = true,
+                DateStart = startDate,
+                DateRenewed = startDate,
+                DateExpiry = startDate.AddDays(lifetimeDays),
+                CustomRenewalTarget = 90, // Renew at 90% of lifetime
+                CustomRenewalIntervalMode = RenewalIntervalModes.PercentageLifetime
+            };
+
+            // Test when 91% of lifetime has elapsed (should be due)
+            var testDate = startDate.AddDays((int)(lifetimeDays * 0.91));
+            var renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsTrue(renewalDueCheck.IsRenewalDue, $"Long lifetime certificate should be due at 91% elapsed: {testDescription}");
+
+            // Test when 89% of lifetime has elapsed (should not be due)
+            testDate = startDate.AddDays((int)(lifetimeDays * 0.89));
+            renewalDueCheck = ManagedCertificate.CalculateNextRenewalAttempt(managedCertificate, renewalPeriodDays, renewalIntervalMode, testDateTime: testDate);
+
+            Assert.IsFalse(renewalDueCheck.IsRenewalDue, $"Long lifetime certificate should not be due at 89% elapsed: {testDescription}");
+        }
+
+        #endregion Complex Date Edge Cases Tests
     }
 }

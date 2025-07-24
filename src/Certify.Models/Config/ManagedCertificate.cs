@@ -300,9 +300,9 @@ namespace Certify.Models
         {
             get
             {
-                if (DateStart.HasValue && DateExpiry.HasValue)
+                if (DateExpiry.HasValue)
                 {
-                    return new Lifetime(DateStart.Value, DateExpiry.Value);
+                    return new Lifetime(DateStart ?? DateExpiry.Value, DateExpiry.Value);
                 }
                 else
                 {
