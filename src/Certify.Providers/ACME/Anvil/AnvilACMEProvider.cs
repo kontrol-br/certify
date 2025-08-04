@@ -771,7 +771,7 @@ namespace Certify.Providers.ACME.Anvil
                             caSupportsARI = true;
                         }
 
-                        if (!string.IsNullOrWhiteSpace(profile) && dir.Meta?.Profiles.ContainsKey(profile) == true)
+                        if (!string.IsNullOrWhiteSpace(profile) && dir.Meta?.Profiles?.ContainsKey(profile) == true)
                         {
                             caSupportsRequestedProfile = true;
                             log?.Information($"The CA supports the specified ACME Profile [{profile}].");
