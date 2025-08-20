@@ -16,6 +16,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Certify.Core\Certify.Core.csproj" />
+        <ProjectReference Include="..\Certify.Providers\DNS\AutoIP\Plugin.DNS.AutoIP.csproj" ReferenceOutputAssembly="false" />
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
@@ -57,5 +58,12 @@
         <PackageReference Include="System.Security.Permissions" Version="9.0.8" />
 
     </ItemGroup>
+
+    <Target Name="CopyDnsAutoIPPlugin" AfterTargets="Build">
+        <ItemGroup>
+            <AutoIPPlugin Include="..\Certify.Providers\DNS\AutoIP\bin\$(Configuration)\netstandard2.0\Plugin.DNS.AutoIP.dll" />
+        </ItemGroup>
+        <Copy SourceFiles="@(AutoIPPlugin)" DestinationFolder="$(OutDir)plugins" SkipUnchangedFiles="true" />
+    </Target>
 
 </Project>
