@@ -15,14 +15,15 @@ namespace Certify.Providers.DNS.AutoIP
 
     public class DnsProviderAutoIP : DnsProviderBase, IDnsProvider
     {
-        private const string API_ENDPOINT = "https://update.autoip.com.br/acme";
+        private const string DEFAULT_API_ENDPOINT = "https://update.autoip.com.br/acme";
 
         private HttpClient _http;
         private ILog _log;
-        private string _token;
+        private string _acmeToken;
         private string _username;
         private string _password;
         private string _hostname;
+        private string _apiEndpoint = DEFAULT_API_ENDPOINT;
         private int? _customPropagationDelay = null;
 
         public DnsProviderAutoIP()
@@ -37,7 +38,8 @@ namespace Certify.Providers.DNS.AutoIP
             HelpUrl = "https://update.autoip.com.br/",
             PropagationDelaySeconds = 60,
             ProviderParameters = new List<ProviderParameter>{
-                new ProviderParameter{ Key="apitoken", Name="API Token", IsRequired=false, IsCredential=true, IsPassword=true },
+                new ProviderParameter{ Key="apiendpoint", Name="API Endpoint", IsRequired=false, IsCredential=false, IsPassword=false, Value=DEFAULT_API_ENDPOINT },
+                new ProviderParameter{ Key="acmetoken", Name="ACME Token", IsRequired=false, IsCredential=true, IsPassword=true },
                 new ProviderParameter{ Key="username", Name="User Name", IsRequired=false, IsCredential=true },
                 new ProviderParameter{ Key="password", Name="Password", IsRequired=false, IsCredential=true, IsPassword=true },
                 new ProviderParameter{ Key="hostname", Name="Hostname", IsRequired=false },
@@ -60,10 +62,11 @@ namespace Certify.Providers.DNS.AutoIP
         public Task<bool> InitProvider(Dictionary<string, string> credentials, Dictionary<string, string> parameters, ILog log = null)
         {
             _log = log;
-            credentials?.TryGetValue("apitoken", out _token);
+            credentials?.TryGetValue("acmetoken", out _acmeToken);
             credentials?.TryGetValue("username", out _username);
             credentials?.TryGetValue("password", out _password);
             parameters?.TryGetValue("hostname", out _hostname);
+            parameters?.TryGetValue("apiendpoint", out _apiEndpoint);
 
             if (parameters?.ContainsKey("propagationdelay") == true && int.TryParse(parameters["propagationdelay"], out var delay))
             {
@@ -71,9 +74,9 @@ namespace Certify.Providers.DNS.AutoIP
             }
 
             _http = new HttpClient();
-            if (!string.IsNullOrEmpty(_token))
+            if (!string.IsNullOrEmpty(_acmeToken))
             {
-                _http.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+                _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _acmeToken);
             }
             else if (!string.IsNullOrEmpty(_username))
             {
@@ -98,7 +101,7 @@ namespace Certify.Providers.DNS.AutoIP
                 }
 
                 var json = JsonConvert.SerializeObject(payload);
-                var resp = await _http.PostAsync(API_ENDPOINT, new StringContent(json, Encoding.UTF8, "application/json"));
+                var resp = await _http.PostAsync(_apiEndpoint, new StringContent(json, Encoding.UTF8, "application/json"));
 
                 if (resp.IsSuccessStatusCode)
                 {
@@ -124,7 +127,7 @@ namespace Certify.Providers.DNS.AutoIP
                 }
 
                 var json = JsonConvert.SerializeObject(payload);
-                var req = new HttpRequestMessage(HttpMethod.Delete, API_ENDPOINT)
+                var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
                 {
                     Content = new StringContent(json, Encoding.UTF8, "application/json")
                 };
