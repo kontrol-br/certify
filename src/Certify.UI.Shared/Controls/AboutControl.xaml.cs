@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Certify.Locales;
 using Certify.UI.Shared;
 
@@ -92,7 +93,7 @@ namespace Certify.UI.Controls
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://certifytheweb.com/register?src=app");
+        private void Button_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://kontrol.com.br/register?src=app");
 
         private void Button_ApplyRegistrationKey(object sender, RoutedEventArgs e)
         {
@@ -106,7 +107,7 @@ namespace Certify.UI.Controls
             //refresh registration status TODO: main window title
             PopulateAppInfo();
 
-        private void Help_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://certifytheweb.com");
+        private void Help_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://kontrol.com.br");
 
         private void Feedback_Click(object sender, RoutedEventArgs e)
         {
@@ -123,6 +124,15 @@ namespace Certify.UI.Controls
             d.ShowDialog();
 
             d.Unloaded += ApplyRegistration_Completed;
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Uri != null && e.Uri.IsAbsoluteUri)
+            {
+                Utils.Helpers.LaunchBrowser(e.Uri.ToString());
+            }
         }
     }
 }
