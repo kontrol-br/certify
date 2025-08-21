@@ -6,6 +6,7 @@ Windows ACME Certificate Manager, powered by [Let's Encrypt](https://letsencrypt
 - Documentation: [https://docs.certifytheweb.com](https://docs.certifytheweb.com)
 - Community Discussions: [https://community.certifytheweb.com](https://community.certifytheweb.com)
 - Changelog (release notes): https://certifytheweb.com/home/changelog
+- Update API (coming soon): https://update.autoip.com.br/v1/
 
 **Certify The Web is used by hundreds of thousands of organisations to manage millions of certificates each month** and is the perfect solution for administrators who want visibility of certificate management for their domains. Centralised dashboard status reporting is also available.
 
