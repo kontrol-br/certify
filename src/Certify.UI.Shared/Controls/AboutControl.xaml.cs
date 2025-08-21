@@ -23,25 +23,7 @@ namespace Certify.UI.Controls
 
         private void PopulateAppInfo()
         {
-
             lblAppVersion.Text = ConfigResources.AppName + " " + Management.Util.GetAppVersion();
-
-            if (MainViewModel.IsRegisteredVersion)
-            {
-                Register.IsEnabled = false;
-                ValidateKey.IsEnabled = false;
-                DeactivateInstall.IsEnabled = true;
-
-                lblRegistrationType.Text = "Licensed Version";
-                lblRegistrationDetails.Text = "";
-            }
-            else
-            {
-                DeactivateInstall.IsEnabled = false;
-                ValidateKey.IsEnabled = true;
-                Register.IsEnabled = true;
-                lblRegistrationType.Text = "Community Edition (Not Licensed)";
-            }
 
             creditLibs.Text = "";
 
@@ -93,20 +75,6 @@ namespace Certify.UI.Controls
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://kontrol.com.br/register?src=app");
-
-        private void Button_ApplyRegistrationKey(object sender, RoutedEventArgs e)
-        {
-            var d = new Windows.Registration { Owner = Window.GetWindow(this) };
-            d.ShowDialog();
-
-            d.Unloaded += ApplyRegistration_Completed;
-        }
-
-        private void ApplyRegistration_Completed(object sender, EventArgs e) =>
-            //refresh registration status TODO: main window title
-            PopulateAppInfo();
-
         private void Help_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://kontrol.com.br");
 
         private void Feedback_Click(object sender, RoutedEventArgs e)
@@ -116,15 +84,6 @@ namespace Certify.UI.Controls
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) => PopulateAppInfo();
-
-        private void DeactivateInstall_Click(object sender, RoutedEventArgs e)
-        {
-            var d = new Windows.Registration { Owner = Window.GetWindow(this) };
-            d.EditModel.IsRegistrationMode = false;
-            d.ShowDialog();
-
-            d.Unloaded += ApplyRegistration_Completed;
-        }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
