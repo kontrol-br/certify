@@ -2,7 +2,7 @@
 {
     public static class Config
     {
-        public static string APIBaseURI { get; } = "https://api.certifytheweb.com/v1/";
+        public static string APIBaseURI { get; } = "https://update.autoip.com.br/v1/";
     }
 
     public class URLCheckResult
