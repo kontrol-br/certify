@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:local="clr-namespace:Certify.UI"
+    xmlns:utils="clr-namespace:Certify.UI.Utils;assembly=Certify.UI.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
     Title="{x:Static res:ConfigResources.AppName}"
@@ -24,6 +25,10 @@
     WindowButtonCommandsOverlayBehavior="Never"
     WindowTransitionsEnabled="False"
     mc:Ignorable="d">
+
+    <Controls:MetroWindow.Resources>
+        <utils:FeatureVisibilityConverter x:Key="FeatureVisibilityConverter" />
+    </Controls:MetroWindow.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
