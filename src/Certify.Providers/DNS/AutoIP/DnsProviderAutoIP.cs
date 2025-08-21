@@ -19,8 +19,7 @@ namespace Certify.Providers.DNS.AutoIP
 
         private HttpClient _http;
         private ILog _log;
-        private string _acmeToken;
-        private string _username;
+        private string _credential; // username or token
         private string _password;
         private string _hostname;
         private string _apiEndpoint = DEFAULT_API_ENDPOINT;
@@ -39,8 +38,7 @@ namespace Certify.Providers.DNS.AutoIP
             PropagationDelaySeconds = 60,
             ProviderParameters = new List<ProviderParameter>{
                 new ProviderParameter{ Key="apiendpoint", Name="API Endpoint", IsRequired=false, IsCredential=false, IsPassword=false, Value=DEFAULT_API_ENDPOINT },
-                new ProviderParameter{ Key="acmetoken", Name="ACME Token", IsRequired=false, IsCredential=true, IsPassword=true },
-                new ProviderParameter{ Key="username", Name="User Name", IsRequired=false, IsCredential=true },
+                new ProviderParameter{ Key="username", Name="Username/Token Acme", IsRequired=false, IsCredential=true },
                 new ProviderParameter{ Key="password", Name="Password", IsRequired=false, IsCredential=true, IsPassword=true },
                 new ProviderParameter{ Key="hostname", Name="Hostname", IsRequired=false },
                 new ProviderParameter{ Key="propagationdelay", Name="Propagation Delay Seconds", IsRequired=false, IsCredential=false, IsPassword=false, Value="60" }
@@ -62,8 +60,11 @@ namespace Certify.Providers.DNS.AutoIP
         public Task<bool> InitProvider(Dictionary<string, string> credentials, Dictionary<string, string> parameters, ILog log = null)
         {
             _log = log;
-            credentials?.TryGetValue("acmetoken", out _acmeToken);
-            credentials?.TryGetValue("username", out _username);
+            credentials?.TryGetValue("username", out _credential);
+            if (string.IsNullOrEmpty(_credential))
+            {
+                credentials?.TryGetValue("acmetoken", out _credential);
+            }
             credentials?.TryGetValue("password", out _password);
             parameters?.TryGetValue("hostname", out _hostname);
             parameters?.TryGetValue("apiendpoint", out _apiEndpoint);
@@ -74,14 +75,17 @@ namespace Certify.Providers.DNS.AutoIP
             }
 
             _http = new HttpClient();
-            if (!string.IsNullOrEmpty(_acmeToken))
+            if (!string.IsNullOrEmpty(_credential))
             {
-                _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _acmeToken);
-            }
-            else if (!string.IsNullOrEmpty(_username))
-            {
-                var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_username}:{_password}"));
-                _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", auth);
+                if (string.IsNullOrEmpty(_password))
+                {
+                    _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _credential);
+                }
+                else
+                {
+                    var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_credential}:{_password}"));
+                    _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", auth);
+                }
             }
 
             return Task.FromResult(true);
@@ -95,7 +99,7 @@ namespace Certify.Providers.DNS.AutoIP
                     { "txt", request.RecordValue }
                 };
 
-                if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_hostname))
+                if (!string.IsNullOrEmpty(_password) && !string.IsNullOrEmpty(_hostname))
                 {
                     payload.Add("hostname", _hostname);
                 }
@@ -121,7 +125,7 @@ namespace Certify.Providers.DNS.AutoIP
             try
             {
                 var payload = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_hostname))
+                if (!string.IsNullOrEmpty(_password) && !string.IsNullOrEmpty(_hostname))
                 {
                     payload.Add("hostname", _hostname);
                 }
