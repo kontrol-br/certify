@@ -17,7 +17,7 @@ New-EventLog –LogName "Application" –Source $eventLogAppName -ErrorAction Si
 $installedVersion = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -match "^(Certify The Web|Certify Certificate Manager).*" }
 $installedVersionString = $installedVersion.DisplayVersion
 
-$apiUrl = "https://api.certifytheweb.com/v1/update?context=autoupdate&version=" + $installedVersionString
+$apiUrl = "https://update.autoip.com.br/v1/update?context=autoupdate&version=" + $installedVersionString
 
 Write-EventLog –LogName "Application" –Source $eventLogAppName –EntryType Information –EventID 1 –Message "Checking for update. Installed version is $installedVersionString" -ErrorAction SilentlyContinue
 
