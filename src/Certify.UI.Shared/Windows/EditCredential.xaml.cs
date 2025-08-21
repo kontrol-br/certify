@@ -175,6 +175,27 @@ namespace Certify.UI.Windows
 
         private void Cancel_Click(object sender, System.Windows.RoutedEventArgs e) => Close();
 
+        private async void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (EditViewModel?.Item?.StorageKey == null)
+            {
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you wish to delete this stored credential?", "Confirm Delete", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                var result = await MainViewModel.DeleteCredential(EditViewModel.Item.StorageKey);
+                if (result.IsSuccess)
+                {
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message);
+                }
+            }
+        }
+
         private void HelpUrl_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             e.Handled = true;
