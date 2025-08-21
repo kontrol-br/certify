@@ -37,19 +37,6 @@
                 Margin="0,8"
                 DockPanel.Dock="Top"
                 TextWrapping="Wrap"><Run Text="Powered by KONTROL" /><LineBreak /><Hyperlink NavigateUri="https://kontrol.com.br" RequestNavigate="Hyperlink_RequestNavigate">https://kontrol.com.br</Hyperlink></TextBlock>
-
-            <TextBlock
-                x:Name="lblRegistrationType"
-                Margin="0,8"
-                DockPanel.Dock="Top"
-                FontWeight="Bold"
-                Text="{x:Static res:SR.AboutControl_RegistrationTypeLabel}"
-                TextWrapping="Wrap" />
-            <TextBlock
-                x:Name="lblRegistrationDetails"
-                DockPanel.Dock="Top"
-                Style="{StaticResource Instructions}"
-                TextWrapping="Wrap"><Run Text="{x:Static res:SR.AboutControl_TrialDetailLabel}" /></TextBlock>
             <Expander
                 Width="600"
                 Margin="0,32,0,0"
@@ -81,28 +68,6 @@
                 Click="UpdateCheck_Click"
                 Content="{x:Static res:SR.AboutControl_CheckForUpdateButton}"
                 DockPanel.Dock="Top" />
-
-
-            <Button
-                x:Name="ValidateKey"
-                Width="150"
-                Margin="0,24,0,8"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="Button_ApplyRegistrationKey"
-                Content="Add License Key.."
-                DockPanel.Dock="Top" />
-
-            <Button
-                x:Name="DeactivateInstall"
-                Width="150"
-                Margin="0,0,0,8"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="DeactivateInstall_Click"
-                Content="Remove License Key.."
-                DockPanel.Dock="Top" />
-
             <Button
                 x:Name="Help"
                 Width="150"
@@ -118,7 +83,6 @@
                 Margin="0,0,0,8"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Click="Button_Click"
                 Content="{x:Static res:SR.AboutControl_Register}"
                 DockPanel.Dock="Top" />
 
