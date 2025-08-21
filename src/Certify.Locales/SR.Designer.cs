@@ -97,15 +97,6 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase License Key...
-        /// </summary>
-        public static string AboutControl_Register {
-            get {
-                return ResourceManager.GetString("AboutControl_Register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Not Registered.
         /// </summary>
         public static string AboutControl_RegistrationTypeLabel {
@@ -120,15 +111,6 @@ namespace Certify.Locales {
         public static string AboutControl_SendFeedback {
             get {
                 return ResourceManager.GetString("AboutControl_SendFeedback", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Support.
-        /// </summary>
-        public static string AboutControl_Support {
-            get {
-                return ResourceManager.GetString("AboutControl_Support", resourceCulture);
             }
         }
         

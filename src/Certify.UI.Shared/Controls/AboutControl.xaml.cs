@@ -75,8 +75,6 @@ namespace Certify.UI.Controls
             }
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://kontrol.com.br");
-
         private void Feedback_Click(object sender, RoutedEventArgs e)
         {
             var d = new Windows.Feedback("", false) { Owner = Window.GetWindow(this) };

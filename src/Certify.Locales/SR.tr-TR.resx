@@ -267,14 +267,8 @@
   <data name="AboutControl_CheckForUpdateButton" xml:space="preserve">
     <value>Güncellemeleri kontrol et..</value>
   </data>
-  <data name="AboutControl_Register" xml:space="preserve">
-    <value>Kayıt ol</value>
-  </data>
   <data name="AboutControl_EnterKey" xml:space="preserve">
     <value>Anahtarı Girin..</value>
-  </data>
-  <data name="AboutControl_Support" xml:space="preserve">
-    <value>Destek</value>
   </data>
   <data name="AboutControl_SendFeedback" xml:space="preserve">
     <value>Geribildirim yolla</value>
