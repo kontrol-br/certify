@@ -610,15 +610,6 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Managed Certificates.
-        /// </summary>
-        public static string Managed_Certificates {
-            get {
-                return ResourceManager.GetString("Managed_Certificates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to  Managed Certificates.
         /// </summary>
         public static string Managed_Sites {

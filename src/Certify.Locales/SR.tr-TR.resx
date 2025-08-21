@@ -626,9 +626,6 @@
   <data name="Update_DownloadFailed" xml:space="preserve">
     <value>Maalesef güncelleme indirilemedi. Lütfen daha sonra tekrar deneyiniz.</value>
   </data>
-  <data name="Managed_Certificates" xml:space="preserve">
-    <value>Yönetilen Sertifikalar</value>
-  </data>
   <data name="ManagedCertificateSettings_DefaultTitle" xml:space="preserve">
     <value>Yeni Yönetilen Sertifika</value>
   </data>

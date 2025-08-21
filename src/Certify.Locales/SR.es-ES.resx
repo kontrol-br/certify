@@ -628,9 +628,6 @@
   <data name="Update_DownloadFailed" xml:space="preserve">
     <value>Lo sentimos, no se pudo descargar la actualización. Por favor, inténtelo de nuevo más tarde. </value>
   </data>
-  <data name="Managed_Certificates" xml:space="preserve">
-    <value>Administrar Certificados</value>
-  </data>
   <data name="ManagedCertificateSettings_DefaultTitle" xml:space="preserve">
     <value>Nuevo certificado administrado</value>
   </data>

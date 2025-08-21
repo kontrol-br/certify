@@ -629,9 +629,6 @@
   <data name="Update_DownloadFailed" xml:space="preserve">
     <value>很抱歉，更新檔下載失敗，請稍後再試。</value>
   </data>
-  <data name="Managed_Certificates" xml:space="preserve">
-    <value>受管憑證</value>
-  </data>
   <data name="ManagedCertificateSettings_DefaultTitle" xml:space="preserve">
     <value>新增受管憑證</value>
   </data>
