@@ -99,7 +99,7 @@ namespace Certify.Providers.DNS.AutoIP
                     { "txt", request.RecordValue }
                 };
 
-                if (!string.IsNullOrEmpty(_password) && !string.IsNullOrEmpty(_hostname))
+                if (!string.IsNullOrEmpty(_hostname))
                 {
                     payload.Add("hostname", _hostname);
                 }
@@ -125,12 +125,12 @@ namespace Certify.Providers.DNS.AutoIP
             try
             {
                 var payload = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(_password) && !string.IsNullOrEmpty(_hostname))
+                if (!string.IsNullOrEmpty(_hostname))
                 {
                     payload.Add("hostname", _hostname);
                 }
 
-                var json = JsonConvert.SerializeObject(payload);
+                var json = payload.Count > 0 ? JsonConvert.SerializeObject(payload) : string.Empty;
                 var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
                 {
                     Content = new StringContent(json, Encoding.UTF8, "application/json")
