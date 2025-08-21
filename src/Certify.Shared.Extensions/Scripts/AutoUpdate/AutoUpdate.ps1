@@ -1,4 +1,4 @@
-﻿param ([int]$Days=7, [switch]$Force)
+﻿param ([int]$Days=7, [switch]$Force, [string]$ApiBaseUri = "https://update.autoip.com.br/v1/")
 
 # Certify The Web - App Updater Script
 # Schedule this powershell script task using an Administrator account for automatic update N days after the last official release
@@ -17,7 +17,7 @@ New-EventLog –LogName "Application" –Source $eventLogAppName -ErrorAction Si
 $installedVersion = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -match "^(Certify The Web|Certify Certificate Manager).*" }
 $installedVersionString = $installedVersion.DisplayVersion
 
-$apiUrl = "https://update.autoip.com.br/v1/update?context=autoupdate&version=" + $installedVersionString
+$apiUrl = $ApiBaseUri + "update?context=autoupdate&version=" + $installedVersionString
 
 Write-EventLog –LogName "Application" –Source $eventLogAppName –EntryType Information –EventID 1 –Message "Checking for update. Installed version is $installedVersionString" -ErrorAction SilentlyContinue
 
