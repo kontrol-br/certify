@@ -87,6 +87,10 @@ namespace Certify.Providers.DNS.AutoIP
                     _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", auth);
                 }
             }
+            var authType = string.IsNullOrEmpty(_password) ? "token" : "user";
+            var passwordDisplay = string.IsNullOrEmpty(_password) ? string.Empty : "****";
+            _log?.Information("AutoIP provider initialized. Endpoint: {Endpoint}. AuthType: {AuthType}. Credential: {Credential} {Password}",
+                _apiEndpoint, authType, _credential, passwordDisplay);
 
             return Task.FromResult(true);
         }
@@ -105,6 +109,8 @@ namespace Certify.Providers.DNS.AutoIP
                 }
 
                 var json = JsonConvert.SerializeObject(payload);
+                var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
+                _log?.Information("HTTP POST {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
                 var resp = await _http.PostAsync(_apiEndpoint, new StringContent(json, Encoding.UTF8, "application/json"));
 
                 if (resp.IsSuccessStatusCode)
@@ -134,6 +140,8 @@ namespace Certify.Providers.DNS.AutoIP
                 }
 
                 var json = payload.Count > 0 ? JsonConvert.SerializeObject(payload) : string.Empty;
+                var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
+                _log?.Information("HTTP DELETE {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
                 var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
                 {
                     Content = new StringContent(json, Encoding.UTF8, "application/json")
