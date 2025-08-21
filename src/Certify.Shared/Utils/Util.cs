@@ -208,7 +208,9 @@ namespace Certify.Management
                 {
                     client.DefaultRequestHeaders.Add("User-Agent", Util.GetUserAgent());
 
-                    var response = await client.GetAsync(Models.API.Config.APIBaseURI + "update?version=" + appVersion);
+                    // https://update.autoip.com.br/v1/update?version={appVersion}
+                    var updateUri = new Uri(new Uri(Models.API.Config.APIBaseURI), $"update?version={appVersion}");
+                    var response = await client.GetAsync(updateUri);
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
