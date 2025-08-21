@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:local="clr-namespace:Certify.UI.Controls.Settings"
+    xmlns:utils="clr-namespace:Certify.UI.Utils;assembly=Certify.UI.Shared"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
     d:DesignHeight="420.042"
@@ -14,7 +15,9 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
 
-    <UserControl.Resources />
+    <UserControl.Resources>
+        <utils:FeatureVisibilityConverter x:Key="FeatureVisibilityConverter" />
+    </UserControl.Resources>
     <ScrollViewer Margin="0,0,0,-113" VerticalScrollBarVisibility="Auto">
         <DockPanel Margin="0,8,0,8">
             <TabControl

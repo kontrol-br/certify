@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Certify.UI.Controls.ManagedCertificate"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:utils="clr-namespace:Certify.UI.Utils"
+    xmlns:utils="clr-namespace:Certify.UI.Utils;assembly=Certify.UI.Shared"
     d:DataContext="{d:DesignInstance Type=certifyui:ManagedCertificateViewModelDesign,
                                      IsDesignTimeCreatable=True}"
     Loaded="UserControl_Loaded"
@@ -22,6 +22,7 @@
             x:Key="NullVisibleConverter"
             NotNull="Collapsed"
             Null="Visible" />
+        <utils:FeatureVisibilityConverter x:Key="FeatureVisibilityConverter" />
     </UserControl.Resources>
     <ScrollViewer Margin="0,8,0,0" VerticalScrollBarVisibility="Auto">
         <DockPanel Margin="0,0,8,0" LastChildFill="False">
