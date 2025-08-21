@@ -612,9 +612,6 @@
   <data name="Update_DownloadFailed" xml:space="preserve">
     <value>申し訳ありませんが、アップデートをダウンロードできませんでした。 後でもう一度お試しください。</value>
   </data>
-  <data name="Managed_Certificates" xml:space="preserve">
-    <value>証明書の管理</value>
-  </data>
   <data name="ManagedCertificateSettings_DefaultTitle" xml:space="preserve">
     <value>新しい管理証明書</value>
   </data>
