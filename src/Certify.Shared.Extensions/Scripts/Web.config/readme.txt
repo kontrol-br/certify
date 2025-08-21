@@ -19,6 +19,6 @@ we cycle through a number of alternative web.config options and test each one. T
 http://<yourdomain>/.well-known/acme-challenge/configcheck
 
 If the local request fails (perhaps because the local server can't resolve itself via DNS etc) and if proxy API support is enabled, the app asks
-the https://api.certifytheweb.com server if it can access the resource.
+the https://update.autoip.com.br server if it can access the resource.
 
 
