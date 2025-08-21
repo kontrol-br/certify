@@ -267,14 +267,8 @@
   <data name="AboutControl_CheckForUpdateButton" xml:space="preserve">
     <value>Buscar actualizaciones...</value>
   </data>
-  <data name="AboutControl_Register" xml:space="preserve">
-    <value>Registrar</value>
-  </data>
   <data name="AboutControl_EnterKey" xml:space="preserve">
     <value>Introducir clave...</value>
-  </data>
-  <data name="AboutControl_Support" xml:space="preserve">
-    <value>Soporte</value>
   </data>
   <data name="AboutControl_SendFeedback" xml:space="preserve">
     <value>Enviar Comentarios</value>

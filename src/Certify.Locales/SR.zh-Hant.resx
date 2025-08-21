@@ -267,14 +267,8 @@
   <data name="AboutControl_CheckForUpdateButton" xml:space="preserve">
     <value>檢查更新...</value>
   </data>
-  <data name="AboutControl_Register" xml:space="preserve">
-    <value>購買授權金鑰...</value>
-  </data>
   <data name="AboutControl_EnterKey" xml:space="preserve">
     <value>輸入金鑰...</value>
-  </data>
-  <data name="AboutControl_Support" xml:space="preserve">
-    <value>技術支援</value>
   </data>
   <data name="AboutControl_SendFeedback" xml:space="preserve">
     <value>意見回饋</value>

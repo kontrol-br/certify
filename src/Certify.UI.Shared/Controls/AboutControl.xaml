@@ -68,23 +68,6 @@
                 Click="UpdateCheck_Click"
                 Content="{x:Static res:SR.AboutControl_CheckForUpdateButton}"
                 DockPanel.Dock="Top" />
-            <Button
-                x:Name="Help"
-                Width="150"
-                Margin="0,24,0,8"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="Help_Click"
-                Content="{x:Static res:SR.AboutControl_Support}"
-                DockPanel.Dock="Top" />
-            <Button
-                x:Name="Register"
-                Width="150"
-                Margin="0,0,0,8"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Content="{x:Static res:SR.AboutControl_Register}"
-                DockPanel.Dock="Top" />
 
         </DockPanel>
 
