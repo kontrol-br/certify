@@ -71,7 +71,7 @@ namespace Certify.Locales {
         
         
         /// <summary>
-        ///   Looks up a localized string similar to Certify Certificate Manager.
+        ///   Looks up a localized string similar to AutoIP Certify.
         /// </summary>
         public static string AppName {
             get {
@@ -89,7 +89,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://certifytheweb.com.
+        ///   Looks up a localized string similar to https://kontrol.com.br.
         /// </summary>
         public static string AppWebsiteURL {
             get {
@@ -210,7 +210,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certify Certificate Manager.
+        ///   Looks up a localized string similar to AutoIP Certify.
         /// </summary>
         public static string LongAppName {
             get {

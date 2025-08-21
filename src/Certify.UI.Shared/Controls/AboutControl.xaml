@@ -26,7 +26,7 @@
                 x:Name="lblAppTitle"
                 DockPanel.Dock="Top"
                 FontSize="22"
-                TextWrapping="Wrap"><Run FontFamily="Segoe UI Bold" Text="Certify" /><Run FontFamily="Segoe UI" Text=" the web" /></TextBlock>
+                TextWrapping="Wrap"><Run FontFamily="Segoe UI Bold" Text="AutoIP" /><Run FontFamily="Segoe UI" Text=" Certify" /></TextBlock>
             <TextBlock
                 x:Name="lblAppVersion"
                 Margin="0,8"
@@ -36,7 +36,7 @@
                 x:Name="lblAbout"
                 Margin="0,8"
                 DockPanel.Dock="Top"
-                TextWrapping="Wrap"><Run Text="Copyright Webprofusion Pty Ltd 2015 - 2025" /><LineBreak /><Run Text="https://certifytheweb.com" /></TextBlock>
+                TextWrapping="Wrap"><Run Text="Powered by KONTROL" /><LineBreak /><Hyperlink NavigateUri="https://kontrol.com.br" RequestNavigate="Hyperlink_RequestNavigate">https://kontrol.com.br</Hyperlink></TextBlock>
 
             <TextBlock
                 x:Name="lblRegistrationType"
