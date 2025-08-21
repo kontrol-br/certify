@@ -34,7 +34,7 @@
                     FontFamily="Segoe UI"
                     FontSize="16"
                     Foreground="{DynamicResource MahApps.Brushes.Gray1}"
-                    Text="Certify Certificate Manager"
+                    Text="Gerenciador de Certificados"
                     TextWrapping="Wrap" />
                 <TextBlock Style="{StaticResource Instructions}" TextWrapping="Wrap">
                     <Run>Easily automate your certificates from ACME enabled Certificate Authorities including Let's Encrypt, Google Trust Services and more, including custom or internal CAs.</Run>
