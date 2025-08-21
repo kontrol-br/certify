@@ -173,8 +173,9 @@ namespace Certify.Providers.DNS.AutoIP
             }
         }
 
-        public Task<List<DnsZone>> GetZones()
+        public override Task<List<DnsZone>> GetZones()
         {
+            // AutoIP API does not provide a way to enumerate zones, so return an empty list.
             return Task.FromResult(new List<DnsZone>());
         }
     }
