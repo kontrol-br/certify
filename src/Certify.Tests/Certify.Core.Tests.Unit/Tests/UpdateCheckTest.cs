@@ -1,3 +1,4 @@
+using System;
 using Certify.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,8 +10,14 @@ namespace Certify.Core.Tests.Unit
         [TestMethod]
         public void TestUpdateCheck()
         {
+            var updateVersion = "2.0.1";
+
+            // ensure update uri is constructed using the correct base url
+            var update = new Uri($"https://update.autoip.com.br/v1/update?version={updateVersion}");
+            Assert.AreEqual($"https://update.autoip.com.br/v1/update?version={updateVersion}", update.ToString());
+
             var updateChecker = new Certify.Management.Util();
-            var result = updateChecker.CheckForUpdates("2.0.1").Result;
+            var result = updateChecker.CheckForUpdates(updateVersion).Result;
 
             // current version is older than newer version
             Assert.IsTrue(result.IsNewerVersion);
