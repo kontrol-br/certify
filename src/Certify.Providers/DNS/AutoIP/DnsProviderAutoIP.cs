@@ -112,7 +112,10 @@ namespace Certify.Providers.DNS.AutoIP
                     return new ActionResult { IsSuccess = true, Message = "DNS record added." };
                 }
 
-                return new ActionResult { IsSuccess = false, Message = $"API call failed: {resp.StatusCode}" };
+                var error = await resp.Content.ReadAsStringAsync();
+                var message = $"API call failed: {resp.StatusCode} - {error}";
+                _log?.Error(message);
+                return new ActionResult { IsSuccess = false, Message = message };
             }
             catch (Exception ex)
             {
@@ -142,7 +145,10 @@ namespace Certify.Providers.DNS.AutoIP
                     return new ActionResult { IsSuccess = true, Message = "DNS record removed." };
                 }
 
-                return new ActionResult { IsSuccess = false, Message = $"API call failed: {resp.StatusCode}" };
+                var error = await resp.Content.ReadAsStringAsync();
+                var message = $"API call failed: {resp.StatusCode} - {error}";
+                _log?.Error(message);
+                return new ActionResult { IsSuccess = false, Message = message };
             }
             catch (Exception ex)
             {
