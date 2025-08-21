@@ -224,6 +224,23 @@ namespace Certify.Core.Management.Challenges
         {
             var result = PluginManager.CurrentInstance.DnsProviderProviders.SelectMany(pp => pp.GetProviders(pp.GetType())).ToList();
 
+            var allowedProviders = new HashSet<string>
+            {
+                "DNS01.API.AutoIP",
+                "DNS01.API.PoshACME.Akamai",
+                "DNS01.API.PoshACME.AkamaiEdgeRC",
+                "DNS01.API.PoshACME.GCloud",
+                "DNS01.API.PoshACME.GoogleDomains",
+                "DNS01.API.PoshACME.IBMSoftLayer",
+                "DNS01.API.PoshACME.Infoblox",
+                "DNS01.API.PoshACME.PowerDNS",
+                "DNS01.API.PoshACME.RFC2136",
+                "DNS01.Scripting",
+                "DNS01.Manual"
+            };
+
+            result = result.Where(p => allowedProviders.Contains(p.Id)).ToList();
+
 #if DEBUG
             // output list of providers which require credentials plus list of potential stored credential parameters
             foreach (var resultItem in result.Where(p => p.ProviderParameters.Any(p => p.IsCredential)).OrderBy(r => r.Title))
