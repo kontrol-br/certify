@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Certify.Models;
+using Certify.Models.API;
 
 namespace Certify.UI.Windows
 {
@@ -95,7 +96,8 @@ namespace Certify.UI.Windows
                 catch (System.Net.Http.HttpRequestException exp)
                 {
                     Log?.Information("ValidateKey:" + exp.ToString());
-                    MessageBox.Show("Communication with the Certify The Web API failed. Check your system can communicate with https://update.autoip.com.br/v1/update using a web browser. \r\n\r\nIf your system is running an older version of Windows, check https://docs.certifytheweb.com for 'TLS Cipher', as updated registry settings may be required.");
+                    var updateUrl = Config.APIBaseURI + "update";
+                    MessageBox.Show($"Communication with the Certify The Web API failed. Check your system can communicate with {updateUrl} using a web browser. \r\n\r\nIf your system is running an older version of Windows, check https://docs.certifytheweb.com for 'TLS Cipher', as updated registry settings may be required.");
                 }
                 catch (Exception exp)
                 {

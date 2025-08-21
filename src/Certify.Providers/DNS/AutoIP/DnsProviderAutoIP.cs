@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Certify.Models.Config;
+using Certify.Models.API;
 using Certify.Models.Plugins;
 using Certify.Models.Providers;
 using Certify.Plugins;
@@ -15,7 +16,7 @@ namespace Certify.Providers.DNS.AutoIP
 
     public class DnsProviderAutoIP : DnsProviderBase, IDnsProvider
     {
-        private const string DEFAULT_API_ENDPOINT = "https://update.autoip.com.br/acme";
+        private static readonly string DEFAULT_API_ENDPOINT = new Uri(new Uri(Config.APIBaseURI), "../acme").ToString();
 
         private HttpClient _http;
         private ILog _log;
@@ -34,7 +35,7 @@ namespace Certify.Providers.DNS.AutoIP
             Id = "DNS01.API.AutoIP",
             Title = "AutoIP DNS API",
             Description = "Validates via AutoIP DNS API using token or user credentials.",
-            HelpUrl = "https://update.autoip.com.br/",
+            HelpUrl = new Uri(new Uri(Config.APIBaseURI), "../").ToString(),
             PropagationDelaySeconds = 60,
             ProviderParameters = new List<ProviderParameter>{
                 new ProviderParameter{ Key="apiendpoint", Name="API Endpoint", IsRequired=false, IsCredential=false, IsPassword=false, Value=DEFAULT_API_ENDPOINT },
