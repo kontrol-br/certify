@@ -28,6 +28,9 @@
         <EmbeddedResource Update="ConfigResources.nb-NO.resx">
             <DependentUpon>ConfigResources.resx</DependentUpon>
         </EmbeddedResource>
+        <EmbeddedResource Update="ConfigResources.pt-BR.resx">
+            <DependentUpon>ConfigResources.resx</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Update="ConfigResources.tr-TR.resx">
             <DependentUpon>ConfigResources.resx</DependentUpon>
         </EmbeddedResource>
@@ -45,6 +48,9 @@
             <DependentUpon>CoreSR.resx</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Update="CoreSR.nb-NO.resx">
+            <DependentUpon>CoreSR.resx</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Update="CoreSR.pt-BR.resx">
             <DependentUpon>CoreSR.resx</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Update="CoreSR.tr-TR.resx">
@@ -73,6 +79,9 @@
             <DependentUpon>SR.resx</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Update="SR.nb-NO.resx">
+            <DependentUpon>SR.resx</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Update="SR.pt-BR.resx">
             <DependentUpon>SR.resx</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Update="SR.tr-TR.resx">

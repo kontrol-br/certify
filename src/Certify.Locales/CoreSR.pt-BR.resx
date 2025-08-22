@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:schema id="root">
+		<xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xs:element name="root" ns1:IsDataSet="true">
+			<xs:complexType>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="metadata">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="value" type="xsd:string" minOccurs="0" />
+							</xs:sequence>
+							<xs:attribute name="name" use="required" type="xsd:string" />
+							<xs:attribute name="type" type="xsd:string" />
+							<xs:attribute name="mimetype" type="xsd:string" />
+							<xs:attribute ref="xml:space" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="assembly">
+						<xs:complexType>
+							<xs:attribute name="alias" type="xsd:string" />
+							<xs:attribute name="name" type="xsd:string" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="data">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+								<xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+							</xs:sequence>
+							<xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+							<xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+							<xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+							<xs:attribute ref="xml:space" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="resheader">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+							</xs:sequence>
+							<xs:attribute name="name" type="xsd:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:complexType>
+		</xs:element>
+	</xs:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="CertifyManager_RegisterDomainIdentity" xml:space="preserve">
+    <value>Registro de Identificadores de Domínio</value>
+  </data>
+	<data name="CertifyManager_DomainValidationFailed" xml:space="preserve">
+    <value>Falha na validação do domínio: {0}
+{1}</value>
+  </data>
+	<data name="CertifyManager_DomainValidationCompleted" xml:space="preserve">
+    <value>Validação de domínio concluída: {0}</value>
+  </data>
+	<data name="Finish" xml:space="preserve">
+    <value>Concluir</value>
+  </data>
+	<data name="CertifyManager_CertificateInstallFailed" xml:space="preserve">
+    <value>Ocorreu um erro ao instalar o certificado. O arquivo de certificado pode não ser válido: {0}</value>
+  </data>
+	<data name="CertificateRequestWasAbortedByPSScript" xml:space="preserve">
+    <value>A solicitação de certificado foi abortada por script de PS</value>
+  </data>
+	<data name="CertifyManager_AutomateConfigurationCheckFailed_HTTP" xml:space="preserve">
+    <value>As verificações de configuração automatizadas falharam. As autorizações não poderão ser concluídas. Verifique se você tem vínculos HTTP para seu site e certifique-se de que é possível navegar para http://{0}/.well-known/acme-challenge/configcheck antes de continuar.</value>
+  </data>
+	<data name="CertifyManager_AutoBinding" xml:space="preserve">
+    <value>Executando vinculação automática de certificado</value>
+  </data>
+	<data name="CertifyManager_CertificateCreatedForBinding" xml:space="preserve">
+    <value>Certificado criado pronto para ligação manual: {0}</value>
+  </data>
+	<data name="CertifyManager_CompleteRequest" xml:space="preserve">
+    <value>Solicitação de certificado concluída</value>
+  </data>
+	<data name="CertifyManager_CompleteRequestAndUpdateBinding" xml:space="preserve">
+    <value>Solicitação de certificado e atualização automática de vínculos concluída (IIS)</value>
+  </data>
+	<data name="CertifyManager_DomainValidationSkipVerifed" xml:space="preserve">
+    <value>O domínio já está autorizado, ignorando a verificação: {0}</value>
+  </data>
+	<data name="ManagedCertificateType_Manual" xml:space="preserve">
+    <value>Certificado SSL manual via ACME CA</value>
+  </data>
+	<data name="ManagedCertificateType_LocalIIS" xml:space="preserve">
+    <value>Certificado SSL IIS local via ACME CA</value>
+  </data>
+	<data name="CertifyManager_AutomateConfigurationCheckFailed_SNI" xml:space="preserve">
+    <value>As verificações de configuração automatizadas falharam. As autorizações não poderão ser concluídas. Verifique se você tem vínculos https de SNI para seu site
+(por exemplo: '0123456789ABCDEF0123456789ABCDEF.0123456789ABCDEF0123456789ABCDEF.acme.invalid') antes de continuar.</value>
+  </data>
+	<data name="CertifyManager_CertificateInstalledAndBindingUpdated" xml:space="preserve">
+    <value>Certificado instalado e vínculos SSL atualizados para {0}</value>
+  </data>
+	<data name="CertifyManager_FailedPrerequisiteCheck" xml:space="preserve">
+    <value>Verificação de configuração de pré-requisitos falhou ({0})</value>
+  </data>
+	<data name="CertifyManager_LetsEncryptServiceTimeout" xml:space="preserve">
+    <value>O serviço ACME CA não emitiu um certificado válido no tempo permitido. {0}</value>
+  </data>
+	<data name="CertifyManager_PerformingConfigTests" xml:space="preserve">
+    <value>Executando testes de configuração</value>
+  </data>
+	<data name="CertifyManager_RegisteringAndValidatingX0" xml:space="preserve">
+    <value>Registrando e validando {0}</value>
+  </data>
+	<data name="CertifyManager_RequestCertificate" xml:space="preserve">
+    <value>Solicitando certificado via CA</value>
+  </data>
+	<data name="CertifyManager_ReqestValidationFromLetsEncrypt" xml:space="preserve">
+    <value>Solicitando validação: {0}</value>
+  </data>
+	<data name="CertifyManager_RequestFailed" xml:space="preserve">
+    <value>{0}: solicitação falhou - {1} {2}</value>
+  </data>
+	<data name="CertifyManager_SiteStopped" xml:space="preserve">
+    <value>Site parado (ou ausente), a renovação foi omitida porque a validação do domínio não pôde ser realizada.</value>
+  </data>
+	<data name="CertifyManager_SkipRenewalOk" xml:space="preserve">
+    <value>Pulando a renovação, o certificado existente ainda é válido.</value>
+  </data>
+	<data name="CertifyManager_ValidationForChallengeNotSuccess" xml:space="preserve">
+    <value>A validação dos desafios necessários não foi concluída com êxito. {0}</value>
+  </data>
+	<data name="CertifyManager_RenewalOnHold" xml:space="preserve">
+		<value>Renovações anteriores falharam: {0}. A renovação será tentada novamente dentro de 48 horas.</value>
+	</data>
+</root>
