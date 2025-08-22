@@ -17,7 +17,7 @@ namespace Certify.UI.Settings
 
         public double? Scaling { get; set; } = 1;
 
-        public string PreferredUICulture { get; set; } = "en-US";
+        public string PreferredUICulture { get; set; } = "pt-BR";
 
         public string CommunityMode { get; set; }
 
