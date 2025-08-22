@@ -230,9 +230,14 @@ namespace Certify.Models
         public string? CSRKeyAlg { get; set; }
 
         /// <summary>
-        /// Deployment site options (single/all etc) 
+        /// Deployment site options (single/all etc)
         /// </summary>
         public DeploymentOption DeploymentSiteOption { get; set; } = DeploymentOption.SingleSite;
+
+        /// <summary>
+        /// Optional custom directory to store exported certificate files when using no deployment.
+        /// </summary>
+        public string? CustomCertificateDirectory { get; set; }
 
         /// <summary>
         /// Binding options: Add/Update or Update 

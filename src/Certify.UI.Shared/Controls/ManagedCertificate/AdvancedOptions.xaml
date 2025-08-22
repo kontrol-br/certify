@@ -450,6 +450,21 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
+                                Text="Custom Export Directory:" />
+                            <TextBox
+                                MaxWidth="500"
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Left"
+                                IsReadOnly="True"
+                                Text="{Binding SelectedItem.RequestConfig.CustomCertificateDirectory}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock
+                                Margin="0,8,32,0"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource Instructions}"
                                 Text="Current Certificate file path (changes after every renewal):" />
                             <TextBox
                                 x:Name="CertPath"
