@@ -67,6 +67,9 @@
     <ItemGroup>
         <SplashScreen Include="Assets\Images\splashscreen.png" />
     </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Utils/BooleanConverters.cs" />
+    </ItemGroup>
 
     <ItemGroup>
         <Page Update="Windows\EditDataStoreConnection.xaml">
