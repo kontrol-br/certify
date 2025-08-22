@@ -80,6 +80,7 @@
             <DataTemplate x:Key="ProviderHiddenParameter" />
 
             <!--  standard converters  -->
+            <utils:InverseBooleanConverter x:Key="InvBoolConverter" />
             <utils:FeatureVisibilityConverter x:Key="FeatureVisibilityConverter" />
             <utils:FeatureBooleanConverter x:Key="FeatureBooleanConverter" />
             <utils:NullValueConverter x:Key="NullValueConverter" />
