@@ -81,6 +81,11 @@ namespace Certify.UI.Shared
             {
                 ChangeCulture(mainViewModel.UISettings.PreferredUICulture, false);
             }
+            else
+            {
+                mainViewModel.UISettings = new Settings.UISettings();
+                ChangeCulture("pt-BR", false);
+            }
 
             // setup notifications toast handler
             return new Notifier(cfg =>
