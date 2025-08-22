@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Certify.UI.Windows;
+using WinForms = System.Windows.Forms;
 
 namespace Certify.UI.Controls.ManagedCertificate
 {
@@ -74,6 +75,25 @@ namespace Certify.UI.Controls.ManagedCertificate
             // if deployment mode changes, apply defaults for the mode
             ItemViewModel.SelectedItem?.RequestConfig?.ApplyDeploymentOptionDefaults();
 
+        }
+
+        private void CustomCertDirBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            var config = ItemViewModel.SelectedItem?.RequestConfig;
+            if (config == null)
+            {
+                return;
+            }
+
+            var dialog = new WinForms.FolderBrowserDialog()
+            {
+                SelectedPath = config.CustomCertificateDirectory
+            };
+
+            if (dialog.ShowDialog() == WinForms.DialogResult.OK)
+            {
+                config.CustomCertificateDirectory = dialog.SelectedPath;
+            }
         }
 
         private void AddDeploymentTask_Click(object sender, System.Windows.RoutedEventArgs e)

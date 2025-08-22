@@ -93,7 +93,14 @@
                         </Style.Triggers>
                     </Style>
                 </DockPanel.Style>
-                <TextBlock Style="{StaticResource Instructions}" Text="Certificate will be saved to disk but will not be imported automatically into the Certificate Store." />
+                <StackPanel>
+                    <TextBlock Style="{StaticResource Instructions}" Text="Certificate will be saved to disk but will not be imported automatically into the Certificate Store." />
+                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                        <Label Width="160" Content="Export Directory" />
+                        <TextBox Width="225" Text="{Binding SelectedItem.RequestConfig.CustomCertificateDirectory}" />
+                        <Button Margin="4,0,0,0" Click="CustomCertDirBrowse_Click" Content="{x:Static Resources:SR.ManagedCertificateSettings_BrowseFolder}" />
+                    </StackPanel>
+                </StackPanel>
             </DockPanel>
 
             <DockPanel x:Name="AdvancedBindingOptions" DockPanel.Dock="Top">

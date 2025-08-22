@@ -1661,7 +1661,7 @@ namespace Certify.Providers.ACME.Anvil
             {
                 if (DefaultCertificateFormat == "pfx" || DefaultCertificateFormat == "all")
                 {
-                    primaryCertOutputFile = ExportFullCertPFX(certFriendlyName, pwd, csrKey, certificateChain, certId, primaryIdentifierAsPath, includeCleanup: true, useModernKeyAlgorithms: useModernPFXBuildAlgs, itemLog: log);
+                    primaryCertOutputFile = ExportFullCertPFX(certFriendlyName, pwd, csrKey, certificateChain, certId, primaryIdentifierAsPath, config, includeCleanup: true, useModernKeyAlgorithms: useModernPFXBuildAlgs, itemLog: log);
                 }
             }
             catch (Exception ex)
@@ -1951,21 +1951,38 @@ namespace Certify.Providers.ACME.Anvil
             }
         }
 
-        private string ExportFullCertPFX(string certFriendlyName, string pwd, IKey csrKey, CertificateChain certificateChain, string certId, string primaryIdentifierPath, bool includeCleanup = true, bool useModernKeyAlgorithms = false, ILog itemLog = null)
+        private string ExportFullCertPFX(string certFriendlyName, string pwd, IKey csrKey, CertificateChain certificateChain, string certId, string primaryIdentifierPath, CertRequestConfig requestConfig, bool includeCleanup = true, bool useModernKeyAlgorithms = false, ILog itemLog = null)
         {
-            var storePath = Path.GetFullPath(Path.Combine(new string[] { _providerSettings.ServiceSettingsBasePath, "assets", primaryIdentifierPath }));
+            var storePath = string.Empty;
 
-            if (!System.IO.Directory.Exists(storePath))
+            if (requestConfig.DeploymentSiteOption == DeploymentOption.NoDeployment && !string.IsNullOrEmpty(requestConfig.CustomCertificateDirectory))
             {
-                System.IO.Directory.CreateDirectory(storePath);
+                storePath = Path.GetFullPath(requestConfig.CustomCertificateDirectory);
             }
             else
             {
-                // attempt old pfx asset cleanup
-                if (includeCleanup)
+                storePath = Path.GetFullPath(Path.Combine(new string[] { _providerSettings.ServiceSettingsBasePath, "assets", primaryIdentifierPath }));
+            }
+
+            try
+            {
+                if (!System.IO.Directory.Exists(storePath))
                 {
-                    PerformAssetCleanup(storePath);
+                    System.IO.Directory.CreateDirectory(storePath);
                 }
+                else
+                {
+                    // attempt old pfx asset cleanup
+                    if (includeCleanup && storePath.StartsWith(_providerSettings.ServiceSettingsBasePath))
+                    {
+                        PerformAssetCleanup(storePath);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                itemLog?.Error(ex, $"Failed to access certificate export directory: {storePath}");
+                throw;
             }
 
             var pfxFile = certId + ".pfx";
