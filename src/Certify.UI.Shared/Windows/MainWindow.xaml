@@ -177,7 +177,7 @@
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="AutoIP Certify"
+                Header="AutoIP autoSSL"
                 IsSelected="True">
                 <CustomControls:ManagedCertificates
                     Width="Auto"
