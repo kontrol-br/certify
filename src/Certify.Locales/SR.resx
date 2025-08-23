@@ -600,6 +600,12 @@ for the certification process to work.</value>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>You can use the reporting dashboard to easily view certificate renewal status across one or more servers.</value>
   </data>
+  <data name="GettingStarted_LicenseNotActivatedTitle" xml:space="preserve">
+    <value>License Not Activated</value>
+  </data>
+  <data name="GettingStarted_LicenseNotActivatedMessage" xml:space="preserve">
+    <value>You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About &gt; Enter Key.. to activate. Visit certifytheweb.com/register for more information.</value>
+  </data>
   <data name="GettingStarted_ManagementHubIntro" xml:space="preserve">
     <value>Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com</value>
   </data>

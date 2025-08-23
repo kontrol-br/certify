@@ -50,12 +50,12 @@
                     Margin="0,16,0,0"
                     Custom:HeaderedControlHelper.HeaderBackground="{StaticResource ErrorColorBrush}"
                     BorderThickness="0"
-                    Header="License Not Activated"
+                    Header="{x:Static res:SR.GettingStarted_LicenseNotActivatedTitle}"
                     Visibility="{Binding IsLicenseUpgradeRecommended, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}">
                     <StackPanel>
 
                         <TextBlock Margin="8" Style="{StaticResource Instructions}">
-                            <Run Text="You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About &gt; Enter Key.. to activate. Visit certifytheweb.com/register for more information." />
+                            <Run Text="{x:Static res:SR.GettingStarted_LicenseNotActivatedMessage}" />
 
                         </TextBlock>
                     </StackPanel>
