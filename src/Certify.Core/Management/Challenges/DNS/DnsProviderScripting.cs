@@ -40,7 +40,7 @@ namespace Certify.Core.Management.Challenges.DNS
             ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{ Key="createscriptpath", Name="Create Script Path", IsRequired=true , IsCredential=false},
                         new ProviderParameter{ Key="deletescriptpath", Name="Delete Script Path", IsRequired=false, IsCredential=false },
-                        new ProviderParameter{ Key="propagationdelay",Name="Propagation Delay Seconds (optional)", IsRequired=false, IsPassword=false, Value="60", IsCredential=false },
+                        new ProviderParameter{ Key="propagationdelay",Name="Atraso Propagação em Segs (opcional)", IsRequired=false, IsPassword=false, Value="60", IsCredential=false },
                         new ProviderParameter{ Key="zoneid",Name="Dns Zone Id (optional)", IsRequired=false, IsPassword=false, IsCredential=false }
                     },
             ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,

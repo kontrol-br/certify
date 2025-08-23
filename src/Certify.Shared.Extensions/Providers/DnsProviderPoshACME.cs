@@ -72,7 +72,7 @@ namespace Certify.Core.Management.Challenges.DNS
             Adding a new provider:
             - update the list above
             - add a new ChallengeProviderDefinition to the ExtendedProviders list
-            - check that the expected parameters are defined in the provider definition 
+            - check that the expected parameters are defined in the provider definition
             - check that the _paramIsSecureStringConfig config is included for secure string params (legacy entries might use alt config)
         */
 
@@ -140,7 +140,7 @@ namespace Certify.Core.Management.Challenges.DNS
         private static ProviderParameter _defaultPropagationDelayParam = new ProviderParameter
         {
             Key = "propagationdelay",
-            Name = "Propagation Delay Seconds",
+            Name = "Atraso Propagação em Segs",
             IsRequired = false,
             IsPassword = false,
             Value = DefaultPropagationDelay.ToString(),
@@ -698,7 +698,7 @@ namespace Certify.Core.Management.Challenges.DNS
                 ProviderParameters = new List<ProviderParameter>
                 {
                     // IBCred is a PS Credential constructed from IBUsername and IBPassword
-                    
+
                     new ProviderParameter { Key = "ISPConfigUsername", Name = "Username", IsRequired = true, IsCredential = true },
                     new ProviderParameter { Key = "ISPConfigPassword", Name = "Password", IsRequired = true, IsCredential = true, IsPassword=true },
                     new ProviderParameter { Key = "ISPConfigEndpoint", Name = "Server", IsRequired = true, IsCredential = false, Description="e.g. https://ispc.example.com:8080/remote/json.php"  },
@@ -1292,7 +1292,7 @@ namespace Certify.Core.Management.Challenges.DNS
 
             if (paramKeyValue.Value == null)
             {
-                // use default 
+                // use default
                 val = parameterDefinition.Value;
             }
 

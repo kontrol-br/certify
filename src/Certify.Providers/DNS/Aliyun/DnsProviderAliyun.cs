@@ -18,7 +18,7 @@ namespace Certify.Providers.DNS.Aliyun
     /// <summary>
     /// Alibaba Cloud DNS API Provider contributed by https://github.com/TkYu
     /// </summary>
-    /// 
+    ///
     public class DnsProviderAliyun : DnsProviderBase, IDnsProvider
     {
         private ILog _log;
@@ -74,7 +74,7 @@ namespace Certify.Providers.DNS.Aliyun
                         },
                         new ProviderParameter{
                             Key="propagationdelay",
-                            Name="Propagation Delay Seconds",
+                            Name="Atraso Propagação em Segs",
                             IsRequired=false, IsPassword=false,
                             Value="120",
                             IsCredential=false

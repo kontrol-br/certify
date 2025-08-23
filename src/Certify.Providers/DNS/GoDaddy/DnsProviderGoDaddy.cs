@@ -77,7 +77,7 @@ namespace Certify.Providers.DNS.GoDaddy
                         new ProviderParameter{ Key="authkey", Name="Auth Key", IsRequired=true },
                         new ProviderParameter{ Key="authsecret", Name="Auth Secret", IsRequired=true },
                         new ProviderParameter{ Key="zoneid", Name="DNS Zone Id", IsRequired=true, IsPassword=false, IsCredential=false },
-                        new ProviderParameter{ Key="propagationdelay", Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
+                        new ProviderParameter{ Key="propagationdelay", Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
                     },
             ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
             Config = "Provider=Certify.Providers.DNS.GoDaddy",

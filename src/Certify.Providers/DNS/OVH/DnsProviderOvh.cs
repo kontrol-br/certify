@@ -56,7 +56,7 @@ namespace Certify.Providers.DNS.OVH
                                               Description =$"Should be one of the following : {OvhClient.GetAvailableEndpointsAsString()}" },
                         new ProviderParameter{Key=ConsumerKeyParamKey, Name="Consumer Key", IsRequired=true },
                         new ProviderParameter{Key="zoneid", Name="DNS Zone Id", Description="Zone Id is the root domain name e.g. example.com", IsRequired=true, IsPassword=false, IsCredential=false },
-                        new ProviderParameter{Key="propagationdelay",Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
+                        new ProviderParameter{Key="propagationdelay",Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
                     },
                     ChallengeType = Certify.Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
                     Config = "Provider=Certify.Providers.DNS.Ovh",

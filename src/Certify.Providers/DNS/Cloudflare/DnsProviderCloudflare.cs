@@ -69,7 +69,7 @@ namespace Certify.Providers.DNS.Cloudflare
     /// <summary>
     /// Helper class to interface with the CloudFlare API endpoint.
     /// </summary>
-    /// <remarks> 
+    /// <remarks>
     /// See <see cref="https://api.cloudflare.com/#getting-started-endpoints" /> for more details.
     /// </remarks>
     public class DnsProviderCloudflare : IDnsProvider
@@ -116,7 +116,7 @@ namespace Certify.Providers.DNS.Cloudflare
                         new ProviderParameter{Key="authkey", Name="Auth Key", IsRequired=false, Description="Required if not using API Token" },
                         new ProviderParameter{Key="apitoken", Name="API Token", IsRequired=false, Description="Used instead of Email + Auth Key" },
                         new ProviderParameter{Key="zoneid",Name="DNS Zone Id", IsRequired=true, IsPassword=false, IsCredential=false },
-                        new ProviderParameter{Key="propagationdelay",Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="60", IsCredential=false },
+                        new ProviderParameter{Key="propagationdelay",Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="60", IsCredential=false },
 
                      },
             ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,

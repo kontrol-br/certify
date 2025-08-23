@@ -56,7 +56,7 @@ namespace Certify.Providers.DNS.NameCheap
                     new ProviderParameter { Key = PARAM_API_USER, Name = "API User", IsRequired = true, IsPassword = false },
                     new ProviderParameter { Key = PARAM_API_KEY, Name = "API Key", IsRequired = true, IsPassword = true },
                     new ProviderParameter { Key = PARAM_IP, Name = "Your IP", Description = "IP Address of the server that sends requests to NameCheap API", IsRequired = true, IsPassword = false },
-                    new ProviderParameter { Key= "propagationdelay", Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
+                    new ProviderParameter { Key= "propagationdelay", Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
                 },
                 ChallengeType = SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
                 Config = "Provider=Certify.Providers.DNS.NameCheap",

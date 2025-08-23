@@ -51,7 +51,7 @@ namespace Certify.Providers.DNS.TransIP
                     ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{ Key="login", Name="User Name", IsRequired=true, IsCredential=true },
                         new ProviderParameter{ Key="privatekey", Name="PrivateKey", IsRequired=true, IsMultiLine=true, IsCredential=true },
-                        new ProviderParameter{ Key="propagationdelay",Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="300", IsCredential=false }
+                        new ProviderParameter{ Key="propagationdelay",Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="300", IsCredential=false }
                     },
                     ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
                     Config = "Provider=Certify.Providers.DNS.TransIP",

@@ -82,7 +82,7 @@ namespace Certify.Providers.DNS.SimpleDNSPlus
                         new ProviderParameter{ Key="authkey", Name="Username", IsRequired=true },
                         new ProviderParameter{ Key="authsecret", Name="Password", IsRequired=true },
                         new ProviderParameter{ Key="zoneid", Name="DNS Zone Id", IsRequired=true, IsPassword=false, IsCredential=false },
-                        new ProviderParameter{ Key="propagationdelay",Name="Propagation Delay Seconds", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
+                        new ProviderParameter{ Key="propagationdelay",Name="Atraso Propagação em Segs", IsRequired=false, IsPassword=false, Value="120", IsCredential=false }
                     },
                     ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
                     Config = "Provider=Certify.Providers.DNS.SimpleDNSPlus",
