@@ -45,7 +45,7 @@
                             Click="RunDeploymentTask_Click"
                             CommandParameter="{Binding}"
                             DockPanel.Dock="Left"
-                            ToolTip="Run Task">
+                            ToolTip="{x:Static Resources:SR.RunTask}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:ImageAwesome
                                     HorizontalAlignment="Center"
@@ -122,7 +122,7 @@
                                 <TextBlock
                                     FontWeight="SemiBold"
                                     Foreground="{Binding LastRunStatus, Converter={StaticResource StateToColorConverter}}"
-                                    Text="Status: " />
+                                    Text="{x:Static Resources:SR.StatusLabel}" />
                                 <TextBlock
                                     FontWeight="SemiBold"
                                     Foreground="{Binding LastRunStatus, Converter={StaticResource StateToColorConverter}}"

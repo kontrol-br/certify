@@ -9,6 +9,7 @@
     xmlns:local="clr-namespace:Certify.UI.Controls.ManagedCertificate"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:utils="clr-namespace:Certify.UI.Utils"
+    xmlns:Resources="clr-namespace:Certify.Locales;assembly=Certify.Locales"
     d:DataContext="{d:DesignInstance Type=certifyui:ManagedCertificateViewModelDesign,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
@@ -30,9 +31,8 @@
             <TextBlock
                 Margin="0,8,0,0"
                 DockPanel.Dock="Top"
-                Style="{StaticResource Subheading}">
-                Configuration Test Results
-            </TextBlock>
+                Style="{StaticResource Subheading}"
+                Text="{x:Static Resources:SR.ConfigurationTestResults}" />
             <Controls:ProgressMonitor Margin="4,0,0,0" DockPanel.Dock="Top" />
             <ItemsControl
                 x:Name="Results"
@@ -67,7 +67,7 @@
                                 Style="{StaticResource Instructions}"
                                 Text="{Binding Path=Message}"
                                 TextWrapping="WrapWithOverflow"
-                                ToolTip="Click to copy to clipboard" />
+                                ToolTip="{x:Static Resources:SR.ClickToCopy}" />
                         </DockPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

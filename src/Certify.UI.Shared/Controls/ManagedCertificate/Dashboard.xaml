@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Resources="clr-namespace:Certify.Locales;assembly=Certify.Locales"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -42,7 +43,7 @@
     </UserControl.Resources>
     <StackPanel>
 
-        <GroupBox BorderThickness="0" Header="Summary">
+        <GroupBox BorderThickness="0" Header="{x:Static Resources:SR.Dashboard_Summary}">
             <StackPanel Margin="16,8,0,8" Orientation="Horizontal">
 
                 <StackPanel Width="220">
@@ -50,7 +51,7 @@
 
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="">
-                                Managed Certificates
+                                <Run Text="{x:Static Resources:SR.Dashboard_ManagedCertificates}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border Background="Black" Style="{StaticResource SummaryBadge}">
@@ -61,7 +62,7 @@
                     <DockPanel x:Name="PanelHealthy" Style="{StaticResource SummaryPanel}">
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=OK]">
-                                Healthy
+                                <Run Text="{x:Static Resources:SR.Dashboard_Healthy}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border
@@ -75,7 +76,7 @@
                     <DockPanel x:Name="PanelError" Style="{StaticResource SummaryPanel}">
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=Error]">
-                                Errors
+                                <Run Text="{x:Static Resources:SR.Dashboard_Errors}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border
@@ -89,7 +90,7 @@
                     <DockPanel x:Name="PanelWarning" Style="{StaticResource SummaryPanel}">
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=Warning]">
-                                Warning
+                                <Run Text="{x:Static Resources:SR.Dashboard_Warnings}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border
@@ -103,7 +104,7 @@
                     <DockPanel x:Name="PanelAwaitingUser" Style="{StaticResource SummaryPanel}">
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=AwaitingUser]">
-                                Awaiting User
+                                <Run Text="{x:Static Resources:SR.Dashboard_AwaitingUser}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border
@@ -119,9 +120,7 @@
 
                 <StackPanel Width="120" Margin="64,0,0,0">
                     <DockPanel Style="{StaticResource SummaryPanel}">
-                        <TextBlock DockPanel.Dock="Left">
-                            Total Domains
-                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Left" Text="{x:Static Resources:SR.Dashboard_TotalDomains}" />
                         <Border
                             Background="DarkSlateGray"
                             DockPanel.Dock="Right"
@@ -142,7 +141,7 @@
                         </DockPanel.Style>
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=InvalidConfig]">
-                                Invalid Config
+                                <Run Text="{x:Static Resources:SR.Dashboard_InvalidConfig}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border
@@ -166,7 +165,7 @@
                         </DockPanel.Style>
                         <TextBlock DockPanel.Dock="Left">
                             <Hyperlink Click="Hyperlink_Click" Tag="[Status=NoCertificate]">
-                                No Certificate
+                                <Run Text="{x:Static Resources:SR.Dashboard_NoCertificate}" />
                             </Hyperlink>
                         </TextBlock>
                         <Border

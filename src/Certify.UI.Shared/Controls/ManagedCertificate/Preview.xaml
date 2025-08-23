@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Certify.UI.Controls.ManagedCertificate"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Resources="clr-namespace:Certify.Locales;assembly=Certify.Locales"
    
     IsVisibleChanged="UserControl_IsVisibleChanged"
     mc:Ignorable="d">
@@ -12,7 +13,7 @@
     <DockPanel Margin="8,0,8,8" LastChildFill="True">
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Preview</TextBlock>
+            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}" Text="{x:Static Resources:SR.Preview_Title}" />
             <ProgressBar
                 x:Name="LoadingProgess"
                 MinWidth="160"
@@ -25,7 +26,7 @@
             <TextBlock
                 DockPanel.Dock="Top"
                 Style="{StaticResource Instructions}"
-                Text="The following is a preview of the actions which will be performed based on these settings:" />
+                Text="{x:Static Resources:SR.Preview_Intro}" />
 
             <WebBrowser x:Name="MarkdownView" DockPanel.Dock="Top" />
         </DockPanel>
