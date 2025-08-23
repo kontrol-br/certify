@@ -600,6 +600,9 @@ for the certification process to work.</value>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>You can use the reporting dashboard to easily view certificate renewal status across one or more servers.</value>
   </data>
+  <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
+    <value>Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app.</value>
+  </data>
   <data name="GettingStarted_LicenseNotActivatedTitle" xml:space="preserve">
     <value>License Not Activated</value>
   </data>
