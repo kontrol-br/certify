@@ -540,6 +540,9 @@
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>Você pode usar o painel de relatórios para ver facilmente o status de renovação do certificado em um ou mais servidores.</value>
   </data>
+  <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
+    <value>Sua chave de licença expirou. Alguns recursos serão reduzidos ou ficarão indisponíveis. Faça login em https://certifytheweb.com e renove sua chave de licença, depois reabra o aplicativo.</value>
+  </data>
   <data name="GettingStarted_LicenseNotActivatedTitle" xml:space="preserve">
     <value>Licença não ativada</value>
   </data>

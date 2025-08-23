@@ -74,7 +74,7 @@
                         FontSize="12"
                         FontWeight="Bold"
                         Foreground="{StaticResource MahApps.Brushes.IdealForeground}"
-                        Text="Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app."
+                        Text="{x:Static res:SR.GettingStarted_LicenseExpiredMessage}"
                         TextWrapping="Wrap" />
 
                 </StackPanel>
