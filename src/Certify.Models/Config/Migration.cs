@@ -53,7 +53,7 @@ namespace Certify.Models.Config.Migration
     {
         public int FormatVersion { get; set; } = 1;
         public SerializableVersion? SystemVersion { get; set; }
-        public string Description { get; set; } = "Certify The Web - Exported App Settings";
+        public string Description { get; set; } = "AutoIP - AUTOSSL Exported App Settings";
         public string? SourceName { get; set; }
         public DateTime ExportDate { get; set; }
         public ImportExportContent? Content { get; set; }
