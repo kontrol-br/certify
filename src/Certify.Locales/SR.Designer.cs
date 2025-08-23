@@ -428,7 +428,16 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("GettingStarted_AddToDashboard", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Easily automate your certificates from ACME enabled Certificate Authorities including Let's Encrypt, Google Trust Services and more, including custom or internal CAs..
+        /// </summary>
+        public static string GettingStarted_AutomateCertificatesIntro {
+            get {
+                return ResourceManager.GetString("GettingStarted_AutomateCertificatesIntro", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
@@ -446,7 +455,25 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("GettingStarted_DashboardIntro", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com.
+        /// </summary>
+        public static string GettingStarted_ManagementHubIntro {
+            get {
+                return ResourceManager.GetString("GettingStarted_ManagementHubIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For more information, documentation, community discussions and support options, see https://certifytheweb.com.
+        /// </summary>
+        public static string GettingStarted_MoreInfoIntro {
+            get {
+                return ResourceManager.GetString("GettingStarted_MoreInfoIntro", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to View Dashboard.
         /// </summary>

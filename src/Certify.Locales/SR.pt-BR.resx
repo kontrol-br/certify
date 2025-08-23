@@ -531,11 +531,20 @@
   <data name="GettingStarted_AddToDashboard" xml:space="preserve">
     <value>Adicionar ao painel de relatórios</value>
   </data>
+  <data name="GettingStarted_AutomateCertificatesIntro" xml:space="preserve">
+    <value>Automatize facilmente seus certificados de Autoridades Certificadoras compatíveis com ACME, incluindo Let's Encrypt, Google Trust Services e outras, incluindo ACs personalizadas ou internas.</value>
+  </data>
   <data name="GettingStarted_Dashboard" xml:space="preserve">
     <value>Painel de relatórios</value>
   </data>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>Você pode usar o painel de relatórios para ver facilmente o status de renovação do certificado em um ou mais servidores.</value>
+  </data>
+  <data name="GettingStarted_ManagementHubIntro" xml:space="preserve">
+    <value>Quer gerenciar e monitorar muitos certificados em vários servidores? Conheça nosso novo produto Certify Management Hub - detalhes em https://docs.certifytheweb.com</value>
+  </data>
+  <data name="GettingStarted_MoreInfoIntro" xml:space="preserve">
+    <value>Para mais informações, documentação, discussões da comunidade e opções de suporte, veja https://certifytheweb.com</value>
   </data>
   <data name="GettingStarted_ViewDashboard" xml:space="preserve">
     <value>Ver painel de relatórios</value>
