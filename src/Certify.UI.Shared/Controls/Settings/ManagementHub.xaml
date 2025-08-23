@@ -12,23 +12,23 @@
     mc:Ignorable="d">
     <StackPanel>
 
-        <TextBlock Style="{StaticResource Subheading}">Manage this instance using Certify Management Hub</TextBlock>
-        <TextBlock Style="{StaticResource Instructions}">You can centrally manage this instance of Certify Certificate Manager using Certify Management Hub. See https://certifytheweb.com for more information.</TextBlock>
+        <TextBlock Style="{StaticResource Subheading}">Gerencie esta instância usando o Certify Management Hub</TextBlock>
+        <TextBlock Style="{StaticResource Instructions}">Você pode gerenciar centralmente esta instância do Certify Certificate Manager usando o Certify Management Hub. Veja https://certifytheweb.com para mais informações.</TextBlock>
 
         <TextBlock Style="{StaticResource SubheadingWithMargin}" Text="{Binding StatusMessage}" />
 
-        <TextBlock Style="{StaticResource Instructions}">To add or update the hub connection, enter the API URL of your management hub API plus your Client ID and Secret, then select Join Hub:</TextBlock>
+        <TextBlock Style="{StaticResource Instructions}">Para adicionar ou atualizar a conexão com o hub, informe a URL da API do seu hub de gerenciamento, além do ID e Segredo do cliente, e depois selecione Ingressar no Hub:</TextBlock>
 
         <TextBlock Style="{StaticResource Instructions}">
-            Management Hub API URL:
+            URL da API do Management Hub:
         </TextBlock>
         <TextBox
             Width="400"
             HorizontalAlignment="left"
-            Controls:TextBoxHelper.Watermark="e.g. https://hub.internal.yourdomain.com"
+            Controls:TextBoxHelper.Watermark="ex.: https://hub.interno.seudominio.com"
             Text="{Binding ManagementHubAPIUrl}" />
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">
-            Client ID:
+            ID do Cliente:
         </TextBlock>
         <TextBox
             Width="300"
@@ -36,7 +36,7 @@
             DockPanel.Dock="Top"
             Text="{Binding ClientID}" />
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">
-            Client Secret:
+            Segredo do Cliente:
         </TextBlock>
         <TextBox
             Width="300"
@@ -47,7 +47,7 @@
             Margin="4,8,0,0"
             HorizontalAlignment="Left"
             Click="Join_Click"
-            Content="Join Hub"
+            Content="Ingressar no Hub"
             DockPanel.Dock="Top" />
     </StackPanel>
 </UserControl>
