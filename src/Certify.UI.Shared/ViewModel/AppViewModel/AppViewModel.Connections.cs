@@ -65,7 +65,7 @@ namespace Certify.UI.ViewModel
         /// <summary>
         /// UI Message for the current service connection state
         /// </summary>
-        public string ConnectionState { get; set; } = "Not Connected";
+        public string ConnectionState { get; set; } = "Não Conectado";
 
         /// <summary>
         /// UI title for the current service connection

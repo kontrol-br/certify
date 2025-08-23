@@ -67,7 +67,7 @@
                 <TextBlock
                     Margin="4,0,0,0"
                     DockPanel.Dock="top"
-                    Text="Connected" />
+                    Text="Conectado" />
                 <TextBlock
                     Margin="4,0,0,0"
                     DockPanel.Dock="Left"
