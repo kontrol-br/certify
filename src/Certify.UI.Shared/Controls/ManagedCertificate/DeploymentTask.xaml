@@ -95,7 +95,7 @@
             <TextBlock
                 Margin="5,9,0,0"
                 Style="{StaticResource Instructions}"
-                Text="To begin, select a task type to configure." />
+                Text="Para começar, selecione um tipo de tarefa para configurar." />
 
 
 
@@ -120,7 +120,7 @@
                                             VerticalAlignment="Center"
                                             Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                             Icon="PlayCircleOutline" />
-                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">Select</TextBlock>
+                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">Selecionar</TextBlock>
                                     </StackPanel>
                                 </Button>
                                 <StackPanel Margin="16,0,0,0" DockPanel.Dock="Left">
@@ -185,7 +185,7 @@
                 <TabItem
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="General Settings"
+                    Header="Configurações Gerais"
                     IsSelected="True">
 
                     <DockPanel
@@ -210,7 +210,7 @@
                             Margin="0,8,0,0"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <Label Width="100" Content="Task Type" />
+                            <Label Width="100" Content="Tipo de Tarefa" />
 
                             <ComboBox
                                 x:Name="TaskProviderList"
@@ -237,13 +237,13 @@
                             Margin="0,8,0,0"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <Label Width="100" Content="Task Name" />
+                            <Label Width="100" Content="Nome da Tarefa" />
 
                             <TextBox
                                 x:Name="TaskName"
                                 Width="225"
                                 Margin="0,0,8,0"
-                                Controls:TextBoxHelper.Watermark="A unique name for this task"
+                                Controls:TextBoxHelper.Watermark="Um nome único para esta tarefa"
                                 KeyUp="TaskName_KeyUp"
                                 Text="{Binding SelectedItem.TaskName, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
@@ -254,14 +254,14 @@
                             Margin="0,8,0,0"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <Label Width="100" Content="Description" />
+                            <Label Width="100" Content="Descrição" />
 
                             <TextBox
                                 x:Name="TaskDescription"
                                 Width="225"
                                 Height="48"
                                 Margin="0,0,8,0"
-                                Controls:TextBoxHelper.Watermark="Optionally describe this task."
+                                Controls:TextBoxHelper.Watermark="Opcionalmente descreva esta tarefa."
                                 AcceptsReturn="True"
                                 Text="{Binding SelectedItem.Description, UpdateSourceTrigger=PropertyChanged}"
                                 TextWrapping="Wrap"
@@ -273,7 +273,7 @@
                             Margin="0,8,0,0"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <Label Width="100" Content="Trigger" />
+                            <Label Width="100" Content="Gatilho" />
                             <ComboBox
                                 x:Name="TaskTrigger"
                                 Width="225"
@@ -285,7 +285,7 @@
 
                         </StackPanel>
                         <StackPanel Margin="100,8,0,0" DockPanel.Dock="Top">
-                            <CheckBox Content="Run task even if previous task step failed" IsChecked="{Binding SelectedItem.RunIfLastStepFailed}" />
+                            <CheckBox Content="Executar tarefa mesmo se a etapa anterior falhar" IsChecked="{Binding SelectedItem.RunIfLastStepFailed}" />
                         </StackPanel>
 
                         <!--  Deferred/Manual Task  -->
@@ -297,7 +297,7 @@
                             VerticalAlignment="Top"
                             MouseUp="DeferredInstructions1_MouseUp"
                             Orientation="Vertical"
-                            ToolTip="Click to copy to clipboard">
+                            ToolTip="Clique para copiar para a área de transferência">
                             <StackPanel.Style>
                                 <Style>
                                     <Setter Property="UIElement.Visibility" Value="Collapsed" />
@@ -310,7 +310,7 @@
                             </StackPanel.Style>
 
                             <TextBlock Style="{StaticResource Instructions}" TextWrapping="WrapWithOverflow">
-                                Manually triggered tasks only run when you tell them to using the Deployment UI or via the command line (e.g. in a custom scheduled task). This is useful for tasks which should only happen during a maintenance window.
+                                Tarefas acionadas manualmente apenas executam quando você as inicia pela interface de implantação ou pela linha de comando (por exemplo, em uma tarefa agendada personalizada). Isso é útil para tarefas que devem ocorrer apenas durante uma janela de manutenção.
                             </TextBlock>
 
                             <StackPanel Orientation="Horizontal">
@@ -338,7 +338,7 @@
                 <TabItem
                     Width="auto"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Task Parameters">
+                    Header="Parâmetros da Tarefa">
 
                     <DockPanel Margin="8,0,0,0" LastChildFill="False">
 
@@ -347,7 +347,7 @@
                             Margin="0,8,0,0"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <Label Width="160" Content="Authentication" />
+                            <Label Width="160" Content="Autenticação" />
 
                             <ComboBox
                                 x:Name="TargetType"
@@ -368,13 +368,13 @@
                             Orientation="Horizontal"
                             Visibility="{Binding UsesRemoteOptions, Converter={StaticResource ResourceKey=BoolToVisConverter}}">
 
-                            <Label Width="160" Content="Target Host or IP" />
+                            <Label Width="160" Content="Host ou IP de Destino" />
 
                             <TextBox
                                 x:Name="TargetHost"
                                 Width="225"
                                 Margin="0,0,8,0"
-                                Controls:TextBoxHelper.Watermark="(optional, blank for local) IP or hostname to connect to"
+                                Controls:TextBoxHelper.Watermark="(opcional, em branco para local) IP ou nome do host para se conectar"
                                 Text="{Binding SelectedItem.TargetHost, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
@@ -386,7 +386,7 @@
                             Visibility="{Binding UsesCredentials, Converter={StaticResource ResourceKey=BoolToVisConverter}}">
 
                             <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-                                <Label Width="160" Content="Credentials" />
+                                <Label Width="160" Content="Credenciais" />
 
                                 <ComboBox
                                     x:Name="StoredCredentials"
@@ -395,7 +395,7 @@
                                     DisplayMemberPath="Title"
                                     ItemsSource="{Binding FilteredCredentials}"
                                     SelectedItem="{Binding SelectedCredentialItem, Mode=TwoWay}" />
-                                <Button Click="AddStoredCredential_Click" Content="New" />
+                                <Button Click="AddStoredCredential_Click" Content="Novo" />
                             </StackPanel>
                         </StackPanel>
                         <ItemsControl
