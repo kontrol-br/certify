@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
-    xmlns:Resources="clr-namespace:Certify.Locales;assembly=Certify.Locales"
+    xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
     xmlns:certifyui="clr-namespace:Certify.UI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.fontawesome.io/icons/"
@@ -134,7 +134,7 @@
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Save" />
-                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static Resources:SR.Save}" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static res:SR.Save}" /></TextBlock>
                 </StackPanel>
             </Button>
 
@@ -150,7 +150,7 @@
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Undo" />
-                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static Resources:SR.DiscardChanges}" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static res:SR.DiscardChanges}" /></TextBlock>
                 </StackPanel>
             </Button>
 
@@ -165,7 +165,7 @@
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Trash" />
-                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static Resources:SR.Delete}" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static res:SR.Delete}" /></TextBlock>
                 </StackPanel>
             </Button>
 
@@ -180,7 +180,7 @@
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Play" />
-                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static Resources:SR.ManagedCertificateSettings_RequestCertificate}" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static res:SR.ManagedCertificateSettings_RequestCertificate}" /></TextBlock>
                 </StackPanel>
             </Button>
 
@@ -211,7 +211,7 @@
                         Icon="CheckCircle"
                         Spin="False"
                         Visibility="{Binding IsTestInProgress, Converter={StaticResource ResourceKey=InvBoolToVisConverter}}" />
-                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static Resources:SR.Test}" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center"><Run Text="{x:Static res:SR.Test}" /></TextBlock>
                 </StackPanel>
             </Button>
         </DockPanel>
@@ -239,10 +239,10 @@
                     x:Name="TabStatusInfo"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    AutomationProperties.Name="Status">
+                    AutomationProperties.Name="{x:Static res:SR.ManagedCertificateSettings_Tab_Status}">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
-                            <managedcertificate:TabHeader HeaderText="Status" IconName="Support" />
+                            <managedcertificate:TabHeader HeaderText="{x:Static res:SR.ManagedCertificateSettings_Tab_Status}" IconName="Support" />
                         </DataTemplate>
                     </TabItem.HeaderTemplate>
                     <managedcertificate:StatusInfo Margin="0,8,0,0" />
@@ -253,11 +253,11 @@
                     MinWidth="130"
                     Margin="0"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    AutomationProperties.Name="Certificate"
+                    AutomationProperties.Name="{x:Static res:SR.ManagedCertificateSettings_Tab_Certificate}"
                     IsSelected="True">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
-                            <managedcertificate:TabHeader HeaderText="Certificate" IconName="Globe" />
+                            <managedcertificate:TabHeader HeaderText="{x:Static res:SR.ManagedCertificateSettings_Tab_Certificate}" IconName="Globe" />
                         </DataTemplate>
                     </TabItem.HeaderTemplate>
                     <managedcertificate:CertificateIdentifiers Margin="0,8,0,0" />
@@ -267,10 +267,10 @@
                     x:Name="TabDeployment"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    AutomationProperties.Name="Deployment">
+                    AutomationProperties.Name="{x:Static res:SR.ManagedCertificateSettings_Tab_Deployment}">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
-                            <managedcertificate:TabHeader HeaderText="Deployment" IconName="Copy" />
+                            <managedcertificate:TabHeader HeaderText="{x:Static res:SR.ManagedCertificateSettings_Tab_Deployment}" IconName="Copy" />
                         </DataTemplate>
                     </TabItem.HeaderTemplate>
                     <managedcertificate:Deployment Margin="0,8,0,0" />
@@ -280,10 +280,10 @@
                     x:Name="TabTasks"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    AutomationProperties.Name="Tasks">
+                    AutomationProperties.Name="{x:Static res:SR.ManagedCertificateSettings_Tab_Tasks}">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
-                            <managedcertificate:TabHeader HeaderText="Tasks" IconName="Cogs" />
+                            <managedcertificate:TabHeader HeaderText="{x:Static res:SR.ManagedCertificateSettings_Tab_Tasks}" IconName="Cogs" />
                         </DataTemplate>
                     </TabItem.HeaderTemplate>
                     <managedcertificate:Tasks Margin="0,8,0,0" />
@@ -295,10 +295,10 @@
                     x:Name="TabPreview"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    AutomationProperties.Name="Preview">
+                    AutomationProperties.Name="{x:Static res:SR.ManagedCertificateSettings_Tab_Preview}">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
-                            <managedcertificate:TabHeader HeaderText="Preview" IconName="PlayCircle" />
+                            <managedcertificate:TabHeader HeaderText="{x:Static res:SR.ManagedCertificateSettings_Tab_Preview}" IconName="PlayCircle" />
                         </DataTemplate>
                     </TabItem.HeaderTemplate>
                     <managedcertificate:Preview Margin="0,8,0,0" />

@@ -281,6 +281,21 @@
   <data name="ManagedCertificateSettings_Tab_Options" xml:space="preserve">
     <value>Opções</value>
   </data>
+  <data name="ManagedCertificateSettings_Tab_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Certificate" xml:space="preserve">
+    <value>Certificado</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Deployment" xml:space="preserve">
+    <value>Implantação</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Tasks" xml:space="preserve">
+    <value>Tarefas</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Preview" xml:space="preserve">
+    <value>Visualização</value>
+  </data>
   <data name="ManagedCertificateSettings_SelectWebsite" xml:space="preserve">
     <value>Selecione o site IIS:</value>
   </data>
