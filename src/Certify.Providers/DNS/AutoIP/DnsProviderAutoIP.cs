@@ -41,7 +41,7 @@ namespace Certify.Providers.DNS.AutoIP
                 new ProviderParameter{ Key="username", Name="Username/Token Acme", IsRequired=false, IsCredential=true },
                 new ProviderParameter{ Key="password", Name="Password", IsRequired=false, IsCredential=true, IsPassword=true },
                 new ProviderParameter{ Key="hostname", Name="Hostname", IsRequired=false },
-                new ProviderParameter{ Key="propagationdelay", Name="Propagation Delay Seconds", IsRequired=false, IsCredential=false, IsPassword=false, Value="60" }
+                new ProviderParameter{ Key="propagationdelay", Name="Tempo de Propagação em Segundos", IsRequired=false, IsCredential=false, IsPassword=false, Value="60" }
             },
             ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
             Config = "Provider=Certify.Providers.DNS.AutoIP",

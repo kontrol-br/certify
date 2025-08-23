@@ -166,11 +166,11 @@
                 </Style>
             </StackPanel.Style>
             <StackPanel Margin="160,0,0,0">
-                <TextBlock Style="{StaticResource Instructions}"><Run Text="For DNS validation the app will need to create a 'TXT' record in the DNS zone of your domain(s) as an answer to the authorization challenge." /></TextBlock>
+                <TextBlock Style="{StaticResource Instructions}"><Run Text="Para a validação via DNS, o aplicativo precisará criar um registro 'TXT' na zona DNS do(s) seu(s) domínio(s) como resposta ao desafio de autorização." /></TextBlock>
             </StackPanel>
             <StackPanel Margin="0,8,0,0" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Label Width="160" Content="DNS Update Method:" />
+                    <Label Width="160" Content="Método de atualização DNS:" />
 
                     <ComboBox
                         x:Name="ChallengeAPIProviderList"
@@ -216,7 +216,7 @@
                         </Style>
                     </StackPanel.Style>
                     <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-                        <Label Width="160" Content="Credentials" />
+                        <Label Width="160" Content="Credenciais" />
 
                         <ComboBox
                             x:Name="StoredCredentialList"
@@ -320,7 +320,7 @@
             Click="DeleteAuth_Click"
             DockPanel.Dock="Bottom"
             Tag="{Binding SelectedItem}">
-            Delete Configuration
+            Deletar Configuração
         </Button>
     </DockPanel>
 

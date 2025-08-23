@@ -35,7 +35,7 @@ namespace Certify.Models.Shared.Validation
         /// <returns></returns>
         public static ActionResult<ManagedCertificate> PopulateFromSiteInfo(ManagedCertificate managedCertificate, SiteInfo selectedTargetSite, IEnumerable<DomainOption> domainOptions)
         {
-            // 
+            //
             if (selectedTargetSite != null && managedCertificate != null)
             {
                 if (managedCertificate.GroupId != selectedTargetSite.Id)
@@ -380,7 +380,7 @@ namespace Certify.Models.Shared.Validation
                         {
                             return new ValidationResult(
                                 false,
-                                $"Invalid IP address: {identifier.Value}",
+                                $"Endereço IP inválido: {identifier.Value}",
                                 ValidationErrorCodes.INVALID_IDENTIFIER_IP.ToString()
                             );
                         }
@@ -401,7 +401,7 @@ namespace Certify.Models.Shared.Validation
                 {
                     return new ValidationResult(
                         false,
-                        "The dns-01 challenge type requires a DNS Update Method selection.",
+                        "A validação dns-01 requer que  método DNS seja selecionado.",
                         ValidationErrorCodes.CHALLENGE_TYPE_INVALID.ToString()
                     );
                 }

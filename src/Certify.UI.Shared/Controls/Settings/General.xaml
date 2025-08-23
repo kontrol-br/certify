@@ -299,9 +299,9 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Stored Credentials">
+                    Header="Credenciais salvas">
                     <StackPanel Margin="16,0,0,0">
-                        <TextBlock Style="{StaticResource Subheading}">Stored Credentials</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Credenciais salvas</TextBlock>
                         <local:Credentials />
                     </StackPanel>
 
@@ -318,17 +318,17 @@
                         Margin="16,0"
                         DockPanel.Dock="Top"
                         Orientation="Vertical">
-                        <TextBlock Style="{StaticResource Subheading}">Import &amp; Export</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Importar &amp; Exportar</TextBlock>
                         <StackPanel Margin="0,8" Orientation="Vertical">
-                            <TextBlock Style="{StaticResource Instructions}">You can move managed certificates and their related settings, credentials and certificates to or from another instance:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você pode mover certificados gerenciados e suas configurações relacionadas, credenciais e certificados para ou de outra instância:</TextBlock>
                             <Button
                                 x:Name="ImportExport"
                                 Width="140"
                                 HorizontalAlignment="Left"
                                 Click="ImportExport_Click">
-                                Import or Export..
+                                Importar ou Exportar..
                             </Button>
-                            <TextBlock Style="{StaticResource SubheadingWithMargin}">Certificate Redeployment</TextBlock>
+                            <TextBlock Style="{StaticResource SubheadingWithMargin}">Reinstalação de certificados</TextBlock>
                             <TextBlock Style="{StaticResource Instructions}">In some cases you may want to re-apply all of your certificates to website bindings (IIS) etc :</TextBlock>
                             <CheckBox x:Name="IncludeDeploymentTasks" Margin="0,8,0,8">Run All Deployment Tasks</CheckBox>
                             <Button
@@ -336,7 +336,7 @@
                                 Width="140"
                                 HorizontalAlignment="Left"
                                 Click="RedeployCertificates_Click">
-                                Redeploy Certificates
+                                Reinstalar Certificados
                             </Button>
                         </StackPanel>
                     </StackPanel>
