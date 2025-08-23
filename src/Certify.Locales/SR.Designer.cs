@@ -475,6 +475,33 @@ namespace Certify.Locales {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app.
+        /// </summary>
+        public static string GettingStarted_LicenseExpiredMessage {
+            get {
+                return ResourceManager.GetString("GettingStarted_LicenseExpiredMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About > Enter Key.. to activate. Visit certifytheweb.com/register for more information.
+        /// </summary>
+        public static string GettingStarted_LicenseNotActivatedMessage {
+            get {
+                return ResourceManager.GetString("GettingStarted_LicenseNotActivatedMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to License Not Activated.
+        /// </summary>
+        public static string GettingStarted_LicenseNotActivatedTitle {
+            get {
+                return ResourceManager.GetString("GettingStarted_LicenseNotActivatedTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com.
         /// </summary>
         public static string GettingStarted_ManagementHubIntro {
