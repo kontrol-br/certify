@@ -18,7 +18,7 @@ namespace Certify.UI.ViewModel
     public class ManagedCertificateViewModel : BindableBase
     {
         /// <summary>
-        /// Provide single static instance of model for all consumers 
+        /// Provide single static instance of model for all consumers
         /// </summary>
         public static ManagedCertificateViewModel Current = ManagedCertificateViewModel.GetModel();
 
@@ -139,7 +139,7 @@ namespace Certify.UI.ViewModel
 
             var list = await _appViewModel.GetServerSiteList(TargetServerType);
 
-            list.Insert(0, new SiteInfo { Name = "(No Site Selected)", Id = "" });
+            list.Insert(0, new SiteInfo { Name = "(Nenhum Site Selecionado)", Id = "" });
 
             if (WebSiteList == null)
             {
@@ -152,14 +152,14 @@ namespace Certify.UI.ViewModel
 
             IsSiteListQueryProgress = false;
 
-            // restore 
+            // restore
             SelectedWebSite = WebSiteList.FirstOrDefault(s => s.Id == selectedWebsiteId);
             RaisePropertyChangedEvent(nameof(WebSiteList));
 
         }
 
         /// <summary>
-        /// List of websites from the selected web server (if any) 
+        /// List of websites from the selected web server (if any)
         /// </summary>
         public ObservableCollection<SiteInfo> WebSiteList { get; set; } = new ObservableCollection<SiteInfo>();
 
