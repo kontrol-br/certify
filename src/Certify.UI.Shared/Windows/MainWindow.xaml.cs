@@ -298,16 +298,7 @@ namespace Certify.UI.Windows
                 }
             }
 
-            // set title based on license status
-            if (!_appViewModel.IsRegisteredVersion)
-            {
-                Title += SR.MainWindow_TitleTrialPostfix;
-            }
-            else
-            {
-                _appViewModel.IsLicenseExpired = await _appViewModel.CheckLicenseIsActive() == false;
-            }
-
+            // set title
             Title = $"{Title} {Management.Util.GetAppVersion()}";
 
             _periodicCheckTimer = new System.Timers.Timer(60 * 60 * 1000); // every hour
@@ -334,17 +325,6 @@ namespace Certify.UI.Windows
                 _appViewModel.Log?.Error("Periodic task failed: Update check {err}", exp.Message);
             }
 
-            if (_appViewModel.IsRegisteredVersion)
-            {
-                try
-                {
-                    _appViewModel.IsLicenseExpired = !await _appViewModel.CheckLicenseIsActive();
-                }
-                catch (Exception exp)
-                {
-                    _appViewModel.Log?.Error("Periodic task failed: License status check {err}", exp.Message);
-                }
-            }
         }
 
         private bool EnsureContactRegistered()
