@@ -11,23 +11,25 @@
     mc:Ignorable="d">
     <StackPanel>
 
-        <TextBlock Style="{StaticResource Instructions}">The following features are a work in progress and can optionally be enabled for testing. Close and re-open the app to see changes:</TextBlock>
+        <TextBlock Style="{StaticResource Instructions}">Os recursos a seguir estão em desenvolvimento e podem ser habilitados para
+testes. Feche e reabra o aplicativo para ver as alterações:</TextBlock>
 
         <CheckBox
             Margin="0,8"
-            Content="Data Store Manager"
+            Content="Gerenciador de Repositório de Dados"
             IsChecked="{Binding IsDataStoresEnabled}"
             Tag="DATA_STORES" />
         <TextBlock
             Margin="28,0"
             Style="{StaticResource Instructions}"
             TextWrapping="Wrap">
-            Managed Data Store connections to external database servers such as PostgreSQL or SQL Server. Perform data copy between data stores.
+            Gerencie conexões de repositório de dados com servidores de banco de dados externos como PostgreSQL ou SQL Server.
+            Realize cópia de dados entre repositórios.
         </TextBlock>
 
         <CheckBox
             Margin="0,8"
-            Content="Server Connections"
+            Content="Conexões de Servidor"
             IsChecked="{Binding IsServerConnectionsEnabled}"
             Tag="SERVER_CONNECTIONS" />
 
@@ -35,7 +37,7 @@
             Margin="28,0"
             Style="{StaticResource Instructions}"
             TextWrapping="Wrap">
-            Enable experimental UI to connect to multiple Certify.Server instances
+            Habilitar interface experimental para conectar a múltiplas instâncias Certify.Server
         </TextBlock>
 
     </StackPanel>
