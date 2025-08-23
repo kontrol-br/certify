@@ -35,7 +35,7 @@
             <TabItem
                 MinWidth="100"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Identifiers"
+                Header="Identificadores"
                 IsSelected="False">
 
                 <Grid>
@@ -353,7 +353,7 @@
             <TabItem
     MinWidth="100"
     Controls:HeaderedControlHelper.HeaderFontSize="12"
-    Header="Authorization"
+    Header="Autorização"
     IsSelected="False">
                 <managedcertificate:IdentifierAuthorization />
             </TabItem>
@@ -361,7 +361,7 @@
             <TabItem
                 MinWidth="100"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Advanced"
+                Header="Avançado"
                 IsSelected="False">
                 <managedcertificate:AdvancedOptions />
             </TabItem>
