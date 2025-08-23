@@ -114,7 +114,7 @@
                     Height="32"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Signing &amp; Security"
+                    Header="Assinatura &amp; Segurança"
                     IsSelected="False">
 
                     <!--  CSR Options  -->
