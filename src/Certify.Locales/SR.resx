@@ -600,6 +600,12 @@ for the certification process to work.</value>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>You can use the reporting dashboard to easily view certificate renewal status across one or more servers.</value>
   </data>
+  <data name="GettingStarted_IISVersionWarningTitle" xml:space="preserve">
+    <value>Warning: Your version of Windows/IIS has limited SSL Support</value>
+  </data>
+  <data name="GettingStarted_IISVersionWarningMessage" xml:space="preserve">
+    <value>IIS Versions below 8.0 lack SNI support. This means that only one certificate can be used per IP address for standard https. If you require more than a single certificate you will need to ensure each certificate binding is associated with its own IP address otherwise you may encounter binding conflicts.</value>
+  </data>
   <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
     <value>Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app.</value>
   </data>

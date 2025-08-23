@@ -196,11 +196,11 @@
                         VerticalAlignment="Top"
                         FontSize="20"
                         Foreground="White"
-                        TextWrapping="Wrap"><Run Text="Warning: Your version of Windows/IIS has limited SSL Support" /></TextBlock>
+                        TextWrapping="Wrap"><Run Text="{x:Static res:SR.GettingStarted_IISVersionWarningTitle}" /></TextBlock>
                     <TextBlock
                         Margin="16,8,0,16"
                         Foreground="White"
-                        Style="{StaticResource Instructions}"><Run Text="IIS Versions below 8.0 lack SNI support. This means that only one certificate can be used per IP address for standard https. If you require more than a single certificate you will need to ensure each certificate binding is associated with its own IP address otherwise you may encounter binding conflicts." /></TextBlock>
+                        Style="{StaticResource Instructions}"><Run Text="{x:Static res:SR.GettingStarted_IISVersionWarningMessage}" /></TextBlock>
                 </StackPanel>
 
                 <StackPanel
