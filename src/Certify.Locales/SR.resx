@@ -591,11 +591,20 @@ for the certification process to work.</value>
   <data name="GettingStarted_AddToDashboard" xml:space="preserve">
     <value>Add to Reporting Dashboard</value>
   </data>
+  <data name="GettingStarted_AutomateCertificatesIntro" xml:space="preserve">
+    <value>Easily automate your certificates from ACME enabled Certificate Authorities including Let's Encrypt, Google Trust Services and more, including custom or internal CAs.</value>
+  </data>
   <data name="GettingStarted_Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>You can use the reporting dashboard to easily view certificate renewal status across one or more servers.</value>
+  </data>
+  <data name="GettingStarted_ManagementHubIntro" xml:space="preserve">
+    <value>Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com</value>
+  </data>
+  <data name="GettingStarted_MoreInfoIntro" xml:space="preserve">
+    <value>For more information, documentation, community discussions and support options, see https://certifytheweb.com</value>
   </data>
   <data name="GettingStarted_ViewDashboard" xml:space="preserve">
     <value>View Dashboard</value>
