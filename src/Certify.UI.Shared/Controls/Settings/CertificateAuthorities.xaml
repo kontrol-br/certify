@@ -36,8 +36,8 @@
                 x:Name="EnableAutomaticCAFailover"
                 Margin="32,0,0,0"
                 Checked="SettingsUpdated"
-                Content="Enable Automatic CA Failover"
-                ToolTip="If the preferred Certificate Authority fails to renew your certificate, attempt an alternative (if configured)"
+                Content="Habilitar Failover Automático da AC"
+                ToolTip="Se a Autoridade Certificadora preferida falhar em renovar seu certificado, tentar uma alternativa (se configurado)"
                 Unchecked="SettingsUpdated"
                 Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='CA_FAILOVER', Path=Prefs}" />
 
@@ -45,14 +45,14 @@
 
         <StackPanel>
             <StackPanel>
-                <TextBlock Margin="0,8,0,0" Style="{StaticResource Subheading}">Certificate Authority Accounts</TextBlock>
+                <TextBlock Margin="0,8,0,0" Style="{StaticResource Subheading}">Contas da Autoridade Certificadora</TextBlock>
             </StackPanel>
             <DockPanel>
                 <Button
                     Margin="0,8,8,8"
                     Click="Button_NewContact"
                     DockPanel.Dock="Left">
-                    New Account
+                    Nova Conta
                 </Button>
 
                 <Button
@@ -61,7 +61,7 @@
                     Click="Button_EditCertificateAuthority"
                     DockPanel.Dock="Right"
                     Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='CA_EDITOR', Path=Prefs}">
-                    Edit Certificate Authorities
+                    Editar Autoridades Certificadoras
                 </Button>
             </DockPanel>
         </StackPanel>
@@ -105,7 +105,7 @@
                                     Click="Button_Delete"
                                     CommandParameter="{Binding}"
                                     DockPanel.Dock="Right"
-                                    ToolTip="Remove this account">
+                                    ToolTip="Remover esta conta">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:ImageAwesome
                                             HorizontalAlignment="Center"
@@ -122,7 +122,7 @@
                                     Click="Button_Edit"
                                     CommandParameter="{Binding}"
                                     DockPanel.Dock="Right"
-                                    ToolTip="Edit this account">
+                                    ToolTip="Editar esta conta">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:ImageAwesome
                                             HorizontalAlignment="Center"
