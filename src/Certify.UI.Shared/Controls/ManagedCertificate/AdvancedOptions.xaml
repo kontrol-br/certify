@@ -119,46 +119,46 @@
 
                     <!--  CSR Options  -->
                     <StackPanel Margin="16,0,0,0" Orientation="Vertical">
-                        <TextBlock Style="{StaticResource Subheading}">Certificate Signing Request (CSR)</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Requisição de Assinatura de Certificado (CSR)</TextBlock>
 
                         <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomCSR, Converter={StaticResource ResourceKey=NullVisibleConverter}}">
 
-                            <TextBlock Style="{StaticResource Instructions}">By default a CSR (Certificate Signing Request) will be generated with a new Private Key every time the certificate is requested or renewed.</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Por padrão, uma CSR (Requisição de Assinatura de Certificado) será gerada com uma nova Chave Privada toda vez que o certificado for solicitado ou renovado.</TextBlock>
                             <CheckBox
                                 Margin="8,8,0,8"
-                                Content="Require OCSP Must-Staple extension (deprecated)"
+                                Content="Exigir extensão OCSP Must-Staple (obsoleto)"
                                 IsChecked="{Binding SelectedItem.RequestConfig.RequireOcspMustStaple}" />
                             <CheckBox
                                 Margin="8,8,0,8"
-                                Content="Include CN in generated CSR (deprecated)"
+                                Content="Incluir CN na CSR gerada (obsoleto)"
                                 IsChecked="{Binding SelectedItem.RequestConfig.IncludeCN}" />
 
-                            <TextBlock Style="{StaticResource Instructions}">You can optionally use a custom CSR:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você pode opcionalmente usar uma CSR personalizada:</TextBlock>
                             <Button
                                 x:Name="SelectCustomCSR"
                                 Width="160"
                                 Margin="8,0,0,0"
                                 HorizontalAlignment="Left"
                                 Click="SelectCustomCSR_Click"
-                                Content="Choose Custom CSR.." />
+                                Content="Escolher CSR personalizada.." />
 
 
                         </StackPanel>
 
                         <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomCSR, Converter={StaticResource ResourceKey=NullCollapsedConverter}}">
 
-                            <TextBlock Style="{StaticResource Instructions}">You have set a custom CSR. To use an automatic CSR or choose an alternative:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você definiu uma CSR personalizada. Para usar uma CSR automática ou escolher uma alternativa:</TextBlock>
                             <Button
                                 x:Name="ClearCustomCSR"
                                 Width="160"
                                 Margin="8,0,0,0"
                                 HorizontalAlignment="Left"
                                 Click="ClearCustomCSR_Click"
-                                Content="Clear Custom CSR" />
+                                Content="Limpar CSR personalizada" />
                         </StackPanel>
 
                         <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomCSR, Converter={StaticResource ResourceKey=NullVisibleConverter}}">
-                            <TextBlock Style="{StaticResource SubheadingWithMargin}">CSR Signing Algorithm</TextBlock>
+                            <TextBlock Style="{StaticResource SubheadingWithMargin}">Algoritmo de Assinatura da CSR</TextBlock>
                             <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomPrivateKey, Converter={StaticResource ResourceKey=NullVisibleConverter}}">
 
                                 <StackPanel Margin="0,0,0,0">
@@ -202,14 +202,14 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <TextBlock Style="{StaticResource SubheadingWithMargin}">Private Key</TextBlock>
+                        <TextBlock Style="{StaticResource SubheadingWithMargin}">Chave Privada</TextBlock>
 
                         <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomPrivateKey, Converter={StaticResource ResourceKey=NullVisibleConverter}}">
 
-                            <TextBlock Style="{StaticResource Instructions}">A new private key will normally be generated for each certificate request. You can optionally re-use the same generated key or supply a custom key:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Uma nova chave privada normalmente será gerada para cada solicitação de certificado. Você pode opcionalmente reutilizar a mesma chave gerada ou fornecer uma chave personalizada:</TextBlock>
                             <CheckBox
                                 Margin="8,8,0,8"
-                                Content="Use the same Private Key for renewals"
+                                Content="Usar a mesma Chave Privada para renovações"
                                 IsChecked="{Binding SelectedItem.RequestConfig.ReusePrivateKey}" />
                             <Button
                                 x:Name="SelectPrivateKey"
@@ -217,25 +217,25 @@
                                 Margin="8,0,0,0"
                                 HorizontalAlignment="Left"
                                 Click="SelectCustomPrivateKey_Click"
-                                Content="Choose Private Key.." />
+                                Content="Escolher Chave Privada.." />
                         </StackPanel>
 
                         <StackPanel Visibility="{Binding SelectedItem.RequestConfig.CustomPrivateKey, Converter={StaticResource ResourceKey=NullCollapsedConverter}}">
 
-                            <TextBlock Style="{StaticResource Instructions}">You have set a custom private key. To use an automatic key or choose an alternative:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você definiu uma chave privada personalizada. Para usar uma chave automática ou escolher uma alternativa:</TextBlock>
                             <Button
                                 x:Name="ClearCustomPrivateKey"
                                 Width="160"
                                 Margin="8,0,0,0"
                                 HorizontalAlignment="Left"
                                 Click="ClearCustomPrivateKey_Click"
-                                Content="Clear Custom Private Key" />
+                                Content="Limpar Chave Privada Personalizada" />
                         </StackPanel>
 
                         <StackPanel Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='PRIVKEY_PWD', Path=Preferences}">
-                            <TextBlock Style="{StaticResource SubheadingWithMargin}">Security</TextBlock>
+                            <TextBlock Style="{StaticResource SubheadingWithMargin}">Segurança</TextBlock>
 
-                            <TextBlock Style="{StaticResource Instructions}">You can optionally specify a password credential to use for private keys and PFX files generated for this certificate:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você pode opcionalmente especificar uma credencial de senha para usar em chaves privadas e arquivos PFX gerados para este certificado:</TextBlock>
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox
                                     x:Name="CertPasswordCredential"
@@ -249,15 +249,15 @@
                                 <Button
                                     x:Name="AddStoredCredential"
                                     Click="AddStoredCredential_Click"
-                                    Content="New" />
+                                    Content="Novo" />
                             </StackPanel>
-                            <TextBlock Style="{StaticResource Instructions}">You can optionally limit the lifetime (in Days) of a certificate, if supported by the CA. Use this with caution as most CAs will reject the order if they don't support this feature:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Você pode opcionalmente limitar o tempo de vida (em dias) de um certificado, se suportado pela AC. Use isso com cautela, pois a maioria das ACs rejeitará o pedido se não suportarem esse recurso:</TextBlock>
 
                             <TextBox
                                 Width="180"
                                 Margin="8,0,4,0"
                                 HorizontalAlignment="left"
-                                Controls:TextBoxHelper.Watermark="e.g. 0.5 or 30. Blank for none."
+                                Controls:TextBoxHelper.Watermark="ex.: 0,5 ou 30. Em branco para nenhum."
                                 InputScope="Number"
                                 Text="{Binding SelectedItem.RequestConfig.PreferredExpiryDays, Converter={StaticResource NullValueConverter}}" />
 
@@ -273,7 +273,7 @@
                     Height="32"
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="General Options"
+                    Header="Opções Gerais"
                     IsSelected="false">
                     <!--  General Options  -->
                     <DockPanel
@@ -281,7 +281,7 @@
                         DockPanel.Dock="Top"
                         LastChildFill="False">
 
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">General Options</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Opções Gerais</TextBlock>
                         <DockPanel Margin="0,8" DockPanel.Dock="Top">
 
                             <TextBox
@@ -314,7 +314,7 @@
                                 IsChecked="{Binding SelectedItem.RequestConfig.EnableFailureNotifications}" />
                             <CheckBox
                                 Margin="0,4,0,4"
-                                Content="Skip Certificate Request (no new certificate order performed)"
+                                Content="Ignorar Solicitação de Certificado (nenhum novo pedido de certificado será realizado)"
                                 IsChecked="{Binding SelectedItem.SkipCertificateRequest}" />
                         </StackPanel>
                     </DockPanel>
@@ -326,12 +326,12 @@
                 <TabItem
                     MinWidth="100"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Actions"
+                    Header="Ações"
                     IsSelected="False">
                     <!--  Actions  -->
                     <DockPanel Margin="16,0,0,0" LastChildFill="False">
 
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Actions</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Ações</TextBlock>
                         <StackPanel DockPanel.Dock="Top">
                             <TextBlock
                                 Grid.Row="4"
@@ -404,7 +404,7 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
-                                Text="Advanced options:" />
+                                Text="Opções avançadas:" />
                             <Button
                                 x:Name="ReapplyCertBindings"
                                 Width="220"
@@ -418,7 +418,7 @@
                                 Margin="0,4,0,0"
                                 HorizontalAlignment="Left"
                                 Click="ResetFailureInfo_Click">
-                                Reset Item Status
+                                Redefinir Status do Item
                             </Button>
                             <Button
                                 x:Name="ChallengeCleanup"
@@ -426,7 +426,7 @@
                                 Margin="0,4,0,0"
                                 HorizontalAlignment="Left"
                                 Click="ChallengeCleanup_Click">
-                                Perform Challenge Cleanup
+                                Executar Limpeza de Desafios
                             </Button>
                         </StackPanel>
 
@@ -435,7 +435,7 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
-                                Text="Managed Certificate Reference Id:" />
+                                Text="ID de Referência do Certificado Gerenciado:" />
                             <TextBox
                                 MaxWidth="500"
                                 Margin="0,8,0,0"
@@ -450,7 +450,7 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
-                                Text="Custom Export Directory:" />
+                                Text="Diretório de Exportação Personalizado:" />
                             <TextBox
                                 MaxWidth="500"
                                 Margin="0,8,0,0"
@@ -465,7 +465,7 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
-                                Text="Current Certificate file path (changes after every renewal):" />
+                                Text="Caminho atual do arquivo de certificado (muda após cada renovação):" />
                             <TextBox
                                 x:Name="CertPath"
                                 MaxWidth="500"
@@ -481,7 +481,7 @@
                                 Margin="0,8,32,0"
                                 HorizontalAlignment="Left"
                                 Style="{StaticResource Instructions}"
-                                Text="Current Certificate Order Uri:" />
+                                Text="URI do Pedido de Certificado Atual:" />
                             <TextBox
                                 x:Name="CertOrderUri"
                                 MaxWidth="500"
