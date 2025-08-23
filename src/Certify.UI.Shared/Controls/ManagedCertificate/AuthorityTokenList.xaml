@@ -19,9 +19,9 @@
             Margin="0,16,0,0"
             DockPanel.Dock="Top"
             Style="{StaticResource Subheading}">
-            Authority Tokens
+            Tokens de Autoridade
         </TextBlock>
-        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}"><Run Text="To configure the identifiers to include on your certificate you can manually add an Authority Token from a file and specify a CRL distribution point URL, or browse to a json file containing both the token and the CRL url. Alternatively you can add the information manually. " /></TextBlock>
+        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}"><Run Text="Para configurar os identificadores a serem incluídos em seu certificado, você pode adicionar manualmente um Token de Autoridade a partir de um arquivo e especificar uma URL do Ponto de Distribuição CRL, ou procurar um arquivo JSON contendo tanto o token quanto a URL da CRL. Alternativamente, você pode adicionar as informações manualmente." /></TextBlock>
         <StackPanel DockPanel.Dock="Top">
             <Button
                 x:Name="AddFromFile"
@@ -37,7 +37,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FF6BB039"
                         Icon="FolderOpen" />
-                    <TextBlock Margin="8,0,0,0" HorizontalAlignment="Center"><Run Text="Browse to file" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" HorizontalAlignment="Center"><Run Text="Procurar arquivo" /></TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -54,7 +54,7 @@
                 x:Name="CRL"
                 Width="Auto"
                 Margin="0,8"
-                Controls:TextBoxHelper.Watermark="CRL Distribution Point URL"
+                Controls:TextBoxHelper.Watermark="URL do Ponto de Distribuição CRL"
                 Text="" />
             <Button
                 x:Name="AddToken"
@@ -70,7 +70,7 @@
                         VerticalAlignment="Center"
                         Foreground="#FF6BB039"
                         Icon="PlusCircle" />
-                    <TextBlock Margin="8,0,0,0" HorizontalAlignment="Center"><Run Text="Add" /></TextBlock>
+                    <TextBlock Margin="8,0,0,0" HorizontalAlignment="Center"><Run Text="Adicionar" /></TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -79,7 +79,7 @@
                 Margin="0,16,0,0"
                 DockPanel.Dock="Top"
                 Style="{StaticResource Subheading}">
-                Authority Token List
+                Lista de Tokens de Autoridade
             </TextBlock>
             <ItemsControl
                 x:Name="Tokens"
@@ -118,7 +118,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <TextBlock Text="There are no authority tokens in the list. Add one to get started." />
+                                            <TextBlock Text="Não há tokens de autoridade na lista. Adicione um para começar." />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
