@@ -615,6 +615,12 @@ for the certification process to work.</value>
   <data name="GettingStarted_MoreInfoIntro" xml:space="preserve">
     <value>For more information, documentation, community discussions and support options, see https://certifytheweb.com</value>
   </data>
+  <data name="GettingStarted_QuickStartGuide" xml:space="preserve">
+    <value>Quick Start Guide</value>
+  </data>
+  <data name="GettingStarted_Title" xml:space="preserve">
+    <value>Getting Started</value>
+  </data>
   <data name="GettingStarted_ViewDashboard" xml:space="preserve">
     <value>View Dashboard</value>
   </data>
