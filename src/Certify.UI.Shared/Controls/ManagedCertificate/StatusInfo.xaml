@@ -120,12 +120,12 @@
                     <TextBlock
                         Margin="4,0,16,0"
                         Style="{StaticResource Instructions}"
-                        Text="Renewal failures can be caused by temporary API timeouts, rate limits, configuration problems or settings which are no longer valid. Please review the renewal status error and test your configuration. Items which fail repeatedly more than 1000 times will not be attempted again and must be manually requested." />
+                        Text="Falhas na renovação podem ser causadas por timeouts temporários de API, limites de taxa, problemas de configuração ou definições que não são mais válidas. Revise o erro de status da renovação e teste sua configuração. Itens que falharem repetidamente mais de 1000 vezes não serão tentados novamente e devem ser solicitados manualmente." />
                     <TextBlock
                         Margin="4,4,0,0"
                         FontWeight="Bold"
                         Style="{StaticResource Instructions}"
-                        Text="If you do not require this certificate anymore you can delete it from the app or uncheck 'Enable Auto Renewal' in General Options to prevent further renewal error messages." />
+                        Text="Se você não precisar mais deste certificado, poderá excluí-lo do aplicativo ou desmarcar 'Habilitar Renovação Automática' nas Opções Gerais para evitar novas mensagens de erro de renovação." />
                 </StackPanel>
                 <Border
                     Margin="0,16,8,8"
@@ -194,7 +194,7 @@
                         <Label Content="{Binding Path=DateNextRenewalDue, Converter={StaticResource NullDateFormatter}}" ContentStringFormat="d" />
                     </StackPanel>
                     <!--<StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Certificate Authority:" />
+                        <Label Width="160" Content="Autoridade Certificadora:" />
                         <Label Content="{Binding Path=CertificateAuthorityTitle}" />
                     </StackPanel>-->
                     <StackPanel Orientation="Horizontal">
