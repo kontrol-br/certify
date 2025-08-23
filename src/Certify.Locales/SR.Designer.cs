@@ -275,7 +275,52 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("Dashboard_AddIntro", resourceCulture);
             }
         }
-        
+ 
+        /// <summary>
+        ///   Looks up a localized string similar to Awaiting User.
+        /// </summary>
+        public static string Dashboard_AwaitingUser {
+            get {
+                return ResourceManager.GetString("Dashboard_AwaitingUser", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Errors.
+        /// </summary>
+        public static string Dashboard_Errors {
+            get {
+                return ResourceManager.GetString("Dashboard_Errors", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Healthy.
+        /// </summary>
+        public static string Dashboard_Healthy {
+            get {
+                return ResourceManager.GetString("Dashboard_Healthy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Config.
+        /// </summary>
+        public static string Dashboard_InvalidConfig {
+            get {
+                return ResourceManager.GetString("Dashboard_InvalidConfig", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Managed Certificates.
+        /// </summary>
+        public static string Dashboard_ManagedCertificates {
+            get {
+                return ResourceManager.GetString("Dashboard_ManagedCertificates", resourceCulture);
+            }
+        }
+       
         /// <summary>
         ///   Looks up a localized string similar to Create a new account.
         /// </summary>
@@ -284,7 +329,16 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("Dashboard_NewAccount", resourceCulture);
             }
         }
-        
+ 
+        /// <summary>
+        ///   Looks up a localized string similar to No Certificate.
+        /// </summary>
+        public static string Dashboard_NoCertificate {
+            get {
+                return ResourceManager.GetString("Dashboard_NoCertificate", resourceCulture);
+            }
+        }
+       
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
@@ -302,7 +356,34 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("Dashboard_Register", resourceCulture);
             }
         }
-        
+ 
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string Dashboard_Summary {
+            get {
+                return ResourceManager.GetString("Dashboard_Summary", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total Domains.
+        /// </summary>
+        public static string Dashboard_TotalDomains {
+            get {
+                return ResourceManager.GetString("Dashboard_TotalDomains", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Warnings.
+        /// </summary>
+        public static string Dashboard_Warnings {
+            get {
+                return ResourceManager.GetString("Dashboard_Warnings", resourceCulture);
+            }
+        }
+       
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
