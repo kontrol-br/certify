@@ -115,7 +115,7 @@ namespace Certify.Providers.ACME.Anvil
             _providerSettings = providerSettings;
             _serviceUri = new Uri(providerSettings.AcmeBaseUri);
 
-            // optionally 
+            // optionally
             if (providerSettings.DefaultACMERetryIntervalSeconds > 0)
             {
                 _operationRetryWaitMS = providerSettings.DefaultACMERetryIntervalSeconds * 1000;
@@ -621,7 +621,7 @@ namespace Certify.Providers.ACME.Anvil
 
         private (bool exceptionHandled, bool abandonRequest, string message, Exception unwrappedException) HandleAndLogAcmeException(ILog itemLog, Exception exp)
         {
-            // unwrap actual exception if required 
+            // unwrap actual exception if required
             if (exp.InnerException != null)
             {
                 itemLog.Verbose($"{exp.Message} [{exp.GetType().Name}] ");
@@ -665,7 +665,7 @@ namespace Certify.Providers.ACME.Anvil
                     // Add additional explanation for common error types
                     if ((int)err.Status == 429)
                     {
-                        // hit an ACME API rate limit 
+                        // hit an ACME API rate limit
                         itemLog.Warning($"Encountered a rate limit while communicating with the ACME API");
                     }
                     else if (err.Status == System.Net.HttpStatusCode.Conflict)
@@ -689,13 +689,13 @@ namespace Certify.Providers.ACME.Anvil
                 else
                 {
                     itemLog?.Error($"Exception not handled: {exp}");
-                    return (exceptionHandled: false, abandonRequest: false, message: "Exception not handled. Please report this to Certify The Web support.", exp);
+                    return (exceptionHandled: false, abandonRequest: false, message: "Exception not handled. Please report this to AutoSSL support.", exp);
                 }
             }
             else
             {
                 itemLog?.Error($"Exception not handled: {exp}");
-                return (exceptionHandled: false, abandonRequest: false, message: "Exception not handled. Please report this to Certify The Web support.", exp);
+                return (exceptionHandled: false, abandonRequest: false, message: "Exception not handled. Please report this to AutoSSL support.", exp);
             }
         }
         /// <summary>
@@ -1445,7 +1445,7 @@ namespace Certify.Providers.ACME.Anvil
 
             var config = managedCertificate.RequestConfig;
 
-            // use item specific key type if set, or global default key type setting if present 
+            // use item specific key type if set, or global default key type setting if present
             var preferredKeyType = !string.IsNullOrEmpty(config.CSRKeyAlg) ? config.CSRKeyAlg : defaultKeyType;
 
             if (!string.IsNullOrEmpty(preferredKeyType))

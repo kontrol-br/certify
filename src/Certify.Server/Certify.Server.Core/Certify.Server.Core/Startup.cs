@@ -17,7 +17,7 @@ namespace Certify.Server.Core
         private const string CertifyServiceAuthPolicy = "CertifyServiceAuth";
         private const string SwaggerDocTitle = "Certify Agent Service Internal API";
         private const string SwaggerDocVersion = "v1";
-        private const string SwaggerDocDescription = "Provides a private API for use by the Certify The Web Desktop UI and related components. This internal API changes between versions, you should use the public Hub API when building integrations instead.";
+        private const string SwaggerDocDescription = "Provides a private API for use by the autoSSL Desktop UI and related components. This internal API changes between versions, you should use the public Hub API when building integrations instead.";
 
         public Startup(IConfiguration configuration)
         {

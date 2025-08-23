@@ -21,8 +21,8 @@ namespace Certify.UI.ViewModel
     public partial class AppViewModel : BindableBase
     {
         /// <summary>
-        /// Provide single static instance of model for all consumers 
-        /// </summary>        
+        /// Provide single static instance of model for all consumers
+        /// </summary>
         public static AppViewModel Current = GetModel();
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Certify.UI.ViewModel
             IsError = true;
             CurrentError = exp.Message;
 
-            SystemDiagnosticError = "An error occurred. Persistent errors should be reported to Certify The Web support: " + exp.Message;
+            SystemDiagnosticError = "An error occurred. Persistent errors should be reported to AutoSSL support: " + exp.Message;
         }
 
         /// <summary>
