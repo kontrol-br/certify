@@ -30,17 +30,7 @@ namespace Certify.CLI
             WriteIndented = true
         };
 
-        private bool IsRegistered()
-        {
-            if (_licensingManager?.IsInstallRegistered(ProductTypeID, EnvironmentUtil.EnsuredAppDataPath()) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        private bool IsRegistered() => true;
 
         internal async Task<bool> LicenseCheck(string[] args)
         {
