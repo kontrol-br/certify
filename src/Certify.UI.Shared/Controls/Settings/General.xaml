@@ -48,7 +48,7 @@
                                 <Label
                                     Width="180"
                                     HorizontalAlignment="Left"
-                                    Content="Renewal Mode" />
+                                    Content="Modo de renovação" />
                                 <Controls:NumericUpDown
                                     x:Name="RenewalIntervalDays"
                                     Width="100"
@@ -62,7 +62,7 @@
                                     x:Name="RenewalIntervalMode_DaysAfterLastRenewal"
                                     Margin="8,0,0,4"
                                     Checked="SettingsUpdated"
-                                    Content="Days After Last Renewal"
+                                    Content="Dias após a última renovação"
                                     GroupName="RenewalIntervalMode"
                                     Unchecked="SettingsUpdated" />
                                 <RadioButton

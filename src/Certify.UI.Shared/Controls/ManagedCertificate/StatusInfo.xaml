@@ -75,7 +75,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Last Renewal Attempt:"
+                            Content="Ultima tentativa de renovação:"
                             FontWeight="Bold" />
                         <Label Content="{Binding SelectedItem.DateLastRenewalAttempt, Converter={StaticResource NullDateFormatter}}" FontWeight="Bold" />
                     </StackPanel>
@@ -172,7 +172,7 @@
                             Visibility="{Binding SelectedItem.IncludeInAutoRenew, Converter={StaticResource InvBoolToVisConverter}}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Last Renewal:" />
+                        <Label Width="160" Content="Última renovação:" />
                         <Label Content="{Binding SelectedItem.DateRenewed, Converter={StaticResource NullDateFormatter}}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
