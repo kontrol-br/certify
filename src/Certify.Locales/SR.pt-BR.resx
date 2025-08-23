@@ -540,6 +540,12 @@
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
     <value>Você pode usar o painel de relatórios para ver facilmente o status de renovação do certificado em um ou mais servidores.</value>
   </data>
+  <data name="GettingStarted_IISVersionWarningTitle" xml:space="preserve">
+    <value>Aviso: Sua versão do Windows/IIS possui suporte SSL limitado</value>
+  </data>
+  <data name="GettingStarted_IISVersionWarningMessage" xml:space="preserve">
+    <value>Versões do IIS abaixo da 8.0 não possuem suporte a SNI. Isso significa que apenas um certificado pode ser usado por endereço IP para https padrão. Se você precisar de mais de um único certificado, será necessário garantir que cada associação de certificado esteja associada ao seu próprio endereço IP, caso contrário você poderá encontrar conflitos de associação.</value>
+  </data>
   <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
     <value>Sua chave de licença expirou. Alguns recursos serão reduzidos ou ficarão indisponíveis. Faça login em https://certifytheweb.com e renove sua chave de licença, depois reabra o aplicativo.</value>
   </data>

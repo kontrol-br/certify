@@ -457,6 +457,24 @@ namespace Certify.Locales {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Warning: Your version of Windows/IIS has limited SSL Support.
+        /// </summary>
+        public static string GettingStarted_IISVersionWarningTitle {
+            get {
+                return ResourceManager.GetString("GettingStarted_IISVersionWarningTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to IIS Versions below 8.0 lack SNI support. This means that only one certificate can be used per IP address for standard https. If you require more than a single certificate you will need to ensure each certificate binding is associated with its own IP address otherwise you may encounter binding conflicts.
+        /// </summary>
+        public static string GettingStarted_IISVersionWarningMessage {
+            get {
+                return ResourceManager.GetString("GettingStarted_IISVersionWarningMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com.
         /// </summary>
         public static string GettingStarted_ManagementHubIntro {
