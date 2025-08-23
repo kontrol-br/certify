@@ -639,4 +639,61 @@
   <data name="MainWindow_KeyExpired" xml:space="preserve">
     <value>Sua chave de licença expirou ou não está mais ativa.</value>
   </data>
+  <data name="ExpiryDateConverter_CertificateExpiredNDaysAgo" xml:space="preserve">
+    <value>Expirado há {0} dias</value>
+  </data>
+  <data name="ManagedCertificateSettings_DomainsIntro" xml:space="preserve">
+    <value>Selecione identificadores das associações de nomes de host existentes em um site ou adicione-os manualmente. Em seguida, você pode selecionar Solicitar Certificado acima ou modificar as opções conforme necessário. Para especificar um CSR personalizado, consulte a guia Avançado.</value>
+  </data>
+  <data name="Credentials_Intro" xml:space="preserve">
+    <value>As credenciais armazenadas são necessárias para realizar chamadas automatizadas a APIs e outros recursos durante a renovação e implantação do certificado. Essas credenciais são protegidas usando as APIs de Proteção de Dados do Windows e armazenadas nesta máquina.</value>
+  </data>
+  <data name="ManagedCertificates_Deployment_Intro" xml:space="preserve">
+    <value>A implantação do seu certificado pode ser automática (se direcionada ao IIS) ou você pode executar suas próprias tarefas de implantação (veja a guia Tarefas).</value>
+  </data>
+  <data name="ManagedCertificates_Tasks_Intro" xml:space="preserve">
+    <value>As tarefas são uma forma opcional de trabalhar com o seu certificado mais recente ou disparar outras ações antes ou depois da renovação.</value>
+  </data>
+  <data name="ManagedCertificates_Tasks_DeploymentIntro" xml:space="preserve">
+    <value>As tarefas de implantação são executadas (na ordem mostrada) após o processo de Implantação padrão ser concluído (consulte a guia Implantação). As tarefas podem ser executadas imediatamente após a atualização do certificado ou adiadas (para execução manual ou por meio de uma tarefa agendada etc.). Você também pode arrastar as tarefas para reordená-las:</value>
+  </data>
+  <data name="ManagedCertificates_Tasks_PrerequestIntro" xml:space="preserve">
+    <value>Você pode opcionalmente adicionar qualquer número de tarefas para executar antes que a solicitação de certificado comece:</value>
+  </data>
+  <data name="ManagedCertificateSettings_CertificateAuthority_Title" xml:space="preserve">
+    <value>Autoridade Certificadora</value>
+  </data>
+  <data name="ManagedCertificateSettings_CertificateAuthority_Intro" xml:space="preserve">
+    <value>As Autoridades Certificadoras são as organizações que podem emitir certificados confiáveis. Você precisa registrar uma conta em Configurações para cada Autoridade Certificadora (ACME) que desejar usar.</value>
+  </data>
+  <data name="ExpiryDateConverter_CertificateExpiresInNHours" xml:space="preserve">
+    <value>Expira em {0} horas</value>
+  </data>
+  <data name="ExpiryDateConverter_CertificateExpiredNHoursAgo" xml:space="preserve">
+    <value>Expirado há {0} horas</value>
+  </data>
+  <data name="Settings_CA_Intro" xml:space="preserve">
+    <value> As Autoridades Certificadoras são as organizações que podem emitir certificados confiáveis. Você precisa registrar uma conta para cada Autoridade Certificadora (ACME) que deseja usar. As contas podem ser de Produção (certificados válidos) ou de Homologação (certificados de teste, não confiáveis).</value>
+  </data>
+  <data name="Settings_CA_Fallback" xml:space="preserve">
+    <value>Se você se registrar em várias autoridades, isso pode permitir o uso de failover automático da Autoridade Certificadora; assim, se sua Autoridade Certificadora preferida não puder emitir um novo certificado, um provedor compatível alternativo poderá ser usado automaticamente.</value>
+  </data>
+  <data name="Account_Edit_SectionTitle" xml:space="preserve">
+    <value>Editar conta ACME</value>
+  </data>
+  <data name="ManagedCertificate_CertificateAuthority_UseTestCertificates" xml:space="preserve">
+    <value>Usar modo de homologação (certificados de teste)</value>
+  </data>
+  <data name="EditCertificateAuthority_TitleHelp" xml:space="preserve">
+    <value>(Nome de exibição para a Autoridade Certificadora)</value>
+  </data>
+  <data name="EditCertificateAuthority_ProductionDirectoryHelp" xml:space="preserve">
+    <value>(URL do endpoint do diretório de produção)</value>
+  </data>
+  <data name="Settings_Export_Intro" xml:space="preserve">
+    <value>Você pode criar um arquivo de exportação para agrupar todas as configurações e arquivos relacionados desta instância. Observação: o conteúdo sensível é criptografado, mas você não deve compartilhar este arquivo com fontes não confiáveis ou usar armazenamento não seguro.</value>
+  </data>
+  <data name="ManagedCertificateSettings_CertificateAuthority_PreferredChain_Instructions" xml:space="preserve">
+    <value> A autoridade certificadora pode apresentar várias versões do seu certificado assinadas com certificados raiz (emissores) diferentes e você pode especificar uma preferência para esse certificado. Se a cadeia exata não estiver disponível, a cadeia padrão será usada.</value>
+  </data>
 </root>
