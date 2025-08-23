@@ -327,6 +327,21 @@
   <data name="ManagedCertificateSettings_Tab_Options" xml:space="preserve">
     <value>オプション</value>
   </data>
+  <data name="ManagedCertificateSettings_Tab_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Certificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Deployment" xml:space="preserve">
+    <value>Deployment</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="ManagedCertificateSettings_Tab_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
   <data name="ManagedCertificateSettings_SelectWebsite" xml:space="preserve">
     <value>Web サイトを選択 (オプション):</value>
   </data>

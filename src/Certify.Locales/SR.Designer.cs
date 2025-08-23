@@ -1280,11 +1280,56 @@ namespace Certify.Locales {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string ManagedCertificateSettings_Tab_Status {
+            get {
+                return ResourceManager.GetString("ManagedCertificateSettings_Tab_Status", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate.
+        /// </summary>
+        public static string ManagedCertificateSettings_Tab_Certificate {
+            get {
+                return ResourceManager.GetString("ManagedCertificateSettings_Tab_Certificate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deployment.
+        /// </summary>
+        public static string ManagedCertificateSettings_Tab_Deployment {
+            get {
+                return ResourceManager.GetString("ManagedCertificateSettings_Tab_Deployment", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string ManagedCertificateSettings_Tab_Options {
             get {
                 return ResourceManager.GetString("ManagedCertificateSettings_Tab_Options", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string ManagedCertificateSettings_Tab_Preview {
+            get {
+                return ResourceManager.GetString("ManagedCertificateSettings_Tab_Preview", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string ManagedCertificateSettings_Tab_Tasks {
+            get {
+                return ResourceManager.GetString("ManagedCertificateSettings_Tab_Tasks", resourceCulture);
             }
         }
         
