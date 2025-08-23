@@ -43,12 +43,6 @@ namespace Certify.CLI
 
                 if (managedCertId == "new")
                 {
-                    if (!IsRegistered())
-                    {
-                        Console.WriteLine("CLI automation is only available in the licensed version of this application.");
-                        return;
-                    }
-
                     // optional load a single managed certificate template from json
                     ManagedCertificate templateCert = null;
 
