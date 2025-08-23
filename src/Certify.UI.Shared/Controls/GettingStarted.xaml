@@ -28,7 +28,7 @@
                     FontFamily="Segoe UI"
                     FontSize="30"
                     Foreground="{DynamicResource MahApps.Brushes.Gray1}"
-                    TextWrapping="Wrap"><Run FontWeight="Bold" Text="Certify" /><Run Text=" the web" /></TextBlock>
+                    TextWrapping="Wrap"><Run FontWeight="Bold" Text="AutoIP" /><Run Text=" AutoSSL" /></TextBlock>
                 <TextBlock
                     Margin="0,0,0,8"
                     FontFamily="Segoe UI"
