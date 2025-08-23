@@ -31,13 +31,13 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="General Settings"
+                    Header="Configurações Gerais"
                     IsSelected="true">
                     <StackPanel
                         Margin="16,0,0,0"
                         DockPanel.Dock="Top"
                         Orientation="Vertical">
-                        <TextBlock Style="{StaticResource Subheading}">Renewal Settings</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Configurações de Renovação</TextBlock>
 
                         <DockPanel>
 
@@ -69,14 +69,14 @@
                                     x:Name="RenewalIntervalMode_DaysBeforeExpiry"
                                     Margin="8,0,0,4"
                                     Checked="SettingsUpdated"
-                                    Content="Days Before Expiry"
+                                    Content="Dias antes do vencimento"
                                     GroupName="RenewalIntervalMode"
                                     Unchecked="SettingsUpdated" />
                                 <RadioButton
                                     x:Name="RenewalIntervalMode_PercentageLifetime"
                                     Margin="8,0,0,4"
                                     Checked="SettingsUpdated"
-                                    Content="Percentage of Elapsed Lifetime"
+                                    Content="Porcentagem do Tempo de Vida Decorrido"
                                     GroupName="RenewalIntervalMode"
                                     Unchecked="SettingsUpdated" />
                             </StackPanel>
@@ -104,7 +104,7 @@
                                 Margin="0,8,0,8"
                                 DockPanel.Dock="Top"
                                 Style="{StaticResource SubheadingWithMargin}">
-                                Other Settings
+                                Outras Configurações
                             </TextBlock>
                             <StackPanel
                                 Width="348"
@@ -141,13 +141,13 @@
                                 <CheckBox
                                     x:Name="EnableParallelRenewals"
                                     Margin="0,4,0,0"
-                                    Content="Enable Parallel Renewals"
+                                    Content="Habilitar Renovações Paralelas"
                                     IsChecked="{Binding Prefs.EnableParallelRenewals}" />
                                 <CheckBox
                                     x:Name="EnableExternalPlugins"
                                     Margin="0,4,0,0"
                                     Click="EnableExternalPlugins_Click"
-                                    Content="Enable Custom Plugin Loading"
+                                    Content="Habilitar Carregamento de Plugin Personalizado"
                                     IsChecked="{Binding Prefs.IncludeExternalPlugins}" />
 
                                 <CheckBox
@@ -158,17 +158,17 @@
                                 <CheckBox
                                     x:Name="EnableExternalCertManagers"
                                     Margin="0,4,0,0"
-                                    Content="Enable Results From External Certificate Managers"
+                                    Content="Habilitar Resultados de Gerenciadores de Certificados Externos"
                                     IsChecked="{Binding Prefs.EnableExternalCertManagers}" />
                                 <CheckBox
                                     x:Name="UseModernPFXAlgs"
                                     Margin="0,4,0,0"
-                                    Content="Enable Modern PFX Alg (OpenSSL 3.0+ compatibility etc)"
+                                    Content="Habilitar Algoritmo PFX Moderno (compatibilidade OpenSSL 3.0+)"
                                     IsChecked="{Binding Prefs.UseModernPFXAlgs}" />
                                 <CheckBox
                                     x:Name="DisableARIChecks"
                                     Margin="0,4,0,0"
-                                    Content="Disable ACME ARI (don't use renewal dates suggested by CA)"
+                                    Content="Desativar ACME ARI (não usar datas de renovação sugeridas pela AC)"
                                     IsChecked="{Binding Prefs.DisableARIChecks}" />
 
                             </StackPanel>
@@ -178,16 +178,16 @@
                                 Margin="0,0,32,0"
                                 DockPanel.Dock="Left"
                                 Orientation="Vertical">
-                                <Label Content="Certificate Store " />
+                                <Label Content="Repositório de Certificados" />
                                 <StackPanel Margin="8,0,8,0">
                                     <ComboBox x:Name="CertStoreSelector" SelectionChanged="SettingsUpdated">
-                                        <ComboBoxItem Name="My">Default (My)</ComboBoxItem>
-                                        <ComboBoxItem Name="WebHosting">Web Hosting</ComboBoxItem>
+                                        <ComboBoxItem Name="My">Padrão (My)</ComboBoxItem>
+                                        <ComboBoxItem Name="WebHosting">Hospedagem Web</ComboBoxItem>
                                     </ComboBox>
 
                                 </StackPanel>
 
-                                <Label Content="Default Private Key Type" />
+                                <Label Content="Tipo Padrão de Chave Privada" />
                                 <StackPanel Margin="8,0,0,0">
                                     <ComboBox
                                         x:Name="DefaultKeyType"
@@ -202,27 +202,27 @@
                                 Margin="0,0,0,0"
                                 DockPanel.Dock="Left"
                                 Orientation="Vertical">
-                                <Label Content="Certificate Store Cleanup" />
+                                <Label Content="Limpeza do Repositório de Certificados" />
                                 <StackPanel Margin="0,0,0,0">
                                     <RadioButton
                                         x:Name="CertCleanup_None"
                                         Margin="8,0,0,4"
                                         Checked="SettingsUpdated"
-                                        Content="None"
+                                        Content="Nenhum"
                                         GroupName="CertCleanupMode"
                                         Unchecked="SettingsUpdated" />
                                     <RadioButton
                                         x:Name="CertCleanup_AfterExpiry"
                                         Margin="8,0,0,4"
                                         Checked="SettingsUpdated"
-                                        Content="After Expiry"
+                                        Content="Após Expirar"
                                         GroupName="CertCleanupMode"
                                         Unchecked="SettingsUpdated" />
                                     <RadioButton
                                         x:Name="CertCleanup_AfterRenewal"
                                         Margin="8,0,0,4"
                                         Checked="SettingsUpdated"
-                                        Content="After Renewal"
+                                        Content="Após Renovação"
                                         GroupName="CertCleanupMode"
                                         Unchecked="SettingsUpdated" />
 
@@ -230,7 +230,7 @@
                                         x:Name="CertCleanup_FullCleanup"
                                         Margin="8,0,0,4"
                                         Checked="SettingsUpdated"
-                                        Content="Daily Full Cleanup"
+                                        Content="Limpeza Completa Diária"
                                         GroupName="CertCleanupMode"
                                         Unchecked="SettingsUpdated" />
 
@@ -238,45 +238,46 @@
                             </StackPanel>
 
                         </DockPanel>
-                        <DockPanel LastChildFill="False" Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='DATA_STORES', Path=Prefs}">
-                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Data Store</TextBlock>
-                            <TextBlock
-                                Margin="4,0,0,0"
-                                DockPanel.Dock="Top"
-                                Style="{StaticResource Instructions}">
-                                By default the system stores configuration in a local set of SQLite databases. Alternative data stores such as PostgreSQL and SQL Server can be configured to support larger installations.
-                            </TextBlock>
+                            <DockPanel LastChildFill="False" Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='DATA_STORES', Path=Prefs}">
+                                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Repositório de Dados</TextBlock>
+                                <TextBlock
+                                    Margin="4,0,0,0"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource Instructions}">
+                                    Por padrão, o sistema armazena a configuração em um conjunto local de bancos de dados SQLite. Repositórios de dados alternativos como PostgreSQL e SQL Server podem ser configurados para suportar instalações maiores.
+                                </TextBlock>
 
-                            <StackPanel
-                                Margin="0,4"
-                                DockPanel.Dock="Top"
-                                Orientation="Horizontal">
+                
+                                <StackPanel
+                                    Margin="0,4"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal">
 
-                                <Button Margin="0,0,0,0" Click="EditDataStores">Manage Data Store</Button>
-                            </StackPanel>
+                                    <Button Margin="0,0,0,0" Click="EditDataStores">Gerenciar Repositório de Dados</Button>
+                                </StackPanel>
 
-                        </DockPanel>
+                            </DockPanel>
 
                         <DockPanel LastChildFill="False">
-                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Diagnostics</TextBlock>
+                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Diagnóstico</TextBlock>
                             <TextBlock
                                 Margin="4,0,0,0"
                                 DockPanel.Dock="Top"
                                 Style="{StaticResource Instructions}">
-                                On startup the app runs basic diagnostic checks such as system drive disk space and system time, to help ensure the system keeps running normally:
+                                Ao iniciar, o aplicativo executa verificações diagnósticas básicas, como espaço em disco da unidade do sistema e hora do sistema, para ajudar a garantir que o sistema continue funcionando normalmente:
                             </TextBlock>
 
                             <StackPanel
                                 Margin="0,4"
                                 DockPanel.Dock="Top"
                                 Orientation="Horizontal">
-                                <Label Content="Time Check NTP Server" />
+                                <Label Content="Servidor NTP para verificação de tempo" />
                                 <TextBox
                                     Width="240"
                                     Margin="4,0"
-                                    Controls:TextBoxHelper.Watermark="e.g. pool.ntp.org or blank to skip check."
+                                    Controls:TextBoxHelper.Watermark="ex.: pool.ntp.org ou deixe em branco para ignorar a verificação."
                                     Text="{Binding Prefs.NtpServer}" />
-                                <Button Margin="0,0,0,0" Click="SettingsUpdated">Apply</Button>
+                                <Button Margin="0,0,0,0" Click="SettingsUpdated">Aplicar</Button>
                             </StackPanel>
 
                         </DockPanel>
@@ -288,9 +289,9 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Certificate Authorities">
+                    Header="Autoridades Certificadoras">
                     <StackPanel Margin="16,0,0,0">
-                        <TextBlock Style="{StaticResource Subheading}">Certificate Authority Settings</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Configurações da Autoridade Certificadora</TextBlock>
                         <local:CertificateAuthorities />
                     </StackPanel>
                 </TabItem>
@@ -311,7 +312,7 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Import &amp; Export"
+                    Header="Importar &amp; Exportar"
                     IsSelected="false"
                     Visibility="{Binding Converter={StaticResource FeatureVisibilityConverter}, ConverterParameter='IMPORT_EXPORT', Path=Prefs}">
                     <StackPanel
@@ -329,8 +330,8 @@
                                 Importar ou Exportar..
                             </Button>
                             <TextBlock Style="{StaticResource SubheadingWithMargin}">Reinstalação de certificados</TextBlock>
-                            <TextBlock Style="{StaticResource Instructions}">In some cases you may want to re-apply all of your certificates to website bindings (IIS) etc :</TextBlock>
-                            <CheckBox x:Name="IncludeDeploymentTasks" Margin="0,8,0,8">Run All Deployment Tasks</CheckBox>
+                            <TextBlock Style="{StaticResource Instructions}">Em alguns casos você pode querer reaplicar todos os seus certificados às ligações de sites (IIS) etc :</TextBlock>
+                            <CheckBox x:Name="IncludeDeploymentTasks" Margin="0,8,0,8">Executar Todas as Tarefas de Implantação</CheckBox>
                             <Button
                                 x:Name="RedeployCertificates"
                                 Width="140"
@@ -346,13 +347,13 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="UI Settings"
+                    Header="Configurações da Interface"
                     IsSelected="true">
                     <StackPanel Margin="16,0" DockPanel.Dock="Top">
-                        <TextBlock Style="{StaticResource Subheading}">User Interface Settings</TextBlock>
+                        <TextBlock Style="{StaticResource Subheading}">Configurações da Interface do Usuário</TextBlock>
 
                         <StackPanel Margin="0,4" Orientation="Horizontal">
-                            <Label Width="100" Content="Language" />
+                            <Label Width="100" Content="Idioma" />
                             <ComboBox
                                 x:Name="CultureSelector"
                                 DisplayMemberPath="Value"
@@ -363,7 +364,7 @@
                         </StackPanel>
 
                         <StackPanel Margin="0,4" Orientation="Horizontal">
-                            <Label Width="100" Content="UI Theme" />
+                            <Label Width="100" Content="Tema da Interface" />
                             <ComboBox
                                 x:Name="ThemeSelector"
                                 DisplayMemberPath="Value"
@@ -374,7 +375,7 @@
                         </StackPanel>
 
                         <StackPanel Margin="0,4" Orientation="Horizontal">
-                            <Label Width="100" Content="Text/UI Size" />
+                            <Label Width="100" Content="Tamanho do Texto/Interface" />
                             <Controls:NumericUpDown
                                 x:Name="UIScaling"
                                 Width="100"
@@ -394,7 +395,7 @@
 
                         </StackPanel>
 
-                        <TextBlock Style="{StaticResource SubheadingWithMargin}">Experimental Features</TextBlock>
+                        <TextBlock Style="{StaticResource SubheadingWithMargin}">Recursos Experimentais</TextBlock>
                         <local:Experiments />
                     </StackPanel>
                 </TabItem>
@@ -402,7 +403,7 @@
                     Height="32"
                     MinWidth="140"
                     Controls:HeaderedControlHelper.HeaderFontSize="12"
-                    Header="Management Hub">
+                    Header="Hub de Gerenciamento">
                     <StackPanel Margin="16,0,0,0">
                         <local:ManagementHub />
                     </StackPanel>
