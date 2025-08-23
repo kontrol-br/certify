@@ -475,6 +475,24 @@ namespace Certify.Locales {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Quick Start Guide.
+        /// </summary>
+        public static string GettingStarted_QuickStartGuide {
+            get {
+                return ResourceManager.GetString("GettingStarted_QuickStartGuide", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Getting Started.
+        /// </summary>
+        public static string GettingStarted_Title {
+            get {
+                return ResourceManager.GetString("GettingStarted_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to View Dashboard.
         /// </summary>
         public static string GettingStarted_ViewDashboard {

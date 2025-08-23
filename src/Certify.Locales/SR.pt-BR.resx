@@ -555,6 +555,12 @@
   <data name="GettingStarted_MoreInfoIntro" xml:space="preserve">
     <value>Para mais informações, documentação, discussões da comunidade e opções de suporte, veja https://certifytheweb.com</value>
   </data>
+  <data name="GettingStarted_QuickStartGuide" xml:space="preserve">
+    <value>Guia de início rápido</value>
+  </data>
+  <data name="GettingStarted_Title" xml:space="preserve">
+    <value>Introdução</value>
+  </data>
   <data name="GettingStarted_ViewDashboard" xml:space="preserve">
     <value>Ver painel de relatórios</value>
   </data>
