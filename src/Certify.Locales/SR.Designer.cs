@@ -2052,5 +2052,131 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("ValidateKey", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration Test Results.
+        /// </summary>
+        public static string ConfigurationTestResults {
+            get {
+                return ResourceManager.GetString("ConfigurationTestResults", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click to copy to clipboard.
+        /// </summary>
+        public static string ClickToCopy {
+            get {
+                return ResourceManager.GetString("ClickToCopy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Challenge Response Configuration.
+        /// </summary>
+        public static string IdentifierAuthorization_ChallengeConfig {
+            get {
+                return ResourceManager.GetString("IdentifierAuthorization_ChallengeConfig", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to If you need to authorize multiple domains/identifiers in different ways you can add another authorization config:.
+        /// </summary>
+        public static string IdentifierAuthorization_AddAnotherConfig {
+            get {
+                return ResourceManager.GetString("IdentifierAuthorization_AddAnotherConfig", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add Configuration.
+        /// </summary>
+        public static string IdentifierAuthorization_AddConfiguration {
+            get {
+                return ResourceManager.GetString("IdentifierAuthorization_AddConfiguration", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For a certificate to be issued you must prove control of the domains or other identifiers in your certificate request. For domains, you can choose to validate using HTTP (port 80), or via DNS. If any included identifier fails validation the certificate request cannot be completed.
+        /// </summary>
+        public static string IdentifierAuthorization_Intro {
+            get {
+                return ResourceManager.GetString("IdentifierAuthorization_Intro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Identifier Authorization.
+        /// </summary>
+        public static string IdentifierAuthorization_Title {
+            get {
+                return ResourceManager.GetString("IdentifierAuthorization_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deployment Tasks.
+        /// </summary>
+        public static string ManagedCertificates_Tasks_DeploymentTasks {
+            get {
+                return ResourceManager.GetString("ManagedCertificates_Tasks_DeploymentTasks", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Pre-Request Tasks.
+        /// </summary>
+        public static string ManagedCertificates_Tasks_PreRequestTasks {
+            get {
+                return ResourceManager.GetString("ManagedCertificates_Tasks_PreRequestTasks", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The following is a preview of the actions which will be performed based on these settings:.
+        /// </summary>
+        public static string Preview_Intro {
+            get {
+                return ResourceManager.GetString("Preview_Intro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string Preview_Title {
+            get {
+                return ResourceManager.GetString("Preview_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Run Task.
+        /// </summary>
+        public static string RunTask {
+            get {
+                return ResourceManager.GetString("RunTask", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Status: .
+        /// </summary>
+        public static string StatusLabel {
+            get {
+                return ResourceManager.GetString("StatusLabel", resourceCulture);
+            }
+        }
     }
 }
