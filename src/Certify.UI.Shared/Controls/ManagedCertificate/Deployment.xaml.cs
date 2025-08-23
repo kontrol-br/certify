@@ -14,7 +14,7 @@ namespace Certify.UI.Controls.ManagedCertificate
     }
 
     /// <summary>
-    /// Interaction logic for Deployment.xaml 
+    /// Interaction logic for Deployment.xaml
     /// </summary>
     public partial class Deployment : UserControl
     {
@@ -37,19 +37,19 @@ namespace Certify.UI.Controls.ManagedCertificate
                     Description="Only update bindings for the selected website."
                 },
                  new ListOption{
-                    Title ="All Sites",
+                    Title ="Todos os Sites",
                     Value = Models.DeploymentOption.AllSites,
                     Description="Update bindings for all sites, as applicable."
                 },
                   new ListOption{
                     Title ="Certificate Store Only",
                     Value = Models.DeploymentOption.DeploymentStoreOnly,
-                    Description="Only store the certificate, no deployment."
+                    Description="Apenas salva o certificado, não instala."
                 },
                    new ListOption{
-                    Title ="No Deployment",
+                    Title ="Sem instalação",
                     Value = Models.DeploymentOption.NoDeployment,
-                    Description="Certificate is not deployed."
+                    Description="Certificado não está instalado."
                 }
             };
 
@@ -115,4 +115,3 @@ namespace Certify.UI.Controls.ManagedCertificate
         }
     }
 }
-
