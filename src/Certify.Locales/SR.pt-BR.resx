@@ -696,4 +696,73 @@
   <data name="ManagedCertificateSettings_CertificateAuthority_PreferredChain_Instructions" xml:space="preserve">
     <value> A autoridade certificadora pode apresentar várias versões do seu certificado assinadas com certificados raiz (emissores) diferentes e você pode especificar uma preferência para esse certificado. Se a cadeia exata não estiver disponível, a cadeia padrão será usada.</value>
   </data>
+  <data name="Dashboard_Summary" xml:space="preserve">
+    <value>Resumo</value>
+  </data>
+  <data name="Dashboard_ManagedCertificates" xml:space="preserve">
+    <value>Certificados Gerenciados</value>
+  </data>
+  <data name="Dashboard_Healthy" xml:space="preserve">
+    <value>Saudáveis</value>
+  </data>
+  <data name="Dashboard_Errors" xml:space="preserve">
+    <value>Erros</value>
+  </data>
+  <data name="Dashboard_Warnings" xml:space="preserve">
+    <value>Avisos</value>
+  </data>
+  <data name="Dashboard_AwaitingUser" xml:space="preserve">
+    <value>Aguardando Usuário</value>
+  </data>
+  <data name="Dashboard_TotalDomains" xml:space="preserve">
+    <value>Total de Domínios</value>
+  </data>
+  <data name="Dashboard_InvalidConfig" xml:space="preserve">
+    <value>Configuração Inválida</value>
+  </data>
+  <data name="Dashboard_NoCertificate" xml:space="preserve">
+    <value>Sem Certificado</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>Pré-visualização</value>
+  </data>
+  <data name="Preview_Intro" xml:space="preserve">
+    <value>A seguir está uma pré-visualização das ações que serão executadas com base nessas configurações:</value>
+  </data>
+  <data name="RunTask" xml:space="preserve">
+    <value>Executar Tarefa</value>
+  </data>
+  <data name="StatusLabel" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ManagedCertificates_Tasks_DeploymentTasks" xml:space="preserve">
+    <value>Tarefas de Implantação</value>
+  </data>
+  <data name="ManagedCertificates_Tasks_PreRequestTasks" xml:space="preserve">
+    <value>Tarefas Pré-Requisição</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="IdentifierAuthorization_Title" xml:space="preserve">
+    <value>Autorização de Identificador</value>
+  </data>
+  <data name="IdentifierAuthorization_Intro" xml:space="preserve">
+    <value>Para que um certificado seja emitido você deve provar controle dos domínios ou outros identificadores no seu pedido de certificado. Para domínios, você pode validar usando HTTP (porta 80) ou via DNS. Se qualquer identificador incluído falhar na validação, o pedido de certificado não poderá ser concluído.</value>
+  </data>
+  <data name="IdentifierAuthorization_ChallengeConfig" xml:space="preserve">
+    <value>Configuração de Resposta ao Desafio</value>
+  </data>
+  <data name="IdentifierAuthorization_AddAnotherConfig" xml:space="preserve">
+    <value>Se você precisar autorizar vários domínios/identificadores de maneiras diferentes, pode adicionar outra configuração de autorização:</value>
+  </data>
+  <data name="IdentifierAuthorization_AddConfiguration" xml:space="preserve">
+    <value>Adicionar Configuração</value>
+  </data>
+  <data name="ConfigurationTestResults" xml:space="preserve">
+    <value>Resultados do Teste de Configuração</value>
+  </data>
+  <data name="ClickToCopy" xml:space="preserve">
+    <value>Clique para copiar para a área de transferência</value>
+  </data>
 </root>

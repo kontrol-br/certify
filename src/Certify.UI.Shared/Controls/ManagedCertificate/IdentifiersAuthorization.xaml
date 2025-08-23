@@ -32,8 +32,8 @@
 
             <!--  Authorization Types  -->
             <StackPanel Margin="0,0,0,16">
-                <TextBlock Style="{StaticResource Subheading}">Identifier Authorization</TextBlock>
-                <TextBlock Style="{StaticResource Instructions}" Text="For a certificate to be issued you must prove control of the domains or other identifiers in your certificate request. For domains, you can choose to validate using HTTP (port 80), or via DNS. If any included identifier fails validation the certificate request cannot be completed." />
+                <TextBlock Style="{StaticResource Subheading}" Text="{x:Static Resources:SR.IdentifierAuthorization_Title}" />
+                <TextBlock Style="{StaticResource Instructions}" Text="{x:Static Resources:SR.IdentifierAuthorization_Intro}" />
             </StackPanel>
 
             <ItemsControl
@@ -44,7 +44,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource Subheading}">Challenge Response Configuration</TextBlock>
+                                <TextBlock Style="{StaticResource Subheading}" Text="{x:Static Resources:SR.IdentifierAuthorization_ChallengeConfig}" />
                                 <TextBlock
                                     Margin="8,0,0,0"
                                     Style="{StaticResource Subheading}"
@@ -60,15 +60,14 @@
 
             <StackPanel>
 
-                <TextBlock Style="{StaticResource Instructions}" Text="If you need to authorize multiple domains/identifiers in different ways you can add another authorization config:" />
+                <TextBlock Style="{StaticResource Instructions}" Text="{x:Static Resources:SR.IdentifierAuthorization_AddAnotherConfig}" />
                 <Button
                     x:Name="AddAuth"
                     MaxWidth="160"
                     Margin="16,8,0,0"
                     HorizontalAlignment="Left"
-                    Click="AddAuth_Click">
-                    Add Configuration
-                </Button>
+                    Click="AddAuth_Click"
+                    Content="{x:Static Resources:SR.IdentifierAuthorization_AddConfiguration}" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
