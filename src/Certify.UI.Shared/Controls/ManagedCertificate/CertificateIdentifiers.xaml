@@ -56,7 +56,7 @@
                                 <ComboBox
                                     x:Name="WebsiteDropdown"
                                     Width="240"
-                                    AutomationProperties.HelpText="You can optionally select a site hosted on this server to populate the list of domains in your certificate. "
+                                    AutomationProperties.HelpText="Você pode opcionalmente selecionar um site hospedado neste servidor para preencher a lista de domínios no seu certificado."
                                     AutomationProperties.Name="{x:Static Resources:SR.ManagedCertificateSettings_SelectWebsite}"
                                     DisplayMemberPath="Name"
                                     ItemsSource="{Binding WebSiteList, UpdateSourceTrigger=PropertyChanged}"
@@ -65,12 +65,12 @@
 
                                     <ComboBox.ItemContainerStyle>
                                         <Style TargetType="ComboBoxItem">
-                                            <Setter Property="ToolTip" Value="Site currently has no https bindings" />
+                                            <Setter Property="ToolTip" Value="O site atualmente não possui associações https" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding HasCertificate}" Value="true">
                                                     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
                                                     <Setter Property="FontWeight" Value="SemiBold" />
-                                                    <Setter Property="ToolTip" Value="Site already has one or more https bindings" />
+                                                    <Setter Property="ToolTip" Value="O site já possui uma ou mais associações https" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -82,7 +82,7 @@
                                     AutomationProperties.Name="Refresh Sites"
                                     BorderThickness="0"
                                     Click="RefreshWebsiteList_Click"
-                                    ToolTip="Refresh Site List">
+                                    ToolTip="Atualizar Lista de Sites">
                                     <fa:ImageAwesome
                                         Height="12"
                                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
@@ -113,10 +113,10 @@
                                         x:Name="AddDomains"
                                         Width="32"
                                         Margin="0,0,0,0"
-                                        AutomationProperties.Name="Add Domains"
+                                        AutomationProperties.Name="Adicionar Domínios"
                                         BorderThickness="0"
                                         Click="AddDomains_Click"
-                                        ToolTip="Add Domains">
+                                        ToolTip="Adicionar Domínios">
                                         <fa:ImageAwesome
                                             Height="12"
                                             Foreground="{DynamicResource MahApps.Brushes.Accent}"
@@ -141,7 +141,7 @@
                                     Margin="0,8"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    TextWrapping="WrapWithOverflow"><Run Text="Alternatively, if you require a certificate for a Telephone Number Authorization List: " /><Hyperlink Click="AddTkAuthList_Click">Add Authority Tokens</Hyperlink></TextBlock>
+                                    TextWrapping="WrapWithOverflow"><Run Text="Alternatively, if you require a certificate for a Telephone Number Authorization List: " /><Hyperlink Click="AddTkAuthList_Click">Adicionar Tokens de Autoridade</Hyperlink></TextBlock>
 
                             </StackPanel>
 
@@ -157,7 +157,7 @@
                                     VerticalAlignment="Top"
                                     Foreground="{DynamicResource ErrorColorBrush}"
                                     TextWrapping="WrapWithOverflow">
-                                    There can be only one Primary Domain included on a certificate. There are currently multiple domains configured as the Primary, please review and correct the primary domain selection.
+                                    Pode haver apenas um Domínio Primário incluído em um certificado. Atualmente há vários domínios configurados como primário; revise e corrija a seleção do domínio primário.
                                 </TextBlock>
                             </StackPanel>
                             <DockPanel
@@ -177,7 +177,7 @@
                                     <Button
                                         Width="32"
                                         Margin="0,0,4,0"
-                                        AutomationProperties.Name="Select All"
+                                        AutomationProperties.Name="Selecionar Tudo"
                                         BorderThickness="0"
                                         Command="{Binding SANSelectAllCommand}"
                                         ToolTip="{x:Static Resources:SR.SelectAll}">
@@ -191,7 +191,7 @@
                                     <Button
                                         Width="32"
                                         Margin="0,0,4,0"
-                                        AutomationProperties.Name="Select None"
+                                        AutomationProperties.Name="Selecionar Nenhum"
                                         BorderThickness="0"
                                         Command="{Binding SANSelectNoneCommand}"
                                         ToolTip="{x:Static Resources:SR.ManagedCertificateSettings_SelectNone}">
@@ -206,7 +206,7 @@
                                     <Button
                                         Width="32"
                                         Margin="0,0,4,0"
-                                        AutomationProperties.Name="Refresh Domains"
+                                        AutomationProperties.Name="Atualizar Domínios"
                                         BorderThickness="0"
                                         Click="RefreshSanList_Click"
                                         ToolTip="{x:Static Resources:SR.ManagedCertificatesSettings_RefreshDomains}">
@@ -217,11 +217,11 @@
 
                                     </Button>
 
-                                    <Label Content="Filter:" />
+                                    <Label Content="Filtro:" />
                                     <TextBox
                                         x:Name="DomainFilter"
                                         Width="120"
-                                        AutomationProperties.Name="Filter domains"
+                                        AutomationProperties.Name="Filtrar domínios"
                                         TextChanged="DomainFilter_TextChanged" />
 
                                 </StackPanel>
