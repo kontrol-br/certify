@@ -46,7 +46,7 @@
                 Margin="0,8,0,8"
                 DockPanel.Dock="Top"
                 Orientation="Horizontal">
-                <Label Width="130" Content="Deployment Mode:" />
+                <Label Width="130" Content="Modo de instalação:" />
                 <ComboBox
                     x:Name="DeploymentSiteOptions"
                     DisplayMemberPath="Title"
@@ -65,7 +65,7 @@
                         </Style.Triggers>
                     </Style>
                 </DockPanel.Style>
-                <TextBlock Style="{StaticResource Instructions}" Text="The certificate will be deployed to all IIS sites with matching domain bindings or those with https bindings to the old version of certificate). See the Preview tab to review the bindings which will be updated." />
+                <TextBlock Style="{StaticResource Instructions}" Text="O certificado será implantado em todos os sites IIS com associações de domínio correspondentes ou aqueles com associações HTTPS vinculadas à versão antiga do certificado. Consulte a guia de visualização para revisar as associações que serão atualizadas." />
             </DockPanel>
 
             <DockPanel x:Name="StoreOnly" DockPanel.Dock="Top">
@@ -79,7 +79,7 @@
                         </Style.Triggers>
                     </Style>
                 </DockPanel.Style>
-                <TextBlock Style="{StaticResource Instructions}" Text="Certificate will be imported into the Certificate Store on the Local Machine. No auto deployment." />
+                <TextBlock Style="{StaticResource Instructions}" Text="O certificado será importado para o Repositório de Certificados na Máquina Local. Não haverá implantação automática." />
             </DockPanel>
 
             <DockPanel x:Name="NoDeployment" DockPanel.Dock="Top">
@@ -94,9 +94,9 @@
                     </Style>
                 </DockPanel.Style>
                 <StackPanel>
-                    <TextBlock Style="{StaticResource Instructions}" Text="Certificate will be saved to disk but will not be imported automatically into the Certificate Store." />
+                    <TextBlock Style="{StaticResource Instructions}" Text="O certificado será salvo no disco, mas não será importado automaticamente para o Repositório de Certificados." />
                     <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-                        <Label Width="160" Content="Export Directory" />
+                        <Label Width="160" Content="Diretório de exportação" />
                         <TextBox Width="225" Text="{Binding SelectedItem.RequestConfig.CustomCertificateDirectory}" />
                         <Button Margin="4,0,0,0" Click="CustomCertDirBrowse_Click" Content="{x:Static Resources:SR.ManagedCertificateSettings_BrowseFolder}" />
                     </StackPanel>
@@ -120,7 +120,7 @@
                 <StackPanel DockPanel.Dock="Top">
 
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="130" Content="Binding Add/Update:" />
+                        <Label Width="130" Content="Binding Adicionar/Atualizar:" />
                         <ComboBox
                             x:Name="DeploymentBindingUpdates"
                             Margin="0,4,0,0"
@@ -129,21 +129,21 @@
                             SelectedValuePath="Value" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="130" Content="Matching any of:" />
+                        <Label Width="130" Content="Coincidindo com:" />
                         <StackPanel>
                             <CheckBox
                                 Margin="0,4,0,0"
-                                Content="Existing binding hostname matches certificate domains"
+                                Content="O nome do host da associação existente corresponde aos domínios do certificado"
                                 DockPanel.Dock="Top"
                                 IsChecked="{Binding SelectedItem.RequestConfig.DeploymentBindingMatchHostname}" />
                             <CheckBox
                                 Margin="0,4,0,0"
-                                Content="Binding hostname not specified (IP only or All Unassigned)"
+                                Content="Nome do host da associação não especificado (apenas IP ou Todos não atribuídos)"
                                 DockPanel.Dock="Top"
                                 IsChecked="{Binding SelectedItem.RequestConfig.DeploymentBindingBlankHostname}" />
                             <CheckBox
                                 Margin="0,4,0,0"
-                                Content="Existing binding uses old version of same certificate"
+                                Content="A associação existente usa uma versão antiga do mesmo certificado"
                                 DockPanel.Dock="Top"
                                 IsChecked="{Binding SelectedItem.RequestConfig.DeploymentBindingReplacePrevious}" />
                         </StackPanel>
@@ -165,7 +165,7 @@
                     <TextBlock
                         DockPanel.Dock="Top"
                         Style="{StaticResource Instructions}"
-                        Text="If one or more new https bindings need to be created, the following settings will be used:" />
+                        Text="Se uma ou mais novas associações HTTPS precisarem ser criadas, as seguintes configurações serão utilizadas:" />
                     <StackPanel
                         Margin="8,4,0,0"
                         DockPanel.Dock="Top"

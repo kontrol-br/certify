@@ -43,7 +43,7 @@
                     <TextBlock
                         Width="604"
                         Style="{StaticResource Instructions}"
-                        Text="This certificate is externally managed by another certificate management tool. For more information see the documentation for that tool. " />
+                        Text="Este certificado é gerenciado externamente por outra ferramenta de certificados. Para mais informações, consulte a documentação da ferramenta. " />
                 </StackPanel>
             </StackPanel>
 
@@ -61,14 +61,14 @@
                         VerticalAlignment="Center"
                         Foreground="{StaticResource MahApps.Brushes.ValidationSummary1}"
                         Style="{StaticResource Subheading}"
-                        Text="Renewal Required" />
+                        Text="Renovação Requerida" />
                 </StackPanel>
                 <!--  Renewal warning messages  -->
                 <StackPanel MinHeight="80" Margin="0,16">
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Renewal Failures:"
+                            Content="Falhas na renovação:"
                             FontWeight="Bold" />
                         <Label Content="{Binding SelectedItem.RenewalFailureCount}" FontWeight="Bold" />
                     </StackPanel>
@@ -82,7 +82,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Expiry:"
+                            Content="Expira em:"
                             FontWeight="Bold" />
                         <Label
                             Content="{Binding Path=SelectedItem.DateExpiry, Converter={StaticResource NullDateFormatter}}"
@@ -100,7 +100,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Elapsed Lifetime:"
+                            Content="Tempo de vida consumido:"
                             FontWeight="Bold" />
                         <Label
                             Content="{Binding Path=PercentageLifetimeElapsed, Mode=OneWay}"
@@ -110,7 +110,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Next Renewal Due:"
+                            Content="Próxima renovação:"
                             FontWeight="Bold" />
                         <Label
                             Content="{Binding Path=DateNextRenewalDue, Converter={StaticResource NullDateFormatter}}"
@@ -152,7 +152,7 @@
                         VerticalAlignment="Center"
                         Foreground="{StaticResource MahApps.Brushes.AccentBase}"
                         Style="{StaticResource Subheading}">
-                        Certificate Active
+                        Certificado Ativo
                     </TextBlock>
                 </StackPanel>
                 <!--  Renewal success messages  -->
@@ -160,14 +160,14 @@
                     <StackPanel Orientation="Horizontal">
                         <Label
                             Width="160"
-                            Content="Auto Renewal Enabled:"
+                            Content="Auto-Renovar Ligado:"
                             FontWeight="Bold" />
                         <Label
-                            Content="Yes"
+                            Content="Sim"
                             FontWeight="Bold"
                             Visibility="{Binding SelectedItem.IncludeInAutoRenew, Converter={StaticResource BoolToVisConverter}}" />
                         <Label
-                            Content="No"
+                            Content="Não"
                             FontWeight="Bold"
                             Visibility="{Binding SelectedItem.IncludeInAutoRenew, Converter={StaticResource InvBoolToVisConverter}}" />
                     </StackPanel>
@@ -176,7 +176,7 @@
                         <Label Content="{Binding SelectedItem.DateRenewed, Converter={StaticResource NullDateFormatter}}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Expiry:" />
+                        <Label Width="160" Content="Expira em:" />
                         <Label Content="{Binding Path=SelectedItem.DateExpiry, Converter={StaticResource NullDateFormatter}}" Foreground="{Binding Path=SelectedItem.CertificateLifetime, Converter={StaticResource ExpiryDateColourConverter}}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -186,11 +186,11 @@
                             Foreground="{Binding Path=SelectedItem.CertificateLifetime, Converter={StaticResource ExpiryDateColourConverter}}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Elapsed Lifetime:" />
+                        <Label Width="160" Content="Validade consumida:" />
                         <Label Content="{Binding Path=PercentageLifetimeElapsed, Mode=OneWay}" ContentStringFormat="{}{0} %" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Next Planned Renewal:" />
+                        <Label Width="160" Content="Próxima renovação:" />
                         <Label Content="{Binding Path=DateNextRenewalDue, Converter={StaticResource NullDateFormatter}}" ContentStringFormat="d" />
                     </StackPanel>
                     <!--<StackPanel Orientation="Horizontal">
@@ -198,7 +198,7 @@
                         <Label Content="{Binding Path=CertificateAuthorityTitle}" />
                     </StackPanel>-->
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="160" Content="Last Attempted CA:" />
+                        <Label Width="160" Content="Última CA usada:" />
                         <Label Content="{Binding Path=LastAttemptedCertificateAuthority}" />
                     </StackPanel>
                 </StackPanel>
@@ -217,7 +217,7 @@
                         VerticalAlignment="Center"
                         Foreground="{StaticResource MahApps.Brushes.ValidationSummary1}"
                         Style="{StaticResource Subheading}"
-                        Text="Waiting for User Action" />
+                        Text="Aguardando por ação do usuário" />
                 </StackPanel>
                 <!--  Renewal warning messages  -->
                 <StackPanel Margin="0,16">
@@ -225,7 +225,7 @@
                     <TextBlock
                         Margin="0,0,0,0"
                         Style="{StaticResource Instructions}"
-                        Text="Your action is required to complete this certificate request. Once completed, select 'Request Certificate' to resume." />
+                        Text="Sua ação é requerida para completar o processo. Uma vez completado, selecione 'Requerir Certificado' para continuar." />
                 </StackPanel>
                 <Border
                     Margin="0,0,0,0"

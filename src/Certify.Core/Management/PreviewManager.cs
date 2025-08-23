@@ -93,7 +93,7 @@ namespace Certify.Management
                 foreach (var challengeConfig in item.RequestConfig.Challenges)
                 {
                     challengeInfo.AppendLine(
-                        $"{newLine}Authorization will be attempted using the **{challengeConfig.ChallengeType}** challenge type." +
+                        $"{newLine}A autorização será tentada usando validação **{challengeConfig.ChallengeType}**." +
                         newLine
                         );
 
@@ -101,7 +101,7 @@ namespace Certify.Management
                     if (matchingDomains.Any())
                     {
                         challengeInfo.AppendLine(
-                            $"{newLine}The following matching identifiers will use this challenge: " + newLine
+                            $"{newLine}Os seguintes identificadores correspondentes usarão esta validação: " + newLine
                             );
 
                         foreach (var d in matchingDomains)
@@ -112,14 +112,14 @@ namespace Certify.Management
                         if (allIdentifiers.Any(i => i.IdentifierType == CertIdentifierType.Dns))
                         {
                             challengeInfo.AppendLine(
-                               $"{newLine}**Please review the Deployment section below to ensure this certificate will be applied to the expected website bindings (if any).**" + newLine
+                               $"{newLine}**Revise a seção de Implantação abaixo para garantir que este certificado será aplicado às associações de site esperadas (se houver).**" + newLine
                                );
                         }
                     }
                     else
                     {
                         challengeInfo.AppendLine(
-                        $"{newLine}*No domains will match this challenge type.* Either the challenge is not required or domain matches are not fully configured."
+                        $"{newLine}*Nenhum domínio corresponderá a este tipo de desafio. Ou o desafio não é necessário ou as correspondências de domínio não estão totalmente configuradas."
                         );
                     }
 
@@ -128,16 +128,16 @@ namespace Certify.Management
                     if (challengeConfig.ChallengeType == SupportedChallengeTypes.CHALLENGE_TYPE_HTTP)
                     {
                         challengeInfo.AppendLine(
-                           $"This will involve the creation of a randomly named (extensionless) text file for each domain (website) included in the certificate." +
+                           $"Isso envolverá a criação de um arquivo de texto com nome aleatório (sem extensão) para cada domínio (site) incluído no certificado." +
                             newLine
                             );
 
                         if (CoreAppSettings.Current.EnableHttpChallengeServer)
                         {
                             challengeInfo.AppendLine(
-                               $"The *Http Challenge Server* option is enabled. This will create a temporary web service on port 80 during validation. " +
-                               $"This process co-exists with your main web server and listens for http challenge requests to /.well-known/acme-challenge/. " +
-                               $"If you are using a web server on port 80 other than IIS (or other http.sys enabled server), that will be used instead." +
+                               $"A *Validação por HTTP* opç]ao está habilitada. Ist i´rá criar um serviço web temporário na porta 80 durante a validação. " +
+                               $"Este processo irá coexistir com o seu web server principal e irá esperar pela conexão do desafio http apontando para /.well-known/acme-challenge/. " +
+                               $"Se você está estiver usando a porta 80 em outro serviço web que não seja o IIS, ele será usado." +
                                newLine
                                );
                         }
@@ -145,7 +145,7 @@ namespace Certify.Management
                         if (!string.IsNullOrEmpty(item.RequestConfig.WebsiteRootPath) && string.IsNullOrEmpty(challengeConfig.ChallengeRootPath))
                         {
                             challengeInfo.AppendLine(
-                                $"The file will be created at the path `{item.RequestConfig.WebsiteRootPath}\\.well-known\\acme-challenge\\` " +
+                                $"O arquivo será criado em `{item.RequestConfig.WebsiteRootPath}\\.well-known\\acme-challenge\\` " +
                                 newLine
                                 );
                         }
@@ -153,24 +153,24 @@ namespace Certify.Management
                         if (!string.IsNullOrEmpty(challengeConfig.ChallengeRootPath))
                         {
                             challengeInfo.AppendLine(
-                                $"The file will be created at the path `{challengeConfig.ChallengeRootPath}\\.well-known\\acme-challenge\\` " +
+                                $"O arquivo será criado em `{challengeConfig.ChallengeRootPath}\\.well-known\\acme-challenge\\` " +
                                 newLine
                                 );
                         }
 
                         challengeInfo.AppendLine(
-                            $"The text file will need to be accessible from the URL `http://<yourdomain>/.well-known/acme-challenge/<randomfilename>` " +
+                            $"O arquivo texto que precisa ser acessado precisa estar disponível na URL `http://<yourdomain>/.well-known/acme-challenge/<randomfilename>` " +
                             newLine);
 
                         challengeInfo.AppendLine(
-                            $"The issuing Certificate Authority will follow any redirection in place (such as rewriting the URL to *https*) but the initial request will be made via *http* on port 80. " +
+                            $"A Autoridade Certificadora emissora seguirá qualquer redirecionamento existente (como reescrever a URL para https), mas a solicitação inicial será feita via http na porta 80. " +
                             newLine);
                     }
 
                     if (challengeConfig.ChallengeType == SupportedChallengeTypes.CHALLENGE_TYPE_DNS)
                     {
                         challengeInfo.AppendLine(
-                            $"This will involve the creation of a DNS TXT record named `_acme-challenge.yourdomain.com` for each domain or subdomain included in the certificate. " +
+                            $"Isso envolverá a criação de um registro TXT no DNS chamado _acme-challenge.seudominio.com para cada domínio ou subdomínio incluído no certificado. " +
                             newLine);
 
                         if (!string.IsNullOrEmpty(challengeConfig.ChallengeCredentialKey))
@@ -179,43 +179,43 @@ namespace Certify.Management
                             if (creds != null)
                             {
                                 challengeInfo.AppendLine(
-                               $"The following DNS API Credentials will be used:  **{creds.Title}** " + newLine);
+                               $"A seguinte credencial DNS API será usada:  **{creds.Title}** " + newLine);
                             }
                             else
                             {
                                 challengeInfo.AppendLine(
-                                    $"**Invalid credential settings.**  The currently selected credential does not exist."
+                                    $"**Configuração de credencial inválida.**  A credencial selecionada não existe."
                                     );
                             }
                         }
                         else
                         {
                             challengeInfo.AppendLine(
-                                $"No DNS API Credentials have been set. API Credentials are normally required to make automatic updates to DNS records."
+                                $"Nenhuma credencial de API DNS foi definida. As credenciais de API geralmente são necessárias para realizar atualizações automáticas nos registros DNS."
                                 );
                         }
 
                         challengeInfo.AppendLine(
-                            newLine + $"The issuing Certificate Authority will follow any redirection in place (such as a substitute CNAME pointing to another domain) but the initial request will be made against any of the domain's nameservers. "
+                            newLine + $"A Autoridade Certificadora emissora seguirá qualquer redirecionamento existente (como um CNAME substituto apontando para outro domínio), mas a solicitação inicial será feita contra qualquer um dos servidores de nomes do domínio. "
                             );
                     }
 
                     if (!string.IsNullOrEmpty(challengeConfig.DomainMatch))
                     {
                         challengeInfo.AppendLine(
-                            $"{newLine}This challenge type will be selected based on matching domain **{challengeConfig.DomainMatch}** ");
+                            $"{newLine}Este tipo de desafio será selecionado com base na correspondência de domínio **{challengeConfig.DomainMatch}** ");
                     }
                     else
                     {
                         if (item.RequestConfig.Challenges.Count > 1)
                         {
                             challengeInfo.AppendLine(
-                             $"{newLine}This challenge type will be selected for any identifier not matched by another challenge. ");
+                             $"{newLine}Este tipo de validação será selecionada para qualquer identificador que não seja correspondido por outra validação. ");
                         }
                         else
                         {
                             challengeInfo.AppendLine(
-                          $"{newLine}**This challenge type will be selected for all identifiers.**");
+                          $"{newLine}**esta validação será selecionada para todos os identificadores.**");
                         }
                     }
                 }
@@ -252,10 +252,10 @@ namespace Certify.Management
                 }
 
                 var certRequest =
-                    $"A Certificate Signing Request (CSR) will be submitted to the Certificate Authority, using the **{preferredKeyType}** signing algorithm.";
+                    $"Uma Solicitação de Assinatura de Certificado (CSR) será enviada à Autoridade Certificadora, usando o algoritmo de assinatura **{preferredKeyType}**.";
                 steps.Add(new ActionStep
                 {
-                    Title = $"{stepIndex}. Certificate Request",
+                    Title = $"{stepIndex}. Pedido de Certificado",
                     Category = "CertificateRequest",
                     Description = certRequest
                 });
@@ -266,7 +266,7 @@ namespace Certify.Management
                 var deploymentDescription = new StringBuilder();
                 var deploymentStep = new ActionStep
                 {
-                    Title = $"{stepIndex}. Deployment",
+                    Title = $"{stepIndex}. Implantação",
                     Category = "Deployment",
                     Description = ""
                 };
@@ -281,7 +281,7 @@ namespace Certify.Management
 
                     if (serverProvider == null)
                     {
-                        deploymentDescription.AppendLine($"* Target instance has no supported targets for auto-deployment (e.g. IIS). Deployment Tasks may still apply.");
+                        deploymentDescription.AppendLine($"* A instância de destino não possui alvos compatíveis para implantação automática (por exemplo, IIS). Tarefas de implantação ainda podem ser aplicadas.");
                     }
                     else
                     {
@@ -289,27 +289,27 @@ namespace Certify.Management
                         if (item.RequestConfig.DeploymentBindingMatchHostname)
                         {
                             deploymentDescription.AppendLine(
-                                "* Deploy to hostname bindings matching certificate domains.");
+                                "* Implantar nas associações de nome de host que correspondem aos domínios do certificado.");
                         }
 
                         if (item.RequestConfig.DeploymentBindingBlankHostname)
                         {
-                            deploymentDescription.AppendLine("* Deploy to bindings with blank hostname.");
+                            deploymentDescription.AppendLine("* Implantar em associações com nome de host em branco.");
                         }
 
                         if (item.RequestConfig.DeploymentBindingReplacePrevious)
                         {
-                            deploymentDescription.AppendLine("* Deploy to bindings with previous certificate.");
+                            deploymentDescription.AppendLine("* Implantar nas associações que utilizam o certificado anterior.");
                         }
 
                         if (item.RequestConfig.DeploymentBindingOption == DeploymentBindingOption.AddOrUpdate)
                         {
-                            deploymentDescription.AppendLine("* Add or Update https bindings as required");
+                            deploymentDescription.AppendLine("* Adicionar ou atualizar associações HTTPS conforme necessário");
                         }
 
                         if (item.RequestConfig.DeploymentBindingOption == DeploymentBindingOption.UpdateOnly)
                         {
-                            deploymentDescription.AppendLine("* Update https bindings as required (no auto-created https bindings)");
+                            deploymentDescription.AppendLine("* Atualizar associações HTTPS conforme necessário (sem criação automática de novas associações HTTPS)");
                         }
 
                         if (item.RequestConfig.DeploymentSiteOption == DeploymentOption.SingleSite)
@@ -343,11 +343,11 @@ namespace Certify.Management
                     }
                     else
                     {
-                        deploymentDescription.AppendLine("**Certificate will not be added to the machine certificate store**");
+                        deploymentDescription.AppendLine("**Certificado não será adicionado na pasta de certificados da máquina**");
 
                         deploymentStep.Substeps = new List<ActionStep>
                         {
-                            new ActionStep {Description = newLine + "**Certificate will not be added to the machine certificate store**"}
+                            new ActionStep {Description = newLine + "**Certificado não será adicionado na pasta de certificados da máquina**"}
                         };
                     }
 
@@ -355,7 +355,7 @@ namespace Certify.Management
                     {
                         deploymentStep.Substeps = new List<ActionStep>
                         {
-                            new ActionStep {Description = newLine + "**There are no matching targets to deploy to. Certificate will be stored but currently no bindings will be updated.**"}
+                            new ActionStep {Description = newLine + "**Não há destinos correspondentes para implantar. O certificado será armazenado, mas atualmente nenhuma associação será atualizada.**"}
                         };
                     }
                     else
@@ -368,11 +368,11 @@ namespace Certify.Management
                 }
                 else if (item.RequestConfig.DeploymentSiteOption == DeploymentOption.DeploymentStoreOnly)
                 {
-                    deploymentDescription.AppendLine("* The certificate will be saved to the local machines Certificate Store only (Personal/My Store)");
+                    deploymentDescription.AppendLine("* O certificado será salvo apenas na pasta de Certificados da máquina local (Certificados Pessoais/Meus certificados");
                 }
                 else if (item.RequestConfig.DeploymentSiteOption == DeploymentOption.NoDeployment)
                 {
-                    deploymentDescription.AppendLine("* The certificate will be saved to local storage.");
+                    deploymentDescription.AppendLine("* O certificado será guardado no disco local.");
                 }
 
                 deploymentStep.Description = deploymentDescription.ToString();
@@ -402,8 +402,8 @@ namespace Certify.Management
             {
                 steps.Add(new ActionStep
                 {
-                    Title = "Certificate has no domains",
-                    Description = "No domains have been added to this certificate, so a certificate cannot be requested. Each certificate requires a primary domain (a 'subject') and an optional list of additional domains (subject alternative names)."
+                    Title = "Certificado não possui domínios",
+                    Description = "Nenhum domínio foi adicionado a este certificado, portanto, um certificado não pode ser solicitado. Cada certificado requer um domínio principal (um 'Subject') e uma lista opcional de domínios adicionais (Subject Alternative Names)."
                 });
             }
 
@@ -442,7 +442,7 @@ namespace Certify.Management
             catch (Exception)
             {
                 //can't read sites
-                Debug.WriteLine("Can't get target server site list.");
+                Debug.WriteLine("Não pude listar os servidores de destino.");
             }
 
             return sites;
