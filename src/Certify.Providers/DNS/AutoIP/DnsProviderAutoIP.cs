@@ -114,7 +114,10 @@ namespace Certify.Providers.DNS.AutoIP
                     ["hostname"] = hostname
                 };
 
-                var json = JsonConvert.SerializeObject(payload);
+                var json = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Include
+                });
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
                 _log?.Information("HTTP POST {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
                 var resp = await _http.PostAsync(_apiEndpoint, new StringContent(json, Encoding.UTF8, "application/json"));
@@ -154,7 +157,10 @@ namespace Certify.Providers.DNS.AutoIP
                     ["hostname"] = hostname
                 };
 
-                var json = JsonConvert.SerializeObject(payload);
+                var json = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Include
+                });
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
                 _log?.Information("HTTP DELETE {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
                 var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
