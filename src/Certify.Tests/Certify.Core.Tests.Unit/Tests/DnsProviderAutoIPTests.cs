@@ -112,5 +112,40 @@ namespace Certify.Core.Tests.Unit
                 Assert.IsTrue(deleteResult.IsSuccess);
             }
         }
+        [TestMethod]
+        public async Task CreateAndDelete_UserPassword_AcmeFqdn_UsesTargetDomainName()
+        {
+            var (provider, handler) = await SetupAsync(
+                new Dictionary<string, string> { ["username"] = "user", ["password"] = "pass" },
+                new Dictionary<string, string>());
+
+            var hosts = new[] { "host1.example.com", "host2.example.com" };
+
+            for (var i = 0; i < hosts.Length; i++)
+            {
+                var baseDomain = hosts[i];
+                var fqdn = $"_acme-challenge.{baseDomain}";
+                var txt = $"txt{i}";
+
+                var record = new DnsRecord { RecordName = fqdn, TargetDomainName = baseDomain, RecordValue = txt };
+
+                var createResult = await provider.CreateRecord(record);
+                var createContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
+                var createJson = JObject.Parse(createContent);
+                Assert.AreEqual(txt, createJson["txt"]!.ToString());
+                Assert.AreEqual(baseDomain, createJson["hostname"]!.ToString());
+                Assert.AreEqual(2, createJson.Count);
+                Assert.IsTrue(createResult.IsSuccess);
+
+                var deleteResult = await provider.DeleteRecord(record);
+                var deleteContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
+                var deleteJson = JObject.Parse(deleteContent);
+                Assert.AreEqual(txt, deleteJson["txt"]!.ToString());
+                Assert.AreEqual(baseDomain, deleteJson["hostname"]!.ToString());
+                Assert.AreEqual(2, deleteJson.Count);
+                Assert.IsTrue(deleteResult.IsSuccess);
+            }
+        }
+
     }
 }
