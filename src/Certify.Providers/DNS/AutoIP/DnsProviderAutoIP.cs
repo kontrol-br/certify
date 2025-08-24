@@ -99,7 +99,7 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                var hostname = request?.TargetDomainName ?? _hostname;
+                var hostname = (request?.TargetDomainName ?? _hostname)?.Trim();
 
                 if (string.IsNullOrEmpty(hostname))
                 {
@@ -107,6 +107,8 @@ namespace Certify.Providers.DNS.AutoIP
                     _log?.Error(message);
                     return new ActionResult { IsSuccess = false, Message = message };
                 }
+
+                _log?.Debug("AutoIP CreateRecord using hostname: {Hostname}", hostname);
 
                 var payload = new Dictionary<string, string>
                 {
@@ -142,7 +144,7 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                var hostname = request?.TargetDomainName ?? _hostname;
+                var hostname = (request?.TargetDomainName ?? _hostname)?.Trim();
 
                 if (string.IsNullOrEmpty(hostname))
                 {
@@ -150,6 +152,8 @@ namespace Certify.Providers.DNS.AutoIP
                     _log?.Error(message);
                     return new ActionResult { IsSuccess = false, Message = message };
                 }
+
+                _log?.Debug("AutoIP DeleteRecord using hostname: {Hostname}", hostname);
 
                 var payload = new Dictionary<string, string>
                 {
