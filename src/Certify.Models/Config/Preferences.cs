@@ -20,6 +20,12 @@ namespace Certify.Models
         FullCleanup = 3
     }
 
+    public enum ChallengeCleanupMode
+    {
+        Immediate = 0,
+        PostValidation = 1
+    }
+
     public static class RenewalIntervalModes
     {
         /// <summary>
@@ -68,6 +74,8 @@ namespace Certify.Models
         public bool EnableCertificateCleanup { get; set; } = true;
 
         public CertificateCleanupMode? CertificateCleanupMode { get; set; }
+
+        public ChallengeCleanupMode ChallengeCleanupMode { get; set; } = ChallengeCleanupMode.Immediate;
 
         public string? DefaultCertificateStore { get; set; }
 

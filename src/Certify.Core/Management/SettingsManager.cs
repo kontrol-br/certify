@@ -37,6 +37,7 @@ namespace Certify.Management
             UseModernPFXAlgs = false;
             NtpServer = "pool.ntp.org";
             CertificateManagers = new List<CertificateManagerPreference>();
+            ChallengeCleanupMode = ChallengeCleanupMode.Immediate;
         }
 
         public static CoreAppSettings Current
@@ -178,9 +179,9 @@ namespace Certify.Management
         public bool EnableIssuerCache { get; set; }
 
         /// <summary>
-        /// If true, challenge cleanup will only happen after all auth challenges in an order have been processed
+        /// Specifies when challenge cleanup should occur
         /// </summary>
-        public bool PerformChallengeCleanupsLast { get; set; }
+        public ChallengeCleanupMode ChallengeCleanupMode { get; set; }
         public string CurrentServiceVersion { get; set; }
 
         /// <summary>
@@ -210,6 +211,7 @@ namespace Certify.Management
             CoreAppSettings.Current.EnableHttpChallengeServer = prefs.EnableHttpChallengeServer;
             CoreAppSettings.Current.EnableCertificateCleanup = prefs.EnableCertificateCleanup;
             CoreAppSettings.Current.DefaultCertificateStore = prefs.DefaultCertificateStore;
+            CoreAppSettings.Current.ChallengeCleanupMode = prefs.ChallengeCleanupMode;
 
             CoreAppSettings.Current.DefaultCertificateAuthority = prefs.DefaultCertificateAuthority;
             CoreAppSettings.Current.EnableAutomaticCAFailover = prefs.EnableAutomaticCAFailover;
@@ -274,6 +276,7 @@ namespace Certify.Management
                 DefaultCertificateStore = CoreAppSettings.Current.DefaultCertificateStore,
                 EnableStatusReporting = CoreAppSettings.Current.EnableStatusReporting,
                 CertificateCleanupMode = CoreAppSettings.Current.CertificateCleanupMode,
+                ChallengeCleanupMode = CoreAppSettings.Current.ChallengeCleanupMode,
                 DefaultCertificateAuthority = CoreAppSettings.Current.DefaultCertificateAuthority,
                 DefaultKeyCredentials = CoreAppSettings.Current.DefaultKeyCredentials,
                 EnableAutomaticCAFailover = CoreAppSettings.Current.EnableAutomaticCAFailover,

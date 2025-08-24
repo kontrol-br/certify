@@ -431,35 +431,95 @@ namespace Certify.Core.Management.Challenges
                 }
 
                 log.Information($"DNS: Deleting TXT Record '{txtRecordName}' :'{txtRecordValue}', [{domain.Value}] {(zoneId != null ? $"in ZoneId '{zoneId}'" : "")} using API provider '{dnsAPIProvider.ProviderTitle}'");
-                try
+
+                var cleanupMode = CoreAppSettings.Current.ChallengeCleanupMode;
+                if (cleanupMode == ChallengeCleanupMode.PostValidation)
                 {
-                    var result = await dnsAPIProvider.DeleteRecord(new DnsRecord
+                    var record = new DnsRecord
                     {
                         RecordType = "TXT",
                         TargetDomainName = domain.Value.Trim(),
                         RecordName = txtRecordName,
                         RecordValue = txtRecordValue,
                         ZoneId = zoneId
-                    });
+                    };
 
-                    result.Message = $"{dnsAPIProvider.ProviderTitle} :: {result.Message}";
+                    var providerKey = challengeConfig.ChallengeProvider + (challengeConfig.ChallengeProvider + JsonConvert.SerializeObject(credentials ?? new Dictionary<string, string>()) + JsonConvert.SerializeObject(parameters ?? new Dictionary<string, string>())).GetHashCode().ToString();
+
+                    if (!_pendingDeletions.ContainsKey(providerKey))
+                    {
+                        _pendingDeletions[providerKey] = new PendingDeletion { Provider = dnsAPIProvider, Records = new List<DnsRecord>() };
+                    }
+
+                    _pendingDeletions[providerKey].Records.Add(record);
 
                     return new DnsChallengeHelperResult
                     {
-                        Result = result,
-                        PropagationSeconds = dnsAPIProvider.PropagationDelaySeconds,
-                        IsAwaitingUser = challengeConfig.ChallengeProvider.Contains(".Manual")
+                        Result = new ActionResult { IsSuccess = true, Message = "DNS record queued for cleanup" },
+                        PropagationSeconds = 0,
+                        IsAwaitingUser = false
                     };
                 }
-                catch (Exception exp)
+                else
                 {
-                    return new DnsChallengeHelperResult(failureMsg: $"Failed [{dnsAPIProvider.ProviderTitle}]: {exp.Message}");
+                    try
+                    {
+                        var result = await dnsAPIProvider.DeleteRecord(new DnsRecord
+                        {
+                            RecordType = "TXT",
+                            TargetDomainName = domain.Value.Trim(),
+                            RecordName = txtRecordName,
+                            RecordValue = txtRecordValue,
+                            ZoneId = zoneId
+                        });
+
+                        result.Message = $"{dnsAPIProvider.ProviderTitle} :: {result.Message}";
+
+                        return new DnsChallengeHelperResult
+                        {
+                            Result = result,
+                            PropagationSeconds = dnsAPIProvider.PropagationDelaySeconds,
+                            IsAwaitingUser = challengeConfig.ChallengeProvider.Contains(".Manual")
+                        };
+                    }
+                    catch (Exception exp)
+                    {
+                        return new DnsChallengeHelperResult(failureMsg: $"Failed [{dnsAPIProvider.ProviderTitle}]: {exp.Message}");
+                    }
                 }
             }
             else
             {
                 return new DnsChallengeHelperResult(failureMsg: "Error: Could not determine DNS API Provider.");
             }
+        }
+
+        private class PendingDeletion
+        {
+            public IDnsProvider Provider { get; set; }
+            public List<DnsRecord> Records { get; set; } = new List<DnsRecord>();
+        }
+
+        private static readonly Dictionary<string, PendingDeletion> _pendingDeletions = new Dictionary<string, PendingDeletion>();
+
+        public static async Task ProcessPendingDeletes(ILog log)
+        {
+            foreach (var pd in _pendingDeletions.Values)
+            {
+                foreach (var r in pd.Records)
+                {
+                    try
+                    {
+                        var result = await pd.Provider.DeleteRecord(r);
+                        log?.Information(result?.Message);
+                    }
+                    catch (Exception exp)
+                    {
+                        log?.Error(exp, "Failed to delete DNS record {record}", r.RecordName);
+                    }
+                }
+            }
+            _pendingDeletions.Clear();
         }
     }
 }
