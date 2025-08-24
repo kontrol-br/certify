@@ -248,6 +248,8 @@ namespace Certify.Management
                     log.Information($"DNS: {dnsResult.Result.Message}");
                 }
 
+                await DnsChallengeHelper.ProcessPendingDeletes(log);
+
                 return new ActionResult { IsSuccess = true, Message = $"Challenge cleanup {request.ChallengeType} completed {request.ResponseKey} : {request.ResponseValue}" };
 
             }

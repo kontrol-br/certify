@@ -241,6 +241,8 @@ namespace Certify.Core.Management.Challenges
                         await ga.Cleanup();
                     }
                 }
+
+                await DnsChallengeHelper.ProcessPendingDeletes(log);
             }
 
             return results;

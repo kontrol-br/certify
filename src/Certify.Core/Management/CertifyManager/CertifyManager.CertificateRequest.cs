@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Certify.Core.Management;
+using Certify.Core.Management.Challenges;
 using Certify.Locales;
 using Certify.Models;
 using Certify.Models.Providers;
@@ -760,7 +761,7 @@ namespace Certify.Management
 
             var validationFailed = false;
             var failureSummaryMessage = "";
-            var cleanupChallengesLast = CoreAppSettings.Current.PerformChallengeCleanupsLast;
+            var cleanupChallengesLast = CoreAppSettings.Current.ChallengeCleanupMode == ChallengeCleanupMode.PostValidation;
 
             if (pendingOrder.IsPendingAuthorizations)
             {
@@ -921,6 +922,8 @@ namespace Certify.Management
                                 await authCleanup.Cleanup();
                             }
                         }
+
+                        await DnsChallengeHelper.ProcessPendingDeletes(log);
                     }
                 }
             }
