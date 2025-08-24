@@ -67,6 +67,10 @@ namespace Certify.Providers.DNS.AutoIP
             }
             credentials?.TryGetValue("password", out _password);
             parameters?.TryGetValue("hostname", out _hostname);
+            if (string.IsNullOrEmpty(_hostname))
+            {
+                credentials?.TryGetValue("hostname", out _hostname);
+            }
             parameters?.TryGetValue("apiendpoint", out _apiEndpoint);
 
             if (parameters?.ContainsKey("propagationdelay") == true && int.TryParse(parameters["propagationdelay"], out var delay))
