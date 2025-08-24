@@ -99,14 +99,18 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                var payload = new Dictionary<string, string>{
-                    { "txt", request.RecordValue }
-                };
-
-                if (!string.IsNullOrEmpty(_hostname))
+                if (string.IsNullOrEmpty(_hostname))
                 {
-                    payload.Add("hostname", _hostname);
+                    var message = "Hostname parameter is required for AutoIP requests.";
+                    _log?.Error(message);
+                    return new ActionResult { IsSuccess = false, Message = message };
                 }
+
+                var payload = new Dictionary<string, string>
+                {
+                    ["txt"] = request.RecordValue,
+                    ["hostname"] = _hostname
+                };
 
                 var json = JsonConvert.SerializeObject(payload);
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
@@ -133,13 +137,20 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                var payload = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(_hostname))
+                if (string.IsNullOrEmpty(_hostname))
                 {
-                    payload.Add("hostname", _hostname);
+                    var message = "Hostname parameter is required for AutoIP requests.";
+                    _log?.Error(message);
+                    return new ActionResult { IsSuccess = false, Message = message };
                 }
 
-                var json = payload.Count > 0 ? JsonConvert.SerializeObject(payload) : string.Empty;
+                var payload = new Dictionary<string, string>
+                {
+                    ["txt"] = request.RecordValue,
+                    ["hostname"] = _hostname
+                };
+
+                var json = JsonConvert.SerializeObject(payload);
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
                 _log?.Information("HTTP DELETE {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
                 var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
