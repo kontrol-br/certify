@@ -436,7 +436,7 @@ namespace Certify.Core.Management.Challenges
                     var result = await dnsAPIProvider.DeleteRecord(new DnsRecord
                     {
                         RecordType = "TXT",
-                        TargetDomainName = domain.Value,
+                        TargetDomainName = domain.Value.Trim(),
                         RecordName = txtRecordName,
                         RecordValue = txtRecordValue,
                         ZoneId = zoneId
