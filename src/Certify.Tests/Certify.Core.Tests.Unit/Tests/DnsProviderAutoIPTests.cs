@@ -83,17 +83,14 @@ namespace Certify.Core.Tests.Unit
         {
             var (provider, handler) = await SetupAsync(
                 new Dictionary<string, string> { ["acmetoken"] = "token" },
-                new Dictionary<string, string> { ["hostname"] = "host0.example.com" });
+                new Dictionary<string, string>());
 
-            var hostnameField = typeof(DnsProviderAutoIP).GetField("_hostname", BindingFlags.NonPublic | BindingFlags.Instance)!;
             var hosts = new[] { "host1.example.com", "host2.example.com" };
 
             for (var i = 0; i < hosts.Length; i++)
             {
-                hostnameField.SetValue(provider, hosts[i]);
-
                 var txt = $"txt{i}";
-                var createResult = await provider.CreateRecord(new DnsRecord { RecordValue = txt });
+                var createResult = await provider.CreateRecord(new DnsRecord { RecordName = hosts[i], RecordValue = txt });
                 var createContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
                 var createJson = JObject.Parse(createContent);
                 Assert.AreEqual(txt, createJson["txt"]!.ToString());
@@ -101,7 +98,7 @@ namespace Certify.Core.Tests.Unit
                 Assert.AreEqual(2, createJson.Count);
                 Assert.IsTrue(createResult.IsSuccess);
 
-                var deleteResult = await provider.DeleteRecord(new DnsRecord { RecordValue = txt });
+                var deleteResult = await provider.DeleteRecord(new DnsRecord { RecordName = hosts[i], RecordValue = txt });
                 var deleteContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
                 var deleteJson = JObject.Parse(deleteContent);
                 Assert.AreEqual(txt, deleteJson["txt"]!.ToString());

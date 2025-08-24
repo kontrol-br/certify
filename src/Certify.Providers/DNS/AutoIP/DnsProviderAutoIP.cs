@@ -99,6 +99,8 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
+                _hostname = request?.RecordName ?? request?.TargetDomainName ?? _hostname;
+
                 if (string.IsNullOrEmpty(_hostname))
                 {
                     var message = "Hostname parameter is required for AutoIP requests.";
@@ -137,6 +139,8 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
+                _hostname = request?.RecordName ?? request?.TargetDomainName ?? _hostname;
+
                 if (string.IsNullOrEmpty(_hostname))
                 {
                     var message = "Hostname parameter is required for AutoIP requests.";
