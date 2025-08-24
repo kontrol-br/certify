@@ -65,6 +65,7 @@ namespace Certify.Providers.DNS.AutoIP
             {
                 credentials?.TryGetValue("acmetoken", out _credential);
             }
+
             credentials?.TryGetValue("password", out _password);
             parameters?.TryGetValue("hostname", out _hostname);
             if (string.IsNullOrEmpty(_hostname))
@@ -91,6 +92,7 @@ namespace Certify.Providers.DNS.AutoIP
                     _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", auth);
                 }
             }
+
             var authType = string.IsNullOrEmpty(_password) ? "token" : "user";
             var passwordDisplay = string.IsNullOrEmpty(_password) ? string.Empty : "****";
             _log?.Information("AutoIP provider initialized. Endpoint: {Endpoint}. AuthType: {AuthType}. Credential: {Credential} {Password}",
