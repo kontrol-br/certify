@@ -79,7 +79,7 @@ namespace Certify.Core.Tests.Unit
         }
 
         [TestMethod]
-        public async Task CreateAndDelete_MultipleHosts_SendsCorrectPayloads()
+        public async Task CreateAndDelete_AcmeFqdn_UsesTargetDomainName()
         {
             var (provider, handler) = await SetupAsync(
                 new Dictionary<string, string> { ["acmetoken"] = "token" },
@@ -89,20 +89,25 @@ namespace Certify.Core.Tests.Unit
 
             for (var i = 0; i < hosts.Length; i++)
             {
+                var baseDomain = hosts[i];
+                var fqdn = $"_acme-challenge.{baseDomain}";
                 var txt = $"txt{i}";
-                var createResult = await provider.CreateRecord(new DnsRecord { RecordName = hosts[i], RecordValue = txt });
+
+                var record = new DnsRecord { RecordName = fqdn, TargetDomainName = baseDomain, RecordValue = txt };
+
+                var createResult = await provider.CreateRecord(record);
                 var createContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
                 var createJson = JObject.Parse(createContent);
                 Assert.AreEqual(txt, createJson["txt"]!.ToString());
-                Assert.AreEqual(hosts[i], createJson["hostname"]!.ToString());
+                Assert.AreEqual(baseDomain, createJson["hostname"]!.ToString());
                 Assert.AreEqual(2, createJson.Count);
                 Assert.IsTrue(createResult.IsSuccess);
 
-                var deleteResult = await provider.DeleteRecord(new DnsRecord { RecordName = hosts[i], RecordValue = txt });
+                var deleteResult = await provider.DeleteRecord(record);
                 var deleteContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
                 var deleteJson = JObject.Parse(deleteContent);
                 Assert.AreEqual(txt, deleteJson["txt"]!.ToString());
-                Assert.AreEqual(hosts[i], deleteJson["hostname"]!.ToString());
+                Assert.AreEqual(baseDomain, deleteJson["hostname"]!.ToString());
                 Assert.AreEqual(2, deleteJson.Count);
                 Assert.IsTrue(deleteResult.IsSuccess);
             }

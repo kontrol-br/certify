@@ -99,9 +99,9 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                _hostname = request?.RecordName ?? request?.TargetDomainName ?? _hostname;
+                var hostname = request?.TargetDomainName ?? _hostname;
 
-                if (string.IsNullOrEmpty(_hostname))
+                if (string.IsNullOrEmpty(hostname))
                 {
                     var message = "Hostname parameter is required for AutoIP requests.";
                     _log?.Error(message);
@@ -111,7 +111,7 @@ namespace Certify.Providers.DNS.AutoIP
                 var payload = new Dictionary<string, string>
                 {
                     ["txt"] = request.RecordValue,
-                    ["hostname"] = _hostname
+                    ["hostname"] = hostname
                 };
 
                 var json = JsonConvert.SerializeObject(payload);
@@ -139,9 +139,9 @@ namespace Certify.Providers.DNS.AutoIP
         {
             try
             {
-                _hostname = request?.RecordName ?? request?.TargetDomainName ?? _hostname;
+                var hostname = request?.TargetDomainName ?? _hostname;
 
-                if (string.IsNullOrEmpty(_hostname))
+                if (string.IsNullOrEmpty(hostname))
                 {
                     var message = "Hostname parameter is required for AutoIP requests.";
                     _log?.Error(message);
@@ -151,7 +151,7 @@ namespace Certify.Providers.DNS.AutoIP
                 var payload = new Dictionary<string, string>
                 {
                     ["txt"] = request.RecordValue,
-                    ["hostname"] = _hostname
+                    ["hostname"] = hostname
                 };
 
                 var json = JsonConvert.SerializeObject(payload);
