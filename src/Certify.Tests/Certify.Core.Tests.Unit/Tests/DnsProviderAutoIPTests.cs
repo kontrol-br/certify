@@ -45,6 +45,36 @@ namespace Certify.Core.Tests.Unit
                 new Dictionary<string, string> { ["acmetoken"] = "token" },
                 new Dictionary<string, string> { ["hostname"] = "test.example.com" });
 
+            var hostnameField = typeof(DnsProviderAutoIP).GetField("_hostname", BindingFlags.NonPublic | BindingFlags.Instance);
+            Assert.AreEqual("test.example.com", hostnameField!.GetValue(provider) as string);
+
+            var createResult = await provider.CreateRecord(new DnsRecord { RecordValue = "txtvalue" });
+            var createContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
+            var createJson = JObject.Parse(createContent);
+            Assert.AreEqual("txtvalue", createJson["txt"]!.ToString());
+            Assert.AreEqual("test.example.com", createJson["hostname"]!.ToString());
+            Assert.AreEqual(2, createJson.Count);
+            Assert.IsTrue(createResult.IsSuccess);
+
+            var deleteResult = await provider.DeleteRecord(new DnsRecord { RecordValue = "txtvalue" });
+            var deleteContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
+            var deleteJson = JObject.Parse(deleteContent);
+            Assert.AreEqual("txtvalue", deleteJson["txt"]!.ToString());
+            Assert.AreEqual("test.example.com", deleteJson["hostname"]!.ToString());
+            Assert.AreEqual(2, deleteJson.Count);
+            Assert.IsTrue(deleteResult.IsSuccess);
+        }
+
+        [TestMethod]
+        public async Task CreateAndDelete_WithTokenAndHostname_InCredentials()
+        {
+            var (provider, handler) = await SetupAsync(
+                new Dictionary<string, string> { ["acmetoken"] = "token", ["hostname"] = "test.example.com" },
+                new Dictionary<string, string>());
+
+            var hostnameField = typeof(DnsProviderAutoIP).GetField("_hostname", BindingFlags.NonPublic | BindingFlags.Instance);
+            Assert.AreEqual("test.example.com", hostnameField!.GetValue(provider) as string);
+
             var createResult = await provider.CreateRecord(new DnsRecord { RecordValue = "txtvalue" });
             var createContent = await handler.LastRequest!.Content!.ReadAsStringAsync();
             var createJson = JObject.Parse(createContent);
