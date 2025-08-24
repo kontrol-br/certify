@@ -109,9 +109,9 @@ namespace Certify.Providers.DNS.AutoIP
 
                 if (string.IsNullOrEmpty(hostname))
                 {
-                    var message = "Hostname parameter is required for AutoIP requests.";
-                    _log?.Error(message);
-                    return new ActionResult { IsSuccess = false, Message = message };
+                    var missingHostMsg = "Hostname parameter is required for AutoIP requests.";
+                    _log?.Error(missingHostMsg);
+                    return new ActionResult { IsSuccess = false, Message = missingHostMsg };
                 }
 
                 _log?.Debug("AutoIP CreateRecord using hostname: {Hostname}", hostname);
@@ -128,17 +128,17 @@ namespace Certify.Providers.DNS.AutoIP
                 });
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
                 _log?.Information("HTTP POST {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
-                var resp = await _http.PostAsync(_apiEndpoint, new StringContent(json, Encoding.UTF8, "application/json"));
+                var apiResponse = await _http.PostAsync(_apiEndpoint, new StringContent(json, Encoding.UTF8, "application/json"));
 
-                if (resp.IsSuccessStatusCode)
+                if (apiResponse.IsSuccessStatusCode)
                 {
                     return new ActionResult { IsSuccess = true, Message = "DNS record added." };
                 }
 
-                var error = await resp.Content.ReadAsStringAsync();
-                var message = $"API call failed: {resp.StatusCode} - {error}";
-                _log?.Error(message);
-                return new ActionResult { IsSuccess = false, Message = message };
+                var apiErrorDetails = await apiResponse.Content.ReadAsStringAsync();
+                var apiErrorMsg = $"API call failed: {apiResponse.StatusCode} - {apiErrorDetails}";
+                _log?.Error(apiErrorMsg);
+                return new ActionResult { IsSuccess = false, Message = apiErrorMsg };
             }
             catch (Exception ex)
             {
@@ -154,9 +154,9 @@ namespace Certify.Providers.DNS.AutoIP
 
                 if (string.IsNullOrEmpty(hostname))
                 {
-                    var message = "Hostname parameter is required for AutoIP requests.";
-                    _log?.Error(message);
-                    return new ActionResult { IsSuccess = false, Message = message };
+                    var missingHostMsg = "Hostname parameter is required for AutoIP requests.";
+                    _log?.Error(missingHostMsg);
+                    return new ActionResult { IsSuccess = false, Message = missingHostMsg };
                 }
 
                 _log?.Debug("AutoIP DeleteRecord using hostname: {Hostname}", hostname);
@@ -173,21 +173,21 @@ namespace Certify.Providers.DNS.AutoIP
                 });
                 var authInfo = string.IsNullOrEmpty(_password) ? $"token {_credential}" : $"user {_credential} / ****";
                 _log?.Information("HTTP DELETE {Url} Payload: {Payload}. Auth: {AuthInfo}", _apiEndpoint, json, authInfo);
-                var req = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
+                var apiRequest = new HttpRequestMessage(HttpMethod.Delete, _apiEndpoint)
                 {
                     Content = new StringContent(json, Encoding.UTF8, "application/json")
                 };
-                var resp = await _http.SendAsync(req);
+                var apiResponse = await _http.SendAsync(apiRequest);
 
-                if (resp.IsSuccessStatusCode)
+                if (apiResponse.IsSuccessStatusCode)
                 {
                     return new ActionResult { IsSuccess = true, Message = "DNS record removed." };
                 }
 
-                var error = await resp.Content.ReadAsStringAsync();
-                var message = $"API call failed: {resp.StatusCode} - {error}";
-                _log?.Error(message);
-                return new ActionResult { IsSuccess = false, Message = message };
+                var apiErrorDetails = await apiResponse.Content.ReadAsStringAsync();
+                var apiErrorMsg = $"API call failed: {apiResponse.StatusCode} - {apiErrorDetails}";
+                _log?.Error(apiErrorMsg);
+                return new ActionResult { IsSuccess = false, Message = apiErrorMsg };
             }
             catch (Exception ex)
             {
