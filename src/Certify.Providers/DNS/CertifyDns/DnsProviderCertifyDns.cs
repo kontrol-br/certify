@@ -74,7 +74,7 @@ namespace Certify.Providers.DNS.CertifyDns
             _settingsPath = EnvironmentUtil.EnsuredAppDataPath();
 
             _client = new HttpClient();
-            _client.DefaultRequestHeaders.Add("User-Agent", "Certify/DnsProviderCertifyDns");
+            _client.DefaultRequestHeaders.Add("User-Agent", "AutoSSL/DnsProviderCertifyDns");
 
             _serializerSettings = new JsonSerializerSettings
             {

@@ -51,7 +51,7 @@ namespace Certify.Shared.Core.Utils
                         item.DateStart = certStart;
                         item.DateLastRenewalAttempt = certStart;
                         item.DateExpiry = certStart.AddDays(certLifetime);
-                        item.CertificateFriendlyName = $"{item.GetCertificateIdentifiers().First().Value} [CertifyDemo] - {item.DateStart} to {item.DateExpiry}";
+                        item.CertificateFriendlyName = $"{item.GetCertificateIdentifiers().First().Value} [AutoSSLDemo] - {item.DateStart} to {item.DateExpiry}";
                         item.Comments = "[DemoData-2] This is an example item showing failure.";
                         item.LastAttemptedCA = item.CertificateCurrentCA;
                         item.LastRenewalStatus = RequestState.Error;
@@ -66,7 +66,7 @@ namespace Certify.Shared.Core.Utils
                         item.DateStart = certStart;
                         item.DateLastRenewalAttempt = certStart;
                         item.DateExpiry = certStart.AddDays(certLifetime);
-                        item.CertificateFriendlyName = $"{item.GetCertificateIdentifiers().First().Value} [CertifyDemo] - {item.DateStart} to {item.DateExpiry}";
+                        item.CertificateFriendlyName = $"{item.GetCertificateIdentifiers().First().Value} [AutoSSLDemo] - {item.DateStart} to {item.DateExpiry}";
                         item.Comments = "[DemoData-3] This is an example item showing success";
                         item.LastAttemptedCA = item.CertificateCurrentCA;
                         item.LastRenewalStatus = RequestState.Success;

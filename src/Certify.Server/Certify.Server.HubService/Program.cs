@@ -134,7 +134,7 @@ var appDataPath = EnvironmentUtil.EnsuredAppDataPath("keys");
 builder.Services
     .AddDataProtection(a =>
     {
-        a.ApplicationDiscriminator = "certify";
+        a.ApplicationDiscriminator = SharedConstants.APPDATASUBFOLDER;
     })
     .PersistKeysToFileSystem(new DirectoryInfo(appDataPath));
 
@@ -149,9 +149,9 @@ builder.Services.AddSwaggerGen(c =>
 
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Certify Management Hub API",
+        Title = "AutoSSL Management Hub API",
         Version = "v1",
-        Description = "The Certify Management Hub API provides a certificate services API for use in UI, devops, CI/CD, middleware etc. See certifytheweb.com for more details."
+        Description = "The AutoSSL Management Hub API provides a certificate services API for use in UI, devops, CI/CD, middleware etc."
     });
 
     c.UseAllOfToExtendReferenceSchemas();
@@ -327,7 +327,7 @@ app.UseSwagger();
 app.MapScalarApiReference("/api/docs/", options =>
 {
     options
-                    .WithTitle("Certify Management Hub API")
+                    .WithTitle("AutoSSL Management Hub API")
                     .WithTheme(ScalarTheme.Solarized)
                     .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
                     .WithOpenApiRoutePattern("/swagger/v1/swagger.json");

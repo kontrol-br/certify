@@ -63,7 +63,7 @@ namespace Certify.Providers.DNS.CertifyManaged
             _client = new HttpClient();
 
 #endif
-            _client.DefaultRequestHeaders.Add("User-Agent", "Certify/DnsProviderCertifyManaged");
+            _client.DefaultRequestHeaders.Add("User-Agent", "AutoSSL/DnsProviderCertifyManaged");
 
             _serializerSettings = new JsonSerializerSettings
             {

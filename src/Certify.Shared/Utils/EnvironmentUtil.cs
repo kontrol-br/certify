@@ -117,6 +117,18 @@ namespace Certify.Models
 
             var path = Path.Combine(parts.ToArray());
 
+            var legacyParts = new List<string>(parts);
+            var index = legacyParts.IndexOf(Models.SharedConstants.APPDATASUBFOLDER);
+            if (index >= 0)
+            {
+                legacyParts[index] = Models.SharedConstants.LEGACY_APPDATASUBFOLDER;
+                var legacyPath = Path.Combine(legacyParts.ToArray());
+                if (!Directory.Exists(path) && Directory.Exists(legacyPath))
+                {
+                    Directory.Move(legacyPath, path);
+                }
+            }
+
             if (!skipCreation)
             {
                 CreateAndApplyRestrictedACL(path);

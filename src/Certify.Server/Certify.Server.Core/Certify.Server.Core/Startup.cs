@@ -14,8 +14,8 @@ namespace Certify.Server.Core
     public class Startup
     {
         private const string ServiceAuthScheme = "ServiceAuthScheme";
-        private const string CertifyServiceAuthPolicy = "CertifyServiceAuth";
-        private const string SwaggerDocTitle = "Certify Agent Service Internal API";
+        private const string AutoSSLServiceAuthPolicy = "AutoSSLServiceAuth";
+        private const string SwaggerDocTitle = "AutoSSL Agent Service Internal API";
         private const string SwaggerDocVersion = "v1";
         private const string SwaggerDocDescription = "Provides a private API for use by the autoSSL Desktop UI and related components. This internal API changes between versions, you should use the public Hub API when building integrations instead.";
 
@@ -102,7 +102,7 @@ namespace Certify.Server.Core
         private void ConfigureDataProtection(IServiceCollection services)
         {
             var appDataPath = EnvironmentUtil.EnsuredAppDataPath("keys");
-            services.AddDataProtection(a => a.ApplicationDiscriminator = "certify")
+            services.AddDataProtection(a => a.ApplicationDiscriminator = SharedConstants.APPDATASUBFOLDER)
                     .PersistKeysToFileSystem(new DirectoryInfo(appDataPath));
         }
 
@@ -138,7 +138,7 @@ namespace Certify.Server.Core
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(CertifyServiceAuthPolicy, policy =>
+                options.AddPolicy(AutoSSLServiceAuthPolicy, policy =>
                 {
                     if (windowsAuthRequired)
                     {

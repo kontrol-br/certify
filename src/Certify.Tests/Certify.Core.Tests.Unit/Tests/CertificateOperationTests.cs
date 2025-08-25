@@ -15,7 +15,7 @@ namespace Certify.Core.Tests.Unit
         public void TestSelfSignedCertCreate()
         {
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("test.com", new DateTime(1934, 01, 01), new DateTime(1934, 03, 01), suffix: "[Certify](test)");
+            var cert = CertificateManager.GenerateSelfSignedCertificate("test.com", new DateTime(1934, 01, 01), new DateTime(1934, 03, 01), suffix: "[AutoSSL](test)");
             Assert.IsNotNull(cert);
         }
 
@@ -23,7 +23,7 @@ namespace Certify.Core.Tests.Unit
         public void TestSelfSignedCertCreateAndStore()
         {
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("test.com", new DateTime(1934, 01, 01), new DateTime(1934, 03, 01), suffix: "[Certify](test)");
+            var cert = CertificateManager.GenerateSelfSignedCertificate("test.com", new DateTime(1934, 01, 01), new DateTime(1934, 03, 01), suffix: "[AutoSSL](test)");
             Assert.IsNotNull(cert);
 
             CertificateManager.StoreCertificate(cert, CertificateManager.DEFAULT_STORE_NAME);
@@ -38,7 +38,7 @@ namespace Certify.Core.Tests.Unit
         public void TestSelfSignedLocalhostCertCreateAndStore()
         {
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[Certify](test)");
+            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[AutoSSL](test)");
             Assert.IsNotNull(cert);
 
             CertificateManager.StoreCertificate(cert, CertificateManager.DEFAULT_STORE_NAME);
@@ -58,7 +58,7 @@ namespace Certify.Core.Tests.Unit
                 return;
             }
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[Certify](test)", keyType: StandardKeyTypes.RSA256);
+            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[AutoSSL](test)", keyType: StandardKeyTypes.RSA256);
 
             CertificateManager.StoreCertificate(cert, CertificateManager.DEFAULT_STORE_NAME);
 
@@ -85,7 +85,7 @@ namespace Certify.Core.Tests.Unit
                 return;
             }
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[Certify](test)", keyType: StandardKeyTypes.ECDSA256);
+            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[AutoSSL](test)", keyType: StandardKeyTypes.ECDSA256);
 
             CertificateManager.StoreCertificate(cert, CertificateManager.DEFAULT_STORE_NAME);
 
@@ -120,7 +120,7 @@ namespace Certify.Core.Tests.Unit
 
             var log = new Loggy(LoggerFactory.Create(builder => builder.AddDebug()).CreateLogger<CertificateOperationTests>());
 
-            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[Certify](test)", keyType: keyType);
+            var cert = CertificateManager.GenerateSelfSignedCertificate("localhost", DateTime.UtcNow, DateTime.UtcNow.AddDays(30), suffix: "[AutoSSL](test)", keyType: keyType);
 
             CertificateManager.StoreCertificate(cert, CertificateManager.DEFAULT_STORE_NAME);
 

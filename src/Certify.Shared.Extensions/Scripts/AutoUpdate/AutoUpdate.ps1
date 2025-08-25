@@ -1,12 +1,12 @@
 ﻿param ([int]$Days=7, [switch]$Force)
 
-# Certify The Web - App Updater Script
+# AutoSSL - App Updater Script
 # Schedule this powershell script task using an Administrator account for automatic update N days after the last official release
 
 $installAfterNDays = $Days
 $forceInstall = $Force
-$scriptName = "[Certify The Web - App Update Script]"
-$eventLogAppName = "Certify The Web - Auto Update"
+$scriptName = "[AutoSSL - App Update Script]"
+$eventLogAppName = "AutoSSL - Auto Update"
 
 New-EventLog –LogName "Application" –Source $eventLogAppName -ErrorAction SilentlyContinue
 
@@ -14,7 +14,7 @@ New-EventLog –LogName "Application" –Source $eventLogAppName -ErrorAction Si
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
-$installedVersion = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -match "^(Certify The Web|Certify Certificate Manager).*" }
+$installedVersion = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -match "^(AutoSSL|AutoSSL Certificate Manager).*" }
 $installedVersionString = $installedVersion.DisplayVersion
 
 $apiUrl = "https://update.autoip.com.br/v1/update?context=autoupdate&version=" + $installedVersionString

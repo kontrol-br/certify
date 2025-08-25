@@ -159,7 +159,7 @@ namespace Certify.Client
                 }
             }
 
-            _client.DefaultRequestHeaders.Add("User-Agent", "Certify/App");
+            _client.DefaultRequestHeaders.Add("User-Agent", "AutoSSL/App");
             _client.Timeout = new TimeSpan(0, 20, 0); // 20 min timeout on service api calls
         }
 

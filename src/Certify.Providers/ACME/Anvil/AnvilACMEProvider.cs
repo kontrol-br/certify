@@ -1502,7 +1502,7 @@ namespace Certify.Providers.ACME.Anvil
                 csrKey = KeyFactory.NewKey(keyAlg, rsaKeySize);
             }
 
-            var certFriendlyName = $"{config.PrimaryDomain} [Certify] ";
+            var certFriendlyName = $"{config.PrimaryDomain} [AutoSSL] ";
 
             // generate cert
             CertificateChain certificateChain = null;

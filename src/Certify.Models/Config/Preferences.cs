@@ -7,15 +7,15 @@ namespace Certify.Models
     {
         None = 0,
         /// <summary>
-        /// Clean up [Certify] expired certificates
+        /// Clean up [AutoSSL] expired certificates
         /// </summary>
         AfterExpiry = 1,
         /// <summary>
-        /// Clean up [Certify] renewed certificates
+        /// Clean up [AutoSSL] renewed certificates
         /// </summary>
         AfterRenewal = 2,
         /// <summary>
-        /// Clean up all [Certify] certificates not currently managed
+        /// Clean up all [AutoSSL] certificates not currently managed
         /// </summary>
         FullCleanup = 3
     }
