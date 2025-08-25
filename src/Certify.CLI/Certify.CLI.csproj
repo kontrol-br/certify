@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFrameworks>net462;net9.0;</TargetFrameworks>
         <Configurations>Debug;Release;</Configurations>
-        <AssemblyName>Certify</AssemblyName>
+        <AssemblyName>AutoSSL</AssemblyName>
         <OutputType>Exe</OutputType>
         <Platforms>AnyCPU</Platforms>
         <LangVersion>latest</LangVersion>
@@ -38,8 +38,8 @@
 
         <ProjectGuid>{DA0CCD9F-8CBD-4471-93E0-53BCFB6CA25E}</ProjectGuid>
         <OutputType>Exe</OutputType>
-        <RootNamespace>Certify.CLI</RootNamespace>
-        <AssemblyName>Certify</AssemblyName>
+        <RootNamespace>AutoSSL.CLI</RootNamespace>
+        <AssemblyName>AutoSSL</AssemblyName>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <StartupObject>Certify.CLI.Program</StartupObject>

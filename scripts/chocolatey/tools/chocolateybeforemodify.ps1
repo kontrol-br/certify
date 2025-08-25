@@ -8,7 +8,7 @@
 #  the currently installed version, not from the new upgraded package version.
 
 # Close the UI window if currently open
-Get-Process | Where-Object {$_.ProcessName -eq 'Certify.UI'} | Foreach-Object { $_.CloseMainWindow() | Out-Null } | stop-process –force
+Get-Process | Where-Object {$_.ProcessName -eq 'AutoSSL.UI'} | Foreach-Object { $_.CloseMainWindow() | Out-Null } | stop-process –force
 
-# Stop the Certify.Service background service
-Get-Service Certify.Service | Where {$_.status –eq 'Running'} |  Stop-Service
+# Stop the AutoSSL.Service background service
+Get-Service AutoSSL.Service | Where {$_.status –eq 'Running'} |  Stop-Service
