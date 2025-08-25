@@ -178,7 +178,7 @@ namespace Certify.Management
 
         public static string GetUserAgent()
         {
-            var versionName = "Certify/" + GetAppVersion().ToString();
+            var versionName = "AutoSSL/" + GetAppVersion().ToString();
             return $"{versionName} ({RuntimeInformation.OSDescription}; {Environment.OSVersion}) ";
         }
 
@@ -309,10 +309,18 @@ namespace Certify.Management
 
         public static string GetUserLocalAppDataFolder()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Models.SharedConstants.APPDATASUBFOLDER);
-            if (!System.IO.Directory.Exists(path))
+            var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var path = Path.Combine(basePath, Models.SharedConstants.APPDATASUBFOLDER);
+            var legacyPath = Path.Combine(basePath, Models.SharedConstants.LEGACY_APPDATASUBFOLDER);
+
+            if (!Directory.Exists(path) && Directory.Exists(legacyPath))
             {
-                System.IO.Directory.CreateDirectory(path);
+                Directory.Move(legacyPath, path);
+            }
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
             }
 
             return path;

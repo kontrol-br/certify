@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Certify.Models;
 using Certify.Models.Plugins;
 using Certify.Models.Shared;
 using Newtonsoft.Json;
@@ -286,7 +287,8 @@ namespace Certify.Providers.Internal
         {
             if (_enableLog)
             {
-                var logFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "certify", "logs", "licensing.log");
+                var logPath = EnvironmentUtil.EnsuredAppDataPath("logs");
+                var logFile = Path.Combine(logPath, "licensing.log");
                 if (!File.Exists(logFile))
                 {
                     File.CreateText(logFile).Close();

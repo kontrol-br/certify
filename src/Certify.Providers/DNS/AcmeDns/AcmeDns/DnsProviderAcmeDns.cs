@@ -93,7 +93,7 @@ namespace Certify.Providers.DNS.AcmeDns
             _settingsPath = EnvironmentUtil.EnsuredAppDataPath();
 
             _client = new HttpClient();
-            _client.DefaultRequestHeaders.Add("User-Agent", "Certify/DnsProviderAcmeDns");
+            _client.DefaultRequestHeaders.Add("User-Agent", "AutoSSL/DnsProviderAcmeDns");
 
             _serializerSettings = new JsonSerializerSettings
             {

@@ -177,7 +177,7 @@ namespace Certify.Core.Tests
             // Validate return from CertifyManager.PerformExport()
             Assert.IsNotNull(performExportRes, "Expected response from CertifyManager.PerformExport() to not be null");
             Assert.AreEqual(1, performExportRes.FormatVersion, "Expected FormatVersion of response from CertifyManager.PerformExport() to equal 1 by default");
-            Assert.AreEqual("Certify The Web - Exported App Settings", performExportRes.Description, "Unexpected default Description in response from CertifyManager.PerformExport()");
+            Assert.AreEqual("AutoIP - AUTOSSL Exported App Settings", performExportRes.Description, "Unexpected default Description in response from CertifyManager.PerformExport()");
             Assert.AreEqual(0, performExportRes.Errors.Count, "Unexpected Errors in response from CertifyManager.PerformExport()");
             Assert.AreEqual(Certify.Management.Util.GetAppVersion(), performExportRes.SystemVersion?.ToVersion(), "Unexpected SystemVersion in response from CertifyManager.PerformExport()");
             Assert.AreEqual(Environment.MachineName, performExportRes.SourceName, "Unexpected SourceName in response from CertifyManager.PerformExport()");

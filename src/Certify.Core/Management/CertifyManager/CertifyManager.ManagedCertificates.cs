@@ -991,7 +991,7 @@ namespace Certify.Management
                 if (_httpChallengeServerClient == null)
                 {
                     _httpChallengeServerClient = new System.Net.Http.HttpClient();
-                    _httpChallengeServerClient.DefaultRequestHeaders.Add("User-Agent", Util.GetUserAgent() + " CertifyManager");
+                    _httpChallengeServerClient.DefaultRequestHeaders.Add("User-Agent", Util.GetUserAgent() + " AutoSSLManager");
                 }
 
                 var started = await IsHttpChallengeProcessStarted(true);

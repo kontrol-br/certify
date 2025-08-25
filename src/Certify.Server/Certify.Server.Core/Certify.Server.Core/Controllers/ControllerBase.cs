@@ -65,7 +65,7 @@ namespace Certify.Service.Controllers
     }
 
     [ApiController]
-    [Authorize(Policy = "CertifyServiceAuth")]
+    [Authorize(Policy = "AutoSSLServiceAuth")]
     public class ControllerBase : Controller
     {
         internal void DebugLog(string msg = null,

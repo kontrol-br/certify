@@ -223,7 +223,7 @@ namespace Certify.Providers.DNS.IONOS
 
             request.Headers.Add("accept", "application/json");
             request.Headers.Add("X-API-Key", $"{_credentials["public"]}.{_credentials["secret"]}");
-            request.Headers.Add("User-Agent", "Certify");
+            request.Headers.Add("User-Agent", "AutoSSL");
             return request;
         }
 

@@ -11,6 +11,7 @@ using Certify.Models.API;
 using ARSoft.Tools.Net;
 using ARSoft.Tools.Net.Dns;
 #endif
+using Certify.Management;
 using Certify.Models.Config;
 using Certify.Models.Providers;
 
@@ -32,7 +33,7 @@ namespace Certify.Shared.Core.Utils
 
             _httpClient = new HttpClient(_httpClientHandler);
             _httpClient.Timeout = new TimeSpan(0, 0, 5);
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", Certify.Management.Util.GetUserAgent());
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", Util.GetUserAgent());
 
         }
 

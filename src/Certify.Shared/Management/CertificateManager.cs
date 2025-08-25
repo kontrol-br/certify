@@ -31,11 +31,13 @@ namespace Certify.Management
         public const string DEFAULT_STORE_NAME = "My";
         public const string WEBHOSTING_STORE_NAME = "WebHosting";
         public const string DISALLOWED_STORE_NAME = "Disallowed";
+        public const string FRIENDLY_NAME_SUFFIX = "[AutoSSL]";
+        public const string LEGACY_FRIENDLY_NAME_SUFFIX = "[Certify]";
         private static readonly bool IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
         private static readonly bool IsLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
         private static readonly bool IsMac = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
-        public static X509Certificate2 GenerateSelfSignedCertificate(string domain, DateTimeOffset? dateFrom = null, DateTimeOffset? dateTo = null, string suffix = "[Certify]", string subject = null, string keyType = StandardKeyTypes.RSA256)
+        public static X509Certificate2 GenerateSelfSignedCertificate(string domain, DateTimeOffset? dateFrom = null, DateTimeOffset? dateTo = null, string suffix = FRIENDLY_NAME_SUFFIX, string subject = null, string keyType = StandardKeyTypes.RSA256)
         {
 
             // configure generators
@@ -408,7 +410,7 @@ namespace Certify.Management
                 {
                     certificate.GetExpirationDateString();
 
-                    certificate.FriendlyName = $"{host} [Certify] - {certificate.GetEffectiveDateString()} to {certificate.GetExpirationDateString()}";
+                    certificate.FriendlyName = $"{host} {FRIENDLY_NAME_SUFFIX} - {certificate.GetEffectiveDateString()} to {certificate.GetExpirationDateString()}";
 
                 }
             }
@@ -847,7 +849,7 @@ namespace Certify.Management
         }
 
         /// <summary>
-        /// Remove all certificate expired a month or more before the given date, with [Certify] in
+        /// Remove all certificate expired a month or more before the given date, with [AutoSSL] in
         /// the friendly name, optionally where there are no existing bindings, vary by Cleanup Mode
         /// </summary>
         /// <param name="expiryBefore">  </param>
@@ -894,10 +896,10 @@ namespace Certify.Management
                         {
                             if (cleanupMode == Models.CertificateCleanupMode.AfterExpiry)
                             {
-                                // queue removal of existing expired cert with [Certify] text in friendly name.
+                                // queue removal of existing expired cert with [AutoSSL] text in friendly name.
                                 if (
                                      (string.IsNullOrWhiteSpace(matchingName) || (c.FriendlyName.StartsWith(matchingName)))
-                                     && c.FriendlyName.Contains("[Certify]")
+                                     && (c.FriendlyName.Contains(FRIENDLY_NAME_SUFFIX) || c.FriendlyName.Contains(LEGACY_FRIENDLY_NAME_SUFFIX))
                                      && c.NotAfter < expiryBefore
                                      )
                                 {
@@ -910,7 +912,7 @@ namespace Certify.Management
 
                                 if (
                                     (!string.IsNullOrWhiteSpace(matchingName) && c.FriendlyName.StartsWith(matchingName))
-                                    && c.FriendlyName.Contains("[Certify]")
+                                    && (c.FriendlyName.Contains(FRIENDLY_NAME_SUFFIX) || c.FriendlyName.Contains(LEGACY_FRIENDLY_NAME_SUFFIX))
                                     )
                                 {
                                     certsToRemove.Add(c);
@@ -922,7 +924,7 @@ namespace Certify.Management
 
                                 if (
                                      (string.IsNullOrWhiteSpace(matchingName) || (c.FriendlyName.StartsWith(matchingName)))
-                                    && c.FriendlyName.Contains("[Certify]")
+                                    && (c.FriendlyName.Contains(FRIENDLY_NAME_SUFFIX) || c.FriendlyName.Contains(LEGACY_FRIENDLY_NAME_SUFFIX))
                                     )
                                 {
                                     certsToRemove.Add(c);

@@ -27,7 +27,7 @@ namespace Certify.Core.Tests.Unit
             serviceUri = $"{(serviceConfig.UseHTTPS ? "https" : "http")}://{serviceConfig.Host}:{serviceConfig.Port}";
             var httpHandler = new HttpClientHandler { UseDefaultCredentials = true };
             _httpClient = new HttpClient(httpHandler);
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Certify/App");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "AutoSSL/App");
             _httpClient.BaseAddress = new Uri(serviceUri + "/api/");
         }
 

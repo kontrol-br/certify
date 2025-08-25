@@ -159,7 +159,7 @@ namespace Certify.Service
             if (currentCert == null)
             {
                 // create and install new cert
-                var newCert = CertificateManager.GenerateSelfSignedCertificate(certSubject, DateTime.UtcNow, DateTime.UtcNow.AddYears(3), "[Certify Background API]");
+                var newCert = CertificateManager.GenerateSelfSignedCertificate(certSubject, DateTime.UtcNow, DateTime.UtcNow.AddYears(3), "[AutoSSL Background API]");
                 currentCert = CertificateManager.StoreCertificate(newCert, storeName: certStore);
 
                 certUpdated = true;

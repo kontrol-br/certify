@@ -45,7 +45,7 @@ namespace Certify.Core.Tests
                 );
 
             // run cleanup process, removes certs which have expired for over a month and have
-            // [Certify] in the friendly name
+            // [AutoSSL] in the friendly name
             CertificateManager.PerformCertificateStoreCleanup(Models.CertificateCleanupMode.AfterExpiry, new DateTime(1936, 06, 01), null, null);
 
             // check the correct certificates have been removed
