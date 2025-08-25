@@ -17,8 +17,8 @@ namespace Certify.Service
 
             return (int)HostFactory.Run(x =>
             {
-                x.SetDisplayName("Certify Certificate Manager Service");
-                x.SetDescription("Certify Certificate Manager Service");
+                x.SetDisplayName("AutoSSL Certificate Manager Service");
+                x.SetDescription("AutoSSL Certificate Manager Service");
                 x.StartAutomaticallyDelayed();
 
                 x.OnException(ex =>

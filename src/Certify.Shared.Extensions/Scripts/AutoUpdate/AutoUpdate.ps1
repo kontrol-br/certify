@@ -67,10 +67,14 @@ if (($installedVersion -and $installedVersion.DisplayVersion -ne $updateVersionS
     if ($downloadHash.Hash -eq $updateInfo.message.sha256) {
     
         # Close the UI window if currently open
-        Get-Process | Where-Object { $_.ProcessName -eq 'AutoSSL.UI' } | Foreach-Object { $_.CloseMainWindow() | Out-Null } | stop-process –force
+        $uiProcesses = @('AutoSSL.UI')
+        Get-Process | Where-Object { $uiProcesses -contains $_.ProcessName } | ForEach-Object { $_.CloseMainWindow() | Out-Null } | Stop-Process -Force
 
-        # Stop the AutoSSL.Service background service
-        Get-Service -Name "AutoSSL.Service" | Where-Object { $_.status –eq 'Running' } |  Stop-Service
+        # Stop the AutoSSL background service
+        $serviceNames = @('AutoSSL.Service')
+        foreach ($service in $serviceNames) {
+            Get-Service -Name $service -ErrorAction SilentlyContinue | Where-Object { $_.status -eq 'Running' } | Stop-Service
+        }
 
         # Run installer
         Start-Process -Wait -FilePath $setupFile -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
