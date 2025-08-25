@@ -816,4 +816,28 @@ for the certification process to work.</value>
   <data name="ClickToCopy" xml:space="preserve">
     <value>Click to copy to clipboard</value>
   </data>
+  <data name="EditServerConnection_Title" xml:space="preserve">
+    <value>Edit Server Connection</value>
+  </data>
+  <data name="EditServerConnection_Instruction" xml:space="preserve">
+    <value>By default a service API will be bound to localhost:9696. Additional service configuration is required for remote connection (bound IP, enabling https, firewall rules etc).</value>
+  </data>
+  <data name="EditServerConnection_ConnectionName" xml:space="preserve">
+    <value>Connection Name</value>
+  </data>
+  <data name="EditServerConnection_HostnameOrIP" xml:space="preserve">
+    <value>Hostname or IP</value>
+  </data>
+  <data name="EditServerConnection_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="EditServerConnection_UseHTTPS" xml:space="preserve">
+    <value>Use Https</value>
+  </data>
+  <data name="EditServerConnection_AllowUntrustedTLS" xml:space="preserve">
+    <value>Allow Untrusted TLS</value>
+  </data>
+  <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
+    <value>Use as Default</value>
+  </data>
 </root>
