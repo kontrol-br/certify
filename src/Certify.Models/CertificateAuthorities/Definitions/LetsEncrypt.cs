@@ -12,7 +12,7 @@ namespace Certify.CertificateAuthorities.Definitions
             {
                 Id = "letsencrypt.org",
                 Title = "Let's Encrypt",
-                Description = "Let's Encrypt is a free, automated, and open certificate authority. Certificates are valid for 90 days and can contain up to 100 domains/subdomains or wildcards.",
+                Description = "Let's Encrypt É uma autoridade certificadora gratuita, automatizada e aberta. Os certificados são válidos por 90 dias e podem conter até 100 domínios/subdomínios ou curingas.",
                 APIType = CertAuthorityAPIType.ACME_V2.ToString(),
                 WebsiteUrl = "https://letsencrypt.org/",
                 PrivacyPolicyUrl = "https://letsencrypt.org/privacy/",
@@ -50,11 +50,11 @@ namespace Certify.CertificateAuthorities.Definitions
                     Name="Modern Chain (ISRG Root X1)",
                     Issuer="ISRG Root X1",
                     ChainGroup="RSA",
-                    Description="Switch to this chain in order to serve the shorter chain for modern operating systems which trust ISRG Root X1.",
+                    Description="Mude para esta cadeia para servir a cadeia mais curta em sistemas operacionais modernos que confiam na ISRG Root X1.",
                     Actions= new List<ChainAction>
                     {
-                        new ChainAction (ChainActions.Delete, "933c6ddee95c9c41a40f9f50493d82be03ad87bf", "Remove ISRG Root X1 cross signed by DST Root CA X3"),
-                        new ChainAction (ChainActions.StoreCARoot, "cabd2a79a1076a31f21d253635cb039d4329a5e8", "Add ISRG Root X1 self signed")
+                        new ChainAction (ChainActions.Delete, "933c6ddee95c9c41a40f9f50493d82be03ad87bf", "Remover o ISRG Root X1 assinado cruzadamente pelo DST Root CA X3"),
+                        new ChainAction (ChainActions.StoreCARoot, "cabd2a79a1076a31f21d253635cb039d4329a5e8", "Adicionar o ISRG Root X1 autoassinado")
                     }
                 },
                 new ChainOption
@@ -63,10 +63,10 @@ namespace Certify.CertificateAuthorities.Definitions
                     Name = "Legacy Chain (DST Root CA X3)",
                     Issuer = "DST Root CA X3",
                     ChainGroup = "RSA",
-                    Description = "Switch to this chain in order to serve the longer (more compatible) chain to support operating systems which don't trust ISRG Root X1.",
+                    Description = "Mude para esta cadeia para servir a cadeia mais longa (mais compatível), a fim de oferecer suporte a sistemas operacionais que não confiam na ISRG Root X1.",
                     Actions = new List<ChainAction>
                     {
-                        new ChainAction (ChainActions.StoreCAIntermediate, "933c6ddee95c9c41a40f9f50493d82be03ad87bf", "Add ISRG Root X1 cross signed by DST Root CA X3")
+                        new ChainAction (ChainActions.StoreCAIntermediate, "933c6ddee95c9c41a40f9f50493d82be03ad87bf", "Adicionar o ISRG Root X1 assinado cruzadamente pelo DST Root CA X3")
                     }
                 }
             };
