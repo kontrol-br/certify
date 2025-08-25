@@ -511,7 +511,7 @@
     <value>すべての自動更新アイテムの証明書が更新されます。 続行しますか？</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>このサーバーでIISが検出されなかったため、重要な機能は使用できなくなりました。 IISがインストールされ、このサーバーで動作していることが分かっている場合は、サーバーのオペレーティングシステムのバージョンとIISのバージョンの詳細を提供する support@certifytheweb.com にこのエラーを報告してください</value>
+    <value>このサーバーでIISが検出されなかったため、重要な機能は使用できなくなりました。 IISがインストールされ、このサーバーで動作していることが分かっている場合は、サーバーのオペレーティングシステムのバージョンとIISのバージョンの詳細を提供する support@autossl.com にこのエラーを報告してください</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>新しい連絡先を登録すると、証明書の要求を開始できます。</value>
@@ -523,7 +523,7 @@
     <value>[コミュニティ エディション]</value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Certify マネージャー コントリビューター（https://certifytheweb.com）</value>
+    <value>Certify マネージャー コントリビューター（https://autossl.com）</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
     <value>現在の言語の翻訳:</value>
@@ -604,7 +604,7 @@
     <value>新しいアカウントを作成します</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>このサーバーをダッシュボードに追加するには、https://certifytheweb.com/profile にサインインして詳細を入力するか、新しいアカウントを登録します。</value>
+    <value>このサーバーをダッシュボードに追加するには、https://autossl.com/profile にサインインして詳細を入力するか、新しいアカウントを登録します。</value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
     <value>バック グラウンド サービスを利用 (ローカル システムとして実行) </value>

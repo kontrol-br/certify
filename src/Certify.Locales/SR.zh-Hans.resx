@@ -175,7 +175,7 @@
     <value>提交反馈</value>
   </data>
   <data name="Send_Feedback_Tip" xml:space="preserve">
-    <value>感谢您向开发团队反馈问题。如有疑问，请发邮件至 support@certifytheweb.com</value>
+    <value>感谢您向开发团队反馈问题。如有疑问，请发邮件至 support@autossl.com</value>
   </data>
   <data name="Send_Feedback_Quest" xml:space="preserve">
     <value>您有什么建议吗？</value>
@@ -259,7 +259,7 @@
     <value>密码</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>当前版本为免费试用版，仅可管理有限数量的证书。如需解除限制，请前往 https://certifytheweb.com/register 购买注册密钥。已注册用户可通过 support@certifytheweb.com 获取支持</value>
+    <value>当前版本为免费试用版，仅可管理有限数量的证书。如需解除限制，请前往 https://autossl.com/register 购买注册密钥。已注册用户可通过 support@autossl.com 获取支持</value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
     <value>未注册</value>
@@ -525,7 +525,7 @@
     <value>这将为所有自动续期项目续签证书（如适用），确定继续？</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>未检测到IIS，部分重要功能将无法使用，如果您确定本服务器已安装且正常运行IIS，请将您的操作系统和IIS版本详情发送至 support@certifytheweb.com 以反馈此问题</value>
+    <value>未检测到IIS，部分重要功能将无法使用，如果您确定本服务器已安装且正常运行IIS，请将您的操作系统和IIS版本详情发送至 support@autossl.com 以反馈此问题</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>请先注册新联系人，即可开始申请证书</value>
@@ -537,7 +537,7 @@
     <value> [社区版]</value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Certify Certificate Manager贡献者（https://certifytheweb.com）</value>
+    <value>Certify Certificate Manager贡献者（https://autossl.com）</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
     <value>当前语言翻译：</value>
@@ -618,7 +618,7 @@
     <value>创建新账户</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>如需将此服务器添加到您的面板，请填写 https://certifytheweb.com/profile 登录信息或注册新账户：</value>
+    <value>如需将此服务器添加到您的面板，请填写 https://autossl.com/profile 登录信息或注册新账户：</value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
     <value>使用后台服务（以本地系统帐户运行）</value>

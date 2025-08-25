@@ -66,7 +66,7 @@ namespace Certify.Providers.DNS.DnsMadeEasy
             Id = "DNS01.API.DnsMadeEasy",
             Title = "DnsMadeEasy DNS API (Deprecated - Use Posh-ACME version instead)",
             Description = "Validates via DnsMadeEasy APIs. This provider is deprecated and you should switch to the Posh-ACME version.",
-            HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/dnsmadeeasy",
+            HelpUrl = "https://docs.autossl.com/dns/providers/dnsmadeeasy",
             PropagationDelaySeconds = 120,
             ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{Key="apikey", Name="API Key", IsRequired=true },

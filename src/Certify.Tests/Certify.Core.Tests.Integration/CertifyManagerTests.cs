@@ -99,7 +99,7 @@ namespace Certify.Core.Tests
                 AccountKey = "",
                 AccountURI = "",
                 Title = "Dev",
-                Email = "test@certifytheweb.com",
+                Email = "test@autossl.com",
                 CertificateAuthorityId = "badca.com",
                 StorageKey = "dev",
                 IsStagingAccount = true,

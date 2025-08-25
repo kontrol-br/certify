@@ -7,7 +7,7 @@
 # - then sets the associated service port ssl binding to the new cert
 # - then updates the registry key value used by the IIS management UI for the Web Management Service ot the matching cert thumbprint (as binary value)
 
-# For more script info see https://docs.certifytheweb.com/docs/script-hooks.html
+# For more script info see https://docs.autossl.com/script-hooks.html
 
 param($result)
 

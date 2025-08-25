@@ -175,7 +175,7 @@
     <value>意見回饋</value>
   </data>
   <data name="Send_Feedback_Tip" xml:space="preserve">
-    <value>感謝您提供意見回饋，如有任何疑問，請寄信至 support@certifytheweb.com</value>
+    <value>感謝您提供意見回饋，如有任何疑問，請寄信至 support@autossl.com</value>
   </data>
   <data name="Send_Feedback_Quest" xml:space="preserve">
     <value>您有任何建議嗎？</value>
@@ -259,7 +259,7 @@
     <value>密碼</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>本版本僅供試用，最多可管理有限數量的憑證。如需移除限制，請至 https://certifytheweb.com/register 購買註冊金鑰，註冊用戶如需支援請寄信至 support@certifytheweb.com</value>
+    <value>本版本僅供試用，最多可管理有限數量的憑證。如需移除限制，請至 https://autossl.com/register 購買註冊金鑰，註冊用戶如需支援請寄信至 support@autossl.com</value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
     <value>尚未註冊</value>
@@ -525,7 +525,7 @@
     <value>這會為所有設定自動續期的項目進行續期，確定要繼續？</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>本伺服器未偵測到 IIS，部分重要功能將無法使用。若確定本機已安裝並啟用 IIS，請提供您的作業系統與 IIS 版本細節回報至 support@certifytheweb.com</value>
+    <value>本伺服器未偵測到 IIS，部分重要功能將無法使用。若確定本機已安裝並啟用 IIS，請提供您的作業系統與 IIS 版本細節回報至 support@autossl.com</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>請先註冊新聯絡人，即可開始申請憑證</value>
@@ -537,7 +537,7 @@
     <value> [社群版]</value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Certify Certificate Manager 貢獻者 （https://certifytheweb.com）</value>
+    <value>Certify Certificate Manager 貢獻者 （https://autossl.com）</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
     <value>目前語言譯者：</value>
@@ -618,7 +618,7 @@
     <value>建立新帳號</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>若要將此伺服器新增至您的儀表板，請輸入您的 https://certifytheweb.com/profile 登入資訊，或註冊新帳號：</value>
+    <value>若要將此伺服器新增至您的儀表板，請輸入您的 https://autossl.com/profile 登入資訊，或註冊新帳號：</value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
     <value>使用背景服務（以 Local System 執行）</value>

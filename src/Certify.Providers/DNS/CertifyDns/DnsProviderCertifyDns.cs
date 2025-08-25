@@ -50,11 +50,11 @@ namespace Certify.Providers.DNS.CertifyDns
                 {
                     Id = "DNS01.API.CertifyDns",
                     Title = "Certify DNS",
-                    Description = "Validates DNS Challenges via Certify DNS (a cloud based service provided by certifytheweb.com). This requires the one-time creation of CNAME records per domain.",
-                    HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/certifydns",
+                    Description = "Validates DNS Challenges via Certify DNS (a cloud based service provided by autossl.com). This requires the one-time creation of CNAME records per domain.",
+                    HelpUrl = "https://docs.autossl.com/dns/providers/certifydns",
                     PropagationDelaySeconds = 5,
                     ProviderParameters = new List<ProviderParameter>{
-                        new ProviderParameter{ Key="api",Name="API Url", IsRequired=true, IsCredential=false, IsPassword=false, Value="https://certify-dns.certifytheweb.com", Description="Base URL for a managed version of acme-dns" },
+                        new ProviderParameter{ Key="api",Name="API Url", IsRequired=true, IsCredential=false, IsPassword=false, Value="https://certify-dns.autossl.com", Description="Base URL for a managed version of acme-dns" },
                         new ProviderParameter{ Key="user",Name="API Username", IsRequired=true, IsCredential=true, IsPassword=false,  Description="API Username" },
                         new ProviderParameter{ Key="key",Name="API Key", IsRequired=true, IsCredential=true, IsPassword=false,  Description="API Key" },
 
@@ -203,7 +203,7 @@ namespace Certify.Providers.DNS.CertifyDns
             {
                 // try alternative store name
                 _settingsStoreName = "acmedns";
-                registrationCheck = EnsureExistingRegistration(_settingsStoreName, settingsPath, domainId, apiPrefix, ensureSuffix: "auth.certifytheweb.com");
+                registrationCheck = EnsureExistingRegistration(_settingsStoreName, settingsPath, domainId, apiPrefix, ensureSuffix: "auth.autossl.com");
             }
 
             // return existing if any

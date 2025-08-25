@@ -261,7 +261,7 @@ namespace Certify.UI.Windows
                 }
                 else
                 {
-                    MessageBox.Show("Certify Certificate Manager service not started. Please restart the service. If this problem persists please refer to https://docs.certifytheweb.com/docs/faq and if you cannot resolve the problem contact support@certifytheweb.com.");
+                    MessageBox.Show("Certify Certificate Manager service not started. Please restart the service. If this problem persists please refer to https://docs.autossl.com/faq and if you cannot resolve the problem contact support@autossl.com.");
                 }
 
                 if (_appViewModel.IsFeatureEnabled(FeatureFlags.SERVER_CONNECTIONS))

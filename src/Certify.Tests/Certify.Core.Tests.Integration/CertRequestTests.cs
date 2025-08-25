@@ -649,7 +649,7 @@ namespace Certify.Core.Tests
                 AccountKey = ConfigSettings["TestAuthTokenPrivateKey"],
                 AccountURI = ConfigSettings["TestAuthTokenAccountURI"],
                 Title = "Dev",
-                Email = "test@certifytheweb.com",
+                Email = "test@autossl.com",
                 CertificateAuthorityId = ConfigSettings["TestAuthTokenCA"],
                 StorageKey = "dev"
             };

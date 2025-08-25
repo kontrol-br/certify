@@ -11,5 +11,5 @@ Only the latest version is supported for updates. Users must update to stay curr
 
 ## Reporting a Vulnerability
 
-Vulnerabilities or security issues can be reported to `support at certifytheweb.com` - we do not currently operate a bug bounty program.
-During normal use the app requires elevated permissions, this has associated risks which are documented here: https://docs.certifytheweb.com/docs/guides/security
+Vulnerabilities or security issues can be reported to `support at autossl.com` - we do not currently operate a bug bounty program.
+During normal use the app requires elevated permissions, this has associated risks which are documented here: https://docs.autossl.com/guides/security

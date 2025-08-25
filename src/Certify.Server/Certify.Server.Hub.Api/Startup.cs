@@ -99,7 +99,7 @@ namespace Certify.Server.Hub.Api
                 {
                     Title = "Certify Management Hub API",
                     Version = "v1",
-                    Description = "The Certify Management Hub API provides a certificate services API for use in UI, devops, CI/CD, middleware etc. See certifytheweb.com for more details. Routes marked /internal/ may change regularly and are not intended for general use."
+                    Description = "The Certify Management Hub API provides a certificate services API for use in UI, devops, CI/CD, middleware etc. See autossl.com for more details. Routes marked /internal/ may change regularly and are not intended for general use."
                 });
 
                 c.UseAllOfToExtendReferenceSchemas();

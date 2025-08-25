@@ -52,7 +52,7 @@ namespace Certify.UI
                         PreRequestPowerShellScript = @"c:\inetpub\scripts\pre-req-script.ps1",
                         PostRequestPowerShellScript = @"c:\inetpub\scripts\post-req-script.ps1",
                         WebhookTrigger = Webhook.ON_SUCCESS,
-                        WebhookUrl = "https://certifytheweb.com/api/notify?domain=$domain&key=123456",
+                        WebhookUrl = "https://autossl.com/api/notify?domain=$domain&key=123456",
                         WebhookMethod = Webhook.METHOD_POST
                     },
                     CertificatePath = @"C:\ProgramData\ACMESharp\sysVault\99-ASSET\cert_ident1a2b3c4d-all.pfx"

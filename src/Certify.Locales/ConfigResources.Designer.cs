@@ -80,7 +80,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://certifytheweb.com/downloads/version.json.
+        ///   Looks up a localized string similar to https://autossl.com/downloads/version.json.
         /// </summary>
         public static string AppUpdateCheckURI {
             get {

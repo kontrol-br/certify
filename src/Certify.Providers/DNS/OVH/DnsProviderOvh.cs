@@ -47,7 +47,7 @@ namespace Certify.Providers.DNS.OVH
                     Id = "DNS01.API.Ovh",
                     Title = "OVH DNS API",
                     Description = "Validates via OVH APIs using credentials generated from the token creation page.",
-                    HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/ovh",
+                    HelpUrl = "https://docs.autossl.com/dns/providers/ovh",
                     PropagationDelaySeconds = 120,
                     ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{Key=ApplicationKeyParamKey, Name="Application Key", IsRequired=true },

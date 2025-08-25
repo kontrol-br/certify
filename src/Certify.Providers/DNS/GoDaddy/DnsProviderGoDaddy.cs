@@ -71,7 +71,7 @@ namespace Certify.Providers.DNS.GoDaddy
             Id = "DNS01.API.GoDaddy",
             Title = "GoDaddy DNS API",
             Description = "Validates via GoDaddy DNS APIs using credentials. Requires account with 10+ domains hosted on GoDaddy DNS.",
-            HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/godaddy",
+            HelpUrl = "https://docs.autossl.com/dns/providers/godaddy",
             PropagationDelaySeconds = 120,
             ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{ Key="authkey", Name="Auth Key", IsRequired=true },

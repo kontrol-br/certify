@@ -95,7 +95,7 @@ namespace Certify.UI.Windows
                 catch (System.Net.Http.HttpRequestException exp)
                 {
                     Log?.Information("ValidateKey:" + exp.ToString());
-                    MessageBox.Show("Communication with the AutoSSL API failed. Check your system can communicate with https://update.autoip.com.br/v1/update using a web browser. \r\n\r\nIf your system is running an older version of Windows, check https://docs.certifytheweb.com for 'TLS Cipher', as updated registry settings may be required.");
+                    MessageBox.Show("Communication with the AutoSSL API failed. Check your system can communicate with https://update.autoip.com.br/v1/update using a web browser. \r\n\r\nIf your system is running an older version of Windows, check https://docs.autossl.com for 'TLS Cipher', as updated registry settings may be required.");
                 }
                 catch (Exception exp)
                 {
@@ -161,7 +161,7 @@ namespace Certify.UI.Windows
                 }
                 else
                 {
-                    MessageBox.Show("The install could not be deactivated, check specified email address is correct for account. You can manually delete the C:\\ProgramData\\Certify\\reg_1 file and deactivate your install on https://certifytheweb.com");
+                    MessageBox.Show("The install could not be deactivated, check specified email address is correct for account. You can manually delete the C:\\ProgramData\\Certify\\reg_1 file and deactivate your install on https://autossl.com");
 
                 }
             }

@@ -115,7 +115,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This version is free for evaluation and will manage a limited number of certificates. To remove this limitation please purchase a registration key at https://certifytheweb.com/register. Registered users can get support by emailing support@certifytheweb.com.
+        ///   Looks up a localized string similar to This version is free for evaluation and will manage a limited number of certificates. To remove this limitation please purchase a registration key at https://autossl.com/register. Registered users can get support by emailing support@autossl.com.
         /// </summary>
         public static string AboutControl_TrialDetailLabel {
             get {
@@ -268,7 +268,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To add this server to your dashboard, provide your https://certifytheweb.com/profile sign in details or register a new account:.
+        ///   Looks up a localized string similar to To add this server to your dashboard, provide your https://autossl.com/profile sign in details or register a new account:.
         /// </summary>
         public static string Dashboard_AddIntro {
             get {
@@ -628,7 +628,7 @@ namespace Certify.Locales {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app.
+        ///   Looks up a localized string similar to Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://autossl.com and renew your license key, then re-open the app.
         /// </summary>
         public static string GettingStarted_LicenseExpiredMessage {
             get {
@@ -637,7 +637,7 @@ namespace Certify.Locales {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About > Enter Key.. to activate. Visit certifytheweb.com/register for more information.
+        ///   Looks up a localized string similar to You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About > Enter Key.. to activate. Visit autossl.com/register for more information.
         /// </summary>
         public static string GettingStarted_LicenseNotActivatedMessage {
             get {
@@ -655,7 +655,7 @@ namespace Certify.Locales {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com.
+        ///   Looks up a localized string similar to Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.autossl.com.
         /// </summary>
         public static string GettingStarted_ManagementHubIntro {
             get {
@@ -664,7 +664,7 @@ namespace Certify.Locales {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to For more information, documentation, community discussions and support options, see https://certifytheweb.com.
+        ///   Looks up a localized string similar to For more information, documentation, community discussions and support options, see https://autossl.com.
         /// </summary>
         public static string GettingStarted_MoreInfoIntro {
             get {
@@ -772,7 +772,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certify Certificate Manager Contributors （https://certifytheweb.com）.
+        ///   Looks up a localized string similar to Certify Certificate Manager Contributors （https://autossl.com）.
         /// </summary>
         public static string LanguageAuthor {
             get {
@@ -799,7 +799,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IIS Was not detected on this server, important functionality will be unavailable. If you know IIS is installed and working on this server, please report this error to support@certifytheweb.com providing details of your server Operating System version and IIS versions.
+        ///   Looks up a localized string similar to IIS Was not detected on this server, important functionality will be unavailable. If you know IIS is installed and working on this server, please report this error to support@autossl.com providing details of your server Operating System version and IIS versions.
         /// </summary>
         public static string MainWindow_IISNotAvailable {
             get {
@@ -1901,7 +1901,7 @@ namespace Certify.Locales {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for submitting feedback to our developers. Please email support@certifytheweb.com if you have a question..
+        ///   Looks up a localized string similar to Thanks for submitting feedback to our developers. Please email support@autossl.com if you have a question..
         /// </summary>
         public static string Send_Feedback_Tip {
             get {

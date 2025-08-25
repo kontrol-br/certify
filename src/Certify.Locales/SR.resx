@@ -201,7 +201,7 @@
     <value>Senha</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>Esta versão é gratuita para avaliação e gerenciará um número limitado de certificados. Para remover essa limitação, compre uma chave de registro em https://certifytheweb.com/register. Usuários registrados podem obter suporte enviando um e-mail para support@certifytheweb.com</value>
+    <value>Esta versão é gratuita para avaliação e gerenciará um número limitado de certificados. Para remover essa limitação, compre uma chave de registro em https://autossl.com/register. Usuários registrados podem obter suporte enviando um e-mail para support@autossl.com</value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
     <value>Não registrado</value>
@@ -466,7 +466,7 @@
     <value>Isso renovará os certificados para todos os itens de auto-renovação. Prosseguir?</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>IIS não foi detectado neste servidor; vários recursos importantes não estarão disponíveis. Se o IIS estiver instalado e em execução neste servidor, informe esse erro para support@certifytheweb.com fornecendo detalhes da versão do sistema operacional do servidor e das versões do IIS.</value>
+    <value>IIS não foi detectado neste servidor; vários recursos importantes não estarão disponíveis. Se o IIS estiver instalado e em execução neste servidor, informe esse erro para support@autossl.com fornecendo detalhes da versão do sistema operacional do servidor e das versões do IIS.</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>Comece registrando um novo contato, depois você pode começar a solicitar certificados.</value>
@@ -562,13 +562,13 @@
     <value>Versões do IIS abaixo da 8.0 não possuem suporte a SNI. Isso significa que apenas um certificado pode ser usado por endereço IP para https padrão. Se você precisar de mais de um único certificado, será necessário garantir que cada associação de certificado esteja associada ao seu próprio endereço IP, caso contrário você poderá encontrar conflitos de associação.</value>
   </data>
   <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
-    <value>Sua chave de licença expirou. Alguns recursos serão reduzidos ou ficarão indisponíveis. Faça login em https://certifytheweb.com e renove sua chave de licença, depois reabra o aplicativo.</value>
+    <value>Sua chave de licença expirou. Alguns recursos serão reduzidos ou ficarão indisponíveis. Faça login em https://autossl.com e renove sua chave de licença, depois reabra o aplicativo.</value>
   </data>
   <data name="GettingStarted_LicenseNotActivatedTitle" xml:space="preserve">
     <value>Licença não ativada</value>
   </data>
   <data name="GettingStarted_LicenseNotActivatedMessage" xml:space="preserve">
-    <value>Você está usando a Community Edition sem licença. Se estiver usando este aplicativo em uma empresa ou organização financiada, você deve adquirir uma chave de licença quando concluir sua avaliação e então usar Sobre &gt; Inserir chave.. para ativar. Visite certifytheweb.com/register para mais informações.</value>
+    <value>Você está usando a Community Edition sem licença. Se estiver usando este aplicativo em uma empresa ou organização financiada, você deve adquirir uma chave de licença quando concluir sua avaliação e então usar Sobre &gt; Inserir chave.. para ativar. Visite autossl.com/register para mais informações.</value>
   </data>
   <data name="GettingStarted_ManagementHubIntro" xml:space="preserve">
     <value>Quer gerenciar e monitorar muitos certificados em vários servidores? Conheça o AutSSLHub - detalhes em https://autoip.com.br</value>

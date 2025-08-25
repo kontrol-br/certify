@@ -28,7 +28,7 @@ namespace Certify.UI.Controls
             d.ShowDialog();
         }
 
-        private void ViewDashboard_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://dash.certifytheweb.com/");
+        private void ViewDashboard_Click(object sender, RoutedEventArgs e) => Utils.Helpers.LaunchBrowser("https://dash.autossl.com/");
 
         private void QuickStart_Click(object sender, RoutedEventArgs e)
         {

@@ -2,7 +2,7 @@
 {
     public static class DocumentationLinks
     {
-        private const string DOCS_BASE = "https://docs.certifytheweb.com/docs";
+        private const string DOCS_BASE = "https://docs.autossl.com";
 
         public const string GETTING_STARTED = DOCS_BASE + "/intro";
         public const string ABOUT_LETSENCRYPT = DOCS_BASE + "/letsencrypt";

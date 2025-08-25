@@ -13,7 +13,7 @@ namespace Certify.Core.Tests
     {
         public Dictionary<string, string> ConfigSettings = new Dictionary<string, string>();
 
-        public string PrimaryTestDomain = "test.certifytheweb.com"; // TODO: get this from debug config as it changes per dev machine
+        public string PrimaryTestDomain = "test.autossl.com"; // TODO: get this from debug config as it changes per dev machine
         public string PrimaryWebRootPath = @"c:\inetpub\wwwroot\";
 
         private string _testConfigPath = @"c:\temp\Certify\TestConfigSettings.json";

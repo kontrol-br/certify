@@ -259,7 +259,7 @@
     <value>Contraseña</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>Esta versión es gratuita para evaluación y gestionará un número limitado de certificados. Para eliminar esta limitación, compre una clave de registro en https://certifytheweb.com/register. Los usuarios registrados pueden obtener asistencia enviando un correo electrónico a support@certifytheweb.com </value>
+    <value>Esta versión es gratuita para evaluación y gestionará un número limitado de certificados. Para eliminar esta limitación, compre una clave de registro en https://autossl.com/register. Los usuarios registrados pueden obtener asistencia enviando un correo electrónico a support@autossl.com </value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
     <value>No Registrado</value>
@@ -524,7 +524,7 @@
     <value>Esto renovará los certificados para todos los elementos de auto-renovación. ¿Proceder?</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>No se detectó IIS en este servidor, una serie de características importantes no estarán disponible. Si IIS está instalado y ejecutándose en este servidor, informe este error a support@certifytheweb.com proporcionando detalles de la versión del sistema operativo del servidor y las versiones de IIS.</value>
+    <value>No se detectó IIS en este servidor, una serie de características importantes no estarán disponible. Si IIS está instalado y ejecutándose en este servidor, informe este error a support@autossl.com proporcionando detalles de la versión del sistema operativo del servidor y las versiones de IIS.</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>Comience registrando un nuevo contacto, luego puede comenzar a solicitar certificados.</value>
@@ -536,7 +536,7 @@
     <value>[Edición de la comunidad] </value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Colaboradores de Certify Certificate Manager https://certifytheweb.com</value>
+    <value>Colaboradores de Certify Certificate Manager https://autossl.com</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
     <value>Traductor de idiomas actual:</value>
@@ -617,7 +617,7 @@
     <value>Crear una nueva cuenta</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>Para agregar este servidor a su panel, proporcione sus https://certifytheweb.com/profile detalles de inicio de sesión o registre una nueva cuenta: </value>
+    <value>Para agregar este servidor a su panel, proporcione sus https://autossl.com/profile detalles de inicio de sesión o registre una nueva cuenta: </value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
     <value>Usar servicio en segundo plano (se ejecuta como sistema local) </value>

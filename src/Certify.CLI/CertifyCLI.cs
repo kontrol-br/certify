@@ -112,7 +112,7 @@ namespace Certify.CLI
             System.Console.WriteLine("certify backup export <directory or full filename> <encryption secret> : export a backup file (auto-named if a directory) using the given secret password for encryption.");
             System.Console.WriteLine("certify backup import preview <full filename> <encryption secret> : import a backup file using the given secret password for encryption. 'preview' is optional and is used to test a backup without importing anything.");
             System.Console.WriteLine("\n\n");
-            System.Console.WriteLine("For help, see the docs at https://docs.certifytheweb.com");
+            System.Console.WriteLine("For help, see the docs at https://docs.autossl.com");
         }
     }
 }

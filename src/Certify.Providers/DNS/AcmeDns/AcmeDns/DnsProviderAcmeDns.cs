@@ -66,7 +66,7 @@ namespace Certify.Providers.DNS.AcmeDns
                     Id = "DNS01.API.AcmeDns",
                     Title = "acme-dns DNS API",
                     Description = "Validates via an acme-dns server using CNAME redirection to an alternative DNS service dedicated to ACME challenge responses.",
-                    HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/acme-dns",
+                    HelpUrl = "https://docs.autossl.com/dns/providers/acme-dns",
                     PropagationDelaySeconds = 5,
                     ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{ Key="api",Name="API Url", IsRequired=true, IsCredential=false, IsPassword=false, Value="https://auth.acme-dns.io", Description="Self hosted API is recommended: https://github.com/joohoi/acme-dns" },

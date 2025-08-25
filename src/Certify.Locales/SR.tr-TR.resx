@@ -175,7 +175,7 @@
     <value>Geribildirim yolla</value>
   </data>
   <data name="Send_Feedback_Tip" xml:space="preserve">
-    <value>Geliştiricilerimize geri bildirim gönderdiğiniz için teşekkür ederiz. Bir sorunuz varsa lütfen support@certifytheweb.com adresine e-posta gönderin.</value>
+    <value>Geliştiricilerimize geri bildirim gönderdiğiniz için teşekkür ederiz. Bir sorunuz varsa lütfen support@autossl.com adresine e-posta gönderin.</value>
   </data>
   <data name="Send_Feedback_Quest" xml:space="preserve">
     <value>Önerin var mı?</value>
@@ -259,7 +259,7 @@
     <value>Parola</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>Bu sürüm değerlendirme için ücretsizdir ve sınırlı sayıda sertifikayı yönetecektir. Bu sınırlamayı kaldırmak için lütfen https://certifytheweb.com/register adresinden bir kayıt anahtarı satın alın. Kayıtlı kullanıcılar support@certifytheweb.com adresine e-posta göndererek destek alabilirler.</value>
+    <value>Bu sürüm değerlendirme için ücretsizdir ve sınırlı sayıda sertifikayı yönetecektir. Bu sınırlamayı kaldırmak için lütfen https://autossl.com/register adresinden bir kayıt anahtarı satın alın. Kayıtlı kullanıcılar support@autossl.com adresine e-posta göndererek destek alabilirler.</value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
     <value>Kayıtlı değil</value>
@@ -522,7 +522,7 @@
     <value>Bu, otomatik olarak yenilenen tüm öğeler için sertifikaları yenileyecektir. Devam etmek istiyor musunuz?</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>IIS Bu sunucuda algılanmadı, önemli işlevler kullanılamayacak. IIS'nin bu sunucuda kurulu olduğunu ve çalıştığını biliyorsanız, lütfen bu hatayı sunucunuzun İşletim Sistemi sürümünün ve IIS sürümlerinin ayrıntılarını vererek support@certifytheweb.com adresine bildirin.</value>
+    <value>IIS Bu sunucuda algılanmadı, önemli işlevler kullanılamayacak. IIS'nin bu sunucuda kurulu olduğunu ve çalıştığını biliyorsanız, lütfen bu hatayı sunucunuzun İşletim Sistemi sürümünün ve IIS sürümlerinin ayrıntılarını vererek support@autossl.com adresine bildirin.</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
     <value>Yeni bir kişi kaydederek başlayın, ardından sertifika istemeye başlayabilirsiniz.</value>
@@ -534,7 +534,7 @@
     <value>[Topluluk Sürümü]</value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Certify Yöneticisi'ne Katkıda Bulunanlar（https://certifytheweb.com）</value>
+    <value>Certify Yöneticisi'ne Katkıda Bulunanlar（https://autossl.com）</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
     <value>Mevcut Dil Tercümanı:</value>
@@ -615,7 +615,7 @@
     <value>Yeni bir hesap oluştur</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>Bu sunucuyu kontrol panelinize eklemek için https://certifytheweb.com/profile oturum açma bilgilerinizi sağlayın veya yeni bir hesap açın:</value>
+    <value>Bu sunucuyu kontrol panelinize eklemek için https://autossl.com/profile oturum açma bilgilerinizi sağlayın veya yeni bir hesap açın:</value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
     <value>Arka Plan Hizmetini Kullan (Yerel Sistem olarak çalışır)</value>

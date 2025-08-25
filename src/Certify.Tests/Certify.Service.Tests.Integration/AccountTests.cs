@@ -39,7 +39,7 @@ namespace Certify.Service.Tests.Integration
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             throw new NotImplementedException("Implement Update Account");
-            //var result = await _client.Update(new Models.ContactRegistration { EmailAddress = "certify@certifytheweb.com", AgreedToTermsAndConditions = true });
+            //var result = await _client.Update(new Models.ContactRegistration { EmailAddress = "certify@autossl.com", AgreedToTermsAndConditions = true });
 
         }
     }
