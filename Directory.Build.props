@@ -4,8 +4,8 @@
 		<AssemblyVersion>7.0.3.1</AssemblyVersion>
 		<Authors>Webprofusion Pty Ltd</Authors>
 		<Company>Webprofusion Pty Ltd</Company>
-		<Product>Certify Certificate Manager - Community Edition [dev version via github]</Product>
-		<PackageProjectUrl>https://certifytheweb.com</PackageProjectUrl>
+                <Product>AutoSSL - Community Edition [dev version via github]</Product>
+                <PackageProjectUrl>https://autossl.com</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/webprofusion/certify</RepositoryUrl>
 		<Deterministic>false</Deterministic>
 		<DebugSymbols>true</DebugSymbols>

@@ -10,7 +10,7 @@
         <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
         <EnableNETAnalyzers>True</EnableNETAnalyzers>
         <AnalysisLevel>latest-recommended</AnalysisLevel>
-        <Product>Certify The Web - Certify Certificate Manager</Product>
+        <Product>AutoSSL</Product>
         <PackageReadmeFile>readme.md</PackageReadmeFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
