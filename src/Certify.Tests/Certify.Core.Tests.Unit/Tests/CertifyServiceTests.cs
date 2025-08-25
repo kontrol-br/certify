@@ -36,12 +36,12 @@ namespace Certify.Core.Tests.Unit
             Command certifyService;
             if (args == "")
             {
-                certifyService = Command.Run(".\\Certify.Service.exe");
+                certifyService = Command.Run(".\\AutoSSL.Service.exe");
                 await Task.Delay(2000);
             }
             else
             {
-                certifyService = Command.Run(".\\Certify.Service.exe", args);
+                certifyService = Command.Run(".\\AutoSSL.Service.exe", args);
             }
 
             return certifyService;
@@ -58,7 +58,7 @@ namespace Certify.Core.Tests.Unit
             return cmdResult;
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe does not start with args from CLI")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe does not start with args from CLI")]
         public async Task TestProgramMainFailsWithArgsCli()
         {
             var certifyService = await StartCertifyService("args");
@@ -71,24 +71,24 @@ namespace Certify.Core.Tests.Unit
             Assert.AreEqual(cmdResult.ExitCode, 1067, "Unexpected exit code");
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe starts from CLI with no args")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe starts from CLI with no args")]
         public async Task TestProgramMainStartsCli()
         {
             var certifyService = await StartCertifyService();
 
             var cmdResult = await StopCertifyService(certifyService);
 
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Name Certify.Service"));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Name AutoSSL.Service"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] DisplayName Certify Certificate Manager Service (Instance: Debug)"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Description Certify Certificate Manager Service"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] InstanceName Debug"));
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] ServiceName Certify.Service$Debug"));
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("The Certify.Service$Debug service is now running, press Control+C to exit."));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] ServiceName AutoSSL.Service$Debug"));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("The AutoSSL.Service$Debug service is now running, press Control+C to exit."));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("Control+C detected, attempting to stop service."));
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("The Certify.Service$Debug service has stopped."));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("The AutoSSL.Service$Debug service has stopped."));
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/system/appversion")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/system/appversion")]
         public async Task TestCertifyServiceAppVersionRoute()
         {
             var certifyService = await StartCertifyService();
@@ -108,7 +108,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid respose on route GET /api/system/updatecheck")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid respose on route GET /api/system/updatecheck")]
         public async Task TestCertifyServiceUpdateCheckRoute()
         {
             var certifyService = await StartCertifyService();
@@ -130,7 +130,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/system/diagnostics")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/system/diagnostics")]
         public async Task TestCertifyServiceDiagnosticsRoute()
         {
             var certifyService = await StartCertifyService();
@@ -170,7 +170,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/system/datastores/providers")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/system/datastores/providers")]
         public async Task TestCertifyServiceDatastoreProvidersRoute()
         {
             var certifyService = await StartCertifyService();
@@ -189,7 +189,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/system/datastores/")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/system/datastores/")]
         public async Task TestCertifyServiceDatastoresRoute()
         {
             var certifyService = await StartCertifyService();
@@ -209,7 +209,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route POST /api/system/datastores/test")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route POST /api/system/datastores/test")]
         public async Task TestCertifyServiceDatastoresTestRoute()
         {
             var certifyService = await StartCertifyService();
@@ -236,7 +236,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route POST /api/system/datastores/update")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route POST /api/system/datastores/update")]
         public async Task TestCertifyServiceDatastoresUpdateRoute()
         {
             var certifyService = await StartCertifyService();
@@ -263,7 +263,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route POST /api/system/datastores/setdefault/{dataStoreId}")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route POST /api/system/datastores/setdefault/{dataStoreId}")]
         public async Task TestCertifyServiceDatastoresSetDefaultRoute()
         {
             var certifyService = await StartCertifyService();
@@ -290,7 +290,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route POST /api/system/datastores/delete")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route POST /api/system/datastores/delete")]
         [Ignore]
         public async Task TestCertifyServiceDatastoresDeleteRoute()
         {
@@ -325,7 +325,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route POST /api/system/datastores/copy/{sourceId}/{destId}")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route POST /api/system/datastores/copy/{sourceId}/{destId}")]
         [Ignore]
         public async Task TestCertifyServiceDatastoresCopyRoute()
         {
@@ -368,7 +368,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/server/isavailable/{serverType}")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/server/isavailable/{serverType}")]
         public async Task TestCertifyServiceServerIsavailableRoute()
         {
             var certifyService = await StartCertifyService();
@@ -388,7 +388,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/server/sitelist/{serverType}")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/server/sitelist/{serverType}")]
         public async Task TestCertifyServiceServerSitelistRoute()
         {
             var certifyService = await StartCertifyService();
@@ -407,7 +407,7 @@ namespace Certify.Core.Tests.Unit
             }
         }
 
-        [TestMethod, Description("Validate that Certify.Service.exe returns a valid response on route GET /api/server/version/{serverType}")]
+        [TestMethod, Description("Validate that AutoSSL.Service.exe returns a valid response on route GET /api/server/version/{serverType}")]
         public async Task TestCertifyServiceServerVersionRoute()
         {
             var certifyService = await StartCertifyService();

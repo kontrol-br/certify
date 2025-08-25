@@ -945,12 +945,12 @@ namespace Certify.Management
 
                 var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
-                var cliPath = System.IO.Path.Combine(AppContext.BaseDirectory, isWindows ? "Certify.exe" : "certify");
+                var cliPath = System.IO.Path.Combine(AppContext.BaseDirectory, isWindows ? "AutoSSL.exe" : "autossl");
 
                 if (!File.Exists(cliPath) && AppContext.BaseDirectory.IndexOf("service", StringComparison.InvariantCultureIgnoreCase) > -1)
                 {
                     // if running as a deployed service in a subdirectory, adjust the path to the executable
-                    cliPath = System.IO.Path.Combine(AppContext.BaseDirectory, "..", isWindows ? "certify.exe" : "certify");
+                    cliPath = System.IO.Path.Combine(AppContext.BaseDirectory, "..", isWindows ? "AutoSSL.exe" : "autossl");
                 }
 
                 if (!File.Exists(cliPath))

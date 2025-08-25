@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C4957629-D567-4934-A193-37B325E7398F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Certify.UI</RootNamespace>
-    <AssemblyName>Certify.UI</AssemblyName>
+    <RootNamespace>AutoSSL.UI</RootNamespace>
+    <AssemblyName>AutoSSL.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <FileAlignment>512</FileAlignment>
