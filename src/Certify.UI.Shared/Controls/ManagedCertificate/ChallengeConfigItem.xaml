@@ -281,7 +281,7 @@
 
             <StackPanel>
                 <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-                    <Label Width="160" Content="CNAME Delegation Rule" />
+                    <Label Width="160" Content="Regra de Delegação CNAME" />
                     <TextBox
                         x:Name="ChallengeDelegationRule"
                         Width="270"
