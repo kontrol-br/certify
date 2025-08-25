@@ -81,7 +81,7 @@
                             HorizontalAlignment="Left"
                             Click="Import_Click"
                             DockPanel.Dock="Top">
-                            Preview Importar..
+                            Preview Importação..
                         </Button>
 
 
@@ -93,7 +93,7 @@
                             Click="CompleteImport_Click"
                             DockPanel.Dock="Bottom"
                             Visibility="{Binding IsImportReady, Converter={StaticResource ResourceKey=BoolToVisConverter}}">
-                            Complete Import
+                            Completar Importação
                         </Button>
                     </StackPanel>
 

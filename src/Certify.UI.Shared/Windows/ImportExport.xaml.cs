@@ -83,10 +83,10 @@ namespace Certify.UI.Windows
         {
             if (!isPreview && results.All(r => r.HasError == false))
             {
-                MainViewModel.ShowNotification("Import completed OK", Shared.NotificationType.Success);
+                MainViewModel.ShowNotification("Importação completeda OK", Shared.NotificationType.Success);
             }
 
-            PrepareImportPreview(Model.Package, results, isPreview ? "Import Preview" : "Import Results");
+            PrepareImportPreview(Model.Package, results, isPreview ? "Preview de Importação" : "Resultados da Importação");
 
             if (results.All(r => r.HasError == false))
             {
@@ -102,7 +102,7 @@ namespace Certify.UI.Windows
 
         private async void CompleteImport_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you wish to perform the import as shown in the preview? The import cannot be reverted once complete.", "Perform Import?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Tem certeza de que deseja realizar a importação conforme mostrado na pré-visualização? A importação não poderá ser revertida após a conclusão.", "Importar?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 Model.InProgress = true;
 
