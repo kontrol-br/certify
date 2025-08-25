@@ -196,7 +196,7 @@
                                 NavigateUri="{Binding SelectedChallengeProvider.HelpUrl}"
                                 RequestNavigate="HelpUrl_RequestNavigate"
                                 ToolTip="{Binding SelectedChallengeProvider.HelpUrl}">
-                                Browse Documentation
+                                Ver Documentação
                             </Hyperlink>
                         </Span>
 
@@ -230,7 +230,7 @@
                         <Button
                             x:Name="AddStoredCredential"
                             Click="AddStoredCredential_Click"
-                            Content="New" />
+                            Content="Nova" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
