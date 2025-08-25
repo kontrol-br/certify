@@ -765,4 +765,28 @@
   <data name="ClickToCopy" xml:space="preserve">
     <value>Clique para copiar para a área de transferência</value>
   </data>
+  <data name="EditServerConnection_Title" xml:space="preserve">
+    <value>Editar conexão do servidor</value>
+  </data>
+  <data name="EditServerConnection_Instruction" xml:space="preserve">
+    <value>Por padrão, uma API de serviço será vinculada a localhost:9696. Configuração adicional é necessária para conexão remota (IP vinculado, habilitar HTTPS, regras de firewall etc.).</value>
+  </data>
+  <data name="EditServerConnection_ConnectionName" xml:space="preserve">
+    <value>Nome da conexão</value>
+  </data>
+  <data name="EditServerConnection_HostnameOrIP" xml:space="preserve">
+    <value>Nome do host ou IP</value>
+  </data>
+  <data name="EditServerConnection_Port" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="EditServerConnection_UseHTTPS" xml:space="preserve">
+    <value>Usar HTTPS</value>
+  </data>
+  <data name="EditServerConnection_AllowUntrustedTLS" xml:space="preserve">
+    <value>Permitir TLS não confiável</value>
+  </data>
+  <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
+    <value>Usar como padrão</value>
+  </data>
 </root>

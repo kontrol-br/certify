@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
-    Title="Edit Server Connection"
+    Title="{x:Static res:SR.EditServerConnection_Title}"
     Width="540"
     Height="320"
     Background="{DynamicResource MahApps.Brushes.Window.Background}"
@@ -32,7 +32,8 @@
             VerticalAlignment="Top"
             DockPanel.Dock="Top"
             Style="{StaticResource Instructions}"
-            TextWrapping="Wrap"><Run Text="By default a service API will be bound to localhost:9696. Additional service configuration is required for remote connection (bound IP, enabling https, firewall rules etc)." /><LineBreak /><Run /></TextBlock>
+            Text="{x:Static res:SR.EditServerConnection_Instruction}"
+            TextWrapping="Wrap" />
         <StackPanel
             Margin="0,0,0,8"
             DockPanel.Dock="Top"
@@ -40,7 +41,7 @@
             <Label
                 Width="120"
                 Margin="0,0,8,0"
-                Content="Connection Name" />
+                Content="{x:Static res:SR.EditServerConnection_ConnectionName}" />
             <TextBox
                 Width="300"
                 Height="23"
@@ -58,7 +59,7 @@
             <Label
                 Width="120"
                 Margin="0,0,8,0"
-                Content="Hostname or IP" />
+                Content="{x:Static res:SR.EditServerConnection_HostnameOrIP}" />
             <TextBox
                 Width="300"
                 Height="23"
@@ -74,7 +75,7 @@
                 Width="120"
                 Margin="0,0,8,0"
                 VerticalAlignment="Top"
-                Content="Port" />
+                Content="{x:Static res:SR.EditServerConnection_Port}" />
             <TextBox
                 Width="300"
                 Height="23"
@@ -89,7 +90,7 @@
                 Width="120"
                 Margin="0,0,8,0"
                 VerticalAlignment="Top"
-                Content="Use Https" />
+                Content="{x:Static res:SR.EditServerConnection_UseHTTPS}" />
             <CheckBox IsChecked="{Binding Item.UseHTTPS}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
@@ -97,7 +98,7 @@
                 Width="120"
                 Margin="0,0,8,0"
                 VerticalAlignment="Top"
-                Content="Allow Untrusted TLS" />
+                Content="{x:Static res:SR.EditServerConnection_AllowUntrustedTLS}" />
             <CheckBox IsChecked="{Binding Item.AllowUntrusted}" />
         </StackPanel>
 
@@ -106,7 +107,7 @@
                 Width="120"
                 Margin="0,0,8,0"
                 VerticalAlignment="Top"
-                Content="Use as Default" />
+                Content="{x:Static res:SR.EditServerConnection_UseAsDefault}" />
             <CheckBox IsChecked="{Binding Item.IsDefault}" />
         </StackPanel>
 
