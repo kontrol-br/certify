@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text;
+using System.IO;
 using Certify.Client;
 using Certify.Models;
 using Certify.Models.Hub;
@@ -108,7 +109,8 @@ namespace Certify.Server.Hub.Api.Controllers
 
                 if (format == "pfx")
                 {
-                    return new FileContentResult(exportResult.Result, "application/x-pkcs12") { FileDownloadName = "certificate.pfx" };
+                    var fileName = Path.GetFileName(managedCert.CertificatePath) ?? "certificate.pfx";
+                    return new FileContentResult(exportResult.Result, "application/x-pkcs12") { FileDownloadName = fileName };
                 }
                 else
                 {
