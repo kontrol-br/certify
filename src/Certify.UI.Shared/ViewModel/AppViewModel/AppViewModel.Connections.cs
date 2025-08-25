@@ -76,7 +76,7 @@ namespace Certify.UI.ViewModel
             {
                 if (_certifyClient == null)
                 {
-                    return "(Not Connected)";
+                    return "(Não Conectado)";
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace Certify.UI.ViewModel
             IsServiceAvailable = false;
             var useInitialConnectionRetry = false;
 
-            ConnectionState = "Connecting...";
+            ConnectionState = "Conectando...";
 
             var maxAttempts = 3;
 
@@ -154,11 +154,11 @@ namespace Certify.UI.ViewModel
             {
                 var connectionConfig = conn ?? GetDefaultServerConnection(_configManager);
 
-                Debug.WriteLine("Attempting connection to management service..");
+                Debug.WriteLine("Tentando conexão com o serviço de gerenciamento..");
 
                 if (attemptsRemaining != maxAttempts)
                 {
-                    Debug.WriteLine("Service not yet available. Waiting a few seconds..");
+                    Debug.WriteLine("Serviço não disponível. Aguarde alguns segundos...");
                     // the service could still be starting up or port may be reallocated
                     var waitMS = (maxAttempts - attemptsRemaining) * 1000;
                     await Task.Delay(waitMS, cancellationToken);
@@ -178,7 +178,7 @@ namespace Certify.UI.ViewModel
                         // give up
                         if (attemptsRemaining == 0)
                         {
-                            ConnectionState = IsServiceAvailable ? "Connected" : "Not Connected";
+                            ConnectionState = IsServiceAvailable ? "Conectado" : "Não Conectado";
                             RaisePropertyChangedEvent(nameof(ConnectionState));
                             RaisePropertyChangedEvent(nameof(ConnectionTitle));
 
@@ -187,7 +187,7 @@ namespace Certify.UI.ViewModel
                     }
                     else
                     {
-                        Debug.WriteLine("Connected to management service.");
+                        Debug.WriteLine("Conectado ao serviço de gerenciamento.");
                         _certifyClient = clientConnection;
                     }
                 }
@@ -195,7 +195,7 @@ namespace Certify.UI.ViewModel
 
             if (cancellationToken.IsCancellationRequested == true || IsServiceAvailable == false)
             {
-                ConnectionState = IsServiceAvailable ? "Connected" : "Not Connected";
+                ConnectionState = IsServiceAvailable ? "Conectado" : "Não Conectado";
 
                 RaisePropertyChangedEvent(nameof(ConnectionState));
                 RaisePropertyChangedEvent(nameof(ConnectionTitle));
@@ -220,9 +220,9 @@ namespace Certify.UI.ViewModel
             catch (Exception exp)
             {
                 // failed to connect to status signalr hub
-                Log?.Error($"Failed to connect to status hub {(conn?.UseHTTPS == true ? "https" : "http")}{conn?.Host}:{conn?.Port}/api/status: {exp}");
+                Log?.Error($"Falha ao conectar com o Hub {(conn?.UseHTTPS == true ? "https" : "http")}{conn?.Host}:{conn?.Port}/api/status: {exp}");
 
-                ConnectionState = IsServiceAvailable ? "Connected" : "Not Connected";
+                ConnectionState = IsServiceAvailable ? "Conectado" : "Não Conectado";
 
                 RaisePropertyChangedEvent(nameof(ConnectionState));
                 RaisePropertyChangedEvent(nameof(ConnectionTitle));
@@ -230,7 +230,7 @@ namespace Certify.UI.ViewModel
                 return false;
             }
 
-            ConnectionState = IsServiceAvailable ? "Connected" : "Not Connected";
+            ConnectionState = IsServiceAvailable ? "Conectado" : "Não Conectado";
 
             RaisePropertyChangedEvent(nameof(ConnectionState));
             RaisePropertyChangedEvent(nameof(ConnectionTitle));
@@ -269,7 +269,7 @@ namespace Certify.UI.ViewModel
 
                 if (v.Major != assemblyVersion.Major)
                 {
-                    throw new Exception($"Mismatched service version ({v}). Please ensure the old version of the app has been fully uninstalled, then re-install the latest version.");
+                    throw new Exception($"Versão de serviço diferente ({v}). Tenha certeza que a versão antiga do aplicativo tenha sido desinstalada, então instale a versão mais nova.");
                 }
                 else
                 {
