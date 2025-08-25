@@ -82,7 +82,7 @@ namespace Certify.Management
 
                 steps.Add(new ActionStep
                 {
-                    Title = "Summary",
+                    Title = "Sumário",
                     Description = certDescription.ToString()
                 });
 
@@ -222,7 +222,7 @@ namespace Certify.Management
 
                 steps.Add(new ActionStep
                 {
-                    Title = $"{stepIndex}. Validation",
+                    Title = $"{stepIndex}. Validação",
                     Category = "Validation",
                     Description = challengeInfo.ToString()
                 });
