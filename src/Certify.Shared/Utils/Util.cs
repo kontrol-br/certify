@@ -309,10 +309,15 @@ namespace Certify.Management
 
         public static string GetUserLocalAppDataFolder()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Models.SharedConstants.APPDATASUBFOLDER);
-            if (!System.IO.Directory.Exists(path))
+            // allow override via CERTIFY_APPDATA_PATH environment variable
+            var envPath = Environment.GetEnvironmentVariable("CERTIFY_APPDATA_PATH");
+            var path = !string.IsNullOrEmpty(envPath)
+                ? envPath
+                : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Models.SharedConstants.APPDATASUBFOLDER);
+
+            if (!Directory.Exists(path))
             {
-                System.IO.Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path);
             }
 
             return path;
