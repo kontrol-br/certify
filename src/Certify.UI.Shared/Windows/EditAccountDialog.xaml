@@ -33,7 +33,7 @@
             <TabItem
                 MinWidth="140"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Account Settings"
+                Header="Configurações da Conta"
                 IsSelected="true">
                 <DockPanel Margin="8,0,0,0">
                     <TextBlock
@@ -50,7 +50,7 @@
                         <Label
                             Width="120"
                             Margin="0,0,8,0"
-                            Content="Certificate Authority" />
+                            Content="Autoridade Certificadora" />
                         <ComboBox
                             x:Name="CertificateAuthorityList"
                             Width="300"
@@ -111,26 +111,26 @@
             <TabItem
                 MinWidth="140"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Advanced">
+                Header="Avançado">
                 <ScrollViewer MaxHeight="350">
                     <DockPanel Margin="8,0,8,0">
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Mode &amp; Preferences</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Modo &amp; Preferencias</TextBlock>
                         <StackPanel DockPanel.Dock="Top">
-                            <TextBlock Style="{StaticResource Instructions}">If you need to test certificate requests without affecting your CA rate limit you can use an account which only issues test (staging) certificates:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Se você precisar testar solicitações de certificado sem afetar o limite de taxa da sua autoridade certificadora (CA), pode usar uma conta que emite apenas certificados de teste (staging):</TextBlock>
                             <CheckBox
                                 x:Name="IsStagingMode"
                                 Margin="4,4,0,4"
-                                Content="Use Staging (Test) Mode"
+                                Content="Usar Modo Staging (Teste)"
                                 IsChecked="{Binding Item.IsStaging}" />
                         </StackPanel>
                         <StackPanel DockPanel.Dock="Top">
-                            <TextBlock Style="{StaticResource Instructions}">The authority may offer an &quot;alternative chain&quot; using a different root certificate:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">A autoridade pode oferecer uma &quot;cadeia alternativa&quot; usando um certificado raiz diferente:</TextBlock>
                             <StackPanel Margin="0,0,0,4" Orientation="Horizontal">
                                 <Label
                                     Width="120"
                                     Margin="0,0,8,0"
                                     VerticalAlignment="Top"
-                                    Content="Preferred Chain" />
+                                    Content="Cadeia CA Preferida" />
                                 <TextBox
                                     Width="300"
                                     Height="23"
@@ -143,8 +143,8 @@
                         </StackPanel>
 
 
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">External Account Binding</TextBlock>
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">If required by your Certificate Authority, you can provide external account binding details here.</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Ligações com Contas Externas</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Se for exigido pela sua Autoridade Certificadora, você pode fornecer os detalhes de vinculação de conta externa aqui.</TextBlock>
 
 
                         <StackPanel
@@ -188,7 +188,7 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Key Algorithm" />
+                                Content="Chave Algoritmo" />
                             <TextBox
                                 Width="300"
                                 Height="23"
@@ -198,8 +198,8 @@
                                 Text="{Binding Item.EabKeyAlgorithm}"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Import or Custom Account Details</TextBlock>
-                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">If you need to import an account from another client instead of registering a new account with the CA, or you need to customize or pre-generate the account key, you can optionally specify the Account URI and/or Account Key (PEM encoded private key):</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Importar ou Personalizar Detalhes da Conta</TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Se você precisar importar uma conta de outro cliente em vez de registrar uma nova conta com a Autoridade Certificadora (CA), ou se precisar personalizar ou pré-gerar a chave da conta, você pode, opcionalmente, especificar o URI da Conta e/ou a Chave da Conta (chave privada codificada em PEM):</TextBlock>
 
                         <StackPanel
                             Margin="0,0,0,4"
@@ -209,7 +209,7 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Account URI" />
+                                Content="URI da Conta" />
                             <TextBox
                                 x:Name="AccountURI"
                                 Width="300"
@@ -227,7 +227,7 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Account Key" />
+                                Content="Chave da Conta" />
                             <PasswordBox
                                 x:Name="AccountKey"
                                 Width="300"
@@ -243,27 +243,27 @@
                             DockPanel.Dock="Top"
                             Orientation="Vertical">
 
-                            <TextBlock Style="{StaticResource Instructions}">For account pre-approval and other advanced scenarios you can optionally pre-generate a custom keypair for your ACME account:</TextBlock>
+                            <TextBlock Style="{StaticResource Instructions}">Para pré-aprovação de conta e outros cenários avançados, você pode, opcionalmente, pré-gerar um par de chaves personalizado para sua conta ACME:</TextBlock>
                             <Button
                                 x:Name="AccountKeyGenerate"
                                 Margin="12,0,0,0"
                                 HorizontalAlignment="Left"
                                 Click="AccountKeyGenerate_Click"
-                                Content="Generate" />
+                                Content="Gerar" />
                         </StackPanel>
                         <StackPanel
                             x:Name="AccountRollover"
                             Margin="0,0,0,4"
                             DockPanel.Dock="Top"
                             Orientation="Vertical">
-                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Account Key Rollover</TextBlock>
-                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">You can optionally change the keypair associated with your ACME account:</TextBlock>
+                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheadingWithMargin}">Troca de Chave da Conta</TextBlock>
+                            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Você pode, opcionalmente, alterar o par de chaves associado à sua conta ACME:</TextBlock>
                             <Button
                                 x:Name="AccountKeyChange"
                                 Width="180"
                                 Margin="280,0,0,0"
                                 Click="AccountKeyChange_Click"
-                                Content="Change Account Key" />
+                                Content="Trocar Chave da Conta" />
                         </StackPanel>
                     </DockPanel>
                 </ScrollViewer>
