@@ -15,15 +15,15 @@ namespace Certify.Providers.DeploymentTasks.Core
             Definition = new DeploymentProviderDefinition
             {
                 Id = "Certify.Providers.DeploymentTasks.Mock",
-                Title = "Mock Task",
+                Title = "Simular Tarefa",
                 IsExperimental = true,
                 UsageType = DeploymentProviderUsage.Any,
                 SupportedContexts = DeploymentContextType.LocalAsService,
-                Description = "Used to test task execution success, failure and logging",
+                Description = "Usada para testar a execução - Sucesso, Falha ou Log",
                 ProviderParameters = new List<ProviderParameter>
                 {
-                    new ProviderParameter{ Key="message", Name="Message", IsRequired=true, IsCredential=false, Description="Test message"  },
-                    new ProviderParameter{ Key="throw", Name="Throw on demand", IsRequired=true, IsCredential=false, Description="If true, throw exception during task", Type= OptionType.Boolean  }
+                    new ProviderParameter{ Key="message", Name="Message", IsRequired=true, IsCredential=false, Description="Mensagem de teste"  },
+                    new ProviderParameter{ Key="throw", Name="Throw on demand", IsRequired=true, IsCredential=false, Description="Se verdadeiro, retorna exceção durante o teste", Type= OptionType.Boolean  }
                 }
             };
         }
@@ -47,9 +47,9 @@ namespace Certify.Providers.DeploymentTasks.Core
             if (string.IsNullOrEmpty(msg))
             {
                 // fail task
-                execParams.Log?.Warning($"Mock Task says: <msg not supplied, task will fail>");
+                execParams.Log?.Warning($"Tarefa simulada diz: <msg not supplied, tarefa irá falhar>");
 
-                return await Task.FromResult(new List<ActionResult> { new ActionResult("Mock Task message not supplied.", false) });
+                return await Task.FromResult(new List<ActionResult> { new ActionResult("Mensagem de tarefa simulada não fornecida.", false) });
             }
             else
             {
@@ -76,7 +76,7 @@ namespace Certify.Providers.DeploymentTasks.Core
 
                 if (!execParams.Settings.Parameters.Exists(s => s.Key == p.Key) && p.IsRequired)
                 {
-                    results.Add(new ActionResult($"Required parameter not supplied: {p.Name}", false));
+                    results.Add(new ActionResult($"Parâmetro requerido não fornecido: {p.Name}", false));
                 }
             }
 

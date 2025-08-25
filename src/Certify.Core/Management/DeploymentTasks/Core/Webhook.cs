@@ -28,16 +28,16 @@ namespace Certify.Providers.DeploymentTasks.Core
                 Id = "Certify.Providers.DeploymentTasks.Webhook",
                 Title = "Webhook",
                 IsExperimental = false,
-                Description = "Call a custom webhook on renewal success or failure",
+                Description = "Chamar um webhook personalizado em caso de sucesso ou falha na renovação",
                 SupportedContexts = DeploymentContextType.LocalAsService,
                 UsageType = DeploymentProviderUsage.Any,
                 ProviderParameters = new System.Collections.Generic.List<ProviderParameter>
                 {
-                     new ProviderParameter{ Key="url", Name="Webhook URL", IsRequired=true, IsCredential=false , Description="The url for the webhook request" },
-                     new ProviderParameter{ Key="trigger", Name="Webhook Trigger", IsRequired=true, IsCredential=false , Description="The trigger for the webhook (None, Success, Error)", OptionsList="None;Success;Error", Value="None" },
-                     new ProviderParameter{ Key="method", Name="Http Method", IsRequired=true, IsCredential=false , Description="The http method for the webhook request", OptionsList="GET;POST;", Value="POST" },
-                     new ProviderParameter{ Key="contenttype", Name="Content Type", IsRequired=true, IsCredential=false , Description="The http content type header for the webhook request", Value="application/json" },
-                     new ProviderParameter{ Key="contentbody", Name="Content Body", IsRequired=true, IsCredential=false , Description="The http body template for the webhook request" },
+                     new ProviderParameter{ Key="url", Name="Webhook URL", IsRequired=true, IsCredential=false , Description="A URL para a chamada webhook" },
+                     new ProviderParameter{ Key="trigger", Name="Webhook Trigger", IsRequired=true, IsCredential=false , Description="O gatilho para o webhook (Nenhum, Successo, Erro)", OptionsList="None;Success;Error", Value="None" },
+                     new ProviderParameter{ Key="method", Name="Método HTTP", IsRequired=true, IsCredential=false , Description="O método http para a chamada webhook", OptionsList="GET;POST;", Value="POST" },
+                     new ProviderParameter{ Key="contenttype", Name="Tipo de conteúdo", IsRequired=true, IsCredential=false , Description="O tipo do conteúdo http para a chamada webhook", Value="application/json" },
+                     new ProviderParameter{ Key="contentbody", Name="Corpo do conteúdo", IsRequired=true, IsCredential=false , Description="O modelo de corpo HTTP para a requisição do webhook" },
                 }
             };
         }
@@ -73,7 +73,7 @@ namespace Certify.Providers.DeploymentTasks.Core
             }
             catch (Exception exp)
             {
-                return new List<ActionResult> { new ActionResult("Webhook call failed: " + exp.ToString(), false) };
+                return new List<ActionResult> { new ActionResult("Chamada Webhook Falhou: " + exp.ToString(), false) };
             }
         }
 
@@ -91,14 +91,14 @@ namespace Certify.Providers.DeploymentTasks.Core
 
             if (string.IsNullOrEmpty(method))
             {
-                results.Add(new ActionResult($"The webhook HTTP method must be a selected.", false));
+                results.Add(new ActionResult($"O método HTTP do webhook deve ser selecionado.", false));
             }
 
             return await Task.FromResult(results);
         }
 
         /// <summary>
-        /// Sends an HTTP Request with the requested parameters 
+        /// Sends an HTTP Request with the requested parameters
         /// </summary>
         /// <param name="url"></param>
         /// <param name="method"></param>
@@ -133,7 +133,7 @@ namespace Certify.Providers.DeploymentTasks.Core
                         break;
 
                     default:
-                        throw new ArgumentException("Method must be GET or POST", "method");
+                        throw new ArgumentException("Método precisa ser GET ou POST", "method");
                 }
 
                 var resp = await client.SendAsync(message);
@@ -143,7 +143,7 @@ namespace Certify.Providers.DeploymentTasks.Core
         }
 
         /// <summary>
-        /// Provides templating variable replacement for Config values 
+        /// Provides templating variable replacement for Config values
         /// </summary>
         /// <param name="template"></param>
         /// <param name="config"></param>

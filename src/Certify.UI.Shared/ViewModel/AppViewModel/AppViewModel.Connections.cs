@@ -108,7 +108,7 @@ namespace Certify.UI.ViewModel
                 {
                     if (!cancellationToken.IsCancellationRequested)
                     {
-                        MessageBox.Show("The server connection could not be completed. Check the service is running and that the connection details are correct.");
+                        MessageBox.Show("O servidor não pode ser conectado. Verifique se o serviço está rodando e se as configurações estão corretas.");
                     }
                 }
 

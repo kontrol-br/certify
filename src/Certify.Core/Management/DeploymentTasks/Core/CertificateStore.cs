@@ -20,16 +20,16 @@ namespace Certify.Providers.DeploymentTasks.Core
             Definition = new DeploymentProviderDefinition
             {
                 Id = "Certify.Providers.DeploymentTasks.CertificateStore",
-                Title = "Deploy to Certificate Store (Local Machine)",
-                DefaultTitle = "Store Certificate",
+                Title = "Implantar no repositório de certificados (Máquina Local)",
+                DefaultTitle = "Armazenar Certificado",
                 IsExperimental = false,
                 UsageType = DeploymentProviderUsage.PostRequest,
-                Description = "[NOTE: not normally required as cert is stored automatically by standard auto deployment.] This task stores the certificate in the local Certificate Store with custom name.",
+                Description = "[NOTA: Normalmente não é necessário, pois o certificado é armazenado automaticamente pelo processo padrão de implantação automática. Esta tarefa armazena o certificado no Repositório de Certificados local com um nome personalizado.",
                 SupportedContexts = DeploymentContextType.LocalAsService | DeploymentContextType.LocalAsUser,
                 ProviderParameters = new System.Collections.Generic.List<ProviderParameter>
                 {
                      new ProviderParameter{ Key="storetype", Name="Store", IsRequired=true, IsCredential=false, OptionsList="default=Default; My=Personal (My); WebHosting=Web Hosting", Value="default"  },
-                     new ProviderParameter{ Key="friendlyname", Name="Custom Friendly Name", IsRequired=false, IsCredential=false,  Type= OptionType.String,  Description="(optional) custom friendly name for certificate in store."  },
+                     new ProviderParameter{ Key="friendlyname", Name="Custom Friendly Name", IsRequired=false, IsCredential=false,  Type= OptionType.String,  Description="(optional) nome amigável para armazenar o certificados no repositório"  },
                 }
             };
         }
@@ -95,17 +95,17 @@ namespace Certify.Providers.DeploymentTasks.Core
                     {
                         // certHash = storedCert.GetCertHash();
 
-                        results.Add(new ActionResult("Certificate stored OK", true));
+                        results.Add(new ActionResult("Certificado Armazenado OK", true));
                     }
                 }
                 catch (Exception exp)
                 {
-                    results.Add(new ActionResult("Error storing certificate :: " + exp.Message, false));
+                    results.Add(new ActionResult("Erro armazenando certificado :: " + exp.Message, false));
                 }
             }
             else
             {
-                results.Add(new ActionResult($"Would store certificate in Local Certificate Store [{certStoreName}]", true));
+                results.Add(new ActionResult($"Armazenaria o certificado no Repositório de Certificados Local. [{certStoreName}]", true));
             }
 
             return results;
@@ -124,7 +124,7 @@ namespace Certify.Providers.DeploymentTasks.Core
 
                 if (!(requestedStore == "default" || requestedStore.ToLower() == "my" || requestedStore == "webhosting"))
                 {
-                    results.Add(new ActionResult($"Invalid Certificate Store Name: {requestedStore}", false));
+                    results.Add(new ActionResult($"Nome de Repositório Inválido: {requestedStore}", false));
                 }
             }
 
