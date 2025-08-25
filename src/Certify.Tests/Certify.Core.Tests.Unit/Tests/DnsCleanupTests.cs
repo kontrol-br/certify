@@ -41,7 +41,7 @@ namespace Certify.Core.Tests.Unit
         class MockDnsProviderPlugin : IDnsProviderProviderPlugin
         {
             public IDnsProvider GetProvider(Type pluginType, string id) => id == MockProviderId ? new MockDnsProvider() : null;
-            public IEnumerable<ChallengeProviderDefinition> GetProviders(Type pluginType) => new List<ChallengeProviderDefinition>
+            public List<ChallengeProviderDefinition> GetProviders(Type pluginType) => new List<ChallengeProviderDefinition>
             {
                 new ChallengeProviderDefinition
                 {
