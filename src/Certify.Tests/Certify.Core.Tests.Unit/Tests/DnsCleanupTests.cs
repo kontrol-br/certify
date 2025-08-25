@@ -7,6 +7,7 @@ using Certify.Management;
 using Certify.Models;
 using Certify.Models.Config;
 using Certify.Models.Providers;
+using Certify.Models.Plugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Certify.Core.Tests.Unit
