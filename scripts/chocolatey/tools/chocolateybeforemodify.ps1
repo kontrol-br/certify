@@ -8,7 +8,11 @@
 #  the currently installed version, not from the new upgraded package version.
 
 # Close the UI window if currently open
-Get-Process | Where-Object {$_.ProcessName -eq 'AutoSSL.UI'} | Foreach-Object { $_.CloseMainWindow() | Out-Null } | stop-process –force
+Get-Process | Where-Object { $_.ProcessName -eq 'AutoSSL.UI' } |
+    ForEach-Object { $_.CloseMainWindow() | Out-Null } |
+    Stop-Process -Force
 
-# Stop the AutoSSL.Service background service
-Get-Service AutoSSL.Service | Where {$_.status –eq 'Running'} |  Stop-Service
+# Stop the AutoSSL background service
+Get-Service -Name 'AutoSSL.Service' -ErrorAction SilentlyContinue |
+    Where-Object { $_.status -eq 'Running' } |
+    Stop-Service

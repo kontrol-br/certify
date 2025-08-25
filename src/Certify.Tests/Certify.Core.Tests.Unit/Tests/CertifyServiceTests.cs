@@ -79,8 +79,8 @@ namespace Certify.Core.Tests.Unit
             var cmdResult = await StopCertifyService(certifyService);
 
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Name AutoSSL.Service"));
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] DisplayName Certify Certificate Manager Service (Instance: Debug)"));
-            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Description Certify Certificate Manager Service"));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] DisplayName AutoSSL Certificate Manager Service (Instance: Debug)"));
+            Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] Description AutoSSL Certificate Manager Service"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] InstanceName Debug"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("[Success] ServiceName AutoSSL.Service$Debug"));
             Assert.IsTrue(cmdResult.StandardOutput.Contains("The AutoSSL.Service$Debug service is now running, press Control+C to exit."));
