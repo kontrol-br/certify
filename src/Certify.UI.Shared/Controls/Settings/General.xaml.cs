@@ -243,16 +243,16 @@ namespace Certify.UI.Controls.Settings
 
         private void CultureSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CultureSelector.SelectedValue != null)
+            if (!EditModel.SettingsInitialised) return;
+            var cultureID = CultureSelector.SelectedValue?.ToString();
+            if (cultureID == EditModel.MainViewModel.UISettings?.PreferredUICulture) return;
+
+            if (!string.IsNullOrEmpty(cultureID))
             {
                 try
                 {
-                    var cultureID = CultureSelector.SelectedValue?.ToString();
-                    if (!string.IsNullOrEmpty(cultureID))
-                    {
-                        ((ICertifyApp)Application.Current).ChangeCulture(cultureID, true);
-                        EditModel.MainViewModel.UISettings.PreferredUICulture = cultureID;
-                    }
+                    ((ICertifyApp)Application.Current).ChangeCulture(cultureID, true);
+                    EditModel.MainViewModel.UISettings.PreferredUICulture = cultureID;
                 }
                 catch
                 {
