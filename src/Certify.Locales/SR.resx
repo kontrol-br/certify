@@ -1,100 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!--
-    Microsoft ResX Schema
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
-    associated with the data types.
-
-    Example:
-
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    There are any number of "resheader" rows that contain simple
-    name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
-    mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
-    extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
-    read any of the formats listed below.
-
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -108,736 +60,733 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Registration" xml:space="preserve">
-    <value>Registration</value>
+    <value>Registro</value>
   </data>
   <data name="RegistrationEmailAddress" xml:space="preserve">
-    <value>Registered Email Address</value>
+    <value>E-mail registrado</value>
   </data>
   <data name="LicenseKey" xml:space="preserve">
-    <value>License Key</value>
+    <value>Chave de licença</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="ValidateKey" xml:space="preserve">
-    <value>Validate Key</value>
+    <value>Validar chave</value>
   </data>
   <data name="New_Certificate" xml:space="preserve">
-    <value>New Certificate</value>
+    <value>Novo certificado</value>
   </data>
   <data name="Renew_All" xml:space="preserve">
-    <value>Renew All</value>
+    <value>Renovar tudo</value>
   </data>
   <data name="Configure_Auto_Renew" xml:space="preserve">
-    <value>Configure Auto Renew</value>
+    <value>Configurar renovação automática</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
-    <value>Update Available</value>
+    <value>Atualização disponível</value>
   </data>
   <data name="Managed_Sites" xml:space="preserve">
-    <value> Managed Certificates</value>
+    <value>Sites</value>
   </data>
   <data name="In_Progress" xml:space="preserve">
-    <value>In Progress</value>
+    <value>Em andamento</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configurações</value>
   </data>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Sobre</value>
   </data>
   <data name="Email_Address" xml:space="preserve">
-    <value>Email Address</value>
+    <value>E-mail</value>
   </data>
   <data name="Account_Edit_AgreeConfirm" xml:space="preserve">
-    <value>Yes, I Agree</value>
+    <value>Sim, concordo</value>
   </data>
   <data name="Register_Contact" xml:space="preserve">
-    <value>Register Contact</value>
+    <value>Registrar contato</value>
   </data>
   <data name="Account_Edit_Intro" xml:space="preserve">
-    <value>To request certificates you need to register with each of the Certificate Authorities that you want to use.</value>
+    <value>Para solicitar certificados, você deve se registrar em cada Autoridade de Certificação que desejar utilizar.</value>
   </data>
   <data name="Account_Edit_Intro2" xml:space="preserve">
-    <value>The email address provided may be used to notify you of upcoming certificate renewals if required.</value>
+    <value>O endereço de e-mail fornecido pode ser usado para notificá-lo sobre a próxima renovação de certificados, se necessário. Endereços de e-mail inválidos serão rejeitados pela Autoridade de Certificação.</value>
   </data>
   <data name="Send_Feedback" xml:space="preserve">
-    <value>Send Feedback</value>
+    <value>Enviar comentários</value>
   </data>
   <data name="Send_Feedback_Tip" xml:space="preserve">
-    <value>Thanks for submitting feedback to our developers. Please email support@certifytheweb.com if you have a question.</value>
+    <value>Sua opinião é importante para nós. Por favor, diga-nos como podemos melhorar.</value>
   </data>
   <data name="Send_Feedback_Quest" xml:space="preserve">
-    <value>Do you have any suggestions?</value>
+    <value>Você tem alguma sugestão?</value>
   </data>
   <data name="Send_Feedback_Email" xml:space="preserve">
-    <value>Your Email Address (optional):</value>
+    <value>Seu e-mail (se desejar uma resposta):</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>Send</value>
+    <value>Enviar</value>
   </data>
   <data name="ImportDlg_Title" xml:space="preserve">
-    <value>Certify - Import</value>
+    <value>Certify - Importar</value>
   </data>
   <data name="ImportDlg_OpTitle" xml:space="preserve">
-    <value>Import  Managed Certificates</value>
+    <value>Importar sites gerenciados</value>
   </data>
   <data name="ImportDlg_OpComment" xml:space="preserve">
-    <value>You are upgrading from an older version of Certify. This will create new  Managed Certificates which you can then edit to adjust the renewal settings etc.</value>
+    <value>Você está atualizando de uma versão anterior do Certify. Isso criará novos Sites Gerenciados que você poderá editar para ajustar a configuração de renovação, etc.</value>
   </data>
   <data name="ImportDlg_Merge" xml:space="preserve">
-    <value>Merge multiple domains/identifiers per site into one  Managed Certificate</value>
+    <value>Combinar múltiplos domínios/certificados por site em um Site Gerenciado</value>
   </data>
   <data name="ImportDlg_Skip" xml:space="preserve">
-    <value>Skip Import</value>
+    <value>Pular importação</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importar</value>
   </data>
   <data name="Send_Feedback_Exception" xml:space="preserve">
-    <value>Oops, something went wrong. Please tell us about it.</value>
+    <value>Opa! Algo deu errado. Por favor, conte-nos mais detalhes.</value>
   </data>
   <data name="Send_Feedback_Success" xml:space="preserve">
-    <value>Thanks, your feedback has now been submitted.</value>
+    <value>Obrigado, seus comentários foram enviados.</value>
   </data>
   <data name="Send_Feedback_Error" xml:space="preserve">
-    <value>Sorry, there was a problem submitting your feedback.</value>
+    <value>Desculpe, ocorreu um problema ao enviar seus comentários.</value>
   </data>
   <data name="New_Contact_EmailError" xml:space="preserve">
-    <value>There was a problem registering with the Certificate Authority using this email address. Check the email address is valid and that this computer has an open connection to the internet (outgoing https is required for API calls).</value>
+    <value>Houve um problema ao registrar-se com a Autoridade de Certificação usando este e-mail. Verifique se o e-mail é válido e se este computador tem uma conexão aberta com a Internet (é necessário HTTPS de saída para as chamadas da API).</value>
   </data>
   <data name="Account_Edit_AgreeConditions" xml:space="preserve">
-    <value>To proceed, confirm that you agree to the current terms and conditions for this Certificate Authority.</value>
+    <value>Para continuar, confirme que aceita os termos e condições atuais desta Autoridade de Certificação.</value>
   </data>
   <data name="Registration_NeedEmail" xml:space="preserve">
-    <value>Please enter the email address you used when registering your key.</value>
+    <value>Insira o e-mail que você usou ao registrar sua chave.</value>
   </data>
   <data name="Registration_NeedKey" xml:space="preserve">
-    <value>Please enter your license key.</value>
+    <value>Por favor, insira sua chave de licença.</value>
   </data>
   <data name="Registration_KeyValidationError" xml:space="preserve">
-    <value>There was a problem trying to validate your license key. Please try again or contact support.</value>
+    <value>Ocorreu um problema ao tentar validar sua chave de licença. Por favor, tente novamente ou entre em contato conosco.</value>
   </data>
   <data name="Registration_UnableToVerify" xml:space="preserve">
-    <value>There was a problem beginning the license validation process.</value>
+    <value>Houve um problema ao iniciar o processo de validação da licença.</value>
   </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
-    <value>The auto renewal task is already configured. If required you can change the admin user account used to execute the task.</value>
+    <value>A tarefa de renovação automática já está configurada. Se necessário, você pode alterar a conta de usuário administrador usada para executar a tarefa.</value>
   </data>
   <data name="ScheduledTaskConfig_FailedToCreateTask" xml:space="preserve">
-    <value>Failed to create scheduled task with given credentials</value>
+    <value>Erro ao criar a tarefa agendada com as credenciais fornecidas</value>
   </data>
   <data name="ScheduledTaskConfig_TaskCreated" xml:space="preserve">
-    <value>Scheduled task created</value>
+    <value>Tarefa agendada criada</value>
   </data>
   <data name="ScheduledTaskConfig_PleaseProvideCredential" xml:space="preserve">
-    <value>Please provide the username and password for an admin level user.</value>
+    <value>Forneça o nome de usuário e a senha de um usuário com nível de administrador.</value>
   </data>
   <data name="ScheduledTaskConfig_WindowTitle" xml:space="preserve">
-    <value>Configure Auto Renewal</value>
+    <value>Configurar renovação automática</value>
   </data>
   <data name="ScheduledTaskConfig_UserNameLabel" xml:space="preserve">
-    <value>Username (DOMAIN\User)</value>
+    <value>Usuário (DOMÍNIO\Usuário)</value>
   </data>
   <data name="ScheduledTaskConfig_Tip" xml:space="preserve">
-    <value>To perform auto renewal of certificates, a task will be created in the Windows Task Scheduler. This task needs to run as an Admin level user in order to do certificate management and IIS management tasks.</value>
+    <value>Para realizar a renovação automática de certificados, o Certify criará uma tarefa no Agendador de Tarefas do Windows. Essa tarefa deve ser executada como um usuário com nível de Administrador para realizar tarefas de administração de certificados e do IIS.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Senha</value>
   </data>
   <data name="AboutControl_TrialDetailLabel" xml:space="preserve">
-    <value>This version is free for evaluation and will manage a limited number of certificates. To remove this limitation please purchase a registration key at https://certifytheweb.com/register. Registered users can get support by emailing support@certifytheweb.com</value>
+    <value>Esta versão é gratuita para avaliação e gerenciará um número limitado de certificados. Para remover essa limitação, compre uma chave de registro em https://certifytheweb.com/register. Usuários registrados podem obter suporte enviando um e-mail para support@certifytheweb.com</value>
   </data>
   <data name="AboutControl_RegistrationTypeLabel" xml:space="preserve">
-    <value>Not Registered</value>
+    <value>Não registrado</value>
   </data>
   <data name="AboutControl_CheckForUpdateButton" xml:space="preserve">
-    <value>Check for Updates..</value>
+    <value>Procurar atualizações...</value>
   </data>
   <data name="AboutControl_EnterKey" xml:space="preserve">
-    <value>Enter Key..</value>
+    <value>Inserir chave...</value>
   </data>
   <data name="AboutControl_SendFeedback" xml:space="preserve">
-    <value>Send Feedback</value>
+    <value>Enviar comentários</value>
   </data>
   <data name="UpdateCheckLatestVersion" xml:space="preserve">
-    <value>You are using the latest version.</value>
+    <value>Você está usando a versão mais recente.</value>
   </data>
   <data name="ManagedCertificates_Filter" xml:space="preserve">
-    <value>Filter...</value>
+    <value>Filtrar...</value>
   </data>
   <data name="ManagedCertificates_NoItemSelectedTip" xml:space="preserve">
-    <value>Select a Managed Certificate or select New Certificate to begin.</value>
+    <value>Selecione um Site Gerenciado ou escolha Novo certificado para começar.</value>
   </data>
   <data name="ManagedCertificates_UnsavedWarning" xml:space="preserve">
-    <value>There are unsaved changes to the selected site. Discard changes?</value>
+    <value>Existem alterações não salvas no site selecionado. Descartar as alterações?</value>
   </data>
   <data name="ProgressMonitor_NoProgress" xml:space="preserve">
-    <value>There are no requests currently in progress.</value>
+    <value>Não há solicitações em andamento.</value>
   </data>
   <data name="Settings_PrimaryContact" xml:space="preserve">
-    <value>Primary Contact:</value>
+    <value>Contato principal:</value>
   </data>
   <data name="Settings_AutoRenewalInterval" xml:space="preserve">
-    <value>Auto Renewal Interval (Days)</value>
+    <value>Intervalo de renovação automática (dias)</value>
   </data>
   <data name="Settings_AutoRenewalRequestLimit" xml:space="preserve">
-    <value>Maximum Auto Renewal Requests Per Session (0 = Unlimited)</value>
+    <value>Número máximo de solicitações de renovação automática por sessão (0 = ilimitado)</value>
   </data>
   <data name="Settings_CheckUpdates" xml:space="preserve">
-    <value>Check for updates automatically</value>
+    <value>Verificar atualizações automaticamente</value>
   </data>
   <data name="Settings_EnableTelemetry" xml:space="preserve">
-    <value>Enable App Telemetry (feature usage reporting)</value>
+    <value>Habilitar telemetria do aplicativo (relatórios de uso de recursos)</value>
   </data>
   <data name="Settings_EnableProxyApiForDomainConfig" xml:space="preserve">
-    <value>Enable Proxy API for HTTP Config Checks</value>
+    <value>Habilitar proxy de API para as verificações de configuração de domínio</value>
   </data>
   <data name="Settings_IgnoreStoppedSites" xml:space="preserve">
-    <value>Ignore stopped IIS sites for new certificates and renewals</value>
+    <value>Ignorar sites IIS parados para novos certificados e renovações</value>
   </data>
   <data name="Settings_EnableDnsValidation" xml:space="preserve">
-    <value>Enable DNS Validation Checks (Resolution, CAA, DNSSEC)</value>
+    <value>Habilitar verificações de validação de DNS (Resolução, CAA, DNSSEC)</value>
   </data>
   <data name="SaveChanges" xml:space="preserve">
-    <value>Save Changes</value>
+    <value>Salvar alterações</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Salvar</value>
   </data>
   <data name="DiscardChanges" xml:space="preserve">
-    <value>Discard Changes</value>
+    <value>Descartar alterações</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Excluir</value>
   </data>
   <data name="ManagedCertificateSettings_RequestCertificate" xml:space="preserve">
-    <value>Request Certificate</value>
+    <value>Solicitar certificado</value>
   </data>
   <data name="ManagedCertificateSettings_EnableAutoRenewal" xml:space="preserve">
-    <value>Enable Auto Renewal</value>
+    <value>Habilitar renovação automática</value>
   </data>
   <data name="ManagedCertificateSettings_NotifyPrimaryContactOnRenewalFailure" xml:space="preserve">
-    <value>Notify Primary Contact On Renewal Failure</value>
+    <value>Notificar o contato principal sobre a falha de renovação</value>
   </data>
   <data name="ManagedCertificateSettings_NoHostNameBindingWarning" xml:space="preserve">
-    <value>At least one fully qualified hostname (e.g 'github.com') or wildcard (e.g. '*.github.com) is required to create a certificate.</value>
+    <value>É necessário pelo menos um nome de host completo (por exemplo, 'github.com') ou curinga (por exemplo, '*.github.com') para criar um certificado.</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Opções</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Status" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Certificate" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Certificado</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Deployment" xml:space="preserve">
-    <value>Deployment</value>
+    <value>Implantação</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Tasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Tarefas</value>
   </data>
   <data name="ManagedCertificateSettings_Tab_Preview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Visualização</value>
   </data>
   <data name="ManagedCertificateSettings_SelectWebsite" xml:space="preserve">
-    <value>Select Site (optional):</value>
+    <value>Selecione o site IIS:</value>
   </data>
   <data name="ManagedCertificateSettings_DisplayName" xml:space="preserve">
-    <value>Display Name:</value>
+    <value>Nome de exibição:</value>
   </data>
   <data name="ManagedCertificateSettings_DomainIncluded" xml:space="preserve">
-    <value>The following selected identifiers will be included as a single certificate request. The issuing Certificate Authority must be able to access all of these identifiers via port 80 (if using HTTP challenges)
-for the certification process to work.</value>
+    <value>Os seguintes domínios selecionados serão incluídos como uma única solicitação de certificado. O serviço Let's Encrypt deve conseguir acessar todos esses domínios pela porta 80 (para desafios HTTP) ou pela porta 443 (para desafios TLS-SNI) para que o processo de certificação funcione.</value>
   </data>
   <data name="ManagedCertificateSettings_SelectDomain" xml:space="preserve">
-    <value>Identfiers to include:</value>
+    <value>Domínios e subdomínios a incluir:</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select All</value>
+    <value>Selecionar tudo</value>
   </data>
   <data name="ManagedCertificateSettings_SelectNone" xml:space="preserve">
-    <value>Select None</value>
+    <value>Limpar seleção</value>
   </data>
   <data name="ManagedCertificateSettings_Primary" xml:space="preserve">
-    <value>Primary</value>
+    <value>Primário</value>
   </data>
   <data name="ManagedCertificateSettings_Include" xml:space="preserve">
-    <value>Include</value>
+    <value>Incluir</value>
   </data>
   <data name="ManagedCertificateSettings_Domain" xml:space="preserve">
-    <value>Identifier</value>
+    <value>Domínio</value>
   </data>
   <data name="Advanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avançado</value>
   </data>
   <data name="ManagedCertificateSettings_ChallengeTypes" xml:space="preserve">
-    <value>Challenge Type:</value>
+    <value>Tipo de desafio:</value>
   </data>
   <data name="ManagedCertificateSettings_WebsiteRoot" xml:space="preserve">
-    <value>Site Root Directory</value>
+    <value>Diretório raiz do site</value>
   </data>
   <data name="ManagedCertificateSettings_BrowseFolder" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="ManagedCertificateSettings_PerformChallengeResponseConfigCheck" xml:space="preserve">
-    <value>Perform challenge response config checks</value>
+    <value>Realizar verificações de configuração de resposta ao desafio</value>
   </data>
   <data name="ManagedCertificateSettings_PerformWebAppAutoConfig" xml:space="preserve">
-    <value>Perform web application auto config</value>
+    <value>Realizar configuração automática do aplicativo web</value>
   </data>
   <data name="ManagedCertificateSettings_BindIP" xml:space="preserve">
-    <value>Bind to Specific IP:</value>
+    <value>Vincular a IP específico:</value>
   </data>
   <data name="ManagedCertificateSettings_BindPort" xml:space="preserve">
-    <value>Bind to Specific Port:</value>
+    <value>Vincular à porta específica:</value>
   </data>
   <data name="ManagedCertificateSettings_UseSNI" xml:space="preserve">
-    <value>Use SNI (IIS 8+):</value>
+    <value>Usar SNI (IIS 8+):</value>
   </data>
   <data name="ManagedCertificateSettings_PerRequsetScript" xml:space="preserve">
-    <value>Pre-request PS Script:</value>
+    <value>Script PS pré-solicitação:</value>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value>Teste</value>
   </data>
   <data name="Browser" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="ManagedCertificateSettings_ExportTip" xml:space="preserve">
-    <value>Note: To export this certificate use the Manage Computer Certificates option in Windows. </value>
+    <value>Nota: Para exportar este certificado, use a opção Gerenciar Certificados no Windows.</value>
   </data>
   <data name="ManagedCertificateSettings_OpenLogFile" xml:space="preserve">
-    <value>Open Log File</value>
+    <value>Abrir arquivo de log</value>
   </data>
   <data name="ManagedCertificateSettings_ViewCertificate" xml:space="preserve">
-    <value>View Certificate</value>
+    <value>Ver certificado</value>
   </data>
   <data name="ManagedCertificateSettings_CertificateRevokeWarning" xml:space="preserve">
-    <value>WARNING: This certificate has been revoked.</value>
+    <value>AVISO: este certificado foi revogado.</value>
   </data>
   <data name="SaveError" xml:space="preserve">
-    <value>Save Error</value>
+    <value>Erro ao salvar</value>
   </data>
   <data name="ManagedCertificateSettings_SelectWebsiteOrCert" xml:space="preserve">
-    <value>Select the site to create a certificate for.</value>
+    <value>Selecione o site para criar um certificado</value>
   </data>
   <data name="ManagedCertificateSettings_NameRequired" xml:space="preserve">
-    <value>A name is required for this item.</value>
+    <value>É necessário um nome para este item.</value>
   </data>
   <data name="ManagedCertificateSettings_NeedPrimaryDomain" xml:space="preserve">
-    <value>A Primary Domain/identifier must be included</value>
+    <value>Um domínio principal deve ser incluído</value>
   </data>
   <data name="ManagedCertificateSettings_ChallengeNotAvailable" xml:space="preserve">
-    <value>The {0} challenge is only available for IIS versions 8+.</value>
+    <value>O desafio {0} está disponível apenas para versões IIS 8+.</value>
   </data>
   <data name="ManagedCertificateSettings_HookMustBeValidUrl" xml:space="preserve">
-    <value>The Url for the webhook must be set to a valid Url.</value>
+    <value>A URL do webhook deve ser um URL válido.</value>
   </data>
   <data name="ManagedCertificateSettings_HookMethodMustBeSet" xml:space="preserve">
-    <value>The Method for the webhook must be set.</value>
+    <value>O método do webhook deve ser configurado.</value>
   </data>
   <data name="ManagedCertificateSettings_NoChanges" xml:space="preserve">
-    <value>No changes were made, skipping save</value>
+    <value>Nenhuma alteração realizada, omitindo salvar</value>
   </data>
   <data name="ConfirmDelete" xml:space="preserve">
-    <value>Confirma Deletar</value>
+    <value>Confirmar exclusão</value>
   </data>
   <data name="ManagedCertificateSettings_ConfirmDelete" xml:space="preserve">
-    <value>Are you sure you want to delete this item? Deleting the item will not affect IIS settings etc.</value>
+    <value>Tem certeza de que deseja excluir este item? Excluí-lo não afetará a configuração do IIS etc.</value>
   </data>
   <data name="ManagedCertificateSettings_LogNotCreated" xml:space="preserve">
-    <value>The log file for this item has not been created yet.</value>
+    <value>O arquivo de log para este item ainda não foi criado.</value>
   </data>
   <data name="ManagedCertificateSettings_CertificateNotReady" xml:space="preserve">
-    <value>The certificate file for this item has not been created yet or the file has been deleted.</value>
+    <value>O arquivo de certificado para este item ainda não foi criado.</value>
   </data>
   <data name="ChallengeError" xml:space="preserve">
-    <value>Challenge Error</value>
+    <value>Erro de desafio</value>
   </data>
   <data name="ManagedCertificateSettings_CannotChallengeWithoutIIS" xml:space="preserve">
-    <value>Cannot check challenges if IIS is not available.</value>
+    <value>Os desafios não podem ser verificados se o IIS não estiver disponível.</value>
   </data>
   <data name="Challenge" xml:space="preserve">
-    <value>Challenge</value>
+    <value>Desafio</value>
   </data>
   <data name="ManagedCertificateSettings_ConfigurationCheckOk" xml:space="preserve">
-    <value>Configuration Checked OK</value>
+    <value>Verificação de configuração OK</value>
   </data>
   <data name="ManagedCertificateSettings_ConfigurationCheckFailed" xml:space="preserve">
-    <value>Configuration Check Failed:
+    <value>Erro de verificação de configuração:
 {0}</value>
   </data>
   <data name="ManagedCertificateSettings_ChallengeTestFailed" xml:space="preserve">
-    <value>Challenge Test Failed</value>
+    <value>Teste de desafio falhou</value>
   </data>
   <data name="ManagedCertificateSettings_WebhookTestFailed" xml:space="preserve">
-    <value>Webhook Test Failed</value>
+    <value>Teste de webhook falhou</value>
   </data>
   <data name="ManagedCertificateSettings_WebhookTest" xml:space="preserve">
-    <value>Webhook Test</value>
+    <value>Teste de webhook</value>
   </data>
   <data name="succeed" xml:space="preserve">
-    <value>succeeded</value>
+    <value>sucesso</value>
   </data>
   <data name="failed" xml:space="preserve">
-    <value>failed</value>
+    <value>falha</value>
   </data>
   <data name="ManagedCertificateSettings_WebhookRequestResult" xml:space="preserve">
-    <value>Webhook request {0}: HTTP {1}</value>
+    <value>Solicitação de webhook {0}: HTTP {1}</value>
   </data>
   <data name="ManagedCertificateSettings_WebhookRequestError" xml:space="preserve">
-    <value>Webhook request error: {0}</value>
+    <value>Erro na solicitação de webhook: {0}</value>
   </data>
   <data name="Alert" xml:space="preserve">
-    <value>Alert</value>
+    <value>Alerta</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Erro</value>
   </data>
   <data name="ManagedCertificateSettings_Certificate_Revoked" xml:space="preserve">
-    <value>Certificate Revoked.</value>
+    <value>Certificado revogado.</value>
   </data>
   <data name="ManagedCertificateSettings_RevokeCertificateError" xml:space="preserve">
-    <value>Error Revoking Certificate:
-{0}</value>
+    <value>Erro ao revogar certificado: {0}</value>
   </data>
   <data name="ManagedCertificateSettings_ConfirmRevokeCertificate" xml:space="preserve">
-    <value>Are you sure you want to revoke this certificate?</value>
+    <value>Tem certeza de que deseja revogar este certificado?</value>
   </data>
   <data name="MainWindow_TrialLimitationReached" xml:space="preserve">
-    <value>You are using the evaluation version of this app. Please purchase a registration key to upgrade. See the Register option on the About tab.</value>
+    <value>Você está usando a versão de teste deste aplicativo. Por favor, compre uma chave de registro para atualizar. Veja a opção Registrar na aba Sobre.</value>
   </data>
   <data name="MainWindow_RenewAllConfirm" xml:space="preserve">
-    <value>This will renew certificates for all auto-renewed items, if applicable. Proceed?</value>
+    <value>Isso renovará os certificados para todos os itens de auto-renovação. Prosseguir?</value>
   </data>
   <data name="MainWindow_IISNotAvailable" xml:space="preserve">
-    <value>IIS Was not detected on this server, important functionality will be unavailable. If you know IIS is installed and working on this server, please report this error to support@certifytheweb.com providing details of your server Operating System version and IIS versions</value>
+    <value>IIS não foi detectado neste servidor; vários recursos importantes não estarão disponíveis. Se o IIS estiver instalado e em execução neste servidor, informe esse erro para support@certifytheweb.com fornecendo detalhes da versão do sistema operacional do servidor e das versões do IIS.</value>
   </data>
   <data name="MainWindow_GetStartGuideWithNewCert" xml:space="preserve">
-    <value>Get started by registering a new contact, then you can start requesting certificates.</value>
+    <value>Comece registrando um novo contato, depois você pode começar a solicitar certificados.</value>
   </data>
   <data name="MainWindow_VisitDownloadPage" xml:space="preserve">
-    <value>Visit download page now?</value>
+    <value>Deseja visitar a página de download agora?</value>
   </data>
   <data name="MainWindow_TitleTrialPostfix" xml:space="preserve">
-    <value> [Community Edition]</value>
+    <value>[Edição Especial]</value>
   </data>
   <data name="LanguageAuthor" xml:space="preserve">
-    <value>Certify Certificate Manager Contributors （https://certifytheweb.com）</value>
+    <value>Colaboradores do AutoIP AutoSSL https://kontrol.com.br</value>
   </data>
   <data name="About_LanguageTranslator" xml:space="preserve">
-    <value>Current Language Translator: </value>
+    <value>Tradutor de idioma atual:</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>Info</value>
+    <value>Informação</value>
   </data>
   <data name="Comments" xml:space="preserve">
-    <value>Comments: </value>
+    <value>Comentários:</value>
   </data>
   <data name="ManagedCertificateSettings_RevokeCertificate" xml:space="preserve">
-    <value>Revoke Certificate</value>
+    <value>Revogar certificado</value>
   </data>
   <data name="ManagedCertificateSettings_HookUrl" xml:space="preserve">
-    <value>Url:</value>
+    <value>URL:</value>
   </data>
   <data name="ManagedCertificateSettings_HookMethod" xml:space="preserve">
-    <value>Method:</value>
+    <value>Método:</value>
   </data>
   <data name="ManagedCertificateSettings_HookBody" xml:space="preserve">
-    <value>Body:</value>
+    <value>Corpo:</value>
   </data>
   <data name="ManagedCertificateSettings_HookContentType" xml:space="preserve">
     <value>ContentType:</value>
   </data>
   <data name="ManagedCertificateSettings_PostRequestScript" xml:space="preserve">
-    <value>Post-request PS Script:</value>
+    <value>Script PS pós-solicitação:</value>
   </data>
   <data name="ManagedCertificateSettings_AutoUpdateBinding" xml:space="preserve">
-    <value>Auto create/update IIS bindings (uses SNI)</value>
+    <value>Criação/atualização automática de vínculos de IIS (usa SNI)</value>
   </data>
   <data name="ManagedCertificateSettings_UseSpecificBinding" xml:space="preserve">
-    <value>Use specific IP/Port bindings</value>
+    <value>Usar vínculos de IP/porta específicos</value>
   </data>
   <data name="ManagedCertificateSettings_HookTrigger" xml:space="preserve">
-    <value>Webhook Trigger:</value>
+    <value>Gatilho de webhook:</value>
   </data>
   <data name="ManagedCertificateSettings_CertificatePathEmpty" xml:space="preserve">
-    <value>Certificate Path: [to be set]</value>
+    <value>Caminho do certificado: [definir]</value>
   </data>
   <data name="ExpiryDateConverter_NoCurrentCertificate" xml:space="preserve">
-    <value>No current certificate.</value>
+    <value>Sem certificado atual.</value>
   </data>
   <data name="ExpiryDateConverter_CertificateExpiresIn" xml:space="preserve">
-    <value>Expires in {0} days</value>
+    <value>Expira em {0} dias</value>
   </data>
   <data name="General_Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Carregando...</value>
   </data>
   <data name="Update_MandatoryUpdateQuit" xml:space="preserve">
-    <value>The current app version requires an essential update to ensure continued operation. Please update immediately. Close app now?</value>
+    <value>A versão atual do aplicativo não é mais suportada. Atualize para continuar.</value>
   </data>
   <data name="ManagedCertificateSettings_BindingNote" xml:space="preserve">
-    <value>Note: these settings only apply to new https bindings, existing bindings are only updated with the new certificate. Using a fixed IP for multiple certificates may cause a binding conflict, use with caution.</value>
+    <value>Nota: esta configuração se aplica apenas aos novos vínculos https; os vínculos existentes são apenas atualizados com o novo certificado. O uso de um IP fixo para vários certificados causará um conflito de vinculação no Windows, use com cautela.</value>
   </data>
   <data name="ManagedCertificateSettings_ReapplyCertificate" xml:space="preserve">
-    <value>Re-apply Certificate to Bindings</value>
+    <value>Reaplicar o certificado aos vínculos</value>
   </data>
   <data name="Dashboard_Register" xml:space="preserve">
-    <value>Add</value>
+    <value>Adicionar</value>
   </data>
   <data name="Dashboard_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Senha</value>
   </data>
   <data name="GettingStarted_AddToDashboard" xml:space="preserve">
-    <value>Add to Reporting Dashboard</value>
+    <value>Adicionar ao painel de relatórios</value>
   </data>
   <data name="GettingStarted_AutomateCertificatesIntro" xml:space="preserve">
-    <value>Easily automate your certificates from ACME enabled Certificate Authorities including Let's Encrypt, Google Trust Services and more, including custom or internal CAs.</value>
+    <value>Automatize facilmente seus certificados de Autoridades Certificadoras compatíveis com ACME, incluindo Let's Encrypt, Google Trust Services e outras, incluindo ACs personalizadas ou internas.</value>
   </data>
   <data name="GettingStarted_Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Painel de relatórios</value>
   </data>
   <data name="GettingStarted_DashboardIntro" xml:space="preserve">
-    <value>You can use the reporting dashboard to easily view certificate renewal status across one or more servers.</value>
+    <value>Você pode usar o painel de relatórios para ver facilmente o status de renovação do certificado em um ou mais servidores.</value>
   </data>
   <data name="GettingStarted_IISVersionWarningTitle" xml:space="preserve">
-    <value>Warning: Your version of Windows/IIS has limited SSL Support</value>
+    <value>Aviso: Sua versão do Windows/IIS possui suporte SSL limitado</value>
   </data>
   <data name="GettingStarted_IISVersionWarningMessage" xml:space="preserve">
-    <value>IIS Versions below 8.0 lack SNI support. This means that only one certificate can be used per IP address for standard https. If you require more than a single certificate you will need to ensure each certificate binding is associated with its own IP address otherwise you may encounter binding conflicts.</value>
+    <value>Versões do IIS abaixo da 8.0 não possuem suporte a SNI. Isso significa que apenas um certificado pode ser usado por endereço IP para https padrão. Se você precisar de mais de um único certificado, será necessário garantir que cada associação de certificado esteja associada ao seu próprio endereço IP, caso contrário você poderá encontrar conflitos de associação.</value>
   </data>
   <data name="GettingStarted_LicenseExpiredMessage" xml:space="preserve">
-    <value>Your license key has expired. Some features will be reduced or unavailable. Please Sign In to https://certifytheweb.com and renew your license key, then re-open the app.</value>
+    <value>Sua chave de licença expirou. Alguns recursos serão reduzidos ou ficarão indisponíveis. Faça login em https://certifytheweb.com e renove sua chave de licença, depois reabra o aplicativo.</value>
   </data>
   <data name="GettingStarted_LicenseNotActivatedTitle" xml:space="preserve">
-    <value>License Not Activated</value>
+    <value>Licença não ativada</value>
   </data>
   <data name="GettingStarted_LicenseNotActivatedMessage" xml:space="preserve">
-    <value>You are using the unlicensed Community Edition. If you are using this application within a business or funded organisation you should purchase a license key when you have completed your evaluation, then use About &gt; Enter Key.. to activate. Visit certifytheweb.com/register for more information.</value>
+    <value>Você está usando a Community Edition sem licença. Se estiver usando este aplicativo em uma empresa ou organização financiada, você deve adquirir uma chave de licença quando concluir sua avaliação e então usar Sobre &gt; Inserir chave.. para ativar. Visite certifytheweb.com/register para mais informações.</value>
   </data>
   <data name="GettingStarted_ManagementHubIntro" xml:space="preserve">
-    <value>Looking to manage and monitor many certificates over many servers? Check out our new product Certify Management Hub - details at https://docs.certifytheweb.com</value>
+    <value>Quer gerenciar e monitorar muitos certificados em vários servidores? Conheça o AutSSLHub - detalhes em https://autoip.com.br</value>
   </data>
   <data name="GettingStarted_MoreInfoIntro" xml:space="preserve">
-    <value>For more information, documentation, community discussions and support options, see https://certifytheweb.com</value>
+    <value>Para mais informações, documentação, discussões da comunidade e opções de suporte, veja https://autoip.com.br</value>
   </data>
   <data name="GettingStarted_QuickStartGuide" xml:space="preserve">
-    <value>Quick Start Guide</value>
+    <value>Guia de início rápido</value>
   </data>
   <data name="GettingStarted_Title" xml:space="preserve">
-    <value>Getting Started</value>
+    <value>Introdução</value>
   </data>
   <data name="GettingStarted_ViewDashboard" xml:space="preserve">
-    <value>View Dashboard</value>
+    <value>Ver painel de relatórios</value>
   </data>
   <data name="Dashboard_NewAccount" xml:space="preserve">
-    <value>Create a new account</value>
+    <value>Criar uma nova conta</value>
   </data>
   <data name="Dashboard_AddIntro" xml:space="preserve">
-    <value>To add this server to your dashboard, provide your https://certifytheweb.com/profile sign in details or register a new account:</value>
+    <value>Para adicionar este servidor ao seu painel, forneça seus detalhes de login em https://autoip.com.br/profile ou registre uma nova conta:</value>
   </data>
   <data name="ScheduledTaskConfig_UseBackgroundService" xml:space="preserve">
-    <value>Use Background Service (runs as Local System)</value>
+    <value>Usar serviço em segundo plano (executa como sistema local)</value>
   </data>
   <data name="ScheduledTaskConfig_UseScheduledTask" xml:space="preserve">
-    <value>Use a Scheduled Task (runs as specified user)</value>
+    <value>Usar uma tarefa agendada (executa como usuário especificado)</value>
   </data>
   <data name="ManagedCertificatesSettings_RefreshDomains" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Atualizar</value>
   </data>
   <data name="Update_DownloadNow" xml:space="preserve">
-    <value>Would you like to automatically download the update? You will be notified when it is ready to apply.</value>
+    <value>Gostaria de baixar a atualização automaticamente? Você será notificado quando estiver pronta para aplicar.</value>
   </data>
   <data name="Update_ReadyToApply" xml:space="preserve">
-    <value>A new update is ready to apply. Would you like to install it now?</value>
+    <value>Uma nova atualização está pronta para ser aplicada. Gostaria de instalá-la agora?</value>
   </data>
   <data name="ManagedCertificateSettings_InvalidSNI" xml:space="preserve">
-    <value>You are attempting to create an SNI binding that also has a specific bound IP address. It is recommended that SNI bindings use All Unassigned instead. Do you wish to continue saving?</value>
+    <value>Você está tentando criar um vínculo SNI que também tem um endereço IP específico vinculado. Recomenda-se que os vínculos SNI usem Todos não atribuídos. Deseja continuar?</value>
   </data>
   <data name="Credentials_EditCredential" xml:space="preserve">
-    <value>Add/Update Stored Credential</value>
+    <value>Adicionar/atualizar credencial armazenada</value>
   </data>
   <data name="Update_DownloadFailed" xml:space="preserve">
-    <value>Sorry, the update could not be downloaded. Please try again later.</value>
+    <value>Desculpe, não foi possível baixar a atualização. Por favor, tente novamente mais tarde.</value>
   </data>
   <data name="ManagedCertificateSettings_DefaultTitle" xml:space="preserve">
-    <value>New Managed Certificate</value>
+    <value>Novo certificado gerenciado</value>
   </data>
   <data name="ManagedCertificateSettings_AddDomainsToCertificate" xml:space="preserve">
-    <value>Add identifiers (domains etc) to certificate:</value>
+    <value>Adicione domínios ao certificado:</value>
   </data>
   <data name="ManagedCertificateSettings_AddDomainsHelpText" xml:space="preserve">
-    <value>e.g. test.com, www.test.com or *.test.com</value>
+    <value>ex.: test.com, www.test.com ou *.test.com</value>
   </data>
   <data name="Settings_EnableHttpChallengeServer" xml:space="preserve">
-    <value>Enable Http Challenge Server</value>
+    <value>Habilitar servidor de desafio HTTP</value>
   </data>
   <data name="Settings_EnableCertificateCleanup" xml:space="preserve">
-    <value>Enable Certificate Cleanup</value>
+    <value>Habilitar limpeza de certificados</value>
   </data>
   <data name="Settings_EnableStatusReporting" xml:space="preserve">
-    <value>Enable Status Reports to Dashboard</value>
+    <value>Habilitar relatórios de status no painel</value>
   </data>
   <data name="PreferredCertificateAuthority" xml:space="preserve">
-    <value>Preferred Certificate Authority</value>
+    <value>Autoridade de Certificação preferida</value>
   </data>
   <data name="MainWindow_KeyExpired" xml:space="preserve">
-    <value>Your license key has expired or is no longer active.</value>
+    <value>Sua chave de licença expirou ou não está mais ativa.</value>
   </data>
   <data name="ExpiryDateConverter_CertificateExpiredNDaysAgo" xml:space="preserve">
-    <value>Expired {0} days ago</value>
+    <value>Expirado há {0} dias</value>
   </data>
   <data name="ManagedCertificateSettings_DomainsIntro" xml:space="preserve">
-    <value>Select identifiers from existing hostname bindings on an website or add them
- manually. You can then select Request Certificate above or modify options as required. To specify a custom CSR see the Advanced tab.</value>
+    <value>Selecione identificadores das associações de nomes de host existentes em um site ou adicione-os manualmente. Em seguida, você pode selecionar Solicitar Certificado acima ou modificar as opções conforme necessário. Para especificar um CSR personalizado, consulte a guia Avançado.</value>
   </data>
   <data name="Credentials_Intro" xml:space="preserve">
-    <value>Stored credentials are required to make automated calls to APIs and other resources during certificate renewal and deployment. These credentials are protected using the Windows Data Protection APIs and stored on this machine.</value>
+    <value>As credenciais armazenadas são necessárias para realizar chamadas automatizadas a APIs e outros recursos durante a renovação e implantação do certificado. Essas credenciais são protegidas usando as APIs de Proteção de Dados do Windows e armazenadas nesta máquina.</value>
   </data>
   <data name="ManagedCertificates_Deployment_Intro" xml:space="preserve">
-    <value>Deployment of your certificate can be automatic (if targeting IIS) or you can perform your own deployment tasks (see the Tasks tab).</value>
+    <value>A implantação do seu certificado pode ser automática (se direcionada ao IIS) ou você pode executar suas próprias tarefas de implantação (veja a guia Tarefas).</value>
   </data>
   <data name="ManagedCertificates_Tasks_Intro" xml:space="preserve">
-    <value>Tasks are an optional way to work with your latest certificate or trigger other actions before or after renewal. </value>
+    <value>As tarefas são uma forma opcional de trabalhar com o seu certificado mais recente ou disparar outras ações antes ou depois da renovação.</value>
   </data>
   <data name="ManagedCertificates_Tasks_DeploymentIntro" xml:space="preserve">
-    <value>Deployment Tasks run (in the order shown) after the standard Deployment process has completed (see the Deployment tab). Tasks can be run immediately after the certificate has updated or they can be deferred (to run manually or via a scheduled task etc.). You can also drag tasks to re-order them:</value>
+    <value>As tarefas de implantação são executadas (na ordem mostrada) após o processo de Implantação padrão ser concluído (consulte a guia Implantação). As tarefas podem ser executadas imediatamente após a atualização do certificado ou adiadas (para execução manual ou por meio de uma tarefa agendada etc.). Você também pode arrastar as tarefas para reordená-las:</value>
   </data>
   <data name="ManagedCertificates_Tasks_PrerequestIntro" xml:space="preserve">
-    <value>You can optionally add any number of tasks to run before the certificate request begins:</value>
+    <value>Você pode opcionalmente adicionar qualquer número de tarefas para executar antes que a solicitação de certificado comece:</value>
   </data>
   <data name="ManagedCertificateSettings_CertificateAuthority_Title" xml:space="preserve">
-    <value>Certificate Authority</value>
+    <value>Autoridade Certificadora</value>
   </data>
   <data name="ManagedCertificateSettings_CertificateAuthority_Intro" xml:space="preserve">
-    <value>Certificate Authorities are the organisations who can issue trusted certificates. You need to register an account under Settings for each (ACME) Certificate Authority you wish to use.</value>
+    <value>As Autoridades Certificadoras são as organizações que podem emitir certificados confiáveis. Você precisa registrar uma conta em Configurações para cada Autoridade Certificadora (ACME) que desejar usar.</value>
   </data>
   <data name="ExpiryDateConverter_CertificateExpiresInNHours" xml:space="preserve">
-    <value>Expires in {0} hours</value>
+    <value>Expira em {0} horas</value>
   </data>
   <data name="ExpiryDateConverter_CertificateExpiredNHoursAgo" xml:space="preserve">
-    <value>Expired {0} hours ago</value>
+    <value>Expirado há {0} horas</value>
   </data>
   <data name="Settings_CA_Intro" xml:space="preserve">
-    <value> Certificate Authorities are the organisations who can issue trusted certificates. You need to register an account for each (ACME) Certificate Authority you wish to use. Accounts can either be Production (live, trusted certificates) or Staging (test, non-trusted).</value>
+    <value> As Autoridades Certificadoras são as organizações que podem emitir certificados confiáveis. Você precisa registrar uma conta para cada Autoridade Certificadora (ACME) que deseja usar. As contas podem ser de Produção (certificados válidos) ou de Homologação (certificados de teste, não confiáveis).</value>
   </data>
   <data name="Settings_CA_Fallback" xml:space="preserve">
-    <value>If you register with multiple authorities this may enable you to use automatic Certificate Authority Failover, so if your preferred Certificate Authority can't issue a new certificate an alternative compatible provider can be used automatically.</value>
+    <value>Se você se registrar em várias autoridades, isso pode permitir o uso de failover automático da Autoridade Certificadora; assim, se sua Autoridade Certificadora preferida não puder emitir um novo certificado, um provedor compatível alternativo poderá ser usado automaticamente.</value>
   </data>
   <data name="Account_Edit_SectionTitle" xml:space="preserve">
-    <value>Edit ACME Account</value>
+    <value>Editar conta ACME</value>
   </data>
   <data name="ManagedCertificate_CertificateAuthority_UseTestCertificates" xml:space="preserve">
-    <value>Use Staging Mode (Test Certificates)</value>
+    <value>Usar modo de homologação (certificados de teste)</value>
   </data>
   <data name="EditCertificateAuthority_TitleHelp" xml:space="preserve">
-    <value>(Display Name for the Certificate Authority)</value>
+    <value>(Nome de exibição para a Autoridade Certificadora)</value>
   </data>
   <data name="EditCertificateAuthority_ProductionDirectoryHelp" xml:space="preserve">
-    <value>(Url for the production directory endpoint)</value>
+    <value>(URL do endpoint do diretório de produção)</value>
   </data>
   <data name="Settings_Export_Intro" xml:space="preserve">
-    <value>You can create an export file to bundle all of the related settings and file for this instance together. Note: sensitive content is encrypted but you should not share this file with untrusted sources or use unsecured storage.</value>
+    <value>Você pode criar um arquivo de exportação para agrupar todas as configurações e arquivos relacionados desta instância. Observação: o conteúdo sensível é criptografado, mas você não deve compartilhar este arquivo com fontes não confiáveis ou usar armazenamento não seguro.</value>
   </data>
   <data name="ManagedCertificateSettings_CertificateAuthority_PreferredChain_Instructions" xml:space="preserve">
-    <value> The certificate authority may present multiple versions of your certificate signed with different root (issuer) certificates and you can specify a preference for this certificate. If the exact chain is not available then the default chain will be used.</value>
+    <value> A autoridade certificadora pode apresentar várias versões do seu certificado assinadas com certificados raiz (emissores) diferentes e você pode especificar uma preferência para esse certificado. Se a cadeia exata não estiver disponível, a cadeia padrão será usada.</value>
   </data>
   <data name="Dashboard_Summary" xml:space="preserve">
-    <value>Summary</value>
+    <value>Resumo</value>
   </data>
   <data name="Dashboard_ManagedCertificates" xml:space="preserve">
-    <value>Managed Certificates</value>
+    <value>Certificados Gerenciados</value>
   </data>
   <data name="Dashboard_Healthy" xml:space="preserve">
-    <value>Healthy</value>
+    <value>Saudáveis</value>
   </data>
   <data name="Dashboard_Errors" xml:space="preserve">
-    <value>Errors</value>
+    <value>Erros</value>
   </data>
   <data name="Dashboard_Warnings" xml:space="preserve">
-    <value>Warnings</value>
+    <value>Avisos</value>
   </data>
   <data name="Dashboard_AwaitingUser" xml:space="preserve">
-    <value>Awaiting User</value>
+    <value>Aguardando Usuário</value>
   </data>
   <data name="Dashboard_TotalDomains" xml:space="preserve">
-    <value>Total Domains</value>
+    <value>Total de Domínios</value>
   </data>
   <data name="Dashboard_InvalidConfig" xml:space="preserve">
-    <value>Invalid Config</value>
+    <value>Configuração Inválida</value>
   </data>
   <data name="Dashboard_NoCertificate" xml:space="preserve">
-    <value>No Certificate</value>
+    <value>Sem Certificado</value>
   </data>
   <data name="Preview_Title" xml:space="preserve">
-    <value>Preview</value>
+    <value>Pré-visualização</value>
   </data>
   <data name="Preview_Intro" xml:space="preserve">
-    <value>The following is a preview of the actions which will be performed based on these settings:</value>
+    <value>A seguir está uma pré-visualização das ações que serão executadas com base nessas configurações:</value>
   </data>
   <data name="RunTask" xml:space="preserve">
-    <value>Run Task</value>
+    <value>Executar Tarefa</value>
   </data>
   <data name="StatusLabel" xml:space="preserve">
     <value>Status: </value>
   </data>
   <data name="ManagedCertificates_Tasks_DeploymentTasks" xml:space="preserve">
-    <value>Deployment Tasks</value>
+    <value>Tarefas de Implantação</value>
   </data>
   <data name="ManagedCertificates_Tasks_PreRequestTasks" xml:space="preserve">
-    <value>Pre-Request Tasks</value>
+    <value>Tarefas Pré-Requisição</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Adicionar</value>
   </data>
   <data name="IdentifierAuthorization_Title" xml:space="preserve">
-    <value>Identifier Authorization</value>
+    <value>Autorização de Identificador</value>
   </data>
   <data name="IdentifierAuthorization_Intro" xml:space="preserve">
-    <value>For a certificate to be issued you must prove control of the domains or other identifiers in your certificate request. For domains, you can choose to validate using HTTP (port 80), or via DNS. If any included identifier fails validation the certificate request cannot be completed.</value>
+    <value>Para que um certificado seja emitido você deve provar controle dos domínios ou outros identificadores no seu pedido de certificado. Para domínios, você pode validar usando HTTP (porta 80) ou via DNS. Se qualquer identificador incluído falhar na validação, o pedido de certificado não poderá ser concluído.</value>
   </data>
   <data name="IdentifierAuthorization_ChallengeConfig" xml:space="preserve">
-    <value>Challenge Response Configuration</value>
+    <value>Configuração de Resposta ao Desafio</value>
   </data>
   <data name="IdentifierAuthorization_AddAnotherConfig" xml:space="preserve">
-    <value>If you need to authorize multiple domains/identifiers in different ways you can add another authorization config:</value>
+    <value>Se você precisar autorizar vários domínios/identificadores de maneiras diferentes, pode adicionar outra configuração de autorização:</value>
   </data>
   <data name="IdentifierAuthorization_AddConfiguration" xml:space="preserve">
-    <value>Add Configuration</value>
+    <value>Adicionar Configuração</value>
   </data>
   <data name="ConfigurationTestResults" xml:space="preserve">
-    <value>Configuration Test Results</value>
+    <value>Resultados do Teste de Configuração</value>
   </data>
   <data name="ClickToCopy" xml:space="preserve">
-    <value>Click to copy to clipboard</value>
+    <value>Clique para copiar para a área de transferência</value>
   </data>
   <data name="EditServerConnection_Title" xml:space="preserve">
-    <value>Edit Server Connection</value>
+    <value>Editar conexão do servidor</value>
   </data>
   <data name="EditServerConnection_Instruction" xml:space="preserve">
-    <value>By default a service API will be bound to localhost:9696. Additional service configuration is required for remote connection (bound IP, enabling https, firewall rules etc).</value>
+    <value>Por padrão, uma API de serviço será vinculada a localhost:9696. Configuração adicional é necessária para conexão remota (IP vinculado, habilitar HTTPS, regras de firewall etc.).</value>
   </data>
   <data name="EditServerConnection_ConnectionName" xml:space="preserve">
-    <value>Connection Name</value>
+    <value>Nome da conexão</value>
   </data>
   <data name="EditServerConnection_HostnameOrIP" xml:space="preserve">
-    <value>Hostname or IP</value>
+    <value>Nome do host ou IP</value>
   </data>
   <data name="EditServerConnection_Port" xml:space="preserve">
-    <value>Port</value>
+    <value>Porta</value>
   </data>
   <data name="EditServerConnection_UseHTTPS" xml:space="preserve">
-    <value>Use Https</value>
+    <value>Usar HTTPS</value>
   </data>
   <data name="EditServerConnection_AllowUntrustedTLS" xml:space="preserve">
-    <value>Allow Untrusted TLS</value>
+    <value>Permitir TLS não confiável</value>
   </data>
   <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
-    <value>Use as Default</value>
+    <value>Usar como padrão</value>
   </data>
 </root>
