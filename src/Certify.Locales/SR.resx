@@ -816,4 +816,22 @@ for the certification process to work.</value>
   <data name="ClickToCopy" xml:space="preserve">
     <value>Click to copy to clipboard</value>
   </data>
+  <data name="ServerConnections_Title" xml:space="preserve">
+    <value>Server Connections</value>
+  </data>
+  <data name="ServerConnections_ManageConnections" xml:space="preserve">
+    <value>Manage Connections</value>
+  </data>
+  <data name="ServerConnections_Instructions" xml:space="preserve">
+    <value>You can manage multiple connections to different servers:</value>
+  </data>
+  <data name="ServerConnections_AddConnection" xml:space="preserve">
+    <value>Add Connection</value>
+  </data>
+  <data name="ServerConnections_Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="ServerConnections_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

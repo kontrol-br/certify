@@ -765,4 +765,22 @@
   <data name="ClickToCopy" xml:space="preserve">
     <value>Clique para copiar para a área de transferência</value>
   </data>
+  <data name="ServerConnections_Title" xml:space="preserve">
+    <value>Conexões do Servidor</value>
+  </data>
+  <data name="ServerConnections_ManageConnections" xml:space="preserve">
+    <value>Gerenciar conexões</value>
+  </data>
+  <data name="ServerConnections_Instructions" xml:space="preserve">
+    <value>Você pode gerenciar múltiplas conexões para diferentes servidores:</value>
+  </data>
+  <data name="ServerConnections_AddConnection" xml:space="preserve">
+    <value>Adicionar conexão</value>
+  </data>
+  <data name="ServerConnections_Connect" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="ServerConnections_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
 </root>

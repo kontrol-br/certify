@@ -2171,6 +2171,60 @@ namespace Certify.Locales {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Add Connection.
+        /// </summary>
+        public static string ServerConnections_AddConnection {
+            get {
+                return ResourceManager.GetString("ServerConnections_AddConnection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ServerConnections_Cancel {
+            get {
+                return ResourceManager.GetString("ServerConnections_Cancel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string ServerConnections_Connect {
+            get {
+                return ResourceManager.GetString("ServerConnections_Connect", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can manage multiple connections to different servers:.
+        /// </summary>
+        public static string ServerConnections_Instructions {
+            get {
+                return ResourceManager.GetString("ServerConnections_Instructions", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Connections.
+        /// </summary>
+        public static string ServerConnections_ManageConnections {
+            get {
+                return ResourceManager.GetString("ServerConnections_ManageConnections", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Server Connections.
+        /// </summary>
+        public static string ServerConnections_Title {
+            get {
+                return ResourceManager.GetString("ServerConnections_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Status: .
         /// </summary>
         public static string StatusLabel {
