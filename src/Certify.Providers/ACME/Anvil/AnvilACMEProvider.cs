@@ -1985,7 +1985,8 @@ namespace Certify.Providers.ACME.Anvil
                 throw;
             }
 
-            var pfxFile = certId + ".pfx";
+            var hostNameSanitized = string.Join("_", primaryIdentifierPath.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries));
+            var pfxFile = $"{hostNameSanitized}-{certId}.pfx";
             var pfxPath = Path.Combine(storePath, pfxFile);
             var failedBuildMsg = "Failed to build certificate as PFX. Check system date/time is correct and that the issuing CA is a trusted root CA on this machine (or in custom_ca_certs). :";
 
