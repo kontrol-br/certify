@@ -1,4 +1,4 @@
-Certify The Web - TLS/SSL Certificate Management
+AutoSSL - TLS/SSL Certificate Management
 
 End User License Agreement
 
@@ -12,15 +12,15 @@ claim, damages or other liability, whether in an action of contract,
 tort or otherwise, arising from, out of or in connection with the
 software or the use or other dealings in the software.
 
-This app makes use of the following Open Source projects. 
+This app makes use of the following Open Source projects.
 
 Please refer to each project website for full license details:
 
 Let's Encrypt:
 	https://letsencrypt.org
-Certify SSL Manager:
-	MIT License, Copyright (c) 2015-2021 Webprofusion Pty Ltd 
-	https://github.com/webprofusion/certify
+AutoSSL:
+        MIT License, Copyright (c) 2015-2021 Webprofusion Pty Ltd
+        https://github.com/webprofusion/autossl
 Certes: 
 	MIT License
 	Copyright (c) 2018 Certes Project 

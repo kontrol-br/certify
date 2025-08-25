@@ -13,7 +13,7 @@ On IIS this presents a few challenges:
 * Due to the above, ASP.net (and an app-pool) is generally required so that web.config can be supplied to override the configuration.
 * Other customizations or app requirements for the parent website may affect configuration
 
-For Certify The Web, we attempt to auto-configure the required configuration without modifying the configuration of the parent web application, 
+For AutoSSL, we attempt to auto-configure the required configuration without modifying the configuration of the parent web application,
 this avoids app restarts for the parent application. We create a file called 'configcheck' in the /acme-challenge folder and
 we cycle through a number of alternative web.config options and test each one. The test involves making a local http request to
 http://<yourdomain>/.well-known/acme-challenge/configcheck

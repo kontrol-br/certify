@@ -1,5 +1,5 @@
 # Documentation
 
-You can read the docs at: https://docs.certifytheweb.com
+You can read the docs at: https://docs.autossl.com
 
-You can contribute to the docs at: https://github.com/webprofusion/certify-docs
+You can contribute to the docs at: https://github.com/webprofusion/autossl-docs

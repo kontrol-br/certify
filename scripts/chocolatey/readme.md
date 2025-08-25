@@ -1,4 +1,4 @@
-- Update version in `certifytheweb.nuspec`
+- Update version in `autossl.nuspec`
 - Update download and hash in `\tools\chocolateyinstall.ps1`
 
 - Run `choco pack`
