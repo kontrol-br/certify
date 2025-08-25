@@ -83,11 +83,11 @@ namespace Certify.UI.Controls.ManagedCertificate
             var certPath = ItemViewModel.SelectedItem.CertificatePath;
             if (!string.IsNullOrEmpty(certPath) && System.IO.File.Exists(certPath))
             {
-                if (MessageBox.Show("Re-apply certificate to website bindings?", "Confirm Re-Apply?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show("Reaplicar certificado às associações do site?", "Confirma Reaplicação?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     await ItemViewModel.ReapplyCertificateBindings(ItemViewModel.SelectedItem.Id, false, false);
 
-                    ViewModel.AppViewModel.Current.ShowNotification("Certificate Redeployment Completed");
+                    ViewModel.AppViewModel.Current.ShowNotification("Implantação do Certificad Completada");
                 }
             }
             else
@@ -98,7 +98,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
         private void ClearCustomCSR_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you wish to clear the custom CSR?", "Clear Custom CSR", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Tem certeza que quer limpar o CSR customizado?", "Limpar Custom CSR", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 ItemViewModel.SelectedItem.RequestConfig.CustomCSR = null;
             }
@@ -148,7 +148,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
                 if (isInvalid)
                 {
-                    MessageBox.Show("The certificate request could not be read. Check request is a PEM format (text) file with a Certificate Request header.");
+                    MessageBox.Show("Não foi possível ler a solicitação de certificado. Verifique se o arquivo está no formato PEM (texto) e contém o cabeçalho Certificate Request");
                 }
             }
         }
@@ -177,19 +177,19 @@ namespace Certify.UI.Controls.ManagedCertificate
                     }
                     else
                     {
-                        throw new ArgumentException("Unsupported key format");
+                        throw new ArgumentException("Formato de chave não suportado");
                     }
                 }
                 catch (Exception exp)
                 {
-                    MessageBox.Show("The private key could not be processed. Key should be unencrypted and in PEM format [" + exp.ToString() + "]");
+                    MessageBox.Show("Não foi possível processar a chave privada. A chave deve estar sem criptografia e no formato PEM [" + exp.ToString() + "]");
                 }
             }
         }
 
         private void ClearCustomPrivateKey_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you wish to clear the custom private key?", "Clear Custom Private Key", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show(" Tem certeza de que deseja limpar a chave privada personalizada", "Limpar Chave privada Customizada", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 ItemViewModel.SelectedItem.RequestConfig.CustomPrivateKey = null;
             }
@@ -243,11 +243,11 @@ namespace Certify.UI.Controls.ManagedCertificate
             if (result != null)
             {
                 ItemViewModel.SelectedItem = result;
-                AppViewModel.Current.ShowNotification("Managed Certificate Status Reset");
+                AppViewModel.Current.ShowNotification("Restaurar status do certificado gerenciado");
             }
             else
             {
-                AppViewModel.Current.ShowNotification("Managed Certificate Status Reset Failed", Shared.NotificationType.Error);
+                AppViewModel.Current.ShowNotification("Falha na redefinição do status do certificado gerenciado", Shared.NotificationType.Error);
             }
         }
 
@@ -255,7 +255,7 @@ namespace Certify.UI.Controls.ManagedCertificate
         {
             var result = await AppViewModel.Current.PerformChallengeCleanup(ItemViewModel.SelectedItem);
 
-            AppViewModel.Current.ShowNotification("Challenge Cleanup Completed");
+            AppViewModel.Current.ShowNotification("Limpeza do desafio concluídp");
 
         }
     }
