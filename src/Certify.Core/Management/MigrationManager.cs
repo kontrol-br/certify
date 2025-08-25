@@ -52,7 +52,7 @@ namespace Certify.Core.Management
                 EncryptionSalt = salt,
                 EncryptionValidation = new EncryptedContent
                 {
-                    Content = EncryptBytes(Encoding.ASCII.GetBytes("Secret"), settings.EncryptionSecret, salt),
+                    Content = EncryptBytes(Encoding.ASCII.GetBytes("Segredo"), settings.EncryptionSecret, salt),
                     Scheme = EncryptionScheme
                 }
             };
@@ -174,9 +174,9 @@ namespace Certify.Core.Management
                 catch (Exception)
                 {
                     // decryption failed
-                    c.Title += " [Update Required. Decryption Failed]";
+                    c.Title += " [Atualização Necessária. Falha na descriptografia]";
                     c.Secret = "";
-                    export.Errors.Add($"Stored Credential [{c.Title}] could not be decrypted for export. It may be owned by a different user.");
+                    export.Errors.Add($"Credencial armazenada [{c.Title}] não pôde ser descriptografada para exportação. Ela pode pertencer a outro usuário.");
                 }
             }
 
@@ -214,7 +214,7 @@ namespace Certify.Core.Management
                                     catch (Exception exp)
                                     {
                                         // TODO: log errors and inform user - one or more script or file assets exists but is not readable
-                                        System.Diagnostics.Debug.WriteLine("GetTaskScriptsAndContent: file content is not accessible - " + exp);
+                                        System.Diagnostics.Debug.WriteLine("GetTaskScriptsAndContent: conteúdo do arquivo não está acessível - " + exp);
                                     }
                                 }
                             }
@@ -320,12 +320,12 @@ namespace Certify.Core.Management
             {
                 if (package.SystemVersion == null || AppVersion.IsOtherVersionNewer(AppVersion.FromVersion(package.SystemVersion.ToVersion()), AppVersion.FromVersion(currentAppVersion)))
                 {
-                    steps.Add(new ActionStep { Title = "Version Check", Category = "Import", Key = "Version", HasWarning = true, Description = "This import uses a different app/system version." });
+                    steps.Add(new ActionStep { Title = "Verificação de Versão", Category = "Import", Key = "Version", HasWarning = true, Description = "Esta importação utiliza uma versão diferente do aplicativo/sistema." });
                 }
             }
             else
             {
-                steps.Add(new ActionStep { Title = "Version Check", Category = "Import", Key = "Version", Description = "Source is from the same version or a supported app version." });
+                steps.Add(new ActionStep { Title = "Verificação de Versão", Category = "Import", Key = "Version", Description = "A origem é da mesma versão ou de uma versão suportada do aplicativo." });
             }
 
             // check encryption
@@ -334,7 +334,7 @@ namespace Certify.Core.Management
             {
                 var decryptionCheckBytes = DecryptBytes(package.EncryptionValidation.Content, settings.EncryptionSecret, package.EncryptionSalt);
                 var decryptionCheckString = Encoding.ASCII.GetString(decryptionCheckBytes).Trim('\0');
-                if (decryptionCheckString != "Secret")
+                if (decryptionCheckString != "Segredo")
                 {
                     // failed decryption
                     decryptionFailed = true;
@@ -347,12 +347,12 @@ namespace Certify.Core.Management
 
             if (decryptionFailed)
             {
-                steps.Add(new ActionStep { HasError = true, Title = "Decryption Check", Category = "Import", Key = "Decrypt", Description = "Secrets cannot be decrypted using the provided password." });
+                steps.Add(new ActionStep { HasError = true, Title = "Verificação de Descriptografia", Category = "Import", Key = "Decrypt", Description = "Os segredos não podem ser descriptografados com a senha fornecida." });
                 return steps;
             }
             else
             {
-                steps.Add(new ActionStep { Title = "Decryption Check", Category = "Import", Key = "Decrypt", Description = "Secrets can be decrypted OK using the provided password." });
+                steps.Add(new ActionStep { Title = "Verificação de Descriptografia", Category = "Import", Key = "Decrypt", Description = "Os segredos podem ser descriptografados corretamente com a senha fornecida." });
 
             }
 
@@ -382,7 +382,7 @@ namespace Certify.Core.Management
                             }
                             else
                             {
-                                credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"Failed to store this credential. Items which depend on it may not function." });
+                                credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"Falha ao armazenar esta credencial. Itens que dependem dela podem não funcionar." });
                             }
                         }
                         else
@@ -394,17 +394,17 @@ namespace Certify.Core.Management
                     else
                     {
                         // credential already exists
-                        credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"Credential already exists, it will not be re-imported." });
+                        credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"A credencial já existe, ela não será reimportada." });
                     }
                 }
                 catch (Exception)
                 {
-                    credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"Credential could not be decrypted. Any items relying on this credential will fail until the credential is replaced." });
+                    credentialImportSteps.Add(new ActionStep { Title = c.Title, Key = c.StorageKey, HasWarning = true, Description = $"A credencial não pôde ser descriptografada. Qualquer item que dependa dessa credencial falhará até que ela seja substituída." });
                     c.Secret = "";
                 }
             }
 
-            steps.Add(new ActionStep { Title = "Import Stored Credentials", Category = "Import", Substeps = credentialImportSteps, Key = "StoredCredentials" });
+            steps.Add(new ActionStep { Title = "Importar Credenciais Armazenadas", Category = "Import", Substeps = credentialImportSteps, Key = "StoredCredentials" });
 
             var targetSiteBindings = new List<BindingInfo>();
             foreach (var targetServer in _targetServers)
@@ -453,7 +453,7 @@ namespace Certify.Core.Management
                         else
                         {
                             hasUnmatchedTargets = true;
-                            warningMsg += $"IIS SiteID {c.ServerSiteId} could not be matched for Single Site deployment mode. Deployment switched to Auto mode.";
+                            warningMsg += $"O SiteID {c.ServerSiteId} do IIS não pôde ser correspondido para o modo de implantação de Site Único. Implantação alterada para modo Automático.";
                             c.RequestConfig.DeploymentSiteOption = DeploymentOption.Auto;
                         }
                     }
@@ -475,12 +475,12 @@ namespace Certify.Core.Management
                             }
                             else
                             {
-                                managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasError = true, Description = $"Failed to import item." });
+                                managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasError = true, Description = $"Falha ao importar item." });
                             }
                         }
                         catch (Exception exp)
                         {
-                            managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasError = true, Description = $"Failed to import item: {exp.Message}" });
+                            managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasError = true, Description = $"Falha ao importar item: {exp.Message}" });
                         }
                     }
                     else
@@ -491,11 +491,11 @@ namespace Certify.Core.Management
                 }
                 else
                 {
-                    managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasWarning = true, Description = "Item already exists, it will not be re-imported." });
+                    managedCertImportSteps.Add(new ActionStep { Title = c.Name, Key = c.Id, HasWarning = true, Description = "O item já existe, ele não será reimportado." });
                 }
             }
 
-            steps.Add(new ActionStep { Title = "Import Managed Certificates", Category = "Import", Substeps = managedCertImportSteps, Key = "ManagedCerts" });
+            steps.Add(new ActionStep { Title = "Importar Certificados Gerenciados", Category = "Import", Substeps = managedCertImportSteps, Key = "ManagedCerts" });
 
             // certificate files
             var certFileImportSteps = new List<ActionStep>();
@@ -552,32 +552,32 @@ namespace Certify.Core.Management
                                 // write cert file
                                 System.IO.File.WriteAllBytes(c.Filename, pfxBytes);
 
-                                certFileImportSteps.Add(new ActionStep { Title = $"Importing PFX {cert.Subject}, expiring {cert.NotAfter}", Key = c.Filename, HasWarning = !isVerified, Description = isVerified ? null : "Certificate did not pass verify check." });
+                                certFileImportSteps.Add(new ActionStep { Title = $"Importando PFX {cert.Subject}, expira em {cert.NotAfter}", Key = c.Filename, HasWarning = !isVerified, Description = isVerified ? null : "O certificado não passou na verificação." });
                             }
                             catch (Exception exp)
                             {
-                                certFileImportSteps.Add(new ActionStep { Title = $"Importing PFX {cert.Subject}, expiring {cert.NotAfter}", Key = c.Filename, HasError = true, Description = $"Failed to write certificate to destination: {c.Filename} [{exp.Message}]" });
+                                certFileImportSteps.Add(new ActionStep { Title = $"Importando PFX {cert.Subject}, expira em {cert.NotAfter}", Key = c.Filename, HasError = true, Description = $"Falha ao gravar certificado no destino: {c.Filename} [{exp.Message}]" });
                             }
                         }
                         else
                         {
                             // preview only
-                            certFileImportSteps.Add(new ActionStep { Title = $"Importing PFX {cert.Subject}, expiring {cert.NotAfter}", Key = c.Filename, HasWarning = !isVerified, Description = isVerified ? "Would import to " + c.Filename : "Certificate did not pass verify check." });
+                            certFileImportSteps.Add(new ActionStep { Title = $"Importando PFX {cert.Subject}, expira em {cert.NotAfter}", Key = c.Filename, HasWarning = !isVerified, Description = isVerified ? "Seria importado para " + c.Filename : "O certificado não passou na verificação." });
                         }
                     }
                     else
                     {
-                        certFileImportSteps.Add(new ActionStep { Title = $"Importing PFX {cert.Subject}, expiring {cert.NotAfter}", Key = c.Filename, HasWarning = true, Description = "Output file already exists, it will not be re-imported" });
+                        certFileImportSteps.Add(new ActionStep { Title = $"Importando PFX {cert.Subject}, expira em {cert.NotAfter}", Key = c.Filename, HasWarning = true, Description = "O arquivo de saída já existe, ele não será reimportado" });
                     }
                 }
                 else
                 {
-                    certFileImportSteps.Add(new ActionStep { Title = $"Importing PFX Failed", Key = c.Filename, HasWarning = true, Description = "Could not create PFX from bytes. Password may be incorrect." });
+                    certFileImportSteps.Add(new ActionStep { Title = $"Falha ao Importar PFX", Key = c.Filename, HasWarning = true, Description = "Não foi possível criar PFX a partir dos bytes. A senha pode estar incorreta." });
 
                 }
             }
 
-            steps.Add(new ActionStep { Title = "Import Certificate Files", Category = "Import", Substeps = certFileImportSteps, Key = "CertFiles" });
+            steps.Add(new ActionStep { Title = "Importar Arquivos de Certificado", Category = "Import", Substeps = certFileImportSteps, Key = "CertFiles" });
 
             return steps;
         }
