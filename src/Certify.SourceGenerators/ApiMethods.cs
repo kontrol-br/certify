@@ -70,7 +70,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "CheckSecurityPrincipalHasAccess",
                     OperationMethod = HttpPost,
-                    Comment = "Check a given security principal has permissions to perform a specific action for a specific resource action",
+                    Comment = "Verificar se uma determinada entidade de segurança possui permissões para executar uma ação específica para um recurso específico",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal/allowedaction",
                     ServiceAPIRoute = "access/securityprincipal/allowedaction",
@@ -82,7 +82,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetSecurityPrincipalAssignedRoles",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of Assigned Roles for a given security principal",
+                    Comment = "Obter lista de Funções Atribuídas para uma determinada entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal/{id}/assignedroles",
                     ServiceAPIRoute = "access/securityprincipal/{id}/assignedroles",
@@ -94,7 +94,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetSecurityPrincipalRoleStatus",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of Assigned Roles etc for a given security principal",
+                    Comment = "Obter lista de Funções Atribuídas etc para uma determinada entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal/{id}/rolestatus",
                     ServiceAPIRoute = "access/securityprincipal/{id}/rolestatus",
@@ -106,7 +106,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetAccessRoles",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of available security Roles",
+                    Comment = "Obter lista de Funções de segurança disponíveis",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "roles",
                     ServiceAPIRoute = "access/roles",
@@ -117,7 +117,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetAssignedAccessTokens",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of API assigned access tokens",
+                    Comment = "Obter lista de tokens de acesso atribuídos da API",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "assignedtoken",
                     ServiceAPIRoute = "access/assignedtoken/list",
@@ -128,7 +128,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "AddAssignedAccessToken",
                     OperationMethod = HttpPost,
-                    Comment = "Add new assigned access token",
+                    Comment = "Adicionar novo token de acesso atribuído",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "assignedtoken",
                     ServiceAPIRoute = "access/assignedtoken",
@@ -140,7 +140,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveAssignedAccessToken",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove assigned access token",
+                    Comment = "Remover token de acesso atribuído",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "assignedtoken",
                     ServiceAPIRoute = "access/assignedtoken/{id}",
@@ -153,7 +153,7 @@ namespace Certify.SourceGenerators
 
                     OperationName = "GetSecurityPrincipals",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of available security principals",
+                    Comment = "Obter lista de entidades de segurança disponíveis",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipals",
                     ServiceAPIRoute = "access/securityprincipals",
@@ -164,7 +164,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "ValidateSecurityPrincipalPassword",
                     OperationMethod = HttpPost,
-                    Comment = "Check password valid for security principal",
+                    Comment = "Verificar se a senha é válida para a entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "validate",
                     ServiceAPIRoute = "access/validate",
@@ -177,7 +177,7 @@ namespace Certify.SourceGenerators
 
                     OperationName = "UpdateSecurityPrincipalPassword",
                     OperationMethod = HttpPost,
-                    Comment = "Update password for security principal",
+                    Comment = "Atualizar senha para a entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "updatepassword",
                     ServiceAPIRoute = "access/updatepassword",
@@ -190,7 +190,7 @@ namespace Certify.SourceGenerators
 
                     OperationName = "AddSecurityPrincipal",
                     OperationMethod = HttpPost,
-                    Comment = "Add new security principal",
+                    Comment = "Adicionar nova entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal",
                     ServiceAPIRoute = "access/securityprincipal",
@@ -203,7 +203,7 @@ namespace Certify.SourceGenerators
 
                     OperationName = "UpdateSecurityPrincipal",
                     OperationMethod = HttpPost,
-                    Comment = "Update existing security principal",
+                    Comment = "Atualizar entidade de segurança existente",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal/update",
                     ServiceAPIRoute = "access/securityprincipal/update",
@@ -218,7 +218,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateSecurityPrincipalAssignedRoles",
                     OperationMethod = HttpPost,
-                    Comment = "Update assigned roles for a security principal",
+                    Comment = "Atualizar funções atribuídas para uma entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal/roles/update",
                     ServiceAPIRoute = "access/securityprincipal/roles/update",
@@ -233,7 +233,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveSecurityPrincipal",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove security principal",
+                    Comment = "Remover entidade de segurança",
                     PublicAPIController = "Access",
                     PublicAPIRoute = "securityprincipal",
                     ServiceAPIRoute = "access/securityprincipal/{id}",
@@ -245,7 +245,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "AddHubManagedInstance",
                     OperationMethod = HttpPost,
-                    Comment = "Add new managed instance to the hub",
+                    Comment = "Adicionar nova instância gerenciada ao hub",
                     ServiceAPIRoute = "managedinstance",
                     ReturnType = $"Models.Config.ActionResult<{nameof(Models.Hub.ManagedInstanceInfo)}>",
                     Params = new Dictionary<string, string> { { "item", nameof(Models.Hub.ManagedInstanceInfo) } },
@@ -255,7 +255,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateHubManagedInstance",
                     OperationMethod = HttpPost,
-                    Comment = "Update existing managed instance in the hub",
+                    Comment = "Atualizar instância gerenciada existente no hub",
                     ServiceAPIRoute = "managedinstance/update",
                     ReturnType = actionResultTypeName,
                     Params = new Dictionary<string, string> { { "item", nameof(Models.Hub.ManagedInstanceInfo) } },
@@ -265,7 +265,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveHubManagedInstance",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove existing managed instance in the hub",
+                    Comment = "Remover instância gerenciada existente no hub",
                     PublicAPIController = "Hub",
                     PublicAPIRoute = "instances/{id}",
                     ServiceAPIRoute = "managedinstance/delete/{id}",
@@ -277,7 +277,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetHubManagedInstance",
                     OperationMethod = HttpGet,
-                    Comment = "Get managed instance info",
+                    Comment = "Obter informações da instância gerenciada",
                     ServiceAPIRoute = "managedinstance/{id}",
                     ReturnType = nameof(Models.Hub.ManagedInstanceInfo),
                     Params = new Dictionary<string, string> { { "id", "string" } },
@@ -287,7 +287,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetHubManagedInstances",
                     OperationMethod = HttpGet,
-                    Comment = "Get managed instances",
+                    Comment = "Obter instâncias gerenciadas",
                     ServiceAPIRoute = "managedinstance/list",
                     ReturnType = $"ICollection<{nameof(Models.Hub.ManagedInstanceInfo)}>",
                     Params = new Dictionary<string, string> { },
@@ -297,7 +297,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetManagedChallenges",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of available managed challenges (DNS challenge delegation etc)",
+                    Comment = "Obter lista de desafios gerenciados disponíveis (delegação de desafio DNS etc)",
                     PublicAPIController = "ManagedChallenge",
                     PublicAPIRoute = "list",
                     ServiceAPIRoute = "managedchallenge",
@@ -308,7 +308,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateManagedChallenge",
                     OperationMethod = HttpPost,
-                    Comment = "Add/update a managed challenge (DNS challenge delegation etc)",
+                    Comment = "Adicionar/atualizar um desafio gerenciado (delegação de desafio DNS etc)",
                     PublicAPIController = "ManagedChallenge",
                     PublicAPIRoute = "update",
                     ServiceAPIRoute = "managedchallenge",
@@ -323,7 +323,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveManagedChallenge",
                     OperationMethod = HttpDelete,
-                    Comment = "Delete a managed challenge (DNS challenge delegation etc)",
+                    Comment = "Excluir um desafio gerenciado (delegação de desafio DNS etc)",
                     PublicAPIController = "ManagedChallenge",
                     PublicAPIRoute = "remove",
                     ServiceAPIRoute = "managedchallenge/{id}",
@@ -338,7 +338,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "PerformManagedChallenge",
                     OperationMethod = HttpPost,
-                    Comment = "Perform a managed challenge (DNS challenge delegation etc)",
+                    Comment = "Executar um desafio gerenciado (delegação de desafio DNS etc)",
                     PublicAPIController = null, // skip public controller implementation
                     ServiceAPIRoute = "managedchallenge/request",
                     ReturnType = actionResultTypeName,
@@ -352,7 +352,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "CleanupManagedChallenge",
                     OperationMethod = HttpPost,
-                    Comment = "Perform cleanup for a previously managed challenge (DNS challenge delegation etc)",
+                    Comment = "Executar limpeza para um desafio gerenciado previamente (delegação de desafio DNS etc)",
                     PublicAPIController = null, // skip public controller implementation
                     ServiceAPIRoute = "managedchallenge/cleanup",
                     ReturnType = actionResultTypeName,
@@ -366,7 +366,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "PerformExport",
                     OperationMethod = HttpPost,
-                    Comment = "Perform an export of all settings for an instance",
+                    Comment = "Realizar exportação de todas as configurações de uma instância",
                     ServiceAPIRoute = "system/migration/export",
                     ReturnType = GetFormattedTypeName(typeof(Models.Config.Migration.ImportExportPackage)),
                     Params = new Dictionary<string, string> { { "exportRequest", GetFormattedTypeName(typeof(Certify.Models.Config.Migration.ExportRequest)) } },
@@ -376,7 +376,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "PerformImport",
                     OperationMethod = HttpPost,
-                    Comment = "Perform an import of all settings for an instance",
+                    Comment = "Realizar importação de todas as configurações de uma instância",
                     ServiceAPIRoute = "system/migration/import",
                     ReturnType = "ICollection<ActionStep>",
                     Params = new Dictionary<string, string> { { "importRequest", GetFormattedTypeName(typeof(Certify.Models.Config.Migration.ImportRequest)) } },
@@ -387,7 +387,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetAcmeAccounts",
                     OperationMethod = HttpGet,
-                    Comment = "Get All Acme Accounts",
+                    Comment = "Obter todas as Contas ACME",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/accounts/",
@@ -399,7 +399,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "AddAcmeAccount",
                     OperationMethod = HttpPost,
-                    Comment = "Add New Acme Account",
+                    Comment = "Adicionar Nova Conta ACME",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/account/",
@@ -411,7 +411,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetCertificateAuthorities",
                     OperationMethod = HttpGet,
-                    Comment = "Get list of defined Certificate Authorities",
+                    Comment = "Obter lista de Autoridades Certificadoras definidas",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/authority",
@@ -423,7 +423,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateCertificateAuthority",
                     OperationMethod = HttpPost,
-                    Comment = "Add/Update Certificate Authority",
+                    Comment = "Adicionar/Atualizar Autoridade Certificadora",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/authority",
@@ -435,7 +435,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveCertificateAuthority",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove Certificate Authority",
+                    Comment = "Remover Autoridade Certificadora",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/authority/{id}",
@@ -447,7 +447,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveAcmeAccount",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove ACME Account",
+                    Comment = "Remover Conta ACME",
                     UseManagementAPI = true,
                     PublicAPIController = "CertificateAuthority",
                     PublicAPIRoute = "{instanceId}/accounts/{storageKey}/{deactivate}",
@@ -459,7 +459,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetStoredCredentials",
                     OperationMethod = HttpGet,
-                    Comment = "Get List of Stored Credentials",
+                    Comment = "Obter Lista de Credenciais Armazenadas",
                     UseManagementAPI = true,
                     PublicAPIController = "StoredCredential",
                     PublicAPIRoute = "{instanceId}",
@@ -471,7 +471,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateStoredCredential",
                     OperationMethod = HttpPost,
-                    Comment = "Add/Update Stored Credential",
+                    Comment = "Adicionar/Atualizar Credencial Armazenada",
                     PublicAPIController = "StoredCredential",
                     PublicAPIRoute = "{instanceId}",
                     ReturnType = actionResultTypeName,
@@ -483,7 +483,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveStoredCredential",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove Stored Credential",
+                    Comment = "Remover Credencial Armazenada",
                     UseManagementAPI = true,
                     PublicAPIController = "StoredCredential",
                     PublicAPIRoute = "{instanceId}/{storageKey}",
@@ -495,7 +495,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UnlockStoredCredential",
                     OperationMethod = HttpPost,
-                    Comment = "Unlock Stored Credential",
+                    Comment = "Desbloquear Credencial Armazenada",
                     UseManagementAPI = true,
                     PublicAPIController = "StoredCredential",
                     PublicAPIRoute = "{instanceId}/{storageKey}/unlock",
@@ -507,7 +507,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetDeploymentProviders",
                     OperationMethod = HttpGet,
-                    Comment = "Get Deployment Task Providers",
+                    Comment = "Obter Provedores de Tarefas de Implantação",
                     UseManagementAPI = true,
                     PublicAPIController = "DeploymentTask",
                     PublicAPIRoute = "{instanceId}",
@@ -522,7 +522,7 @@ namespace Certify.SourceGenerators
                  {
                      OperationName = "GetTargetIPAddresses",
                      OperationMethod = HttpGet,
-                     Comment = "Get list of IP addresses available on the target for service binding (IIS, nginx etc)",
+                     Comment = "Obter lista de endereços IP disponíveis no destino para vinculação de serviço (IIS, nginx etc)",
                      UseManagementAPI = true,
                      ManagementHubCommandType = Models.Hub.ManagementHubCommands.GetTargetIPAddresses,
                      PublicAPIController = "Target",
@@ -538,7 +538,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetTargetServiceTypes",
                     OperationMethod = HttpGet,
-                    Comment = "Get Service Types present on instance (IIS, nginx etc)",
+                    Comment = "Obter Tipos de Serviço presentes na instância (IIS, nginx etc)",
                     UseManagementAPI = true,
                     ManagementHubCommandType = Models.Hub.ManagementHubCommands.GetTargetServiceTypes,
                     PublicAPIController = "Target",
@@ -554,7 +554,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetTargetServiceItems",
                     OperationMethod = HttpGet,
-                    Comment = "Get Service items (sites) present on instance (IIS, nginx etc).",
+                    Comment = "Obter itens de Serviço (sites) presentes na instância (IIS, nginx etc).",
                     UseManagementAPI = true,
                     ManagementHubCommandType = Models.Hub.ManagementHubCommands.GetTargetServiceItems,
                     PublicAPIController = "Target",
@@ -571,7 +571,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetTargetServiceItemIdentifiers",
                     OperationMethod = HttpGet,
-                    Comment = "Get Service item identifiers (domains on a website etc) present on instance (IIS, nginx etc)",
+                    Comment = "Obter identificadores de itens de Serviço (domínios em um site etc) presentes na instância (IIS, nginx etc)",
                     UseManagementAPI = true,
                     ManagementHubCommandType = Models.Hub.ManagementHubCommands.GetTargetServiceItemIdentifiers,
                     PublicAPIController = "Target",
@@ -589,7 +589,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetChallengeProviders",
                     OperationMethod = HttpGet,
-                    Comment = "Get Dns Challenge Providers",
+                    Comment = "Obter Provedores de Desafio DNS",
                     UseManagementAPI = true,
                     PublicAPIController = "ChallengeProvider",
                     PublicAPIRoute = "{instanceId}",
@@ -604,7 +604,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetDnsZones",
                     OperationMethod = HttpGet,
-                    Comment = "Get List of Zones with the current DNS provider and credential",
+                    Comment = "Obter Lista de Zonas com o provedor DNS atual e credencial",
                     UseManagementAPI = true,
                     PublicAPIController = "ChallengeProvider",
                     PublicAPIRoute = "{instanceId}/dnszones/{providerTypeId}/{credentialId}",
@@ -621,7 +621,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "ExecuteDeploymentTask",
                     OperationMethod = HttpGet,
-                    Comment = "Execute Deployment Task",
+                    Comment = "Executar Tarefa de Implantação",
                     UseManagementAPI = true,
                     PublicAPIController = "DeploymentTask",
                     PublicAPIRoute = "{instanceId}/execute/{managedCertificateId}/{taskId}",
@@ -638,7 +638,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "RemoveManagedCertificate",
                     OperationMethod = HttpDelete,
-                    Comment = "Remove Managed Certificate",
+                    Comment = "Remover Certificado Gerenciado",
                     UseManagementAPI = true,
                     PublicAPIController = "Certificate",
                     PublicAPIRoute = "{instanceId}/settings/{managedCertId}",
@@ -650,7 +650,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "PerformInstanceExport",
                     OperationMethod = HttpPost,
-                    Comment = "Perform an export of all settings",
+                    Comment = "Realizar exportação de todas as configurações",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/migration/export",
@@ -662,7 +662,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "PerformInstanceImport",
                     OperationMethod = HttpPost,
-                    Comment = "Perform an import of all settings",
+                    Comment = "Realizar importação de todas as configurações",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/migration/import",
@@ -674,7 +674,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetInstanceStatusItems",
                     OperationMethod = HttpGet,
-                    Comment = "Get instance status items",
+                    Comment = "Obter itens de status da instância",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/status",
@@ -686,7 +686,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetServiceConfig",
                     OperationMethod = HttpGet,
-                    Comment = "Get service config for a managed instance",
+                    Comment = "Obter configuração de serviço para uma instância gerenciada",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/serviceconfig",
@@ -698,7 +698,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "GetServiceCoreSettings",
                     OperationMethod = HttpGet,
-                    Comment = "Get core settings for a managed instance",
+                    Comment = "Obter configurações principais para uma instância gerenciada",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/coresettings",
@@ -710,7 +710,7 @@ namespace Certify.SourceGenerators
                 {
                     OperationName = "UpdateServiceConfig",
                     OperationMethod = HttpPost,
-                    Comment = "Update instance service config",
+                    Comment = "Atualizar configuração de serviço da instância",
                     UseManagementAPI = true,
                     PublicAPIController = "System",
                     PublicAPIRoute = "{instanceId}/system/serviceconfig",
@@ -726,7 +726,7 @@ namespace Certify.SourceGenerators
                  {
                      OperationName = "UpdateServiceCoreSettings",
                      OperationMethod = HttpPost,
-                     Comment = "Update instance service core settings",
+                     Comment = "Atualizar configurações principais de serviço da instância",
                      UseManagementAPI = true,
                      PublicAPIController = "System",
                      PublicAPIRoute = "{instanceId}/system/coresettings",
@@ -742,7 +742,7 @@ namespace Certify.SourceGenerators
                     {
                         OperationName = "GetHubItemTags",
                         OperationMethod = HttpGet,
-                        Comment = "Get hub item tags",
+                        Comment = "Obter tags de itens do hub",
                         PublicAPIController = "Hub",
                         PublicAPIRoute = "tags/list",
                         ServiceAPIRoute = "tags/list",
@@ -753,7 +753,7 @@ namespace Certify.SourceGenerators
                   {
                       OperationName = "AddHubItemTag",
                       OperationMethod = HttpPost,
-                      Comment = "Add hub item tag",
+                      Comment = "Adicionar tag de item do hub",
                       PublicAPIController = "Hub",
                       PublicAPIRoute = "tags/add",
                       ServiceAPIRoute = "tags/add",
