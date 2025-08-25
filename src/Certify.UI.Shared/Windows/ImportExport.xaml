@@ -87,9 +87,8 @@
 
                         <Button
                             x:Name="CompleteImport"
-                            Width="120"
+                            Width="126"
                             Margin="16,0,0,0"
-                            HorizontalAlignment="Left"
                             Click="CompleteImport_Click"
                             DockPanel.Dock="Bottom"
                             Visibility="{Binding IsImportReady, Converter={StaticResource ResourceKey=BoolToVisConverter}}">

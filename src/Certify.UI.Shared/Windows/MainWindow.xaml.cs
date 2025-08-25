@@ -450,5 +450,10 @@ namespace Certify.UI.Windows
         {
             await Application.Current.Dispatcher.InvokeAsync(async delegate { await NewCertificate(original); });
         }
+
+        private void ProgressMonitor_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

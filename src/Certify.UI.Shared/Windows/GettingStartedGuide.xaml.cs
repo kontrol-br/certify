@@ -1,4 +1,4 @@
-namespace Certify.UI.Windows
+﻿namespace Certify.UI.Windows
 {
     public partial class GettingStartedGuide
     {
@@ -7,6 +7,11 @@ namespace Certify.UI.Windows
         public GettingStartedGuide()
         {
             InitializeComponent();
+        }
+
+        private void QuickStart_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
     }
 }
