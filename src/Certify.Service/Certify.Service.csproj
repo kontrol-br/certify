@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net462</TargetFramework>
         <Configurations>Debug;Release;</Configurations>
-        <AssemblyName>Certify.Service</AssemblyName>
+        <AssemblyName>AutoSSL.Service</AssemblyName>
         <OutputType>Exe</OutputType>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <ApplicationIcon>icon.ico</ApplicationIcon>
