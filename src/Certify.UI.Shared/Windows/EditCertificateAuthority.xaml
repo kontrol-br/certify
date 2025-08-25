@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
-    Title="Edit Certificate Authority"
+    Title="Editar Autoridade Certificadora"
     Width="580"
     Height="430"
     Background="{DynamicResource MahApps.Brushes.Window.Background}"
@@ -26,7 +26,7 @@
             Margin="0,8"
             DockPanel.Dock="Top"
             Orientation="Horizontal">
-            <Label Margin="12,4,4,4" Content="Certificate Authority" />
+            <Label Margin="12,4,4,4" Content="Autoridade Certificadora" />
             <ComboBox
                 x:Name="CertificateAuthorityList"
                 Width="300"
@@ -46,7 +46,7 @@
                 Width="120"
                 Margin="12,0,0,0"
                 VerticalAlignment="Top"
-                Content="Title" />
+                Content="Título" />
             <TextBox
                 Width="300"
                 Height="23"
@@ -65,13 +65,13 @@
                 Width="120"
                 Margin="12,0,0,0"
                 VerticalAlignment="Top"
-                Content="Description" />
+                Content="Descrição" />
             <TextBox
                 Width="300"
                 Height="48"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Controls:TextBoxHelper.Watermark="(Optional description)"
+                Controls:TextBoxHelper.Watermark="(Descrição opcional"
                 Text="{Binding Model.Item.Description}"
                 TextWrapping="Wrap" />
         </StackPanel>
@@ -83,7 +83,7 @@
                 Width="120"
                 Margin="12,0,0,0"
                 VerticalAlignment="Top"
-                Content="Production API" />
+                Content="API de Produção" />
             <TextBox
                 Width="300"
                 Height="23"
@@ -101,13 +101,13 @@
                 Width="120"
                 Margin="12,0,0,0"
                 VerticalAlignment="Top"
-                Content="Staging API" />
+                Content="API de Staging/Teste" />
             <TextBox
                 Width="300"
                 Height="23"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Controls:TextBoxHelper.Watermark="(Url for the staging/test directory endpoint)"
+                Controls:TextBoxHelper.Watermark="(URL para os diretórios de staging/teste)"
                 Text="{Binding Model.Item.StagingAPIEndpoint}"
                 TextWrapping="Wrap" />
         </StackPanel>
@@ -119,13 +119,13 @@
                 Width="120"
                 Margin="12,0,0,0"
                 VerticalAlignment="Top"
-                Content="Features" />
+                Content="Funcionalidades" />
             <StackPanel Orientation="Vertical">
-                <Controls:ToggleSwitch Content="Enabled" IsOn="{Binding Model.Item.IsEnabled}" />
-                <Controls:ToggleSwitch Content="Email Address Required" IsOn="{Binding Model.Item.RequiresEmailAddress}" />
-                <Controls:ToggleSwitch Content="Allow Untrusted TLS" IsOn="{Binding Model.Item.AllowUntrustedTls}" />
+                <Controls:ToggleSwitch Content="Ligado" IsOn="{Binding Model.Item.IsEnabled}" />
+                <Controls:ToggleSwitch Content="Endereço E-mail requerido" IsOn="{Binding Model.Item.RequiresEmailAddress}" />
+                <Controls:ToggleSwitch Content="Permitir TLS não confiável" IsOn="{Binding Model.Item.AllowUntrustedTls}" />
 
-                <Controls:ToggleSwitch Content="Allow Internal Hostnames" IsOn="{Binding Model.Item.AllowInternalHostnames}" />
+                <Controls:ToggleSwitch Content="Permitir Hostnames Internos" IsOn="{Binding Model.Item.AllowInternalHostnames}" />
 
 
             </StackPanel>
@@ -142,14 +142,14 @@
                 Width="100"
                 Margin="0,0,200,0"
                 Click="Delete_Click"
-                Content="Delete"
+                Content="Deletar"
                 IsEnabled="{Binding Model.Item.IsCustom}" />
             <Button
                 x:Name="Save"
                 Width="100"
                 Margin="12,0,0,0"
                 Click="Save_Click"
-                Content="Save"
+                Content="Salvar"
                 IsEnabled="{Binding Model.Item.IsCustom}" />
             <Button
                 x:Name="Cancel"
