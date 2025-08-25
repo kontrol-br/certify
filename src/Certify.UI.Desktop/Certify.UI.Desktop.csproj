@@ -4,14 +4,14 @@
         <TargetFramework>net9.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>False</UseWindowsForms>
-        <ApplicationIcon>icon.ico</ApplicationIcon>
+        <ApplicationIcon>autossl.ico</ApplicationIcon>
         <StartupObject>Certify.UI.App</StartupObject>
         <Platforms>AnyCPU</Platforms>
         <XamlDebuggingInformation>True</XamlDebuggingInformation>
         <NoWarn>NU1701</NoWarn>
         <LangVersion>latest</LangVersion>
         <ApplicationManifest>app.manifest</ApplicationManifest>
-
+        <AssemblyName>autossl</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Certify.UI.Shared\Certify.UI.Shared.csproj" />

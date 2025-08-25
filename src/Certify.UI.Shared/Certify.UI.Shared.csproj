@@ -17,7 +17,7 @@
     <ItemGroup>
         <None Remove="Assets\CSS\dark-mode.css" />
         <None Remove="Assets\CSS\markdown.css" />
-        <None Remove="Assets\Images\icon.ico" />
+        <None Remove="Assets\Images\autossl.ico" />
         <None Remove="Assets\Images\QuickStart\ChooseAuth.png" />
         <None Remove="Assets\Images\QuickStart\ChooseDomains.png" />
         <None Remove="Assets\Images\QuickStart\PreviewDeployment.png" />
@@ -58,7 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Assets\Images\icon.ico" />
+        <Resource Include="Assets\Images\autossl.ico" />
         <Resource Include="Assets\Images\QuickStart\ChooseAuth.png" />
         <Resource Include="Assets\Images\QuickStart\ChooseDomains.png" />
         <Resource Include="Assets\Images\QuickStart\PreviewDeployment.png" />
