@@ -139,7 +139,7 @@ This software uses the following Open Source software (or significant portions o
     <value>You are using the latest version.</value>
   </data>
   <data name="AppUpdateCheckURI" xml:space="preserve">
-    <value>https://certifytheweb.com/downloads/version.json</value>
+    <value>https://autossl.com/downloads/version.json</value>
     <comment>Do not translate</comment>
   </data>
   <data name="AppWebsiteURL" xml:space="preserve">

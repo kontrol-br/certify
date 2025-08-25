@@ -2,7 +2,7 @@
 # To use this script copy it to another location and modify as required
 
 # This script enables the use of the newly retrieved and stored certificate with common Exchange services
-# For more script info see https://docs.certifytheweb.com/docs/script-hooks.html
+# For more script info see https://docs.autossl.com/script-hooks.html
 
 param($result)
 

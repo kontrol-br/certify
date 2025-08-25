@@ -23,7 +23,7 @@ namespace Certify.Service
                 context.Request.CreateResponse(HttpStatusCode.InternalServerError,
                 new
                 {
-                    Message = $"An internal error has occurred. If this problem happens regularly please report it to support@certifytheweb.com: {context.Exception?.Message} {context.Exception.Source} {context.Exception.StackTrace}",
+                    Message = $"An internal error has occurred. If this problem happens regularly please report it to support@autossl.com: {context.Exception?.Message} {context.Exception.Source} {context.Exception.StackTrace}",
                     Exception = context.Exception
                 },
                 JsonMediaTypeFormatter.DefaultMediaType

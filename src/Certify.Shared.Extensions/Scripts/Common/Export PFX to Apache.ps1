@@ -3,7 +3,7 @@
 
 param($result)
 
-# script example adapted from https://community.certifytheweb.com/t/filezilla-server-ps-script/141/8
+# script example adapted from https://community.autossl.com/t/filezilla-server-ps-script/141/8
 
 # Alias to your OpenSSL install
 set-alias opensslcmd "C:\Tools\OpenSSL\openssl.exe" 

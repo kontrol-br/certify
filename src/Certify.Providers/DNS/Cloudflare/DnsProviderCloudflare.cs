@@ -109,7 +109,7 @@ namespace Certify.Providers.DNS.Cloudflare
             Id = "DNS01.API.Cloudflare",
             Title = "Cloudflare DNS API",
             Description = "Validates via Cloudflare DNS APIs using credentials (using API Token or Email + AuthKey pair)",
-            HelpUrl = "https://docs.certifytheweb.com/docs/dns/providers/cloudflare",
+            HelpUrl = "https://docs.autossl.com/dns/providers/cloudflare",
             PropagationDelaySeconds = 60,
             ProviderParameters = new List<ProviderParameter>{
                         new ProviderParameter{Key="emailaddress", Name="Email Address", IsRequired=false, Description="Required if not using API Token" },

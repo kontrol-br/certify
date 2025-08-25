@@ -13,7 +13,7 @@
     <StackPanel>
 
         <TextBlock Style="{StaticResource Subheading}">Gerencie esta instância usando o Certify Management Hub</TextBlock>
-        <TextBlock Style="{StaticResource Instructions}">Você pode gerenciar centralmente esta instância do Certify Certificate Manager usando o Certify Management Hub. Veja https://certifytheweb.com para mais informações.</TextBlock>
+        <TextBlock Style="{StaticResource Instructions}">Você pode gerenciar centralmente esta instância do Certify Certificate Manager usando o Certify Management Hub. Veja https://autossl.com para mais informações.</TextBlock>
 
         <TextBlock Style="{StaticResource SubheadingWithMargin}" Text="{Binding StatusMessage}" />
 

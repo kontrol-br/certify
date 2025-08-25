@@ -25,7 +25,7 @@ namespace Certify.Core.Tests.Unit
             result = await net.CheckDNS(log, "cloudapp.net");
             Assert.IsFalse(result.All(r => r.IsSuccess), "Valid domain that does not resolve to an IP Address does not throw an error");
 
-            // certifytheweb.com = no CAA records
+            // autossl.com = no CAA records
             result = await net.CheckDNS(log, "webprofusion.com");
             Assert.IsTrue(result.All(r => r.IsSuccess), "CAA records are not required");
 

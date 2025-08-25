@@ -436,7 +436,7 @@ namespace Certify.Core.Tests.Unit
                 AccountKey = "",
                 AccountURI = "",
                 Title = "Dev",
-                Email = "test@certifytheweb.com",
+                Email = "test@autossl.com",
                 CertificateAuthorityId = _customCa.Id,
                 StorageKey = "dev",
                 IsStagingAccount = true,
@@ -446,7 +446,7 @@ namespace Certify.Core.Tests.Unit
             var dummyManagedCert = (new ManagedCertificate { UseStagingMode = true });
             var caAccount = await _certifyManager.GetAccountDetails(dummyManagedCert);
             Assert.IsNotNull(caAccount, "Expected result of CertifyManager.GetAccountDetails() to not be null");
-            Assert.AreEqual("test@certifytheweb.com", caAccount.Email);
+            Assert.AreEqual("test@autossl.com", caAccount.Email);
 
             _certifyManager.OverrideAccountDetails = null;
         }

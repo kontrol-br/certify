@@ -26,15 +26,15 @@ namespace Certify.Core.Tests.Unit
             var directoryJson = """
                  
                 {
-                  "newNonce": "https://acme.dev.certifytheweb.com/v2/newNonce",
-                  "newAccount": "https://acme.dev.certifytheweb.com/v2/newAccount",
-                  "newOrder": "https://acme.dev.certifytheweb.com/v2/newOrder",
-                  "revokeCert": "https://acme.dev.certifytheweb.com/v2/revokeCert",
-                  "keyChange": "https://acme.dev.certifytheweb.com/v2/keyChange",
+                  "newNonce": "https://acme.dev.autossl.com/v2/newNonce",
+                  "newAccount": "https://acme.dev.autossl.com/v2/newAccount",
+                  "newOrder": "https://acme.dev.autossl.com/v2/newOrder",
+                  "revokeCert": "https://acme.dev.autossl.com/v2/revokeCert",
+                  "keyChange": "https://acme.dev.autossl.com/v2/keyChange",
                   "meta": {
-                    "termsOfService": "https://acme.dev.certifytheweb.com/v2/tc.pdf",
-                    "website": "https://certifytheweb.com",
-                    "caaIdentities": ["certifytheweb.com"],
+                    "termsOfService": "https://acme.dev.autossl.com/v2/tc.pdf",
+                    "website": "https://autossl.com",
+                    "caaIdentities": ["autossl.com"],
                     "externalAccountRequired": false
                   }
                 }
@@ -148,15 +148,15 @@ namespace Certify.Core.Tests.Unit
             var directoryJson = """
                  
                 {
-                  "newNonce": "https://acme.dev.certifytheweb.com/v2/newNonce",
-                  "newAccount": "https://acme.dev.certifytheweb.com/v2/newAccount",
-                  "newOrder": "https://acme.dev.certifytheweb.com/v2/newOrder",
-                  "revokeCert": "https://acme.dev.certifytheweb.com/v2/revokeCert",
-                  "keyChange": "https://acme.dev.certifytheweb.com/v2/keyChange",
+                  "newNonce": "https://acme.dev.autossl.com/v2/newNonce",
+                  "newAccount": "https://acme.dev.autossl.com/v2/newAccount",
+                  "newOrder": "https://acme.dev.autossl.com/v2/newOrder",
+                  "revokeCert": "https://acme.dev.autossl.com/v2/revokeCert",
+                  "keyChange": "https://acme.dev.autossl.com/v2/keyChange",
                   "meta": {
-                    "termsOfService": "https://acme.dev.certifytheweb.com/v2/tc.pdf",
-                    "website": "https://certifytheweb.com",
-                    "caaIdentities": ["certifytheweb.com"],
+                    "termsOfService": "https://acme.dev.autossl.com/v2/tc.pdf",
+                    "website": "https://autossl.com",
+                    "caaIdentities": ["autossl.com"],
                     "externalAccountRequired": false
                   }
                 }
