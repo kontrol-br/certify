@@ -1,6 +1,6 @@
 ﻿$ErrorActionPreference = 'Stop';
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64      = 'https://certifytheweb.s3.amazonaws.com/downloads/archive/CertifyTheWebSetup_V6.1.9.exe'
+$url64      = 'https://autossl.s3.amazonaws.com/downloads/archive/AutoSSLSetup_V6.1.9.exe'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
@@ -8,7 +8,7 @@ $packageArgs = @{
   fileType      = 'exe'
   url64bit      = $url64
   softwareName  = 'AutoSSL*'
-  checksum64    = 'e64b9d8fb800ac6cdafc9472098df87b14adbdca6ba111d460c842d63347a1e5'
+  checksum64    = 'REPLACE_WITH_ACTUAL_CHECKSUM'
   checksumType64= 'sha256'
   validExitCodes= @(0)
   silentArgs   = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'

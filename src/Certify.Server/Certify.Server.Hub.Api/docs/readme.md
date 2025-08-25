@@ -49,7 +49,7 @@
 
 Any http listener on the domain host can then respond with content of challenge at url: `http://<domain>/.well-known/acme-challenge/abcd1345`
 
-e.g.  `https://certify.devops.projectbids.co.uk/api/v1/validation/http-01/abcd1345`
+e.g.  `https://autossl.devops.projectbids.co.uk/api/v1/validation/http-01/abcd1345`
 
 
 # Get system version (heartbeat)
@@ -72,15 +72,15 @@ Architecture
 ## Internal Service 
 Runs by default on `localhost:9696`. 
 
-Expected clients: Desktop UI (WPF), Certify CLI, Certify Server API.
+Expected clients: Desktop UI (WPF), AutoSSL CLI, AutoSSL Server API.
 
 The internal service provides the internal certificate management system. The API it exposes is not intended for general use and can change entirely between system updates.
 
-## Certify Server API 
+## AutoSSL Server API
 This service provides a general API for use by custom clients. It must be configured to connect to internal service and may be optionally hosted on same instance as primary service.
 
-Expected clients: any (including Certify Server App UI).
+Expected clients: any (including AutoSSL Server App UI).
 
 ## API Security
-Exposing either service on the actual public internet should be strictly avoided (there are no external security assurances). Only the Certify Server API is for general client consumption and it should remain internal to an organisation.
+Exposing either service on the actual public internet should be strictly avoided (there are no external security assurances). Only the AutoSSL Server API is for general client consumption and it should remain internal to an organisation.
 

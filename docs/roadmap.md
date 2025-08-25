@@ -4,7 +4,7 @@ The below items are general topics which may or may not include current GitHub i
 
 # Planned (6.x timeline):
 
-* Optional Client API for custom development against the Certify The Web server API (accessible in .net, dotnet core, PowerShell etc)
+* Optional Client API for custom development against the AutoSSL server API (accessible in .net, dotnet core, PowerShell etc)
 * Optional Web Admin UI, using the new Client API. Include Users, Roles, Keys.
 * Official Linux support for core certificate request/renewal/deployment.
 * Cert API for authorized client apps to pull latest certs
@@ -23,7 +23,7 @@ The below items are general topics which may or may not include current GitHub i
 
 ## Deployment 
 * Fetch latest from vault (deploy to bindings)
-* Fetch latest from other Certify instance (deploy to bindings)
+* Fetch latest from other AutoSSL instance (deploy to bindings)
 * CCS/Web farm - Simplest/best way to achieve coordinated (or proxied) challenge responses?
 * support for IIS wildcard bindings (*.example.com) - only when cert has matching wildcard?
 * Better general support for non-IIS scenarios
@@ -74,7 +74,7 @@ The below items are general topics which may or may not include current GitHub i
 * Default password on PFX etc, optional custom per managed cert. Needs data protection.
 
 ## DNS Validation
-* Certify DNS - Provide custom CNAME redirection service (probably based on a hosted acme-dns solution)
+* AutoSSL DNS - Provide custom CNAME redirection service (probably based on a hosted acme-dns solution)
 * Additional DNS API support (community provided)
 
 ## Upgrading
