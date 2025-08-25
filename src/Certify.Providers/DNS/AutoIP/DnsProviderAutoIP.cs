@@ -33,15 +33,15 @@ namespace Certify.Providers.DNS.AutoIP
         {
             Id = "DNS01.API.AutoIP",
             Title = "AutoIP DNS API",
-            Description = "Validates via AutoIP DNS API using token or user credentials.",
+            Description = "Validação realizada pela API DNS AutoIP com token ou login do usuário",
             HelpUrl = "https://update.autoip.com.br/",
             PropagationDelaySeconds = 60,
             ProviderParameters = new List<ProviderParameter>{
-                new ProviderParameter{ Key="apiendpoint", Name="API Endpoint", IsRequired=false, IsCredential=false, IsPassword=false, Value=DEFAULT_API_ENDPOINT },
+                new ProviderParameter{ Key="apiendpoint", Name="Endereço API", IsRequired=false, IsCredential=false, IsPassword=false, Value=DEFAULT_API_ENDPOINT },
                 new ProviderParameter{ Key="username", Name="Username/Token Acme", IsRequired=false, IsCredential=true },
                 new ProviderParameter{ Key="password", Name="Password", IsRequired=false, IsCredential=true, IsPassword=true },
                 new ProviderParameter{ Key="hostname", Name="Hostname", IsRequired=false },
-                new ProviderParameter{ Key="propagationdelay", Name="Tempo de Propagação em Segundos", IsRequired=false, IsCredential=false, IsPassword=false, Value="60" }
+                new ProviderParameter{ Key="propagationdelay", Name="TTL Propagação em Segundos", IsRequired=false, IsCredential=false, IsPassword=false, Value="60" }
             },
             ChallengeType = Models.SupportedChallengeTypes.CHALLENGE_TYPE_DNS,
             Config = "Provider=Certify.Providers.DNS.AutoIP",
@@ -109,7 +109,7 @@ namespace Certify.Providers.DNS.AutoIP
 
                 if (string.IsNullOrEmpty(hostname))
                 {
-                    var missingHostMsg = "Hostname parameter is required for AutoIP requests.";
+                    var missingHostMsg = "Hostname é requerido para AutoIP.";
                     _log?.Error(missingHostMsg);
                     return new ActionResult { IsSuccess = false, Message = missingHostMsg };
                 }
@@ -154,7 +154,7 @@ namespace Certify.Providers.DNS.AutoIP
 
                 if (string.IsNullOrEmpty(hostname))
                 {
-                    var missingHostMsg = "Hostname parameter is required for AutoIP requests.";
+                    var missingHostMsg = "Hostname é requerido para AutoIP.";
                     _log?.Error(missingHostMsg);
                     return new ActionResult { IsSuccess = false, Message = missingHostMsg };
                 }
@@ -181,7 +181,7 @@ namespace Certify.Providers.DNS.AutoIP
 
                 if (apiResponse.IsSuccessStatusCode)
                 {
-                    return new ActionResult { IsSuccess = true, Message = "DNS record removed." };
+                    return new ActionResult { IsSuccess = true, Message = "Registro DNS removido." };
                 }
 
                 var apiErrorDetails = await apiResponse.Content.ReadAsStringAsync();
@@ -214,11 +214,11 @@ namespace Certify.Providers.DNS.AutoIP
                     return del;
                 }
 
-                return new ActionResult { IsSuccess = true, Message = "API Test Completed OK." };
+                return new ActionResult { IsSuccess = true, Message = "teste API Completado OK." };
             }
             catch (Exception ex)
             {
-                return new ActionResult { IsSuccess = false, Message = $"API Test Failed: {ex.Message}" };
+                return new ActionResult { IsSuccess = false, Message = $"Teste API Falhou: {ex.Message}" };
             }
         }
 
