@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -302,66 +301,15 @@ namespace Certify.Providers.Internal
 
         public async Task<LicenseCheckResult> Validate(int productTypeId, string email, string key)
         {
-            Log("----------------");
-            Log("Validating key:" + key);
-            Log("Validating email:" + email);
-            using (var client = new HttpClient())
+            // External license validation has been disabled. Always return a
+            // successful validation result without performing any HTTP
+            // requests.
+            return await Task.FromResult(new LicenseCheckResult
             {
-                Log("Created HttpClient");
-                SetSupportedTLSVersions(_enableLog);
-                Log("Set TLS");
-
-                var jsonRequest = JsonConvert.SerializeObject(
-                    new
-                    {
-                        ProductTypeId = productTypeId,
-                        Email = email,
-                        Key = key
-                    });
-
-                Log("Data: " + JsonConvert.SerializeObject(jsonRequest));
-
-                var data = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-
-                var url = Models.API.Config.APIBaseURI + "license/validate";
-
-                Log($"Posting to: {url}");
-
-                try
-                {
-                    var response = await client.PostAsync(url, data);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var jsonResult = await response.Content.ReadAsStringAsync();
-
-                        Log($"Received: {response.ToString()}");
-                        Log($"Received result: {jsonResult}");
-                        //validate given license key has not expired
-
-                        try
-                        {
-                            var result = JsonConvert.DeserializeObject<LicenseCheckResult>(jsonResult);
-                            return result;
-                        }
-                        catch (Exception ex)
-                        {
-                            Log($"Failed to deserialize: {ex}");
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        Log($"submission failed: {response}");
-                        return new LicenseCheckResult { IsValid = false, StatusCode = "OFFLINE", ValidationMessage = "There was a problem validating this key. Please ensure you have the latest app version and try again later." };
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log($"Post to API failed: {ex}");
-                    throw;
-                }
-            }
+                IsValid = true,
+                StatusCode = "VALID",
+                ValidationMessage = "License validation disabled"
+            });
         }
 
         public static void SetSupportedTLSVersions(bool enableLog)
@@ -389,82 +337,23 @@ namespace Certify.Providers.Internal
 
         public async Task<LicenseKeyInstallResult> RegisterInstall(int productTypeId, string email, string key, RegisteredInstance instance)
         {
-            Log("Registering Install based on key:" + key);
-
-            instance.MachineName = Environment.MachineName;
-            instance.OS = Environment.OSVersion.ToString();
-
-            using (var client = new HttpClient())
+            // Registration normally contacts the licensing server. For the open
+            // source build we simply return a successful result and do not
+            // perform any remote calls.
+            return await Task.FromResult(new LicenseKeyInstallResult
             {
-
-                SetSupportedTLSVersions(_enableLog);
-
-                var jsonRequest = JsonConvert.SerializeObject(
-                    new
-                    {
-                        ProductTypeId = productTypeId,
-                        Email = email,
-                        Key = key,
-                        Instance = instance
-                    });
-
-                Log("Instance: " + JsonConvert.SerializeObject(jsonRequest));
-
-                var data = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(Models.API.Config.APIBaseURI + "license/install", data);
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonResult = await response.Content.ReadAsStringAsync();
-
-                    Log("Install Response: " + JsonConvert.SerializeObject(jsonRequest));
-                    //validate given license key has not expired
-                    var result = JsonConvert.DeserializeObject<LicenseKeyInstallResult>(jsonResult);
-
-                    return result;
-                }
-                else
-                {
-                    Log("Install Response Failed: " + JsonConvert.SerializeObject(response.ToString()));
-                    return new LicenseKeyInstallResult { IsSuccess = false, Message = "There was a problem validating this key. Please ensure you have the latest app version and try again later." };
-                }
-            }
+                IsSuccess = true,
+                Message = "License activation disabled",
+                UsageToken = Guid.NewGuid().ToString()
+            });
         }
 
         public async Task<bool> DeactivateInstall(int productTypeId, string settingsPath, string email, RegisteredInstance instance)
         {
-            Log("Deactivating Install");
-            var install = GetLicenseKeyInstallResult(productTypeId, settingsPath);
-            if (install != null)
-            {
-                instance.MachineName = Environment.MachineName;
-                instance.OS = Environment.OSVersion.ToString();
-
-                using (var client = new HttpClient())
-                {
-
-                    SetSupportedTLSVersions(_enableLog);
-
-                    var jsonRequest = JsonConvert.SerializeObject(
-                        new
-                        {
-                            ProductTypeId = productTypeId,
-                            Email = email,
-                            install.UsageToken,
-                            Instance = instance
-                        });
-
-                    var data = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-                    var response = await client.PostAsync(Models.API.Config.APIBaseURI + "license/uninstall", data);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        DeleteLicenseKeyInstall(productTypeId, settingsPath);
-                        return true;
-                    }
-                }
-            }
-
-            Log("Deactivating Install Failed");
-            return false;
+            // Deactivation no longer contacts external services. Always succeed
+            // and remove any stored license data if present.
+            DeleteLicenseKeyInstall(productTypeId, settingsPath);
+            return await Task.FromResult(true);
         }
 
         public bool FinaliseInstall(int productTypeId, LicenseKeyInstallResult result, string settingsPath)
@@ -562,15 +451,8 @@ namespace Certify.Providers.Internal
 
         public bool IsInstallRegistered(int productTypeId, string settingsPath)
         {
-            var result = GetLicenseKeyInstallResult(productTypeId, settingsPath);
-            if (result?.IsSuccess == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // Licensing is disabled so every install is treated as registered.
+            return true;
         }
 
         public DateTime? GetInstallDate(string settingsPath)
@@ -586,42 +468,9 @@ namespace Certify.Providers.Internal
 
         public async Task<bool> IsInstallActive(int productTypeId, string settingsPath)
         {
-
-            var result = GetLicenseKeyInstallResult(productTypeId, settingsPath);
-            if (result != null)
-            {
-
-                try
-                {
-                    var id = result.UsageToken;
-
-                    using (var client = new HttpClient())
-                    {
-
-                        SetSupportedTLSVersions(_enableLog);
-
-                        var response = await client.GetAsync(Models.API.Config.APIBaseURI + "license/check?id=" + id);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            return JsonConvert.DeserializeObject<bool>(await response.Content.ReadAsStringAsync());
-                        }
-                        else
-                        {
-                            //default to true if request fails
-                            return true;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    // failed to query status
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            // Always consider the install active. No network checks are
+            // performed.
+            return await Task.FromResult(true);
         }
 
         public LicenseCheckResult GetCurrentLicense(int productTypeId, string settingsPath)

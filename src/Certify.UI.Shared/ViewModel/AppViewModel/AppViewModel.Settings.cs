@@ -105,19 +105,9 @@ namespace Certify.UI.ViewModel
         /// <returns></returns>
         public bool IsFeatureEnabled(string featureFlag)
         {
-            if (StandardFeatures.Any(f => f == featureFlag))
-            {
-                return true;
-            }
-
-            if (Preferences?.FeatureFlags?.Contains(featureFlag) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // All features are always enabled. Original feature flag checks and
+            // license gating have been removed.
+            return true;
         }
 
         /// <summary>
