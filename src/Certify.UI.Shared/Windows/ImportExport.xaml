@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Import or Export Settings"
+    Title="Importar ou Exportar Configurações"
     Width="800"
     Height="740"
     Background="{DynamicResource MahApps.Brushes.Window.Background}"
@@ -17,9 +17,9 @@
 
     <DockPanel Margin="16" LastChildFill="true">
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Import/Export Settings</TextBlock>
+            <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subheading}">Importar/Exportar Configurações</TextBlock>
             <TextBlock HorizontalAlignment="Left" Style="{StaticResource Instructions}">"{x:Static properties:SR.Settings_Export_Intro}"</TextBlock>
-            <TextBlock HorizontalAlignment="Left" Style="{StaticResource Instructions}">To import or export, you should specify a password to use for encryption/decryption:</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Style="{StaticResource Instructions}">Para importar ou exportar, você deve especificar uma senha para usar na criptografia e descriptografia:</TextBlock>
             <PasswordBox
                 x:Name="txtSecret"
                 Width="200"
@@ -42,17 +42,17 @@
                 Height="32"
                 MinWidth="140"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Export Settings"
+                Header="Configurar Exportar"
                 IsSelected="true">
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Export a settings bundle including managed certificate settings, certificate files and encrypted credentials.</TextBlock>
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Exportar um pacote de configurações incluindo as configurações de certificados gerenciados, os arquivos de certificado e as credenciais criptografadas.</TextBlock>
                     <Button
                         x:Name="Export"
                         Width="120"
                         HorizontalAlignment="Left"
                         Click="Export_Click"
                         DockPanel.Dock="Top">
-                        Export..
+                        Exportar..
                     </Button>
                 </StackPanel>
             </TabItem>
@@ -60,18 +60,18 @@
                 Height="32"
                 MinWidth="140"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Import Settings">
+                Header="Importar Configurações">
                 <StackPanel Margin="0,16,0,0" Orientation="Vertical">
-                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Import a settings bundle exported from another instance of the app.</TextBlock>
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Importar um pacote de configurações exportado de outra instância do aplicativo.</TextBlock>
                     <CheckBox
                         x:Name="OverwriteExisting"
                         Margin="0,4,4,4"
-                        Content="Overwrite Existing"
+                        Content="Sobrescrever existente"
                         DockPanel.Dock="Top" />
                     <CheckBox
                         x:Name="IncludeDeployment"
                         Margin="0,4,4,4"
-                        Content="Include Standard Certificate Storage and Auto Deployment"
+                        Content=" Incluir Armazenamento Padrão de Certificados e Implantação Automática"
                         DockPanel.Dock="Top"
                         IsChecked="True" />
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
@@ -81,7 +81,7 @@
                             HorizontalAlignment="Left"
                             Click="Import_Click"
                             DockPanel.Dock="Top">
-                            Preview Import..
+                            Preview Importar..
                         </Button>
 
 

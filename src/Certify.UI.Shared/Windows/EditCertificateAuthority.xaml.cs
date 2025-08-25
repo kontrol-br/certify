@@ -21,7 +21,7 @@ namespace Certify.UI.Windows
                 get
                 {
                     var list = new List<CertificateAuthority>(ViewModel.AppViewModel.Current.CertificateAuthorities);
-                    list.Insert(0, new CertificateAuthority { Id = null, Title = "(New Certificate Authority)" });
+                    list.Insert(0, new CertificateAuthority { Id = null, Title = "(Nova Autoridade Certificadora)" });
 
                     return list;
                 }
@@ -133,7 +133,7 @@ namespace Certify.UI.Windows
 
             if (ca != null && ca.IsCustom)
             {
-                if (MessageBox.Show("Are you sure you wish to delete this Certificate Authority?", "Confirm Delete?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Tem certeza que quer deletar esta Autoridade Certificadora?", "Confirma Deletar?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
                     var result = await MainViewModel.DeleteCertificateAuthority(Model.Item.Id);
                     if (result.IsSuccess)
