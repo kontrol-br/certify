@@ -419,7 +419,79 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("EditCertificateAuthority_TitleHelp", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Server Connection.
+        /// </summary>
+        public static string EditServerConnection_Title {
+            get {
+                return ResourceManager.GetString("EditServerConnection_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to By default a service API will be bound to localhost:9696. Additional service configuration is required for remote connection (bound IP, enabling https, firewall rules etc).
+        /// </summary>
+        public static string EditServerConnection_Instruction {
+            get {
+                return ResourceManager.GetString("EditServerConnection_Instruction", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Connection Name.
+        /// </summary>
+        public static string EditServerConnection_ConnectionName {
+            get {
+                return ResourceManager.GetString("EditServerConnection_ConnectionName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hostname or IP.
+        /// </summary>
+        public static string EditServerConnection_HostnameOrIP {
+            get {
+                return ResourceManager.GetString("EditServerConnection_HostnameOrIP", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string EditServerConnection_Port {
+            get {
+                return ResourceManager.GetString("EditServerConnection_Port", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Use Https.
+        /// </summary>
+        public static string EditServerConnection_UseHTTPS {
+            get {
+                return ResourceManager.GetString("EditServerConnection_UseHTTPS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Untrusted TLS.
+        /// </summary>
+        public static string EditServerConnection_AllowUntrustedTLS {
+            get {
+                return ResourceManager.GetString("EditServerConnection_AllowUntrustedTLS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Use as Default.
+        /// </summary>
+        public static string EditServerConnection_UseAsDefault {
+            get {
+                return ResourceManager.GetString("EditServerConnection_UseAsDefault", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Email Address.
         /// </summary>
