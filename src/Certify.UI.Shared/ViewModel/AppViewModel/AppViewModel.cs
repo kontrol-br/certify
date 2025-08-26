@@ -164,7 +164,7 @@ namespace Certify.UI.ViewModel
             IsError = true;
             CurrentError = exp.Message;
 
-            SystemDiagnosticError = "An error occurred. Persistent errors should be reported to AutoSSL support: " + exp.Message;
+            SystemDiagnosticError = "Ocorreu um erro. Erros persistentes devem ser relatados ao suporte AutoSSL: " + exp.Message;
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Certify.UI.ViewModel
         /// </summary>
         /// <param name="arg1"></param>
         /// <param name="arg2"></param>
-        private void CertifyClient_SendMessage(string arg1, string arg2) => MessageBox.Show($"Received: {arg1} {arg2}");
+        private void CertifyClient_SendMessage(string arg1, string arg2) => MessageBox.Show($"Recebido: {arg1} {arg2}");
 
         public Application GetApplication() => System.Windows.Application.Current;
 
