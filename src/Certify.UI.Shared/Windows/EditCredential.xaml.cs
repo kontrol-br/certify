@@ -92,13 +92,13 @@ namespace Certify.UI.Windows
 
             if (string.IsNullOrEmpty(EditViewModel.Item.Title))
             {
-                MessageBox.Show("Stored credentials require a name.");
+                MessageBox.Show("Credenciais armazenadas precisam de um nome.");
                 return;
             }
 
             if (!EditViewModel.CredentialSet.Any())
             {
-                MessageBox.Show("No credentials selected.");
+                MessageBox.Show("Nenhuma credencial selecionada.");
                 return;
             }
 
@@ -108,7 +108,7 @@ namespace Certify.UI.Windows
 
                 if (c.IsRequired && string.IsNullOrEmpty(c.Value))
                 {
-                    MessageBox.Show($"{c.Name} is a required value");
+                    MessageBox.Show($"{c.Name} é um valor obrigatório");
                     return;
                 }
 
@@ -182,7 +182,7 @@ namespace Certify.UI.Windows
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you wish to delete this stored credential?", "Confirm Delete", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Tem certeza de que deseja excluir esta credencial armazenada?", "Confirmar exclusão", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 var result = await MainViewModel.DeleteCredential(EditViewModel.Item.StorageKey);
                 if (result.IsSuccess)
