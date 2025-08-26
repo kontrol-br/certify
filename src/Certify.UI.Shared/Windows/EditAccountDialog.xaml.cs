@@ -69,7 +69,7 @@ namespace Certify.UI.Windows
 
             if (ca == null)
             {
-                MessageBox.Show("Certificate authority not selected - cannot proceed. Ensure the app has loaded correctly and the Certify background service is running.");
+                MessageBox.Show("Autoridade certificadora não selecionada - não é possível continuar. Verifique se o aplicativo foi carregado corretamente e se o serviço em segundo plano do Certify está em execução.");
                 return;
             }
 
@@ -116,14 +116,14 @@ namespace Certify.UI.Windows
             {
                 if (string.IsNullOrEmpty(Item.EabKeyId) || string.IsNullOrEmpty(Item.EabKey))
                 {
-                    MessageBox.Show(string.IsNullOrEmpty(ca.EabInstructions) ? "An external account binding Key Id and (HMAC) Key are required and will be provided by your Certificate Authority. You can enter these on the Advanced tab." : ca.EabInstructions);
+                    MessageBox.Show(string.IsNullOrEmpty(ca.EabInstructions) ? "Um ID da Chave e uma Chave (HMAC) de vinculação de conta externa são necessários e serão fornecidos pela sua Autoridade Certificadora. Você pode inseri-los na guia Avançado." : ca.EabInstructions);
                     return;
                 }
             }
 
             if (Item.IsStaging && string.IsNullOrEmpty(ca.StagingAPIEndpoint))
             {
-                MessageBox.Show("This certificate authority does not have a staging (test) API so can't be used for Staging certificate requests.");
+                MessageBox.Show("Esta autoridade certificadora não possui uma API de homologação (teste), portanto não pode ser usada para solicitações de certificado de Staging.");
                 return;
             }
 
@@ -171,7 +171,7 @@ namespace Certify.UI.Windows
             var result = await MainViewModel.ChangeAccountKey(Item.StorageKey, null);
             if (result.IsSuccess)
             {
-                MainViewModel.ShowNotification("Account key changed");
+                MainViewModel.ShowNotification("Chave da conta alterada");
             }
             else
             {
