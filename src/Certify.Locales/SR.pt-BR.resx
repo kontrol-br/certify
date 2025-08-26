@@ -810,4 +810,130 @@
   <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
     <value>Usar como padrão</value>
   </data>
+  <data name="DeploymentTasks_SaveToGenerateCommand" xml:space="preserve">
+    <value>Salve esta tarefa para gerar o comando de implantação</value>
+  </data>
+  <data name="DeploymentTasks_SelectTaskType" xml:space="preserve">
+    <value>Selecione o Tipo de Tarefa obrigatório.</value>
+  </data>
+  <data name="DeploymentTasks_NameRequired" xml:space="preserve">
+    <value>É necessário um Nome de Tarefa exclusivo; ele poderá ser usado posteriormente para executar a tarefa manualmente.</value>
+  </data>
+  <data name="DeploymentTasks_NameAlreadyUsed" xml:space="preserve">
+    <value>É necessário um Nome de Tarefa exclusivo; este nome de tarefa já está em uso para este certificado gerenciado.</value>
+  </data>
+  <data name="DeploymentTasks_TargetHostRequired" xml:space="preserve">
+    <value>Nome ou IP do Host de destino é necessário se o destino da implantação não for Local.</value>
+  </data>
+  <data name="DeploymentTasks_CredentialRequired" xml:space="preserve">
+    <value>O tipo de destino selecionado requer credenciais específicas.</value>
+  </data>
+  <data name="UnknownCA" xml:space="preserve">
+    <value>(AC Desconhecida)</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="DefaultValue" xml:space="preserve">
+    <value>(Padrão)</value>
+  </data>
+  <data name="NotAttempted" xml:space="preserve">
+    <value>(Não Tentado)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(Vazio)</value>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="CA_AutoDescription" xml:space="preserve">
+    <value>A Autoridade Certificadora será selecionada automaticamente com base na compatibilidade e nas contas ACME configuradas.</value>
+  </data>
+  <data name="NoPassword" xml:space="preserve">
+    <value>(Sem Senha)</value>
+  </data>
+  <data name="IPAddress_AllUnassigned" xml:space="preserve">
+    <value>* (Todos Não Atribuídos)</value>
+  </data>
+  <data name="Validation_NoItemSelected" xml:space="preserve">
+    <value>Nenhum item selecionado</value>
+  </data>
+  <data name="ManagedCertificate_WildcardRequiresDnsChallenge" xml:space="preserve">
+    <value>Você adicionou um domínio curinga; também será necessário configurar um desafio DNS correspondente em Autorização.</value>
+  </data>
+  <data name="ManagedCertificate_WildcardAddPrompt" xml:space="preserve">
+    <value>Você adicionou domínios curingas sem a versão correspondente não curinga: {0}. Deseja adicionar as versões não curingas também?</value>
+  </data>
+  <data name="ManagedCertificate_WildcardAddTitle" xml:space="preserve">
+    <value>Adicionar domínios equivalentes não curingas?</value>
+  </data>
+  <data name="PageXofY" xml:space="preserve">
+    <value>Página {0} de {1}</value>
+  </data>
+  <data name="ManagedCertificates_ExternalDeletionNotAllowed" xml:space="preserve">
+    <value>Este item é gerenciado externamente e não pode ser excluído por este aplicativo.</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Iniciando..</value>
+  </data>
+  <data name="Operation_TestTimeout" xml:space="preserve">
+    <value>O teste demorou muito para concluir e expirou. Verifique e tente novamente.</value>
+  </data>
+  <data name="Operation_Timeout" xml:space="preserve">
+    <value>A operação demorou muito para concluir e expirou. Verifique e tente novamente.</value>
+  </data>
+  <data name="Error_PersistentContactSupport" xml:space="preserve">
+    <value>Ocorreu um erro. Erros persistentes devem ser relatados ao suporte do AutoSSL: {0}</value>
+  </data>
+  <data name="ReceivedMessage" xml:space="preserve">
+    <value>Recebido: {0} {1}</value>
+  </data>
+  <data name="AccountTitleFormat" xml:space="preserve">
+    <value>{0} [{1}]</value>
+  </data>
+  <data name="Staging" xml:space="preserve">
+    <value>Teste</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Produção</value>
+  </data>
+  <data name="ContactRegistrationFailed" xml:space="preserve">
+    <value>O Registro de Contato não pôde ser concluído. [{0}]</value>
+  </data>
+  <data name="AccountUpdateFailed" xml:space="preserve">
+    <value>A atualização da conta não pôde ser concluída. [{0}]</value>
+  </data>
+  <data name="CredentialKeyNotSpecified" xml:space="preserve">
+    <value>Não é possível excluir. Chave da credencial não especificada</value>
+  </data>
+  <data name="UITheme_Light" xml:space="preserve">
+    <value>Tema Claro</value>
+  </data>
+  <data name="UITheme_Dark" xml:space="preserve">
+    <value>Tema Escuro</value>
+  </data>
+  <data name="DefaultInBrackets" xml:space="preserve">
+    <value>(padrão)</value>
+  </data>
+  <data name="SavePreferencesError" xml:space="preserve">
+    <value>Não foi possível salvar as preferências. {0}.</value>
+  </data>
+  <data name="SavePreferencesError_Title" xml:space="preserve">
+    <value>Erro ao Salvar Preferências</value>
+  </data>
+  <data name="Design_RenewalFailureMessageExample" xml:space="preserve">
+    <value>Esta é uma mensagem de falha de renovação de exemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</value>
+  </data>
+  <data name="Design_ConfigTestResultExample" xml:space="preserve">
+    <value>Este é um exemplo de resultado de teste de configuração.</value>
+  </data>
+  <data name="Design_FailureMessageExample" xml:space="preserve">
+    <value>Esta é uma mensagem de falha.</value>
+  </data>
+  <data name="Design_LongMessage" xml:space="preserve">
+    <value>Esta é uma mensagem longa para testar overflow e quebra de texto</value>
+  </data>
+  <data name="Design_LongMessageAlt" xml:space="preserve">
+    <value>Esta é outra mensagem longa para testar overflow e quebra de texto</value>
+  </data>
 </root>

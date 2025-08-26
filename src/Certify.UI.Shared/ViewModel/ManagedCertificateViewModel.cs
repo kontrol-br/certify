@@ -86,11 +86,11 @@ namespace Certify.UI.ViewModel
                     }
 
                     var ca = CertificateAuthorities.FirstOrDefault(c => c.Id == SelectedItem.CertificateAuthorityId);
-                    return ca?.Description.AsNullWhenBlank() ?? "(CA Unknown)";
+                    return ca?.Description.AsNullWhenBlank() ?? SR.UnknownCA;
                 }
                 else
                 {
-                    return "None";
+                    return SR.None;
                 }
             }
         }
@@ -107,11 +107,11 @@ namespace Certify.UI.ViewModel
                     }
 
                     var ca = CertificateAuthorities.FirstOrDefault(c => c.Id == SelectedItem.CertificateAuthorityId);
-                    return ca?.Title.AsNullWhenBlank() ?? "(Default)";
+                    return ca?.Title.AsNullWhenBlank() ?? SR.DefaultValue;
                 }
                 else
                 {
-                    return "None";
+                    return SR.None;
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Certify.UI.ViewModel
                 if (!string.IsNullOrEmpty(SelectedItem?.LastAttemptedCA))
                 {
                     var ca = CertificateAuthorities.FirstOrDefault(c => c.Id == SelectedItem.LastAttemptedCA);
-                    return ca?.Title.AsNullWhenBlank() ?? "(Not Attempted)";
+                    return ca?.Title.AsNullWhenBlank() ?? SR.NotAttempted;
                 }
                 else
                 {
@@ -284,9 +284,9 @@ namespace Certify.UI.ViewModel
                 {
                     _certificateAuthorities.Insert(0, new CertificateAuthority
                     {
-                        Id = "(Empty)",
-                        Title = "Auto",
-                        Description = "The Certificate Authority will be automatically selected based on compatibility and the configured ACME accounts."
+                        Id = SR.Empty,
+                        Title = SR.Auto,
+                        Description = SR.CA_AutoDescription
                     });
 
                     if (caList != null)
@@ -326,8 +326,8 @@ namespace Certify.UI.ViewModel
                 {
                     _storedPasswords.Insert(0, new Models.Config.StoredCredential
                     {
-                        StorageKey = "(Empty)",
-                        Title = "(No Password)",
+                        StorageKey = SR.Empty,
+                        Title = SR.NoPassword,
                         ProviderType = StandardAuthTypes.STANDARD_AUTH_PASSWORD
                     });
 
@@ -386,7 +386,7 @@ namespace Certify.UI.ViewModel
                 {
                     var ipAddressOptions = Certify.Utils.Networking.GetIPAddresses();
 
-                    ipAddressOptions.Insert(0, new IPAddressOption { Description = "* (All Unassigned)", IPAddress = "*", IsIPv6 = false }); //add wildcard option
+                    ipAddressOptions.Insert(0, new IPAddressOption { Description = SR.IPAddress_AllUnassigned, IPAddress = "*", IsIPv6 = false }); //add wildcard option
 
                     return ipAddressOptions;
                 }
@@ -542,7 +542,7 @@ namespace Certify.UI.ViewModel
 
             if (SelectedItem == null)
             {
-                return new ValidationResult(false, "No item selected", ValidationErrorCodes.ITEM_NOT_FOUND.ToString());
+                return new ValidationResult(false, SR.Validation_NoItemSelected, ValidationErrorCodes.ITEM_NOT_FOUND.ToString());
             }
 
             var caId = Preferences.DefaultCertificateAuthority.WithDefault(StandardCertAuthorities.LETS_ENCRYPT);
@@ -599,7 +599,7 @@ namespace Certify.UI.ViewModel
             if (result.wildcardAdded && !SelectedItem.RequestConfig.Challenges.Any(c => c.ChallengeType == SupportedChallengeTypes.CHALLENGE_TYPE_DNS))
             {
                 // wildcard added but no DNS challenges exist yet
-                MessageBox.Show("You have added a wildcard domain, you will also need to configure a corresponding DNS challenge under Authorization. ");
+                MessageBox.Show(SR.ManagedCertificate_WildcardRequiresDnsChallenge);
             }
 
             if (result.wildcardAdded)
@@ -608,8 +608,8 @@ namespace Certify.UI.ViewModel
                 var wildcardOnlyDomains = result.domainList.Where(d => d.StartsWith("*.") && !item.DomainOptions.Any(o => o.Domain == d.Replace("*.", "")));
                 if (wildcardOnlyDomains.Any())
                 {
-                    var msg = $"You had added wildcard domains without the corresponding non-wildcard version: {string.Join(",", wildcardOnlyDomains)}. Would you like to add the non-wildcard versions as well?";
-                    if (MessageBox.Show(msg, "Add non-wildcard equivalent domains?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    var msg = string.Format(SR.ManagedCertificate_WildcardAddPrompt, string.Join(",", wildcardOnlyDomains));
+                    if (MessageBox.Show(msg, SR.ManagedCertificate_WildcardAddTitle, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
 
                         var addedDomains = string.Join(";", wildcardOnlyDomains);

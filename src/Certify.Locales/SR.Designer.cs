@@ -2448,5 +2448,383 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("StatusLabel", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save this task to generate the deployment command.
+        /// </summary>
+        public static string DeploymentTasks_SaveToGenerateCommand {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_SaveToGenerateCommand", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the required Task Type.
+        /// </summary>
+        public static string DeploymentTasks_SelectTaskType {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_SelectTaskType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A unique Task Name is required, this may be used later to run the task manually.
+        /// </summary>
+        public static string DeploymentTasks_NameRequired {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_NameRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A unique Task Name is required, this task name is already in use for this managed certificate.
+        /// </summary>
+        public static string DeploymentTasks_NameAlreadyUsed {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_NameAlreadyUsed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Target Host name or IP is required if deployment target is not Local.
+        /// </summary>
+        public static string DeploymentTasks_TargetHostRequired {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_TargetHostRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The selected target type requires specific credentials.
+        /// </summary>
+        public static string DeploymentTasks_CredentialRequired {
+            get {
+                return ResourceManager.GetString("DeploymentTasks_CredentialRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Unknown CA).
+        /// </summary>
+        public static string UnknownCA {
+            get {
+                return ResourceManager.GetString("UnknownCA", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Default).
+        /// </summary>
+        public static string DefaultValue {
+            get {
+                return ResourceManager.GetString("DefaultValue", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Not Attempted).
+        /// </summary>
+        public static string NotAttempted {
+            get {
+                return ResourceManager.GetString("NotAttempted", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Empty).
+        /// </summary>
+        public static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        public static string Auto {
+            get {
+                return ResourceManager.GetString("Auto", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Certificate Authority will be automatically selected based on compatibility and the configured ACME accounts.
+        /// </summary>
+        public static string CA_AutoDescription {
+            get {
+                return ResourceManager.GetString("CA_AutoDescription", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (No Password).
+        /// </summary>
+        public static string NoPassword {
+            get {
+                return ResourceManager.GetString("NoPassword", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to * (All Unassigned).
+        /// </summary>
+        public static string IPAddress_AllUnassigned {
+            get {
+                return ResourceManager.GetString("IPAddress_AllUnassigned", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No item selected.
+        /// </summary>
+        public static string Validation_NoItemSelected {
+            get {
+                return ResourceManager.GetString("Validation_NoItemSelected", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You have added a wildcard domain, you will also need to configure a corresponding DNS challenge under Authorization.
+        /// </summary>
+        public static string ManagedCertificate_WildcardRequiresDnsChallenge {
+            get {
+                return ResourceManager.GetString("ManagedCertificate_WildcardRequiresDnsChallenge", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You had added wildcard domains without the corresponding non-wildcard version: {0}. Would you like to add the non-wildcard versions as well?
+        /// </summary>
+        public static string ManagedCertificate_WildcardAddPrompt {
+            get {
+                return ResourceManager.GetString("ManagedCertificate_WildcardAddPrompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add non-wildcard equivalent domains?.
+        /// </summary>
+        public static string ManagedCertificate_WildcardAddTitle {
+            get {
+                return ResourceManager.GetString("ManagedCertificate_WildcardAddTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Page {0} of {1}.
+        /// </summary>
+        public static string PageXofY {
+            get {
+                return ResourceManager.GetString("PageXofY", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This item is externally managed and cannot be deleted by this app.
+        /// </summary>
+        public static string ManagedCertificates_ExternalDeletionNotAllowed {
+            get {
+                return ResourceManager.GetString("ManagedCertificates_ExternalDeletionNotAllowed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Starting...
+        /// </summary>
+        public static string Starting {
+            get {
+                return ResourceManager.GetString("Starting", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The test took too long to complete and has timed out. Please check and try again.
+        /// </summary>
+        public static string Operation_TestTimeout {
+            get {
+                return ResourceManager.GetString("Operation_TestTimeout", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The operation took too long to complete and has timed out. Please check and try again.
+        /// </summary>
+        public static string Operation_Timeout {
+            get {
+                return ResourceManager.GetString("Operation_Timeout", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred. Persistent errors should be reported to AutoSSL support: {0}.
+        /// </summary>
+        public static string Error_PersistentContactSupport {
+            get {
+                return ResourceManager.GetString("Error_PersistentContactSupport", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Received: {0} {1}.
+        /// </summary>
+        public static string ReceivedMessage {
+            get {
+                return ResourceManager.GetString("ReceivedMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} [{1}].
+        /// </summary>
+        public static string AccountTitleFormat {
+            get {
+                return ResourceManager.GetString("AccountTitleFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Staging.
+        /// </summary>
+        public static string Staging {
+            get {
+                return ResourceManager.GetString("Staging", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Production.
+        /// </summary>
+        public static string Production {
+            get {
+                return ResourceManager.GetString("Production", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Registration could not be completed. [{0}]
+        /// </summary>
+        public static string ContactRegistrationFailed {
+            get {
+                return ResourceManager.GetString("ContactRegistrationFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Account update could not be completed. [{0}]
+        /// </summary>
+        public static string AccountUpdateFailed {
+            get {
+                return ResourceManager.GetString("AccountUpdateFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete. Credential key not specified.
+        /// </summary>
+        public static string CredentialKeyNotSpecified {
+            get {
+                return ResourceManager.GetString("CredentialKeyNotSpecified", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Light Theme.
+        /// </summary>
+        public static string UITheme_Light {
+            get {
+                return ResourceManager.GetString("UITheme_Light", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Theme.
+        /// </summary>
+        public static string UITheme_Dark {
+            get {
+                return ResourceManager.GetString("UITheme_Dark", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (default).
+        /// </summary>
+        public static string DefaultInBrackets {
+            get {
+                return ResourceManager.GetString("DefaultInBrackets", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to save preferences. {0}.
+        /// </summary>
+        public static string SavePreferencesError {
+            get {
+                return ResourceManager.GetString("SavePreferencesError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Preferences Error.
+        /// </summary>
+        public static string SavePreferencesError_Title {
+            get {
+                return ResourceManager.GetString("SavePreferencesError_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is an example renewal failure message. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        /// </summary>
+        public static string Design_RenewalFailureMessageExample {
+            get {
+                return ResourceManager.GetString("Design_RenewalFailureMessageExample", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is an example configuration test result.
+        /// </summary>
+        public static string Design_ConfigTestResultExample {
+            get {
+                return ResourceManager.GetString("Design_ConfigTestResultExample", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is a failure message.
+        /// </summary>
+        public static string Design_FailureMessageExample {
+            get {
+                return ResourceManager.GetString("Design_FailureMessageExample", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is a long message to test text overflow and wrapping.
+        /// </summary>
+        public static string Design_LongMessage {
+            get {
+                return ResourceManager.GetString("Design_LongMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is another long message to test text overflow and wrapping.
+        /// </summary>
+        public static string Design_LongMessageAlt {
+            get {
+                return ResourceManager.GetString("Design_LongMessageAlt", resourceCulture);
+            }
+        }
     }
 }

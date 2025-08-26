@@ -8,6 +8,7 @@ using System.Windows.Data;
 using Certify.Config;
 using Certify.Models;
 using Certify.Models.Config;
+using Certify.Locales;
 using PropertyChanged;
 
 namespace Certify.UI.ViewModel
@@ -276,7 +277,7 @@ namespace Certify.UI.ViewModel
                 }
                 else
                 {
-                    return "[Save this task to generate the deployment command]";
+                    return SR.DeploymentTasks_SaveToGenerateCommand;
                 }
             }
         }
@@ -324,7 +325,7 @@ namespace Certify.UI.ViewModel
 
             if (SelectedItem.TaskTypeId == null)
             {
-                return new ActionResult("Please select the required Task Type.", false);
+                return new ActionResult(SR.DeploymentTasks_SelectTaskType, false);
             }
 
             if (string.IsNullOrEmpty(SelectedItem.TaskName))
@@ -340,7 +341,7 @@ namespace Certify.UI.ViewModel
             {
 
                 // check task name populated
-                return new ActionResult("A unique Task Name is required, this may be used later to run the task manually.", false);
+                return new ActionResult(SR.DeploymentTasks_NameRequired, false);
 
             }
             else
@@ -351,7 +352,7 @@ namespace Certify.UI.ViewModel
                     || _appViewModel.SelectedItem.PreRequestTasks?.Any(t => t.Id != SelectedItem.Id && t.TaskName.ToLower().Trim() == SelectedItem.TaskName.ToLower().Trim()) == true
                  )
                 {
-                    return new ActionResult("A unique Task Name is required, this task name is already in use for this managed certificate.", false);
+                    return new ActionResult(SR.DeploymentTasks_NameAlreadyUsed, false);
 
                 }
             }
@@ -370,7 +371,7 @@ namespace Certify.UI.ViewModel
                     )
                 {
                     // check task name populated
-                    return new ActionResult("Target Host name or IP is required if deployment target is not Local.", false);
+                    return new ActionResult(SR.DeploymentTasks_TargetHostRequired, false);
                 }
             }
 
@@ -378,7 +379,7 @@ namespace Certify.UI.ViewModel
 
             if (UsesCredentials && string.IsNullOrEmpty(SelectedItem.ChallengeCredentialKey))
             {
-                return new ActionResult("The selected target type requires specific credentials.", false);
+                return new ActionResult(SR.DeploymentTasks_CredentialRequired, false);
             }
 
             // validate task provider specific config
@@ -431,7 +432,7 @@ namespace Certify.UI.ViewModel
                 }
             }
 
-            return new ActionResult("OK", true);
+            return new ActionResult(SR.OK, true);
         }
     }
 }

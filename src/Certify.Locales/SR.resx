@@ -855,4 +855,130 @@
   <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
     <value>Usar como padrão</value>
   </data>
+  <data name="DeploymentTasks_SaveToGenerateCommand" xml:space="preserve">
+    <value>Save this task to generate the deployment command</value>
+  </data>
+  <data name="DeploymentTasks_SelectTaskType" xml:space="preserve">
+    <value>Please select the required Task Type.</value>
+  </data>
+  <data name="DeploymentTasks_NameRequired" xml:space="preserve">
+    <value>A unique Task Name is required, this may be used later to run the task manually.</value>
+  </data>
+  <data name="DeploymentTasks_NameAlreadyUsed" xml:space="preserve">
+    <value>A unique Task Name is required, this task name is already in use for this managed certificate.</value>
+  </data>
+  <data name="DeploymentTasks_TargetHostRequired" xml:space="preserve">
+    <value>Target Host name or IP is required if deployment target is not Local.</value>
+  </data>
+  <data name="DeploymentTasks_CredentialRequired" xml:space="preserve">
+    <value>The selected target type requires specific credentials.</value>
+  </data>
+  <data name="UnknownCA" xml:space="preserve">
+    <value>(Unknown CA)</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="DefaultValue" xml:space="preserve">
+    <value>(Default)</value>
+  </data>
+  <data name="NotAttempted" xml:space="preserve">
+    <value>(Not Attempted)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="CA_AutoDescription" xml:space="preserve">
+    <value>The Certificate Authority will be automatically selected based on compatibility and the configured ACME accounts.</value>
+  </data>
+  <data name="NoPassword" xml:space="preserve">
+    <value>(No Password)</value>
+  </data>
+  <data name="IPAddress_AllUnassigned" xml:space="preserve">
+    <value>* (All Unassigned)</value>
+  </data>
+  <data name="Validation_NoItemSelected" xml:space="preserve">
+    <value>No item selected</value>
+  </data>
+  <data name="ManagedCertificate_WildcardRequiresDnsChallenge" xml:space="preserve">
+    <value>You have added a wildcard domain, you will also need to configure a corresponding DNS challenge under Authorization.</value>
+  </data>
+  <data name="ManagedCertificate_WildcardAddPrompt" xml:space="preserve">
+    <value>You had added wildcard domains without the corresponding non-wildcard version: {0}. Would you like to add the non-wildcard versions as well?</value>
+  </data>
+  <data name="ManagedCertificate_WildcardAddTitle" xml:space="preserve">
+    <value>Add non-wildcard equivalent domains?</value>
+  </data>
+  <data name="PageXofY" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="ManagedCertificates_ExternalDeletionNotAllowed" xml:space="preserve">
+    <value>This item is externally managed and cannot be deleted by this app.</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Starting..</value>
+  </data>
+  <data name="Operation_TestTimeout" xml:space="preserve">
+    <value>The test took too long to complete and has timed out. Please check and try again.</value>
+  </data>
+  <data name="Operation_Timeout" xml:space="preserve">
+    <value>The operation took too long to complete and has timed out. Please check and try again.</value>
+  </data>
+  <data name="Error_PersistentContactSupport" xml:space="preserve">
+    <value>An error occurred. Persistent errors should be reported to AutoSSL support: {0}</value>
+  </data>
+  <data name="ReceivedMessage" xml:space="preserve">
+    <value>Received: {0} {1}</value>
+  </data>
+  <data name="AccountTitleFormat" xml:space="preserve">
+    <value>{0} [{1}]</value>
+  </data>
+  <data name="Staging" xml:space="preserve">
+    <value>Staging</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="ContactRegistrationFailed" xml:space="preserve">
+    <value>Contact Registration could not be completed. [{0}]</value>
+  </data>
+  <data name="AccountUpdateFailed" xml:space="preserve">
+    <value>Account update could not be completed. [{0}]</value>
+  </data>
+  <data name="CredentialKeyNotSpecified" xml:space="preserve">
+    <value>Cannot delete. Credential key not specified</value>
+  </data>
+  <data name="UITheme_Light" xml:space="preserve">
+    <value>Light Theme</value>
+  </data>
+  <data name="UITheme_Dark" xml:space="preserve">
+    <value>Dark Theme</value>
+  </data>
+  <data name="DefaultInBrackets" xml:space="preserve">
+    <value>(default)</value>
+  </data>
+  <data name="SavePreferencesError" xml:space="preserve">
+    <value>Unable to save preferences. {0}.</value>
+  </data>
+  <data name="SavePreferencesError_Title" xml:space="preserve">
+    <value>Save Preferences Error</value>
+  </data>
+  <data name="Design_RenewalFailureMessageExample" xml:space="preserve">
+    <value>This is an example renewal failure message. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</value>
+  </data>
+  <data name="Design_ConfigTestResultExample" xml:space="preserve">
+    <value>This is an example configuration test result.</value>
+  </data>
+  <data name="Design_FailureMessageExample" xml:space="preserve">
+    <value>This is a failure message.</value>
+  </data>
+  <data name="Design_LongMessage" xml:space="preserve">
+    <value>This is a long message to test text overflow and wrapping</value>
+  </data>
+  <data name="Design_LongMessageAlt" xml:space="preserve">
+    <value>This is another long message to test text overflow and wrapping</value>
+  </data>
 </root>

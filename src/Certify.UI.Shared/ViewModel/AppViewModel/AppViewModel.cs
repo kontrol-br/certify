@@ -12,6 +12,7 @@ using Certify.Models.Config;
 using Certify.Models.Providers;
 using Certify.Providers;
 using Certify.SharedUtils;
+using Certify.Locales;
 using Certify.UI.Shared;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -164,7 +165,7 @@ namespace Certify.UI.ViewModel
             IsError = true;
             CurrentError = exp.Message;
 
-            SystemDiagnosticError = "An error occurred. Persistent errors should be reported to AutoSSL support: " + exp.Message;
+            SystemDiagnosticError = string.Format(SR.Error_PersistentContactSupport, exp.Message);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Certify.UI.ViewModel
         /// </summary>
         /// <param name="arg1"></param>
         /// <param name="arg2"></param>
-        private void CertifyClient_SendMessage(string arg1, string arg2) => MessageBox.Show($"Received: {arg1} {arg2}");
+        private void CertifyClient_SendMessage(string arg1, string arg2) => MessageBox.Show(string.Format(SR.ReceivedMessage, arg1, arg2));
 
         public Application GetApplication() => System.Windows.Application.Current;
 

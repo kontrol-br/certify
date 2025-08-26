@@ -9,6 +9,7 @@ using Certify.Models.Config;
 using Certify.Models.Providers;
 using Certify.Models.Utils;
 using Certify.Shared;
+using Certify.Locales;
 
 namespace Certify.UI.ViewModel
 {
@@ -101,7 +102,7 @@ namespace Certify.UI.ViewModel
             foreach (var a in list)
             {
                 var ca = CertificateAuthorities.FirstOrDefault(c => c.Id == a.CertificateAuthorityId);
-                a.Title = $"{ca?.Title.AsNullWhenBlank() ?? "[Unknown CA]"} [{(a.IsStagingAccount ? "Staging" : "Production")}]";
+                a.Title = string.Format(SR.AccountTitleFormat, ca?.Title.AsNullWhenBlank() ?? SR.UnknownCA, a.IsStagingAccount ? SR.Staging : SR.Production);
                 tmpList.Add(a);
             }
 
@@ -132,7 +133,7 @@ namespace Certify.UI.ViewModel
             }
             catch (Exception exp)
             {
-                return new ActionResult("Contact Registration could not be completed. [" + exp.Message + "]", false);
+                return new ActionResult(string.Format(SR.ContactRegistrationFailed, exp.Message), false);
             }
         }
 
@@ -147,7 +148,7 @@ namespace Certify.UI.ViewModel
             }
             catch (Exception exp)
             {
-                return new ActionResult("Account update could not be completed. [" + exp.Message + "]", false);
+                return new ActionResult(string.Format(SR.AccountUpdateFailed, exp.Message), false);
             }
         }
 
@@ -204,7 +205,7 @@ namespace Certify.UI.ViewModel
         {
             if (credentialKey == null)
             {
-                return new ActionResult("Cannot delete. Credential key not specified", isSuccess: false);
+                return new ActionResult(SR.CredentialKeyNotSpecified, isSuccess: false);
             }
 
             var result = await _certifyClient.DeleteCredential(credentialKey);

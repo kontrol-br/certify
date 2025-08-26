@@ -9,6 +9,7 @@ using Certify.Client;
 using Certify.Models;
 using Certify.Models.Config.Migration;
 using Certify.UI.Settings;
+using Certify.Locales;
 
 namespace Certify.UI.ViewModel
 {
@@ -43,8 +44,8 @@ namespace Certify.UI.ViewModel
         /// </summary>
         public Dictionary<string, string> UIThemes { get; } = new Dictionary<string, string>
         {
-              {"Light","Light Theme"},
-              {"Dark","Dark Theme" }
+              {"Light",SR.UITheme_Light},
+              {"Dark",SR.UITheme_Dark }
         };
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace Certify.UI.ViewModel
                 // set datastoreid and feature flags to pass model validation
                 if (Preferences.ConfigDataStoreConnectionId == null)
                 {
-                    Preferences.ConfigDataStoreConnectionId = "(default)";
+                    Preferences.ConfigDataStoreConnectionId = SR.DefaultInBrackets;
                 }
 
                 if (Preferences.FeatureFlags == null)
@@ -141,7 +142,7 @@ namespace Certify.UI.ViewModel
             }
             catch (ServiceCommsException ex)
             {
-                MessageBox.Show($"Unable to save preferences. {ex?.Message}.", "Save Preferences Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(string.Format(SR.SavePreferencesError, ex?.Message), SR.SavePreferencesError_Title, MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             catch

@@ -155,7 +155,7 @@ namespace Certify.UI.ViewModel
         /// </summary>
         public string ResultPageDescription
         {
-            get { return $"Page {_filterPageIndex + 1} of {Math.Ceiling((decimal)TotalManagedCertificates / _filterPageSize)}"; }
+            get { return string.Format(SR.PageXofY, _filterPageIndex + 1, Math.Ceiling((decimal)TotalManagedCertificates / _filterPageSize)); }
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Certify.UI.ViewModel
             {
                 if (existing.ItemType == ManagedCertificateType.SSL_ExternallyManaged)
                 {
-                    MessageBox.Show("This item is externally managed and cannot be deleted by this app.");
+                    MessageBox.Show(SR.ManagedCertificates_ExternalDeletionNotAllowed);
 
                     return false;
                 }
@@ -283,7 +283,7 @@ namespace Certify.UI.ViewModel
         public void TrackProgress(ManagedCertificate managedCertificate)
         {
             //add request to observable list of progress state
-            var progressState = new RequestProgressState(RequestState.Running, "Starting..", managedCertificate);
+            var progressState = new RequestProgressState(RequestState.Running, SR.Starting, managedCertificate);
 
             //begin monitoring progress
             UpdateRequestTrackingProgress(progressState);
@@ -472,7 +472,7 @@ namespace Certify.UI.ViewModel
                 {
                     new StatusMessage
                     {
-                        IsOK = false, Message = "The test took too long to complete and has timed out. Please check and try again."
+                        IsOK = false, Message = SR.Operation_TestTimeout
                     }
                 };
             }
@@ -490,7 +490,7 @@ namespace Certify.UI.ViewModel
                 {
                     new StatusMessage
                     {
-                        IsOK = false, Message = "The operation took too long to complete and has timed out. Please check and try again."
+                        IsOK = false, Message = SR.Operation_Timeout
                     }
                 };
             }

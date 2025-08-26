@@ -5,6 +5,7 @@ using System.Linq;
 using Certify.Models;
 using Certify.Models.Utils;
 using Newtonsoft.Json;
+using Certify.Locales;
 
 namespace Certify.UI
 {
@@ -89,8 +90,8 @@ namespace Certify.UI
 
             ProgressResults = new ObservableCollection<RequestProgressState>
             {
-                new RequestProgressState( RequestState.Running, "This is a long message to test text overflow and wrapping", ManagedCertificates[0], false),
-                new RequestProgressState( RequestState.Error, "This is another long message to test text overflow and wrapping", ManagedCertificates[1], false),
+                new RequestProgressState( RequestState.Running, SR.Design_LongMessage, ManagedCertificates[0], false),
+                new RequestProgressState( RequestState.Error, SR.Design_LongMessageAlt, ManagedCertificates[1], false),
             };
 
             AccountDetails = new ObservableCollection<AccountDetails>
