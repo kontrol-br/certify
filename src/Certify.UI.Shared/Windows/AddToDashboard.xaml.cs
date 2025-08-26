@@ -61,12 +61,12 @@ namespace Certify.UI.Windows
                     if (resultOK)
                     {
                         await ViewModel.AppViewModel.Current.SetInstanceRegisteredOnDashboard();
-                        MessageBox.Show("Server registration completed.");
+                        MessageBox.Show("Registro do servidor concluído.");
                         Close();
                     }
                     else
                     {
-                        MessageBox.Show("Server registration could not complete. Check your username and password is correct and that outgoing https connections are allowed from this machine.");
+                        MessageBox.Show("O registro do servidor não pôde ser concluído. Verifique se seu nome de usuário e senha estão corretos e se conexões HTTPS de saída são permitidas nesta máquina.");
                     }
                 }
                 catch (Exception)
