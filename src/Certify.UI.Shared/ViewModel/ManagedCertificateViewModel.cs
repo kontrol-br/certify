@@ -599,7 +599,7 @@ namespace Certify.UI.ViewModel
             if (result.wildcardAdded && !SelectedItem.RequestConfig.Challenges.Any(c => c.ChallengeType == SupportedChallengeTypes.CHALLENGE_TYPE_DNS))
             {
                 // wildcard added but no DNS challenges exist yet
-                MessageBox.Show("You have added a wildcard domain, you will also need to configure a corresponding DNS challenge under Authorization. ");
+                MessageBox.Show("Você adicionou um domínio curinga; também será necessário configurar um desafio DNS correspondente em Autorizações.");
             }
 
             if (result.wildcardAdded)
@@ -608,8 +608,8 @@ namespace Certify.UI.ViewModel
                 var wildcardOnlyDomains = result.domainList.Where(d => d.StartsWith("*.") && !item.DomainOptions.Any(o => o.Domain == d.Replace("*.", "")));
                 if (wildcardOnlyDomains.Any())
                 {
-                    var msg = $"You had added wildcard domains without the corresponding non-wildcard version: {string.Join(",", wildcardOnlyDomains)}. Would you like to add the non-wildcard versions as well?";
-                    if (MessageBox.Show(msg, "Add non-wildcard equivalent domains?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    var msg = $"Você adicionou domínios curingas sem a versão equivalente sem curinga: {string.Join(",", wildcardOnlyDomains)}. Deseja adicionar também as versões sem curinga?";
+                    if (MessageBox.Show(msg, "Adicionar domínios equivalentes sem curinga?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
 
                         var addedDomains = string.Join(";", wildcardOnlyDomains);
