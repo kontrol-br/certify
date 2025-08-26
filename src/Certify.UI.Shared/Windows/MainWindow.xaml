@@ -117,7 +117,7 @@
                 <TextBlock
                     Margin="8,0,0,0"
                     VerticalAlignment="Center"
-                    Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"><Run Text="Loading.." /></TextBlock>
+                    Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"><Run Text="Carregando..." /></TextBlock>
             </StackPanel>
 
             <DockPanel
@@ -131,7 +131,7 @@
                 <Button
                     x:Name="Connect"
                     Margin="8,0,0,0"
-                    AutomationProperties.Name="Connect"
+                    AutomationProperties.Name="Conectar"
                     Click="Connect_Click"
                     DockPanel.Dock="Right">
                     <StackPanel Orientation="Horizontal">
@@ -224,7 +224,7 @@
             <Controls:Flyout
                 Name="MainFlyout"
                 Width="300"
-                Header="Flyout"
+                Header="Painel"
                 Position="Right"
                 Theme="Adapt" />
         </Controls:FlyoutsControl>

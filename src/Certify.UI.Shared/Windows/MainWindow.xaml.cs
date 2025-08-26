@@ -257,11 +257,11 @@ namespace Certify.UI.Windows
 
                 if (!string.IsNullOrEmpty(config.ServiceFaultMsg))
                 {
-                    MessageBox.Show("Certify Certificate Manager service not started. " + config.ServiceFaultMsg);
+                    MessageBox.Show("O serviço Certify Certificate Manager não foi iniciado. " + config.ServiceFaultMsg);
                 }
                 else
                 {
-                    MessageBox.Show("Certify Certificate Manager service not started. Please restart the service. If this problem persists please refer to https://docs.certifytheweb.com/docs/faq and if you cannot resolve the problem contact support@certifytheweb.com.");
+                    MessageBox.Show("O serviço Certify Certificate Manager não foi iniciado. Reinicie o serviço. Se o problema persistir, consulte https://docs.certifytheweb.com/docs/faq e, se não conseguir resolver o problema, entre em contato com support@certifytheweb.com.");
                 }
 
                 if (_appViewModel.IsFeatureEnabled(FeatureFlags.SERVER_CONNECTIONS))
@@ -397,7 +397,7 @@ namespace Certify.UI.Windows
                 if (updateCheck.MustUpdate)
                 {
                     // offer to take user to download page
-                    var gotoDownload = MessageBox.Show(Application.Current.MainWindow, updateCheck.Message.Body + "\r\nVisit download page now?", ConfigResources.AppName, MessageBoxButton.YesNo);
+                    var gotoDownload = MessageBox.Show(Application.Current.MainWindow, updateCheck.Message.Body + "\r\nVisitar página de download agora?", ConfigResources.AppName, MessageBoxButton.YesNo);
                     if (gotoDownload == MessageBoxResult.Yes)
                     {
                         Utils.Helpers.LaunchBrowser(ConfigResources.AppWebsiteURL);
