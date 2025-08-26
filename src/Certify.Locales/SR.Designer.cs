@@ -2448,5 +2448,68 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("StatusLabel", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New Update Available.
+        /// </summary>
+        public static string Update_NewAvailable {
+            get {
+                return ResourceManager.GetString("Update_NewAvailable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Current installed version:.
+        /// </summary>
+        public static string Update_CurrentVersion {
+            get {
+                return ResourceManager.GetString("Update_CurrentVersion", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Update_Download {
+            get {
+                return ResourceManager.GetString("Update_Download", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Later.
+        /// </summary>
+        public static string Update_Later {
+            get {
+                return ResourceManager.GetString("Update_Later", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Download now. You will be prompted to confirm installation after the download completes.
+        /// </summary>
+        public static string Update_DownloadNow_Tip {
+            get {
+                return ResourceManager.GetString("Update_DownloadNow_Tip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to (unknown).
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Importing from source: {0}, exported {1}, app version {2}.
+        /// </summary>
+        public static string Import_SummaryIntro {
+            get {
+                return ResourceManager.GetString("Import_SummaryIntro", resourceCulture);
+            }
+        }
     }
 }

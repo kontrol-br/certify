@@ -855,4 +855,25 @@
   <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
     <value>Usar como padrão</value>
   </data>
+  <data name="Update_NewAvailable" xml:space="preserve">
+    <value>New Update Available</value>
+  </data>
+  <data name="Update_CurrentVersion" xml:space="preserve">
+    <value>Current installed version:</value>
+  </data>
+  <data name="Update_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Update_DownloadNow_Tip" xml:space="preserve">
+    <value>Download now. You will be prompted to confirm installation after the download completes.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(unknown)</value>
+  </data>
+  <data name="Import_SummaryIntro" xml:space="preserve">
+    <value>Importing from source: {0}, exported {1}, app version {2}</value>
+  </data>
 </root>

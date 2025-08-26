@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Certify.Locales;
 using Certify.Models;
 using Markdig;
 
@@ -57,7 +58,7 @@ namespace Certify.UI.Windows
             var showAllChanges = false;
 
             UpdateMessage.Text = _update.Message.Body;
-            CurrentVersionInfo.Text = "Versão instalada atual: " + _update.InstalledVersion.ToString();
+            CurrentVersionInfo.Text = $"{SR.Update_CurrentVersion} {_update.InstalledVersion}";
 
             var sb = new StringBuilder();
             sb.AppendLine("**Notas de versão**\n");
