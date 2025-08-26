@@ -126,7 +126,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
                 if (!savedOK)
                 {
-                    MessageBox.Show("There was problem saving the changes for this managed certificate. Please review and try again.");
+                    MessageBox.Show("Ocorreu um problema ao salvar as alterações deste certificado gerenciado. Revise e tente novamente.");
                 }
 
                 return savedOK;
@@ -182,14 +182,14 @@ namespace Certify.UI.Controls.ManagedCertificate
                 if (ItemViewModel.SelectedItem.LastRenewalStatus == RequestState.Success && renewalCheckWindow > DateTimeOffset.UtcNow)
                 {
                     // cert was recently renewed. confirm user intent
-                    var msg = "This managed certificate was recently renewed. Are you sure you wish to request it again now? \r\n\r\nThe Certificate Authority may impose rate limits on the number of duplicate certificates which can be issued, so requesting duplicate certificates should be avoided.";
+                    var msg = "Este certificado gerenciado foi renovado recentemente. Tem certeza de que deseja solicitá-lo novamente agora? \r\n\r\nA Autoridade Certificadora pode impor limites de taxa para o número de certificados duplicados que podem ser emitidos, portanto solicitar certificados duplicados deve ser evitado.";
 
                     if (ItemViewModel.SelectedItem?.PostRequestTasks?.Any() == true || ItemViewModel.SelectedItem?.PreRequestTasks?.Any() == true)
                     {
-                        msg += "\r\n\r\nIf you are testing a Deployment Task, see the Tasks tab to re-run an individual task.";
+                        msg += "\r\n\r\nSe você estiver testando uma Tarefa de Implantação, veja a guia Tarefas para executar novamente uma tarefa individual.";
                     }
 
-                    if (MessageBox.Show(msg, "Request certificate again?", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    if (MessageBox.Show(msg, "Solicitar certificado novamente?", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                     {
                         return;
                     }
