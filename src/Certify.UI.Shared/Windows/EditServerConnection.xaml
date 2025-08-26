@@ -47,7 +47,7 @@
                 Height="23"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Controls:TextBoxHelper.Watermark="e.g. Primary Server, WEB01 etc "
+                Controls:TextBoxHelper.Watermark="ex.: Servidor Primário, WEB01 etc "
                 Text="{Binding Item.DisplayName}"
                 TextWrapping="Wrap" />
         </StackPanel>
@@ -81,7 +81,7 @@
                 Height="23"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Controls:TextBoxHelper.Watermark="e.g. 9696"
+                Controls:TextBoxHelper.Watermark="ex.: 9696"
                 Text="{Binding Item.Port}"
                 TextWrapping="Wrap" />
         </StackPanel>
