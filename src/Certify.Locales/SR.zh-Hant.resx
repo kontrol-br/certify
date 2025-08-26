@@ -231,6 +231,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>無法開始授權金鑰驗證程序。</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>您可以在以下網站註冊購買授權金鑰：</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>此安裝目前正在使用授權金鑰。若您希望變更授權金鑰或將此授權分配給其他安裝，可停用此安裝的授權：</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>停用安裝</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>與 AutoSSL API 通訊失敗。請確認系統可使用瀏覽器存取 https://update.autoip.com.br/v1/update。&#x0a;&#x0a;若系統執行較舊版本的 Windows，請至 https://docs.certifytheweb.com 查詢「TLS Cipher」，可能需要更新登錄設定。</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>無法載入授權驗證外掛。可能需要重新安裝應用程式。</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>此安裝已停用。您可以輸入不同的授權金鑰或在另一個安裝上使用您的金鑰。</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>無法停用此安裝，請確認指定的電子郵件地址與帳戶相符。您可以手動刪除 C:\ProgramData\Certify\reg_1 檔案，並在 https://certifytheweb.com 上停用您的安裝。</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>自動續期工作已設定，若需更換執行帳號，可修改管理員使用者。</value>
   </data>

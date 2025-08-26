@@ -95,7 +95,7 @@ namespace Certify.UI.Windows
                 catch (System.Net.Http.HttpRequestException exp)
                 {
                     Log?.Information("ValidateKey:" + exp.ToString());
-                    MessageBox.Show("Communication with the AutoSSL API failed. Check your system can communicate with https://update.autoip.com.br/v1/update using a web browser. \r\n\r\nIf your system is running an older version of Windows, check https://docs.certifytheweb.com for 'TLS Cipher', as updated registry settings may be required.");
+                    MessageBox.Show(Certify.Locales.SR.Registration_ApiCommunicationFailed);
                 }
                 catch (Exception exp)
                 {
@@ -108,7 +108,7 @@ namespace Certify.UI.Windows
             }
             else
             {
-                MessageBox.Show("Could not load the licensing validation plugin. The app may need to be re-installed.");
+                MessageBox.Show(Certify.Locales.SR.Registration_PluginLoadFailed);
             }
 
             ValidateKey.IsEnabled = true;
@@ -156,12 +156,12 @@ namespace Certify.UI.Windows
                 if (resultOK)
                 {
                     ViewModel.AppViewModel.Current.IsRegisteredVersion = false;
-                    MessageBox.Show("This install has now been deactivated. You can enter a different license key or use your key on another install.");
+                    MessageBox.Show(Certify.Locales.SR.Registration_DeactivateSuccess);
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("The install could not be deactivated, check specified email address is correct for account. You can manually delete the C:\\ProgramData\\Certify\\reg_1 file and deactivate your install on https://certifytheweb.com");
+                    MessageBox.Show(Certify.Locales.SR.Registration_DeactivateFailed);
 
                 }
             }

@@ -231,6 +231,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>Lisans doğrulama sürecini başlatırken bir sorun oluştu.</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>Bir lisans anahtarını şu adresten kayıt olarak satın alabilirsiniz:</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>Kurulumunuz şu anda bir lisans anahtarı kullanıyor. Lisans anahtarını değiştirmek veya bu lisansı başka bir kuruluma tahsis etmek istiyorsanız, bu kurulum için lisansı devre dışı bırakabilirsiniz:</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>Kurulumu devre dışı bırak</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>AutoSSL API ile iletişim başarısız oldu. Sisteminizin https://update.autoip.com.br/v1/update adresiyle bir web tarayıcısı üzerinden iletişim kurabildiğinden emin olun.&#x0a;&#x0a;Sisteminiz eski bir Windows sürümü çalıştırıyorsa, güncellenmiş kayıt ayarları gerekebileceğinden https://docs.certifytheweb.com adresinden 'TLS Cipher' konusunu kontrol edin.</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>Lisans doğrulama eklentisi yüklenemedi. Uygulamayı yeniden kurmanız gerekebilir.</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>Bu kurulum devre dışı bırakıldı. Farklı bir lisans anahtarı girebilir veya anahtarınızı başka bir kurulumda kullanabilirsiniz.</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>Kurulum devre dışı bırakılamadı; belirtilen e-posta adresinin hesap için doğru olduğundan emin olun. C:\ProgramData\Certify\reg_1 dosyasını manuel olarak silebilir ve kurulumu https://certifytheweb.com adresinde devre dışı bırakabilirsiniz.</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>Otomatik yenileme görevi zaten yapılandırılmış. Gerekirse, görevi yürütmek için kullanılan yönetici hesabını değiştirebilirsiniz.</value>
   </data>

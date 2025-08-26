@@ -1773,6 +1773,69 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("Registration_UnableToVerify", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Communication with the AutoSSL API failed. Check your system can communicate with https://update.autoip.com.br/v1/update using a web browser. If your system is running an older version of Windows, check https://docs.certifytheweb.com for 'TLS Cipher', as updated registry settings may be required.
+        /// </summary>
+        public static string Registration_ApiCommunicationFailed {
+            get {
+                return ResourceManager.GetString("Registration_ApiCommunicationFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The install could not be deactivated, check specified email address is correct for account. You can manually delete the C:\ProgramData\Certify\reg_1 file and deactivate your install on https://certifytheweb.com.
+        /// </summary>
+        public static string Registration_DeactivateFailed {
+            get {
+                return ResourceManager.GetString("Registration_DeactivateFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivate Install.
+        /// </summary>
+        public static string Registration_DeactivateInstall {
+            get {
+                return ResourceManager.GetString("Registration_DeactivateInstall", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This install has now been deactivated. You can enter a different license key or use your key on another install.
+        /// </summary>
+        public static string Registration_DeactivateSuccess {
+            get {
+                return ResourceManager.GetString("Registration_DeactivateSuccess", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your installation is currently using a license key. If you wish to change license key or allocate this license to a different install you can deactivate the license for this install:.
+        /// </summary>
+        public static string Registration_DeactivationIntro {
+            get {
+                return ResourceManager.GetString("Registration_DeactivationIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can purchase a license key by registering at:.
+        /// </summary>
+        public static string Registration_LicensePurchaseInstruction {
+            get {
+                return ResourceManager.GetString("Registration_LicensePurchaseInstruction", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not load the licensing validation plugin. The app may need to be re-installed.
+        /// </summary>
+        public static string Registration_PluginLoadFailed {
+            get {
+                return ResourceManager.GetString("Registration_PluginLoadFailed", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Registered Email Address.

@@ -231,6 +231,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>Hubo un problema al comenzar el proceso de validación de la licencia.</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>Puede comprar una clave de licencia registrándose en:</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>Su instalación está utilizando actualmente una clave de licencia. Si desea cambiar la clave o asignar esta licencia a otra instalación, puede desactivar la licencia para esta instalación:</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>Desactivar instalación</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>La comunicación con la API de AutoSSL falló. Compruebe que su sistema puede comunicarse con https://update.autoip.com.br/v1/update mediante un navegador web.&#x0a;&#x0a;Si su sistema ejecuta una versión antigua de Windows, consulte https://docs.certifytheweb.com sobre 'TLS Cipher', ya que podrían requerirse configuraciones de registro actualizadas.</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>No se pudo cargar el complemento de validación de licencias. Es posible que deba reinstalar la aplicación.</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>Esta instalación ha sido desactivada. Puede introducir una clave de licencia diferente o usar su clave en otra instalación.</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>No se pudo desactivar la instalación; verifique que la dirección de correo especificada sea correcta para la cuenta. Puede eliminar manualmente el archivo C:\ProgramData\Certify\reg_1 y desactivar su instalación en https://certifytheweb.com</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>La tarea de renovación automática ya está configurada. Si es necesario, puede cambiar la cuenta de usuario de administrador utilizada para ejecutar la tarea.</value>
   </data>

@@ -26,7 +26,7 @@
         <StackPanel DockPanel.Dock="Top" Visibility="{Binding IsRegistrationMode, Converter={StaticResource ResourceKey=BoolToVisConverter}}">
 
             <Grid>
-                <TextBlock Margin="10,10,-10,-11" TextWrapping="WrapWithOverflow"><Run>You can purchase a license key by registering at:</Run><LineBreak /> <Hyperlink NavigateUri="https://certifytheweb.com/register?src=app.enterkey" RequestNavigate="Hyperlink_RequestNavigate">https://certifytheweb.com/register</Hyperlink></TextBlock>
+                <TextBlock Margin="10,10,-10,-11" TextWrapping="WrapWithOverflow"><Run Text="{x:Static res:SR.Registration_LicensePurchaseInstruction}" /><LineBreak /> <Hyperlink NavigateUri="https://certifytheweb.com/register?src=app.enterkey" RequestNavigate="Hyperlink_RequestNavigate">https://certifytheweb.com/register</Hyperlink></TextBlock>
                 <Button
                     x:Name="ValidateKey"
                     Width="112"
@@ -82,7 +82,7 @@
             DockPanel.Dock="Top"
             LastChildFill="False"
             Visibility="{Binding IsRegistrationMode, Converter={StaticResource ResourceKey=InvBoolToVisConverter}}">
-            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap">Your installation is currently using a license key. If you wish to change license key or allocate this license to a different install you can deactivate the license for this install:</TextBlock>
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="{x:Static res:SR.Registration_DeactivationIntro}" />
             <StackPanel
                 Margin="8"
                 DockPanel.Dock="Top"
@@ -106,16 +106,14 @@
                     x:Name="DeactivateCancel"
                     Width="120"
                     Click="Cancel_Click"
-                    DockPanel.Dock="Left">
-                    Cancel
-                </Button>
+                    DockPanel.Dock="Left"
+                    Content="{x:Static res:SR.Cancel}" />
                 <Button
                     x:Name="Deactivate"
                     HorizontalAlignment="Right"
                     Click="Deactivate_Click"
-                    DockPanel.Dock="Right">
-                    Deactivate Install
-                </Button>
+                    DockPanel.Dock="Right"
+                    Content="{x:Static res:SR.Registration_DeactivateInstall}" />
             </DockPanel>
 
         </DockPanel>

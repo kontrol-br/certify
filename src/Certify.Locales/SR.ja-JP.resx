@@ -219,6 +219,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>ライセンスの認証プロセスを開始する際に問題が発生しました。</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>ライセンスキーは次のサイトで登録して購入できます:</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>このインストールでは現在ライセンスキーが使用されています。ライセンスキーを変更するか他のインストールに割り当てる場合は、このインストールのライセンスを非アクティブ化できます:</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>インストールを無効化</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>AutoSSL API との通信に失敗しました。Web ブラウザーで https://update.autoip.com.br/v1/update にアクセスできることを確認してください。&#x0a;&#x0a;古いバージョンの Windows を使用している場合は、https://docs.certifytheweb.com の「TLS Cipher」を確認してください。レジストリ設定の更新が必要な場合があります。</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>ライセンス検証プラグインを読み込めませんでした。アプリを再インストールする必要があるかもしれません。</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>このインストールは無効化されました。別のライセンスキーを入力するか、キーを別のインストールで使用できます。</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>インストールを無効化できませんでした。指定したメール アドレスがアカウントに正しいか確認してください。C:\ProgramData\Certify\reg_1 ファイルを手動で削除し、https://certifytheweb.com でインストールを無効化できます。</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>自動更新タスクは既に設定されています。 必要に応じて、タスクの実行に使用する管理者ユーザーアカウントを変更できます。</value>
   </data>
