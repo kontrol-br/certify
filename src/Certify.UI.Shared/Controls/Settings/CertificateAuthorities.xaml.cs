@@ -103,9 +103,9 @@ namespace Certify.UI.Controls.Settings
                 var button = sender as Button;
                 var account = button.DataContext as AccountDetails;
 
-                var deactivate = MessageBox.Show($"Do you also wish to deactivate this account with the CA? {account.AccountURI} You should take care to only deactivate accounts which are not shared among instances.", "Confirm Account Deactivation", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+                var deactivate = MessageBox.Show($"Deseja também desativar esta conta junto à AC? {account.AccountURI} Tenha cuidado para desativar apenas contas que não sejam compartilhadas entre instâncias.", "Confirmar desativação da conta", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
 
-                if (MessageBox.Show($"Remove this account? {account.AccountURI} This action cannot be reversed once completed.", "Confirm Account Removal", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                if (MessageBox.Show($"Remover esta conta? {account.AccountURI} Esta ação não pode ser desfeita após concluída.", "Confirmar remoção da conta", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
                     await EditModel.MainViewModel.RemoveAccount(string.IsNullOrEmpty(account.StorageKey) ? account.ID : account.StorageKey, deactivate);
                 }
