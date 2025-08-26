@@ -56,7 +56,7 @@ namespace Certify.UI.Windows
             }
             else
             {
-                MessageBox.Show("Failed to save connection details.");
+                MessageBox.Show("Falha ao salvar os detalhes da conexão.");
             }
         }
     }
