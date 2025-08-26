@@ -47,7 +47,7 @@ namespace Certify.UI.Utils
                     }
                     else
                     {
-                        MessageBox.Show(Application.Current.MainWindow, "The application update failed secondary verification. A malicious process may have changed the setup file after the downloaded completed.", ConfigResources.AppName);
+                        MessageBox.Show(Application.Current.MainWindow, "A atualização do aplicativo falhou na verificação secundária. Um processo malicioso pode ter alterado o arquivo de instalação após o download.", ConfigResources.AppName);
                     }
                 }
             }
