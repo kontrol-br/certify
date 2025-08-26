@@ -14,7 +14,7 @@ namespace Certify.UI.Utils
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not start a browser for " + url);
+                MessageBox.Show("Não foi possível iniciar um navegador para " + url);
             }
         }
     }
