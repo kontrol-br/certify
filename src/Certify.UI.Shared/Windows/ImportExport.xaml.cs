@@ -46,7 +46,7 @@ namespace Certify.UI.Windows
             var dialog = new OpenFileDialog();
 
             dialog.DefaultExt = "json";
-            dialog.Filter = "Json files (*.json)|*.json|All files (*.*)|*.*";
+            dialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
 
             var isPreview = true;
 
@@ -63,7 +63,7 @@ namespace Certify.UI.Windows
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("The selected file could not be read as a valid Import Package.");
+                    MessageBox.Show("O arquivo selecionado não pôde ser lido como um Pacote de Importação válido.");
                     return;
                 }
 
@@ -83,10 +83,10 @@ namespace Certify.UI.Windows
         {
             if (!isPreview && results.All(r => r.HasError == false))
             {
-                MainViewModel.ShowNotification("Importação completeda OK", Shared.NotificationType.Success);
+                MainViewModel.ShowNotification("Importação concluída com sucesso", Shared.NotificationType.Success);
             }
 
-            PrepareImportPreview(Model.Package, results, isPreview ? "Preview de Importação" : "Resultados da Importação");
+            PrepareImportPreview(Model.Package, results, isPreview ? "Pré-visualização da Importação" : "Resultados da Importação");
 
             if (results.All(r => r.HasError == false))
             {
@@ -254,7 +254,7 @@ namespace Certify.UI.Windows
             // prompt user for save file location and perform export to json file
             dialog.FileName = $"certifytheweb_export_{DateTime.Now.ToString("yyyyMMdd")}.json";
             dialog.DefaultExt = "json";
-            dialog.Filter = "Json files (*.json)|*.json|All files (*.*)|*.*";
+            dialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
 
             if (dialog.ShowDialog() == true)
             {
@@ -266,7 +266,7 @@ namespace Certify.UI.Windows
                 var json = JsonConvert.SerializeObject(export, new JsonSerializerSettings { Formatting = Formatting.Indented, NullValueHandling = NullValueHandling.Ignore });
                 System.IO.File.WriteAllText(savePath, json);
 
-                MainViewModel.ShowNotification("Export completed OK", NotificationType.Success);
+                MainViewModel.ShowNotification("Exportação concluída com sucesso", NotificationType.Success);
             }
         }
     }
