@@ -219,6 +219,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>Det oppstod et problem med godkjenningsprosessen for lisensen.</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>Du kan kjøpe en lisensnøkkel ved å registrere deg på:</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>Installasjonen bruker for øyeblikket en lisensnøkkel. Hvis du ønsker å endre lisensnøkkel eller tildele lisensen til en annen installasjon, kan du deaktivere lisensen for denne installasjonen:</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>Deaktiver installasjon</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>Kommunikasjonen med AutoSSL-API-en mislyktes. Kontroller at systemet ditt kan kommunisere med https://update.autoip.com.br/v1/update i en nettleser.&#x0a;&#x0a;Hvis systemet ditt kjører en eldre versjon av Windows, se https://docs.certifytheweb.com for «TLS Cipher», da oppdaterte registerinnstillinger kan være nødvendig.</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>Kunne ikke laste inn plugin-modulen for lisensvalidering. Appen må kanskje installeres på nytt.</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>Denne installasjonen er nå deaktivert. Du kan angi en annen lisensnøkkel eller bruke nøkkelen på en annen installasjon.</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>Installasjonen kunne ikke deaktiveres. Kontroller at den angitte e-postadressen er riktig for kontoen. Du kan manuelt slette filen C:\ProgramData\Certify\reg_1 og deaktivere installasjonen på https://certifytheweb.com</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>Den automatiske fornyelsesoppgaven er allerede konfigurert. Om nødvendig kan du endre admin brukerkontoen som brukes til å utføre oppgaven.</value>
   </data>

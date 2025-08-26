@@ -173,6 +173,27 @@
   <data name="Registration_UnableToVerify" xml:space="preserve">
     <value>Houve um problema ao iniciar o processo de validação da licença.</value>
   </data>
+  <data name="Registration_LicensePurchaseInstruction" xml:space="preserve">
+    <value>Você pode comprar uma chave de licença registrando-se em:</value>
+  </data>
+  <data name="Registration_DeactivationIntro" xml:space="preserve">
+    <value>Sua instalação está atualmente usando uma chave de licença. Se deseja alterar a chave ou alocar esta licença para outra instalação, você pode desativar a licença desta instalação:</value>
+  </data>
+  <data name="Registration_DeactivateInstall" xml:space="preserve">
+    <value>Desativar instalação</value>
+  </data>
+  <data name="Registration_ApiCommunicationFailed" xml:space="preserve">
+    <value>A comunicação com a API AutoSSL falhou. Verifique se o sistema pode se comunicar com https://update.autoip.com.br/v1/update usando um navegador.&#x0a;&#x0a;Se o sistema estiver executando uma versão mais antiga do Windows, consulte https://docs.certifytheweb.com sobre 'TLS Cipher', pois configurações de registro atualizadas podem ser necessárias.</value>
+  </data>
+  <data name="Registration_PluginLoadFailed" xml:space="preserve">
+    <value>Não foi possível carregar o plugin de validação de licença. Pode ser necessário reinstalar o aplicativo.</value>
+  </data>
+  <data name="Registration_DeactivateSuccess" xml:space="preserve">
+    <value>Esta instalação foi desativada. Você pode inserir uma chave de licença diferente ou usar sua chave em outra instalação.</value>
+  </data>
+  <data name="Registration_DeactivateFailed" xml:space="preserve">
+    <value>A instalação não pôde ser desativada; verifique se o endereço de e-mail especificado está correto para a conta. Você pode excluir manualmente o arquivo C:\ProgramData\Certify\reg_1 e desativar sua instalação em https://certifytheweb.com</value>
+  </data>
   <data name="ScheduledTaskConfig_AlreadyConfiged" xml:space="preserve">
     <value>A tarefa de renovação automática já está configurada. Se necessário, você pode alterar a conta de usuário administrador usada para executar a tarefa.</value>
   </data>
