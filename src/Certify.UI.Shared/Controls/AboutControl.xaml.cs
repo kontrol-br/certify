@@ -59,7 +59,7 @@ namespace Certify.UI.Controls
                 {
                     MainViewModel.IsUpdateAvailable = true;
 
-                    var gotoDownload = MessageBox.Show(updateCheck.Message.Body + "\r\nVisit download page now?", ConfigResources.AppName, MessageBoxButton.YesNo);
+                    var gotoDownload = MessageBox.Show(updateCheck.Message.Body + "\r\nVisitar página de download agora?", ConfigResources.AppName, MessageBoxButton.YesNo);
                     if (gotoDownload == MessageBoxResult.Yes)
                     {
                         Utils.Helpers.LaunchBrowser(ConfigResources.AppWebsiteURL);
