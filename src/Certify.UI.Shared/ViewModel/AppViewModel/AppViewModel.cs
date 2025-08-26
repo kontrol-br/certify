@@ -77,6 +77,7 @@ namespace Certify.UI.ViewModel
             Log = new Loggy(new Serilog.Extensions.Logging.SerilogLoggerFactory(serilogLog).CreateLogger<AppViewModel>());
 
             ProgressResults = new ObservableCollection<RequestProgressState>();
+            ProgressResultsHistory = new ObservableCollection<RequestProgressState>();
 
             ImportedManagedCertificates = new ObservableCollection<ManagedCertificate>();
             ManagedCertificates = new ObservableCollection<ManagedCertificate>();
