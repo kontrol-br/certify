@@ -43,7 +43,7 @@
                                 Click="Connect_Click"
                                 CommandParameter="{Binding}"
                                 DockPanel.Dock="Left"
-                                ToolTip="Connect">
+                                ToolTip="Conectar">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:ImageAwesome
                                         HorizontalAlignment="Center"
@@ -116,7 +116,7 @@
                 Width="80"
                 Click="Button_Click"
                 DockPanel.Dock="Right">
-                Cancel
+                Cancelar
             </Button>
         </DockPanel>
     </DockPanel>
