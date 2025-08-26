@@ -383,7 +383,79 @@ namespace Certify.Locales {
                 return ResourceManager.GetString("Dashboard_Warnings", resourceCulture);
             }
         }
-       
+
+        /// <summary>
+        ///   Looks up a localized string similar to This is the current data store connection.
+        /// </summary>
+        public static string DataStoreConnections_CurrentConnection {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_CurrentConnection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to Data Store.
+        /// </summary>
+        public static string DataStoreConnections_ConnectTitle {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_ConnectTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Switch primary data store for service to {0}?.
+        /// </summary>
+        public static string DataStoreConnections_SwitchPrompt {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_SwitchPrompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Data Store.
+        /// </summary>
+        public static string DataStoreConnections_SwitchTitle {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_SwitchTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The source and target data source selections are required.
+        /// </summary>
+        public static string DataStoreConnections_SourceTargetRequired {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_SourceTargetRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The source and target data source cannot be the same.
+        /// </summary>
+        public static string DataStoreConnections_SourceTargetSame {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_SourceTargetSame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy data from {0} to {1}? Existing items in the target will be overwritten.
+        /// </summary>
+        public static string DataStoreConnections_CopyPrompt {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_CopyPrompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Data.
+        /// </summary>
+        public static string DataStoreConnections_CopyTitle {
+            get {
+                return ResourceManager.GetString("DataStoreConnections_CopyTitle", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
