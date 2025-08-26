@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
-    Title="Getting Started"
+    Title="Guia de Introdução"
     Width="800"
     Height="600"
     MinWidth="300"
