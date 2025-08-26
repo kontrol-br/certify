@@ -119,7 +119,7 @@ namespace Certify.UI.Shared
 
             if (reopenWindow)
             {
-                MessageBox.Show("To apply language settings, close and re-open the application.");
+                MessageBox.Show("Para aplicar as configurações de idioma, feche e reabra o aplicativo.");
             }
         }
 
@@ -129,7 +129,7 @@ namespace Certify.UI.Shared
             var feedbackMsg = "";
             if (e.ExceptionObject != null)
             {
-                feedbackMsg = "An error occurred: " + ((Exception)e.ExceptionObject).ToString();
+                feedbackMsg = "Ocorreu um erro: " + ((Exception)e.ExceptionObject).ToString();
 
                 log?.Error(feedbackMsg);
             }
