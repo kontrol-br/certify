@@ -810,6 +810,27 @@
   <data name="ClickToCopy" xml:space="preserve">
     <value>Clique para copiar para a área de transferência</value>
   </data>
+  <data name="EditDataStoreConnection_TitleRequired" xml:space="preserve">
+    <value>A conexão do repositório de dados requer um título.</value>
+  </data>
+  <data name="EditDataStoreConnection_TypeRequired" xml:space="preserve">
+    <value>É necessário um tipo de provedor.</value>
+  </data>
+  <data name="EditDataStoreConnection_SqliteNotSupported" xml:space="preserve">
+    <value>SQLite é o tipo de armazenamento padrão e adicionar repositórios de dados SQLite adicionais (ou editar o padrão) não é suportado no momento.</value>
+  </data>
+  <data name="EditDataStoreConnection_ConfigRequired" xml:space="preserve">
+    <value>As conexões do repositório de dados exigem uma string de conexão para especificar os detalhes da fonte de dados.</value>
+  </data>
+  <data name="EditDataStoreConnection_ValidationFailed" xml:space="preserve">
+    <value>Falha na validação ao adicionar/editar repositório de dados.</value>
+  </data>
+  <data name="EditDataStoreConnection_TestSuccess" xml:space="preserve">
+    <value>O teste do repositório de dados foi bem-sucedido</value>
+  </data>
+  <data name="EditDataStoreConnection_TestTitle" xml:space="preserve">
+    <value>Teste do repositório de dados</value>
+  </data>
   <data name="EditServerConnection_Title" xml:space="preserve">
     <value>Editar conexão do servidor</value>
   </data>
