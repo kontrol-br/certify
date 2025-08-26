@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Certify.Locales;
 using Certify.Models;
 using Certify.Models.Config.Migration;
 using Certify.UI.Shared;
@@ -144,7 +145,7 @@ namespace Certify.UI.Windows
 
             }
 
-            var intro = $"Importing from source: {package.SourceName}, exported {package.ExportDate.ToLongDateString()}, app version {package.SystemVersion?.ToString().AsNullWhenBlank() ?? "(unknown)"}";
+            var intro = string.Format(SR.Import_SummaryIntro, package.SourceName, package.ExportDate.ToLongDateString(), package.SystemVersion?.ToString().AsNullWhenBlank() ?? SR.Unknown);
             var markdown = GetStepsAsMarkdown(steps, title, intro);
 
             var result = Markdown.ToHtml(markdown, _markdownPipeline);

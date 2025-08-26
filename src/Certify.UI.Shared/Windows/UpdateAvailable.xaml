@@ -9,7 +9,7 @@
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
-    Title="Update Available"
+    Title="{x:Static res:SR.Update_Available}"
     Width="739.386"
     Height="423"
     MinWidth="300"
@@ -29,15 +29,13 @@
         <TextBlock
             x:Name="UpdateMessage"
             DockPanel.Dock="Top"
-            Style="{StaticResource SubheadingWithMargin}">
-            New Update Available
-        </TextBlock>
+            Style="{StaticResource SubheadingWithMargin}"
+            Text="{x:Static res:SR.Update_NewAvailable}" />
         <TextBlock
             x:Name="CurrentVersionInfo"
             DockPanel.Dock="Top"
-            Style="{StaticResource Instructions}">
-            Current installed version:
-        </TextBlock>
+            Style="{StaticResource Instructions}"
+            Text="{x:Static res:SR.Update_CurrentVersion}" />
 
         <WebBrowser
             x:Name="MarkdownView"
@@ -52,28 +50,28 @@
                 x:Name="Proceed"
                 Click="Proceed_Click"
                 DockPanel.Dock="Right"
-                ToolTip="Download now. You will be prompted to confirm installation after the download completes.">
+                ToolTip="{x:Static res:SR.Update_DownloadNow_Tip}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Download" />
-                    <TextBlock Margin="8,0,0,0">Download</TextBlock>
+                    <TextBlock Margin="8,0,0,0"><Run Text="{x:Static res:SR.Update_Download}" /></TextBlock>
                 </StackPanel>
             </Button>
             <Button
                 x:Name="Cancel"
                 Click="Cancel_Click"
                 DockPanel.Dock="Left"
-                ToolTip="Cancel">
+                ToolTip="{x:Static res:SR.Cancel}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="ArrowCircleLeft" />
-                    <TextBlock Margin="8,0,0,0">Later</TextBlock>
+                    <TextBlock Margin="8,0,0,0"><Run Text="{x:Static res:SR.Update_Later}" /></TextBlock>
                 </StackPanel>
             </Button>
         </DockPanel>

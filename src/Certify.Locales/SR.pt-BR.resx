@@ -810,4 +810,25 @@
   <data name="EditServerConnection_UseAsDefault" xml:space="preserve">
     <value>Usar como padrão</value>
   </data>
+  <data name="Update_NewAvailable" xml:space="preserve">
+    <value>Nova atualização disponível</value>
+  </data>
+  <data name="Update_CurrentVersion" xml:space="preserve">
+    <value>Versão instalada atual:</value>
+  </data>
+  <data name="Update_Download" xml:space="preserve">
+    <value>Baixar</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Mais tarde</value>
+  </data>
+  <data name="Update_DownloadNow_Tip" xml:space="preserve">
+    <value>Baixar agora. Você será solicitado a confirmar a instalação após a conclusão do download.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(desconhecida)</value>
+  </data>
+  <data name="Import_SummaryIntro" xml:space="preserve">
+    <value>Importando da origem: {0}, exportado {1}, versão do aplicativo {2}</value>
+  </data>
 </root>
