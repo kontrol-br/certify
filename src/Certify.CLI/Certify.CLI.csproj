@@ -46,7 +46,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="icon_cli.ico" />
+        <Content Include="icon_cli2.ico" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Certify.Client\Certify.Client.csproj" />
