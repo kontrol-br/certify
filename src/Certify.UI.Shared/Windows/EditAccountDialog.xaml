@@ -136,7 +136,7 @@
                                     Height="23"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    Controls:TextBoxHelper.Watermark="(optional) e.g. DST Root CA X3"
+                                    Controls:TextBoxHelper.Watermark="(opcional) ex.: DST Root CA X3"
                                     Text="{Binding Item.PreferredChain}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
@@ -155,7 +155,7 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Key Id" />
+                                Content="ID da Chave" />
                             <TextBox
                                 Width="300"
                                 Height="23"
@@ -172,7 +172,7 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Key (HMAC)" />
+                                Content="Chave (HMAC)" />
                             <PasswordBox
                                 x:Name="EabKey"
                                 Width="300"
@@ -188,13 +188,13 @@
                                 Width="120"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Top"
-                                Content="Chave Algoritmo" />
+                                Content="Algoritmo da Chave" />
                             <TextBox
                                 Width="300"
                                 Height="23"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Controls:TextBoxHelper.Watermark="optional, e.g. HS256 (default), HS384 or HS512"
+                                Controls:TextBoxHelper.Watermark="opcional, ex.: HS256 (padrão), HS384 ou HS512"
                                 Text="{Binding Item.EabKeyAlgorithm}"
                                 TextWrapping="Wrap" />
                         </StackPanel>
