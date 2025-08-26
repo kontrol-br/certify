@@ -257,7 +257,7 @@ namespace Certify.UI.Controls.Settings
                 catch
                 {
                     // some locales may have trouble selecting the new culture
-                    MessageBox.Show("Language selection could not be completed.");
+                    MessageBox.Show("A seleção do idioma não pôde ser concluída.");
                 }
             }
         }
@@ -265,13 +265,13 @@ namespace Certify.UI.Controls.Settings
         private async void RedeployCertificates_Click(object sender, RoutedEventArgs e)
         {
 
-            var msg = "This action will automatically re-apply all managed certificates as per the Deployment option of each item. Additional Deployment Tasks will not be performed. Redeployment can take up to 1hr and progress will be shown on the Progress tab.";
+            var msg = "Esta ação reaplicará automaticamente todos os certificados gerenciados conforme a opção de Implantação de cada item. Tarefas de Implantação adicionais não serão executadas. O redeploy pode levar até 1 hora e o progresso será mostrado na guia Progresso.";
             if (IncludeDeploymentTasks.IsChecked == true)
             {
-                msg = "This action will automatically re-apply all managed certificates as per the Deployment option of each item. Additional Deployment Tasks will also be performed where applicable. Redeployment can take up to 1hr and progress will be shown on the Progress tab.";
+                msg = "Esta ação reaplicará automaticamente todos os certificados gerenciados conforme a opção de Implantação de cada item. Tarefas de Implantação adicionais também serão executadas quando aplicável. O redeploy pode levar até 1 hora e o progresso será mostrado na guia Progresso.";
             }
 
-            if (MessageBox.Show(msg, "Perform Certificate Redeployment?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show(msg, "Executar a reimplantação de certificados?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 await ViewModel.AppViewModel.Current.RedeployManagedCertificates(isPreviewOnly: false, IncludeDeploymentTasks.IsChecked == true);
             }
@@ -281,7 +281,7 @@ namespace Certify.UI.Controls.Settings
         {
             if (EditModel.SettingsInitialised && EnableExternalPlugins.IsChecked == true)
             {
-                MessageBox.Show("Enabling custom plugins is a significant security risk. Do not use plugins from unknown third parties.");
+                MessageBox.Show("Habilitar plugins personalizados é um risco significativo de segurança. Não use plugins de terceiros desconhecidos.");
             }
         }
 
