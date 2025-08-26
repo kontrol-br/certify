@@ -46,7 +46,7 @@ namespace Certify.UI.Controls.ManagedCertificate
                     }
                     catch
                     {
-                        MessageBox.Show("The file provided does not appear to be either a valid token or a json token wrapper.");
+                        MessageBox.Show("O arquivo fornecido não parece ser um token válido nem um wrapper de token JSON.");
                         return;
                     }
                 }
@@ -70,7 +70,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
             if (string.IsNullOrEmpty(tokenWrapper.Token) || string.IsNullOrEmpty(tokenWrapper.Crl))
             {
-                MessageBox.Show("Both the authority token and CRL url are required.");
+                MessageBox.Show("O token de autoridade e a URL da CRL são obrigatórios.");
                 return;
             }
 
@@ -85,13 +85,13 @@ namespace Certify.UI.Controls.ManagedCertificate
 
             if (parsedJwt == null)
             {
-                MessageBox.Show("The Authority Token supplied is not a valid JWT (JSON Web Token).");
+                MessageBox.Show("O token de autoridade fornecido não é um JWT (JSON Web Token) válido.");
                 return;
             }
 
             if (parsedJwt.ValidTo < DateTime.UtcNow)
             {
-                MessageBox.Show("The Authority Token has expired.");
+                MessageBox.Show("O token de autoridade expirou.");
                 return;
             }
 
@@ -99,7 +99,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
             if (parsedAtc == null)
             {
-                MessageBox.Show("Both the authority token and CRL url are required.");
+                MessageBox.Show("O token de autoridade e a URL da CRL são obrigatórios.");
                 return;
             }
 
