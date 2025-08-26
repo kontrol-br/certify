@@ -264,12 +264,17 @@ namespace Certify.UI.ViewModel
         /// If true, one or more requests are currently in progress
         /// </summary>
         [DependsOn(nameof(ProgressResults))]
-        public bool HasRequestsInProgress => (ProgressResults != null && ProgressResults.Any());
+        public bool HasRequestsInProgress => ProgressResults?.Any(p => p.IsRunning) ?? false;
 
         /// <summary>
         /// Cached list of current request operations in progress
         /// </summary>
         public ObservableCollection<RequestProgressState> ProgressResults { get; set; }
+
+        /// <summary>
+        /// History of completed request operations
+        /// </summary>
+        public ObservableCollection<RequestProgressState> ProgressResultsHistory { get; set; }
 
         /// <summary>
         /// Begin tracking progress info for a given managed certificate
@@ -409,6 +414,16 @@ namespace Certify.UI.ViewModel
                     ProgressResults.Add(state);
                 }
 
+                if (state.CurrentState == RequestState.Success ||
+                    state.CurrentState == RequestState.Error ||
+                    state.CurrentState == RequestState.Warning ||
+                    state.CurrentState == RequestState.Skipped)
+                {
+                    ProgressResults.Remove(state);
+                    ProgressResultsHistory.Add(state);
+                    RaisePropertyChangedEvent(nameof(ProgressResultsHistory));
+                }
+
                 RaisePropertyChangedEvent(nameof(HasRequestsInProgress));
                 RaisePropertyChangedEvent(nameof(ProgressResults));
             });
@@ -420,8 +435,10 @@ namespace Certify.UI.ViewModel
         public void ClearRequestProgressResults()
         {
             ProgressResults = new ObservableCollection<RequestProgressState>();
+            ProgressResultsHistory = new ObservableCollection<RequestProgressState>();
             RaisePropertyChangedEvent(nameof(HasRequestsInProgress));
             RaisePropertyChangedEvent(nameof(ProgressResults));
+            RaisePropertyChangedEvent(nameof(ProgressResultsHistory));
         }
 
         /// <summary>
