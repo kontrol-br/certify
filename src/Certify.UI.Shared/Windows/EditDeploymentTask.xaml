@@ -39,7 +39,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Click="Save_Click"
-                Content="OK"
+                Content="Salvar"
                 DockPanel.Dock="Right" />
         </DockPanel>
         <ManagedCertificate:DeploymentTask
