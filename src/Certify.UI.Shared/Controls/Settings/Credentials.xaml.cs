@@ -81,13 +81,13 @@ namespace Certify.UI.Controls.Settings
             //delete the selected credential, if not currently in use
             if (EditModel.SelectedStoredCredential != null)
             {
-                if (MessageBox.Show("Are you sure you wish to delete this stored credential?", "Confirm Delete", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta credencial armazenada?", "Confirmar exclusão", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
                     //confirm item not used then delete
                     var deleted = await EditModel.MainViewModel.DeleteCredential(EditModel.SelectedStoredCredential?.StorageKey);
                     if (!deleted.IsSuccess)
                     {
-                        MessageBox.Show("This stored credential could not be removed. It may still be in use by a managed item.");
+                        MessageBox.Show("Não foi possível remover esta credencial armazenada. Ela pode ainda estar em uso por um item gerenciado.");
                     }
                 }
 
