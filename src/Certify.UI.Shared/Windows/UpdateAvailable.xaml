@@ -9,7 +9,7 @@
     xmlns:local="clr-namespace:Certify.UI.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Certify.Locales;assembly=Certify.Locales"
-    Title="Update Available"
+    Title="Atualização disponível"
     Width="739.386"
     Height="423"
     MinWidth="300"
@@ -30,13 +30,13 @@
             x:Name="UpdateMessage"
             DockPanel.Dock="Top"
             Style="{StaticResource SubheadingWithMargin}">
-            New Update Available
+            Nova atualização disponível
         </TextBlock>
         <TextBlock
             x:Name="CurrentVersionInfo"
             DockPanel.Dock="Top"
             Style="{StaticResource Instructions}">
-            Current installed version:
+            Versão instalada atual:
         </TextBlock>
 
         <WebBrowser
@@ -52,28 +52,28 @@
                 x:Name="Proceed"
                 Click="Proceed_Click"
                 DockPanel.Dock="Right"
-                ToolTip="Download now. You will be prompted to confirm installation after the download completes.">
+                ToolTip="Baixar agora. Você será solicitado a confirmar a instalação após a conclusão do download.">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="Download" />
-                    <TextBlock Margin="8,0,0,0">Download</TextBlock>
+                    <TextBlock Margin="8,0,0,0">Baixar</TextBlock>
                 </StackPanel>
             </Button>
             <Button
                 x:Name="Cancel"
                 Click="Cancel_Click"
                 DockPanel.Dock="Left"
-                ToolTip="Cancel">
+                ToolTip="Cancelar">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{DynamicResource MahApps.Brushes.Accent}"
                         Icon="ArrowCircleLeft" />
-                    <TextBlock Margin="8,0,0,0">Later</TextBlock>
+                    <TextBlock Margin="8,0,0,0">Mais tarde</TextBlock>
                 </StackPanel>
             </Button>
         </DockPanel>

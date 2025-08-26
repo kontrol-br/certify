@@ -49,7 +49,7 @@ namespace Certify.UI.Windows
 
             if (_update == null)
             {
-                return "Update information unavailable. Do not proceed with the update until this is resolved.";
+                return "Informações de atualização indisponíveis. Não prossiga com a atualização até que isso seja resolvido.";
             }
 
             // generate release notes
@@ -57,10 +57,10 @@ namespace Certify.UI.Windows
             var showAllChanges = false;
 
             UpdateMessage.Text = _update.Message.Body;
-            CurrentVersionInfo.Text = "Current installed version: " + _update.InstalledVersion.ToString();
+            CurrentVersionInfo.Text = "Versão instalada atual: " + _update.InstalledVersion.ToString();
 
             var sb = new StringBuilder();
-            sb.AppendLine("**Release Notes**\n");
+            sb.AppendLine("**Notas de versão**\n");
 
             sb.AppendLine($"{_update.Message.ReleaseNotesURL}\n");
 
