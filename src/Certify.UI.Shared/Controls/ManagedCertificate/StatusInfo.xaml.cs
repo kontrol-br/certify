@@ -87,7 +87,7 @@ namespace Certify.UI.Controls.ManagedCertificate
                 }
                 catch
                 {
-                    MessageBox.Show($"The system could not launch the default app for {logPath} - Open the file manually.");
+                    MessageBox.Show($"O sistema não conseguiu iniciar o aplicativo padrão para {logPath} - Abra o arquivo manualmente.");
                 }
             }
             else
@@ -110,12 +110,12 @@ namespace Certify.UI.Controls.ManagedCertificate
                     }
                     catch
                     {
-                        MessageBox.Show($"The system could not launch the default app for {logPath} - Open the file manually.");
+                        MessageBox.Show($"O sistema não conseguiu iniciar o aplicativo padrão para {logPath} - Abra o arquivo manualmente.");
                     }
                 }
                 catch (Exception exp)
                 {
-                    MessageBox.Show("Failed to fetch log file. " + exp);
+                    MessageBox.Show("Falha ao obter o arquivo de log. " + exp);
                 }
             }
         }
