@@ -7,6 +7,7 @@ using Certify.Models;
 using Certify.Models.Config;
 using Certify.Shared;
 using Certify.UI.ViewModel;
+using Certify.Locales;
 using Newtonsoft.Json;
 
 namespace Certify.UI.Windows
@@ -64,27 +65,27 @@ namespace Certify.UI.Windows
 
             if (string.IsNullOrEmpty(Model.Item.Title))
             {
-                validationError = "The data store connection requires a title.";
+                validationError = SR.EditDataStoreConnection_TitleRequired;
             }
 
             if (string.IsNullOrEmpty(Model.Item.TypeId))
             {
-                validationError = "A provider type is required";
+                validationError = SR.EditDataStoreConnection_TypeRequired;
             }
 
             if (Model.Item.TypeId == "sqlite")
             {
-                validationError = "SQLite is the default store type and adding additional SQLite data stores (or editing the default one) is currently not supported";
+                validationError = SR.EditDataStoreConnection_SqliteNotSupported;
             }
 
             if (string.IsNullOrEmpty(Model.Item.ConnectionConfig))
             {
-                validationError = "Data store connections require a connection string to specify the connection details to the data source.";
+                validationError = SR.EditDataStoreConnection_ConfigRequired;
             }
 
             if (!string.IsNullOrEmpty(validationError))
             {
-                MessageBox.Show(validationError, "Add/Edit Data Store Validation Failed");
+                MessageBox.Show(validationError, SR.EditDataStoreConnection_ValidationFailed);
                 return false;
             }
             else
@@ -132,7 +133,7 @@ namespace Certify.UI.Windows
 
             if (!results.Any(r => r.HasError))
             {
-                MessageBox.Show("The data store test was successful", "Data Store Test");
+                MessageBox.Show(SR.EditDataStoreConnection_TestSuccess, SR.EditDataStoreConnection_TestTitle);
             }
             else
             {

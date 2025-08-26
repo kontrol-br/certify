@@ -421,6 +421,69 @@ namespace Certify.Locales {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to A conexão do repositório de dados requer um título..
+        /// </summary>
+        public static string EditDataStoreConnection_TitleRequired {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_TitleRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to É necessário um tipo de provedor..
+        /// </summary>
+        public static string EditDataStoreConnection_TypeRequired {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_TypeRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to SQLite é o tipo de armazenamento padrão e adicionar repositórios de dados SQLite adicionais (ou editar o padrão) não é suportado no momento..
+        /// </summary>
+        public static string EditDataStoreConnection_SqliteNotSupported {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_SqliteNotSupported", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to As conexões do repositório de dados exigem uma string de conexão para especificar os detalhes da fonte de dados..
+        /// </summary>
+        public static string EditDataStoreConnection_ConfigRequired {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_ConfigRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Falha na validação ao adicionar/editar repositório de dados..
+        /// </summary>
+        public static string EditDataStoreConnection_ValidationFailed {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_ValidationFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to O teste do repositório de dados foi bem-sucedido.
+        /// </summary>
+        public static string EditDataStoreConnection_TestSuccess {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_TestSuccess", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Teste do repositório de dados.
+        /// </summary>
+        public static string EditDataStoreConnection_TestTitle {
+            get {
+                return ResourceManager.GetString("EditDataStoreConnection_TestTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Edit Server Connection.
         /// </summary>
         public static string EditServerConnection_Title {
