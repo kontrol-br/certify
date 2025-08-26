@@ -45,11 +45,11 @@ namespace Certify.UI.Controls.ManagedCertificate
 
                 if (copiedOK)
                 {
-                    MessageBox.Show("Copied to clipboard");
+                    MessageBox.Show("Copiado para a área de transferência");
                 }
                 else
                 {
-                    MessageBox.Show("Another process is preventing access to the clipboard. Please try again.");
+                    MessageBox.Show("Outro processo está impedindo o acesso à área de transferência. Tente novamente.");
                 }
             }
         }
