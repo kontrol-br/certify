@@ -201,7 +201,7 @@ namespace Certify.UI.ViewModel
             {
                 if (existing.ItemType == ManagedCertificateType.SSL_ExternallyManaged)
                 {
-                    MessageBox.Show("This item is externally managed and cannot be deleted by this app.");
+                    MessageBox.Show("Este item é gerenciado externamente e não pode ser excluído por este aplicativo.");
 
                     return false;
                 }
