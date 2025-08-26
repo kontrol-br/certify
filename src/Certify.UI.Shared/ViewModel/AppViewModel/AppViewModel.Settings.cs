@@ -141,7 +141,7 @@ namespace Certify.UI.ViewModel
             }
             catch (ServiceCommsException ex)
             {
-                MessageBox.Show($"Unable to save preferences. {ex?.Message}.", "Save Preferences Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Não foi possível salvar as preferências. {ex?.Message}.", "Erro ao salvar preferências", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             catch
