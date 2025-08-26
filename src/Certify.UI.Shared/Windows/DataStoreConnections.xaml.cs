@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Certify.Locales;
 using Certify.Models;
 using Certify.Shared;
 using Certify.UI.ViewModel;
@@ -72,11 +73,11 @@ namespace Certify.UI.Windows
 
             if (selectedConnection?.Id == AppViewModel.Current.Preferences.ConfigDataStoreConnectionId)
             {
-                MessageBox.Show("This is the current data store connection.", "Connect to Data Store");
+                MessageBox.Show(SR.DataStoreConnections_CurrentConnection, SR.DataStoreConnections_ConnectTitle);
                 return;
             }
 
-            if (MessageBox.Show($"Switch primary data store for service to {selectedConnection.Title}?", "Switch Data Store", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(SR.DataStoreConnections_SwitchPrompt, selectedConnection.Title), SR.DataStoreConnections_SwitchTitle, MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 //TODO: perform data store connection and schema check before switching
                 var results = await ViewModel.AppViewModel.Current.SetDefaultDataStore(selectedConnection.Id, _cts.Token);
@@ -109,20 +110,20 @@ namespace Certify.UI.Windows
 
             if (string.IsNullOrEmpty(sourceId) || string.IsNullOrEmpty(targetId))
             {
-                AppViewModel.Current.ShowNotification("The source and target data source selections are required.", Shared.NotificationType.Error);
+                AppViewModel.Current.ShowNotification(SR.DataStoreConnections_SourceTargetRequired, Shared.NotificationType.Error);
                 return;
             }
 
             if (sourceId == targetId)
             {
-                AppViewModel.Current.ShowNotification("The source and target data source cannot be the same.", Shared.NotificationType.Error);
+                AppViewModel.Current.ShowNotification(SR.DataStoreConnections_SourceTargetSame, Shared.NotificationType.Error);
                 return;
             }
 
             var source = _model.Connections.FirstOrDefault(c => c.Id == sourceId);
             var target = _model.Connections.FirstOrDefault(c => c.Id == targetId);
 
-            if (MessageBox.Show($"Copy data from {source?.Title} to {target?.Title}? Existing items in the target will be overwritten.", "Copy Data", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(SR.DataStoreConnections_CopyPrompt, source?.Title, target?.Title), SR.DataStoreConnections_CopyTitle, MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 _model.IsLoading = true;
 

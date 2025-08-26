@@ -723,6 +723,30 @@
   <data name="Dashboard_NoCertificate" xml:space="preserve">
     <value>Sem Certificado</value>
   </data>
+  <data name="DataStoreConnections_CurrentConnection" xml:space="preserve">
+    <value>This is the current data store connection.</value>
+  </data>
+  <data name="DataStoreConnections_ConnectTitle" xml:space="preserve">
+    <value>Connect to Data Store</value>
+  </data>
+  <data name="DataStoreConnections_SwitchPrompt" xml:space="preserve">
+    <value>Switch primary data store for service to {0}?</value>
+  </data>
+  <data name="DataStoreConnections_SwitchTitle" xml:space="preserve">
+    <value>Switch Data Store</value>
+  </data>
+  <data name="DataStoreConnections_SourceTargetRequired" xml:space="preserve">
+    <value>The source and target data source selections are required.</value>
+  </data>
+  <data name="DataStoreConnections_SourceTargetSame" xml:space="preserve">
+    <value>The source and target data source cannot be the same.</value>
+  </data>
+  <data name="DataStoreConnections_CopyPrompt" xml:space="preserve">
+    <value>Copy data from {0} to {1}? Existing items in the target will be overwritten.</value>
+  </data>
+  <data name="DataStoreConnections_CopyTitle" xml:space="preserve">
+    <value>Copy Data</value>
+  </data>
   <data name="Preview_Title" xml:space="preserve">
     <value>Pré-visualização</value>
   </data>
