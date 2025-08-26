@@ -24,7 +24,7 @@
                 x:Name="txtSecret"
                 Width="200"
                 HorizontalAlignment="Left"
-                Controls:TextBoxHelper.Watermark="Password" />
+                Controls:TextBoxHelper.Watermark="Senha" />
 
         </StackPanel>
 
@@ -42,7 +42,7 @@
                 Height="32"
                 MinWidth="140"
                 Controls:HeaderedControlHelper.HeaderFontSize="12"
-                Header="Configurar Exportar"
+                Header="Configurar Exportação"
                 IsSelected="true">
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
                     <TextBlock DockPanel.Dock="Top" Style="{StaticResource Instructions}">Exportar um pacote de configurações incluindo as configurações de certificados gerenciados, os arquivos de certificado e as credenciais criptografadas.</TextBlock>
@@ -81,7 +81,7 @@
                             HorizontalAlignment="Left"
                             Click="Import_Click"
                             DockPanel.Dock="Top">
-                            Preview Importação..
+                            Pré-visualizar Importação..
                         </Button>
 
 
