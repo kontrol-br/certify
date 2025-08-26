@@ -56,7 +56,7 @@ namespace Certify.UI.Controls.Settings
 
             if (result.IsSuccess)
             {
-                MessageBox.Show("Successfully joined Management Hub.");
+                MessageBox.Show("Ingressou com sucesso no Management Hub.");
             }
             else
             {
