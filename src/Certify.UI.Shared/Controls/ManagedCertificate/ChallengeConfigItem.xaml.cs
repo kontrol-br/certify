@@ -137,7 +137,7 @@ namespace Certify.UI.Controls.ManagedCertificate
 
         private void DeleteAuth_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this configuration?", "Confirm Delete", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Tem certeza de que deseja excluir esta configuração?", "Confirmar Exclusão", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
                 // delete 
                 if (sender is Button)
@@ -153,7 +153,7 @@ namespace Certify.UI.Controls.ManagedCertificate
                     }
                     else
                     {
-                        MessageBox.Show("At least one authorization configuration is required.");
+                        MessageBox.Show("É necessária pelo menos uma configuração de autorização.");
                     }
                 }
             }
@@ -186,12 +186,12 @@ namespace Certify.UI.Controls.ManagedCertificate
                 else
                 {
                     // if we can't get zones, show error
-                    MessageBox.Show($"Unable to fetch DNS Zones for this provider. Check credentials are correctly set: {zonesResult.Message}");
+                    MessageBox.Show($"Não foi possível obter as zonas DNS para este provedor. Verifique se as credenciais estão configuradas corretamente: {zonesResult.Message}");
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Dns Zone Lookup could not be completed. Check credentials are correctly set.");
+                MessageBox.Show("A pesquisa de zonas DNS não pôde ser concluída. Verifique se as credenciais estão configuradas corretamente.");
             }
             finally
             {
