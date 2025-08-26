@@ -57,7 +57,7 @@ namespace Certify.UI.Controls.ManagedCertificate
                 msg = "Force task '" + task.TaskName + "' to run now? " + (ItemViewModel.SelectedItem.LastRenewalStatus == null ? "The certificate has not yet been requested and the task will likely fail with errors." : "The last certificate request failed with one or more errors, task run may fail depending on certificate status.");
             }
 
-            if (MessageBox.Show(msg, "Run Task?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show(msg, "Executar tarefa?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 // execute task now
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -67,11 +67,11 @@ namespace Certify.UI.Controls.ManagedCertificate
                 if (results.Any(r => r.HasError))
                 {
                     var result = results.First(r => r.HasError == true);
-                    MessageBox.Show($"The deployment task failed to complete. {result.Title} :: {result.Description}");
+                    MessageBox.Show($"A tarefa de implantação não pôde ser concluída. {result.Title} :: {result.Description}");
                 }
                 else
                 {
-                    ViewModel.AppViewModel.Current.ShowNotification("The deployment task completed with no reported errors.");
+                    ViewModel.AppViewModel.Current.ShowNotification("A tarefa de implantação foi concluída sem erros relatados.");
 
                 }
 
@@ -83,7 +83,7 @@ namespace Certify.UI.Controls.ManagedCertificate
         {
             var task = (sender as Button).DataContext as DeploymentTaskConfig;
 
-            if (MessageBox.Show("Are you sure you wish to delete task '" + task.TaskName + "'?", "Delete Task?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Tem certeza de que deseja excluir a tarefa '" + task.TaskName + "'?", "Excluir tarefa?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ItemViewModel.SelectedItem.PreRequestTasks?.Remove(task);
                 ItemViewModel.SelectedItem.PostRequestTasks?.Remove(task);
