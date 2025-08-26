@@ -357,6 +357,8 @@ namespace Certify.UI.ViewModel
                     SelectedItem = newItem;
                 }
 
+                newItem?.RaisePropertyChangedEvent(nameof(ManagedCertificate.CertificateLifetime));
+
                 RaisePropertyChangedEvent(nameof(ManagedCertificates));
 
                 return newItem;
@@ -422,6 +424,11 @@ namespace Certify.UI.ViewModel
                     ProgressResults.Remove(state);
                     ProgressResultsHistory.Add(state);
                     RaisePropertyChangedEvent(nameof(ProgressResultsHistory));
+
+                    if (state.CurrentState == RequestState.Success)
+                    {
+                        _ = RefreshManagedCertificates();
+                    }
                 }
 
                 RaisePropertyChangedEvent(nameof(HasRequestsInProgress));
