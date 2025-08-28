@@ -253,7 +253,7 @@ namespace Certify.UI.Windows
             var dialog = new SaveFileDialog();
 
             // prompt user for save file location and perform export to json file
-            dialog.FileName = $"certifytheweb_export_{DateTime.Now.ToString("yyyyMMdd")}.json";
+            dialog.FileName = $"AutoSSL_Export_{DateTime.Now:yyyyMMdd}.json";
             dialog.DefaultExt = "json";
             dialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
 
