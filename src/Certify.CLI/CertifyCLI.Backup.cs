@@ -16,7 +16,7 @@ namespace Certify.CLI
 
             if (Directory.Exists(filename))
             {
-                filename = Path.Combine(filename, $"certifytheweb_export_{DateTime.Now.ToString("yyyyMMdd")}.json");
+                filename = Path.Combine(filename, $"AutoSSL_Export_{DateTime.Now:yyyyMMdd}.json");
             }
 
             Console.ForegroundColor = ConsoleColor.White;
