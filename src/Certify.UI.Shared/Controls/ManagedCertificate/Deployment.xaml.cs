@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Certify.UI.Windows;
@@ -112,6 +113,11 @@ namespace Certify.UI.Controls.ManagedCertificate
                 Owner = Window.GetWindow(this)
             };
             dialog.ShowDialog();
+        }
+
+        private async void ExportSeparatePem_Click(object sender, RoutedEventArgs e)
+        {
+            await ItemViewModel.ExportSeparatePem();
         }
     }
 }
