@@ -730,6 +730,7 @@ namespace Certify.UI.ViewModel
                     File.WriteAllText(Path.Combine(exportDir, "ca.crt"), caPem);
                 });
 
+
                 _appViewModel.ShowNotification("Arquivos separados exportados", NotificationType.Success);
             }
             catch (Exception exp)
