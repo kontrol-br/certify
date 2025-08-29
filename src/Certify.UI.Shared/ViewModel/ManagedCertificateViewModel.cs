@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -11,6 +12,7 @@ using Certify.Models;
 using Certify.Models.Config;
 using Certify.Models.Shared.Validation;
 using Certify.Models.Utils;
+using Certify.Shared.Core.Utils.PKI;
 using PropertyChanged;
 
 namespace Certify.UI.ViewModel
@@ -683,6 +685,52 @@ namespace Certify.UI.ViewModel
                 }
 
                 return _parsedTokenList;
+            }
+        }
+
+        public async Task ExportSeparatePem()
+        {
+            var item = SelectedItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            var exportDir = item.RequestConfig?.CustomCertificateDirectory;
+            if (string.IsNullOrWhiteSpace(exportDir))
+            {
+                _appViewModel.ShowNotification("Diretório de exportação não definido", NotificationType.Warning);
+                return;
+            }
+
+            try
+            {
+                var pfxPath = item.CertificatePath;
+                if (string.IsNullOrWhiteSpace(pfxPath) || !File.Exists(pfxPath))
+                {
+                    _appViewModel.ShowNotification("Certificado não encontrado para exportação", NotificationType.Error);
+                    return;
+                }
+
+                Directory.CreateDirectory(exportDir);
+
+                var pfxData = await File.ReadAllBytesAsync(pfxPath);
+                var prefix = $"{item.RequestConfig?.PrimaryDomain}-{item.Id}";
+
+                var certPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.EndEntityCertificate);
+                await File.WriteAllTextAsync(Path.Combine(exportDir, $"{prefix}.crt"), certPem);
+
+                var keyPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.PrivateKey);
+                await File.WriteAllTextAsync(Path.Combine(exportDir, $"{prefix}.key"), keyPem);
+
+                var caPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.IntermediateCertificates | ExportFlags.RootCertificate);
+                await File.WriteAllTextAsync(Path.Combine(exportDir, "ca.crt"), caPem);
+
+                _appViewModel.ShowNotification("Arquivos separados exportados", NotificationType.Success);
+            }
+            catch (Exception exp)
+            {
+                _appViewModel.ShowNotification($"Falha ao exportar: {exp.Message}", NotificationType.Error);
             }
         }
 

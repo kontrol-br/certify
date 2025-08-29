@@ -1649,7 +1649,7 @@ namespace Certify.Providers.ACME.Anvil
 
             if (DefaultCertificateFormat == "pem" || DefaultCertificateFormat == "all")
             {
-                var pemOutputFile = ExportFullCertPEM(csrKey, certificateChain, primaryIdentifierAsPath);
+                var pemOutputFile = ExportFullCertPEM(csrKey, certificateChain, certId, primaryIdentifierAsPath);
 
                 if (string.IsNullOrEmpty(primaryCertOutputFile))
                 {
@@ -2079,7 +2079,7 @@ namespace Certify.Providers.ACME.Anvil
             catch { }
         }
 
-        private string ExportFullCertPEM(IKey csrKey, CertificateChain certificateChain, string primaryIdentifierPath)
+        private string ExportFullCertPEM(IKey csrKey, CertificateChain certificateChain, string certId, string primaryIdentifierPath)
         {
             var storePath = Path.GetFullPath(Path.Combine(new string[] { _providerSettings.ServiceSettingsBasePath, "assets", primaryIdentifierPath }));
 
@@ -2107,7 +2107,21 @@ namespace Certify.Providers.ACME.Anvil
             var fullchainPath = Path.GetFullPath(Path.Combine(new string[] { storePath, "fullchain.pem" }));
             File.WriteAllText(fullchainPath, certificateChain.ToPem());
 
-            return fullchainPath;
+            // export additional separate files using primary identifier and cert id as prefix
+            var prefix = $"{primaryIdentifierPath}-{certId}";
+
+            var certPath = Path.GetFullPath(Path.Combine(new string[] { storePath, $"{prefix}.crt" }));
+            File.WriteAllText(certPath, certificateChain.Certificate.ToPem());
+
+            var keyPath = Path.GetFullPath(Path.Combine(new string[] { storePath, $"{prefix}.key" }));
+            File.WriteAllText(keyPath, csrKey.ToPem());
+
+            // remaining chain (intermediate/root)
+            var caCerts = certificateChain.ToPem().Replace(certificateChain.Certificate.ToPem(), string.Empty).Trim();
+            var caPath = Path.GetFullPath(Path.Combine(new string[] { storePath, "ca.crt" }));
+            File.WriteAllText(caPath, caCerts);
+
+            return certPath;
         }
 
         public async Task<StatusMessage> RevokeCertificate(ILog log, ManagedCertificate managedCertificate)

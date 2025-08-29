@@ -100,6 +100,7 @@
                         <TextBox Width="225" Text="{Binding SelectedItem.RequestConfig.CustomCertificateDirectory}" />
                         <Button Margin="4,0,0,0" Click="CustomCertDirBrowse_Click" Content="{x:Static Resources:SR.ManagedCertificateSettings_BrowseFolder}" />
                     </StackPanel>
+                    <Button Margin="160,8,0,0" Click="ExportSeparatePem_Click">Gerar arquivos separados</Button>
                 </StackPanel>
             </DockPanel>
 
