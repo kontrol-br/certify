@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Certify.UI.Shared;
 using Certify.Locales;
 using Certify.Models;
 using Certify.Models.Config;
@@ -714,17 +715,21 @@ namespace Certify.UI.ViewModel
 
                 Directory.CreateDirectory(exportDir);
 
-                var pfxData = await File.ReadAllBytesAsync(pfxPath);
-                var prefix = $"{item.RequestConfig?.PrimaryDomain}-{item.Id}";
+                await Task.Run(() =>
+                {
+                    var pfxData = File.ReadAllBytes(pfxPath);
+                    var prefix = $"{item.RequestConfig?.PrimaryDomain}-{item.Id}";
 
-                var certPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.EndEntityCertificate);
-                await File.WriteAllTextAsync(Path.Combine(exportDir, $"{prefix}.crt"), certPem);
+                    var certPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.EndEntityCertificate);
+                    File.WriteAllText(Path.Combine(exportDir, $"{prefix}.crt"), certPem);
 
-                var keyPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.PrivateKey);
-                await File.WriteAllTextAsync(Path.Combine(exportDir, $"{prefix}.key"), keyPem);
+                    var keyPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.PrivateKey);
+                    File.WriteAllText(Path.Combine(exportDir, $"{prefix}.key"), keyPem);
 
-                var caPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.IntermediateCertificates | ExportFlags.RootCertificate);
-                await File.WriteAllTextAsync(Path.Combine(exportDir, "ca.crt"), caPem);
+                    var caPem = CertUtils.GetCertComponentsAsPEMString(pfxData, "", ExportFlags.IntermediateCertificates | ExportFlags.RootCertificate);
+                    File.WriteAllText(Path.Combine(exportDir, "ca.crt"), caPem);
+                });
+
 
                 _appViewModel.ShowNotification("Arquivos separados exportados", NotificationType.Success);
             }
