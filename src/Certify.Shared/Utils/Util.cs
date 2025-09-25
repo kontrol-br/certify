@@ -47,11 +47,11 @@ namespace Certify.Management
                     }
 
                     File.Delete(tempFilePath);
-                    results.Add(new ActionResult { IsSuccess = true, Message = $"Created test temp file OK." });
+                    results.Add(new ActionResult { IsSuccess = true, Message = $"Arquivo temporário de teste criado com sucesso." });
                 }
                 catch (Exception exp)
                 {
-                    results.Add(new ActionResult { Result = "tempfail", IsSuccess = false, Message = $"Could not create a temp file ({tempFilePath}). Windows has a limit of 65535 files in the temp folder ({tempFolder}). Clear temp files before proceeding. {exp.Message}" });
+                    results.Add(new ActionResult { Result = "tempfail", IsSuccess = false, Message = $"Não foi possível criar um arquivo temporário ({tempFilePath}). O Windows possui um limite de 65535 arquivos na pasta temporária ({tempFolder}). Limpe os arquivos temporários antes de prosseguir.{exp.Message}" });
                 }
             }
 
@@ -67,17 +67,17 @@ namespace Certify.Management
                     // Check disk has at least <limit>MB free
                     if (freeSpaceBytes < (1024L * 1024 * limit))
                     {
-                        results.Add(new ActionResult { Result = "lowdiskspace", IsSuccess = false, Message = $"Drive C: has less than {limit}MB of disk space free. The application may not run correctly." });
+                        results.Add(new ActionResult { Result = "lowdiskspace", IsSuccess = false, Message = $"A unidade C: possui menos de {limit}MB de espaço livre. O aplicativo pode não funcionar corretamente." });
                     }
                     else
                     {
-                        results.Add(new ActionResult { IsSuccess = true, Message = $"Drive C: has more than {limit}MB of disk space free." });
+                        results.Add(new ActionResult { IsSuccess = true, Message = $"A unidade C: possui mais de {limit}MB de espaço livre." });
                     }
                 }
             }
             catch (Exception)
             {
-                results.Add(new ActionResult { Result = "lowdiskspace", IsSuccess = false, Message = $"Could not check how much disk space is left on drive C:" });
+                results.Add(new ActionResult { Result = "lowdiskspace", IsSuccess = false, Message = $"Não foi possível verificar quanto espaço em disco resta na unidade C:" });
             }
 
             // check internet time service, unless ntpServer pref set to ""
@@ -92,17 +92,17 @@ namespace Certify.Management
                     // if time is more than 50 seconds out, warn user, if beyond 100 days assume time server response is probably wrong (e.g. 01/01/1900)
                     if (Math.Abs(diff.Value.TotalSeconds) > 50 && Math.Abs(diff.Value.TotalDays) < 100)
                     {
-                        results.Add(new ActionResult { IsSuccess = false, Message = $"Note: Your system time does not appear to be in sync with an internet time service, this can result in certificate request errors." });
+                        results.Add(new ActionResult { IsSuccess = false, Message = $"Nota: O horário do seu sistema não parece estar sincronizado com um serviço de tempo da Internet, o que pode resultar em erros de solicitação de certificado." });
                     }
                     else
                     {
-                        results.Add(new ActionResult { IsSuccess = true, Message = $"System time is correct." });
+                        results.Add(new ActionResult { IsSuccess = true, Message = $"O horário do sistema está correto." });
                     }
                 }
                 else
                 {
                     // could not perform test, assume firewall limitation and assume user is syncing their time.
-                    results.Add(new ActionResult { IsSuccess = true, Message = $"Note: Could not confirm system time is correct using NTP server ({ntpServer ?? "pool.ntp.org (default, UDP port 123)"}). You should ensure the system time is always correct to avoid certificate request errors." });
+                    results.Add(new ActionResult { IsSuccess = true, Message = $"Nota: Não foi possível confirmar que o horário do sistema está correto usando o servidor NTP ({ntpServer ?? "pool.ntp.org (default, UDP port 123)"}). Você deve garantir que o horário do sistema esteja sempre correto para evitar erros de solicitação de certificado." });
                 }
             }
 
@@ -114,7 +114,7 @@ namespace Certify.Management
             catch (Exception)
             {
                 // if creating managed SHA256 fails may be FIPS validation
-                results.Add(new ActionResult { IsSuccess = false, Message = $"Your system cannot create a SHA256 Cryptography instance. You may have inadvertently have FIPS enabled, which prevents the use of some standard cryptographic functions in .Net - features such as verifying app updates will not work. " });
+                results.Add(new ActionResult { IsSuccess = false, Message = $"Seu sistema não pode criar uma instância de criptografia SHA256. Você pode ter ativado inadvertidamente o FIPS, o que impede o uso de algumas funções criptográficas padrão no .Net - recursos como a verificação de atualizações do aplicativo não funcionarão. " });
             }
 
             // check powershell version
@@ -146,11 +146,11 @@ namespace Certify.Management
 
             if (!isPSAvailable)
             {
-                results.Add(new ActionResult { IsSuccess = false, Message = $"PowerShell 5.0 or higher is required for some functionality and does not appear to be available on this system. See https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/windows-powershell-system-requirements" });
+                results.Add(new ActionResult { IsSuccess = false, Message = $"O PowerShell 5.0 ou superior é necessário para algumas funcionalidades e não parece estar disponível neste sistema. Consulte https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/windows-powershell-system-requirements" });
             }
             else
             {
-                results.Add(new ActionResult { IsSuccess = true, Message = $"PowerShell 5.0 or higher is available." });
+                results.Add(new ActionResult { IsSuccess = true, Message = $"O PowerShell 5.0 ou superior está disponível." });
             }
 
             return results;
@@ -168,11 +168,11 @@ namespace Certify.Management
             }
             catch
             {
-                Debug.WriteLine("ServicePointManager.SecurityProtocol : Unable to select Tls 1.3 as supported protocol");
+                Debug.WriteLine("ServicePointManager.SecurityProtocol : Não foi possível selecionar o TLS 1.3 como protocolo compatível");
             }
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            Debug.WriteLine("ServicePointManager.SecurityProtocol : Tls 1.2 is the highest supported protocol");
+            Debug.WriteLine("ServicePointManager.SecurityProtocol : O TLS 1.2 é o protocolo compatível mais alto");
 #endif
         }
 
@@ -296,7 +296,7 @@ namespace Certify.Management
             {
                 if (throwOnDeviation)
                 {
-                    throw new Exception("Downloaded file failed SHA256 hash check");
+                    throw new Exception("O arquivo baixado falhou na verificação de hash SHA256");
                 }
                 else
                 {
@@ -360,7 +360,7 @@ namespace Certify.Management
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Update failed to download. Could not create temp folder under %APPDATA%");
+                    throw new Exception("Falha ao baixar a atualização. Não foi possível criar a pasta temporária em %APPDATA%");
                 }
 
                 //https://github.com/dotnet/corefx/issues/6849
@@ -428,7 +428,7 @@ namespace Certify.Management
 
                                             if (totalReads % 512 == 0)
                                             {
-                                                Console.WriteLine(string.Format("total bytes downloaded so far: {0:n0}", totalRead));
+                                                Console.WriteLine(string.Format("total de bytes baixados até agora: {0:n0}", totalRead));
                                             }
                                         }
                                     }
@@ -440,7 +440,7 @@ namespace Certify.Management
                     }
                     catch (Exception exp)
                     {
-                        System.Diagnostics.Debug.WriteLine("Failed to download update: " + exp.ToString());
+                        System.Diagnostics.Debug.WriteLine("Falha ao baixar a atualização: " + exp.ToString());
                         downloadVerified = false;
                     }
                     // verify temp file
@@ -479,7 +479,7 @@ namespace Certify.Management
         {
             if (releaseKey >= 528040)
             {
-                return "4.8 or later";
+                return "4.8 ou posterior";
             }
 
             if (releaseKey >= 461808)
@@ -534,7 +534,7 @@ namespace Certify.Management
 
             // This code should never execute. A non-null release key should mean that 4.5 or later
             // is installed.
-            return "No 4.5 or later version detected";
+            return "Nenhuma versão 4.5 ou posterior detectada";
         }
 
         public static string ToUrlSafeBase64String(byte[] data)
@@ -579,7 +579,7 @@ namespace Certify.Management
             }
             catch (FormatException)
             {
-                throw new ArgumentException("Invalid URL-safe base64 string", nameof(urlSafeBase64));
+                throw new ArgumentException("String Base64 segura para URL inválida", nameof(urlSafeBase64));
             }
         }
 
